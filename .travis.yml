@@ -1,0 +1,12 @@
+before_install: gem update --system
+dist: trusty
+language: ruby
+services:
+  - mysql
+before_script:
+  - cp config/database.example.yml config/database.yml
+  - gem install --no-document pronto pronto-rubocop pronto-fasterer
+script:
+  - RAILS_ENV=test bundle exec rake db:create db:migrate
+  - bundle exec rake db:test:prepare
+  - PRONTO_GITHUB_ACCESS_TOKEN=${GITHUB_ACCESS_TOKEN} PRONTO_PULL_REQUEST_ID=${TRAVIS_PULL_REQUEST} pronto run -f github_status github_pr -c origin/${TRAVIS_BRANCH}
