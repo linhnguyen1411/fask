@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170714063350) do
+ActiveRecord::Schema.define(version: 20170717061843) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "trackable_type"
@@ -50,12 +50,12 @@ ActiveRecord::Schema.define(version: 20170714063350) do
 
   create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.integer  "parent_id",   default: 0
+    t.integer  "parent_id",  default: 0
     t.integer  "status"
-    t.integer  "owner_id_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.index ["owner_id_id"], name: "index_companies_on_owner_id_id", using: :btree
+    t.integer  "owner_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.index ["owner_id"], name: "index_companies_on_owner_id", using: :btree
   end
 
   create_table "follows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -137,22 +137,33 @@ ActiveRecord::Schema.define(version: 20170714063350) do
 
   create_table "topics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.text     "desciption", limit: 65535
+    t.text     "description", limit: 65535
     t.string   "icon"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.string   "email"
     t.string   "avatar"
     t.string   "chatwork_id"
+    t.integer  "company_id"
     t.integer  "language"
     t.integer  "role_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["role_id"], name: "index_users_on_role_id", using: :btree
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
   create_table "work_spaces", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -178,6 +189,5 @@ ActiveRecord::Schema.define(version: 20170714063350) do
   add_foreign_key "reactions", "users"
   add_foreign_key "topic_managers", "topics"
   add_foreign_key "topic_managers", "users"
-  add_foreign_key "users", "roles"
   add_foreign_key "work_spaces", "companies"
 end
