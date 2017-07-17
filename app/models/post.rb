@@ -11,5 +11,5 @@ class Post < ApplicationRecord
 
   belongs_to :user
   belongs_to :work_space
-  belongs_to :topics
+  belongs_to :topic
 end
