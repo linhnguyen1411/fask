@@ -76,6 +76,8 @@ GEM
       colorize (~> 0.7)
       ruby_parser (~> 3.7)
     ffi (1.9.18)
+    font-awesome-sass (4.7.0)
+      sass (>= 3.2)
     gitlab (4.2.0)
       httparty
       terminal-table
@@ -242,6 +244,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.2)
   devise
+  font-awesome-sass
   jbuilder (~> 2.5)
   jquery-rails
   mysql2 (>= 0.3.18, < 0.5)
@@ -251,6 +254,7 @@ DEPENDENCIES
   public_activity
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
+  rubocop
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
@@ -259,4 +263,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.12.5
+   1.14.6

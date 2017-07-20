@@ -1,0 +1,65 @@
+<header>
+  <div class="header-top">
+    <div class="container-left">
+      <%= link_to "#", class: "link-item" do %>
+        <i class="fa fa-home" aria-hidden="true"></i>
+        <%= t "index.home" %>
+      <% end %> |
+      <%= link_to "#", class: "link-item" do %>
+        <i class="fa fa-info-circle" aria-hidden="true"></i>
+        <%= t "index.help" %>
+      <% end %> |
+      <%= link_to "#", class: "link-item" do %>
+        <i class="fa fa-mobile" aria-hidden="true"></i>
+        <%= t "index.mobile_app" %>
+      <% end %>
+    </div>
+    <div class="container-right">
+      <%= link_to "#", class: "link-item" do %>
+        <i class="fa fa-sign-in" aria-hidden="true"></i>
+        <%= t "index.login" %>
+      <% end %> |
+      <%= link_to "#", class: "link-item" do %>
+        <i class="fa fa-user-plus" aria-hidden="true"></i>
+        <%= t "index.signup" %>
+      <% end %> |
+      <div class="dropdown">
+        <%= link_to "#", class: "link-item dropdown-toggle", "data-toggle": "dropdown" do %>
+          <%= image_tag "profile", class: "image-profile" %>
+          <%= "Pham Thanh Luan" %>
+          <span class="caret"></span>
+        <% end %>
+        <ul class="dropdown-menu">
+          <li><a href="#"><%= t "index.profile" %></a></li>
+          <li><a href="#"><%= t "index.logout" %></a></li>
+        </ul>
+      </div>
+      <div class="dropdown change-language">
+        <%= link_to "#", class: "link-item dropdown-toggle", "data-toggle": "dropdown" do %>
+          <%= image_tag "vi" %>
+          <span class="caret"></span>
+        <% end %>
+        <ul class="dropdown-menu">
+          <li><a href="#"><%= t "language.vi" %></a></li>
+          <li><a href="#"><%= t "language.en" %></a></li>
+          <li><a href="#"><%= t "language.ja" %></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="header-bottom">
+    <%= image_tag "logo", class: "logo" %>
+    <div class="choose-type">
+      <%= link_to "#", class: "choose-item" do %>
+        <%= t "index.q_a" %>
+      <% end %>
+      <%= link_to "#", class: "choose-item" do %>
+        <%= t "index.feedback" %>
+      <% end %>
+      <%= link_to "#", class: "choose-item" do %>
+        <%= t "index.confession" %>
+      <% end %>
+      <%= link_to t("index.post_question"), "#", class: "post-question"  %>
+    </div>
+  </div>
+</header>

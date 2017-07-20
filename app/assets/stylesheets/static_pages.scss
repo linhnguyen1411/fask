@@ -1,0 +1,276 @@
+header {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+.body {
+  padding-top: 120px;
+}
+.header-top {
+  width: 100%;
+  height: 40px;
+  background-color: #fd9800;
+  .container-left {
+    display: inline-block;
+    color: white;
+    padding-top: 10px;
+    padding-left: 10px;
+    a {
+      color: white;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+  }
+  .container-right {
+    display: inline-block;
+    float: right;
+    padding-top: 10px;
+    padding-right: 10px;
+    color: white;
+    a {
+      color: white;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    .image-profile {
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
+      border-radius: 50px;
+      margin-top: -5px;
+    }
+    .dropdown {
+      display: inline-block;
+      li a {
+        color: black;
+      }
+    }
+    .change-language {
+      padding-left: 20px;
+    }
+  }
+  a:hover {
+    text-decoration: blink;
+    i, img {
+    transform: rotateY(360deg);
+    transition: 1s ease-in-out;
+    }
+  }
+}
+.header-bottom {
+  background: #eee url(header-bg.png) repeat scroll 0 0;
+  height: 80px;
+  box-shadow: 0px 0px 1px;
+  .logo {
+    width: 200px;
+    padding-left: 50px;
+    padding-top: 3px;
+  }
+  .choose-type {
+    display: inline-block;
+    float: right;
+    padding-right: 50px;
+    height: 80px;
+    .choose-item {
+      display: inline-block;
+      height: 80px;
+      padding-top: 25px;
+      font-size: 20px;
+      color: black;
+      padding-left: 15px;
+      padding-right: 15px;
+      text-shadow: 1px 1px #a79e8f;
+      text-transform: uppercase;
+    }
+    .post-question {
+      border: solid 1px;
+      padding: 10px;
+      margin-left: 50px;
+      display: inline-block;
+      font-size: 20px;
+      color: white;
+      background-color: #fd9800;
+      text-transform: uppercase;
+    }
+    .post-question:hover {
+      color: #fd9800;
+      background-color: rgba(239, 239, 239, 0);
+      transition: 0.5s ease-in-out;
+    }
+  }
+  a:hover {
+    text-decoration: blink;
+    background-color: rgba(253, 152, 0, 0.31);
+    transition: 0.5s ease-in-out;
+  }
+}
+
+//page-index
+.panel-search {
+  background: url(panel-search.jpg) no-repeat scroll center top;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 300px;
+  position: relative;
+  .custom-background {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.44);
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+  }
+  .search {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    .field-search {
+      width: 500px;
+      height: 40px;
+      border-radius: 5px;
+    }
+    .btn-search {
+      background: #efefef;
+      padding: 10px;
+      font-size: 15px;
+      margin-left: 21px;
+      color: black;
+      text-transform: uppercase;
+      border-radius: 5px;
+    }
+  }
+}
+.content {
+  padding-top: 20px;
+  .choose-type-question {
+    height: 1000px;
+    .choose-type {
+      .item {
+        font-size: 20px;
+        color: rgba(154, 154, 154, 0.79);
+        padding: 20px;
+        border-bottom: solid 2px rgba(154, 154, 157, 0.24);
+      }
+      .item:hover {
+        text-decoration: blink;
+        transition: 0.5s ease-in-out;
+        color: #fd9800;
+      }
+      .item-active {
+        @extend .item:hover;
+        border-bottom: solid 2px #fd9800;
+      }
+    }
+    .list-question {
+      padding-top: 30px;
+      .question-item {
+        margin-left: 10px;
+        margin-top: 5px;
+        background: url(header-bg.png) repeat scroll 0 0;
+        .user-avatar {
+          display: inline-block;
+          width: 20%;
+          padding: 10px;
+          text-align: center;
+          img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+          }
+        }
+        .question-content {
+          display: inline-block;
+          position: relative;
+          width: 79%;
+          padding: 10px;
+          .title {
+            font-size: 20px;
+            font-weight: bold;
+            .general-question {
+              display: inline-block;
+              float: right;
+              font-weight: normal;
+              .item {
+                display: inline-block;
+                font-size: 13px;
+                width: 55px;
+                height: 50px;
+                border: solid 1px #fd9800;
+                color: #fd9800;
+                text-align: center;
+                vertical-align: middle;
+                padding-top: 5px;
+              }
+              .item:hover {
+                background-color: #fd9800;
+                color: white;
+                transition: 0.3s ease-in-out;
+              }
+            }
+            .count-time {
+              font-size: 12px;
+              font-weight: 200;
+              font-style: inherit;
+              text-transform: uppercase;
+              color: gray;
+            }
+          }
+          .post-tag {
+            padding-top: 10px;
+            a {
+              background: #ff9900;
+              color: white;
+              padding: 3px 5px;
+              margin-right: 5px;
+              border-radius: 2px 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .list-top {
+    height: 1000px;
+    .title {
+      text-align: center;
+      width: 100%;
+      border: solid 1px rgba(154, 154, 154, 0.79);
+      border-left: solid 3px #fd9800;
+      border-right: solid 3px #fd9800;
+      label {
+        font-size: 20px;
+        padding: 10px;
+      }
+    }
+    .item {
+      display: block;
+      color: black;
+      border-top: none;
+      box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.73);
+      padding-top: 10px;
+      padding-bottom: 10px;
+      margin: 0;
+      img {
+        width: 100%;
+        object-fit: cover;
+        border-radius: 100px;
+        box-shadow: 0px 0px 1px;
+      }
+      .user-avatar {
+        padding-right: 0px;
+      }
+      .info-user {
+        .name {
+          font-weight: 500;
+        }
+        .role {
+          font-weight: normal;
+          font-style: italic;
+        }
+      }
+    }
+  }
+}
