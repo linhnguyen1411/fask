@@ -3,25 +3,25 @@
     <div class="container-left">
       <%= link_to "#", class: "link-item" do %>
         <i class="fa fa-home" aria-hidden="true"></i>
-        <%= t "index.home" %>
+        <%= t ".home" %>
       <% end %> |
       <%= link_to "#", class: "link-item" do %>
         <i class="fa fa-info-circle" aria-hidden="true"></i>
-        <%= t "index.help" %>
+        <%= t ".help" %>
       <% end %> |
       <%= link_to "#", class: "link-item" do %>
         <i class="fa fa-mobile" aria-hidden="true"></i>
-        <%= t "index.mobile_app" %>
+        <%= t ".mobile_app" %>
       <% end %>
     </div>
     <div class="container-right">
       <%= link_to "#", class: "link-item" do %>
         <i class="fa fa-sign-in" aria-hidden="true"></i>
-        <%= t "index.login" %>
+        <%= t ".login" %>
       <% end %> |
       <%= link_to "#", class: "link-item" do %>
         <i class="fa fa-user-plus" aria-hidden="true"></i>
-        <%= t "index.signup" %>
+        <%= t ".signup" %>
       <% end %> |
       <div class="dropdown">
         <%= link_to "#", class: "link-item dropdown-toggle", "data-toggle": "dropdown" do %>
@@ -30,8 +30,8 @@
           <span class="caret"></span>
         <% end %>
         <ul class="dropdown-menu">
-          <li><a href="#"><%= t "index.profile" %></a></li>
-          <li><a href="#"><%= t "index.logout" %></a></li>
+          <li><a href="#"><%= t ".profile" %></a></li>
+          <li><a href="#"><%= t ".logout" %></a></li>
         </ul>
       </div>
       <div class="dropdown change-language">
@@ -51,15 +51,15 @@
     <%= image_tag "logo", class: "logo" %>
     <div class="choose-type">
       <%= link_to "#", class: "choose-item" do %>
-        <%= t "index.q_a" %>
+        <%= t ".q_a" %>
       <% end %>
       <%= link_to "#", class: "choose-item" do %>
-        <%= t "index.feedback" %>
+        <%= t ".feedback" %>
       <% end %>
       <%= link_to "#", class: "choose-item" do %>
-        <%= t "index.confession" %>
+        <%= t ".confession" %>
       <% end %>
-      <%= link_to t("index.post_question"), "#", class: "post-question"  %>
+      <%= link_to t(".post_question"), "#", class: "post-question"  %>
     </div>
   </div>
 </header>

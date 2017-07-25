@@ -2,7 +2,7 @@
   <span class="custom-background"></span>
   <div class="search">
     <%= text_field_tag "", "", class: "field-search" %>
-    <%= link_to t("index.search"), "#", class: "btn-search" %>
+    <%= link_to t(".search"), "#", class: "btn-search" %>
   </div>
 </div>
 <div class="content">
@@ -10,7 +10,7 @@
     <div class="choose-type text-center">
       <%= link_to "#", class: "item item-active" do %>
         <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
-        <%= t "index.recent_question" %>
+        <%= t ".recent_question" %>
       <% end %>
     </div>
     <div class="list-question">
@@ -26,15 +26,15 @@
             <div class="general-question">
               <div class="item">
                 <div><%= "100" %></div>
-                <div><%= t "index.view" %></div>
+                <div><%= t ".view" %></div>
               </div>
               <div class="item">
                 <div><%= "120" %></div>
-                <div><%= t "index.answer" %></div>
+                <div><%= t ".answer" %></div>
               </div>
               <div class="item">
                 <div><%= "10" %></div>
-                <div><%= t "index.vote" %></div>
+                <div><%= t ".vote" %></div>
               </div>
             </div>
             <div class="count-time">
@@ -56,7 +56,7 @@
   </div>
   <div class="col-md-3 col-xs-0 list-top">
     <div class="title">
-      <%= label_tag "", t("index.top_user") %>
+      <%= label_tag "", t(".top_user") %>
     </div>
     <div class="row item">
       <div class="col-md-3 user-avatar">
