@@ -1,65 +1,73 @@
-<header>
-  <div class="header-top">
-    <div class="container-left">
-      <%= link_to "#", class: "link-item" do %>
+<nav class="navbar navbar-inverse navbar-fixed-top nav-top">
+  <div class="container">
+    <div class="row">
+      <div class="container-left">
+        <%= link_to "#", class: "link-item" do %>
         <i class="fa fa-home" aria-hidden="true"></i>
         <%= t ".home" %>
-      <% end %> |
-      <%= link_to "#", class: "link-item" do %>
+        <% end %> |
+        <%= link_to "#", class: "link-item" do %>
         <i class="fa fa-info-circle" aria-hidden="true"></i>
         <%= t ".help" %>
-      <% end %> |
-      <%= link_to "#", class: "link-item" do %>
+        <% end %> |
+        <%= link_to "#", class: "link-item" do %>
         <i class="fa fa-mobile" aria-hidden="true"></i>
         <%= t ".mobile_app" %>
-      <% end %>
-    </div>
-    <div class="container-right">
-      <%= link_to "#", class: "link-item" do %>
+        <% end %>
+      </div>
+      <div class="container-right">
+        <%= link_to "#", class: "link-item" do %>
         <i class="fa fa-sign-in" aria-hidden="true"></i>
         <%= t ".login" %>
-      <% end %> |
-      <%= link_to "#", class: "link-item" do %>
+        <% end %> |
+        <%= link_to "#", class: "link-item" do %>
         <i class="fa fa-user-plus" aria-hidden="true"></i>
         <%= t ".signup" %>
-      <% end %> |
-      <div class="dropdown">
-        <%= link_to "#", class: "link-item dropdown-toggle", "data-toggle": "dropdown" do %>
+        <% end %> |
+        <div class="dropdown">
+          <%= link_to "#", class: "link-item dropdown-toggle", "data-toggle": "dropdown" do %>
           <%= image_tag "profile", class: "image-profile" %>
           <%= "Pham Thanh Luan" %>
           <span class="caret"></span>
-        <% end %>
-        <ul class="dropdown-menu">
-          <li><a href="#"><%= t ".profile" %></a></li>
-          <li><a href="#"><%= t ".logout" %></a></li>
-        </ul>
-      </div>
-      <div class="dropdown change-language">
-        <%= link_to "#", class: "link-item dropdown-toggle", "data-toggle": "dropdown" do %>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li><a href="#"><%= t ".profile" %></a></li>
+            <li><a href="#"><%= t ".logout" %></a></li>
+          </ul>
+        </div>
+        <div class="dropdown change-language">
+          <%= link_to "#", class: "link-item dropdown-toggle", "data-toggle": "dropdown" do %>
           <%= image_tag "vi" %>
           <span class="caret"></span>
-        <% end %>
-        <ul class="dropdown-menu">
-          <li><a href="#"><%= t "language.vi" %></a></li>
-          <li><a href="#"><%= t "language.en" %></a></li>
-          <li><a href="#"><%= t "language.ja" %></a></li>
-        </ul>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li><a href="#"><%= t "language.vi" %></a></li>
+            <li><a href="#"><%= t "language.en" %></a></li>
+            <li><a href="#"><%= t "language.ja" %></a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-  <div class="header-bottom">
-    <%= image_tag "logo", class: "logo" %>
-    <div class="choose-type">
-      <%= link_to "#", class: "choose-item" do %>
+</nav>
+<nav class="navbar navbar-inverse navbar-fixed-top nav-bottom">
+  <div class="container">
+    <div class="row">
+      <%= link_to root_path do %>
+        <%= image_tag "logo", class: "logo" %>
+      <% end %>
+      <div class="choose-type">
+        <%= link_to "#", class: "choose-item" do %>
         <%= t ".q_a" %>
-      <% end %>
-      <%= link_to "#", class: "choose-item" do %>
+        <% end %>
+        <%= link_to "#", class: "choose-item" do %>
         <%= t ".feedback" %>
-      <% end %>
-      <%= link_to "#", class: "choose-item" do %>
+        <% end %>
+        <%= link_to "#", class: "choose-item" do %>
         <%= t ".confession" %>
-      <% end %>
-      <%= link_to t(".post_question"), "#", class: "post-question"  %>
+        <% end %>
+        <%= link_to t(".post_question"), "#", class: "post-question"  %>
+      </div>
     </div>
   </div>
-</header>
+</nav>

@@ -3,7 +3,7 @@ en:
   language:
     vi: "Tiếng Việt"
     en: "English"
-    ja: "日本語"   
+    ja: "日本語"
   layouts:
     header:
       home: "Home"
@@ -25,3 +25,10 @@ en:
       answer: "Answer"
       vote: "Vote"
       top_user: "Top User"
+      recently_answered: "Recently answered"
+      top_views: "Top views"
+      top_votes: "Top vote"
+      search_panel:
+        title: "HAVE A QUESTION?"
+        content: "If you have any knowledge-question/company-feedback/funny-confesstion you can ask below or enter what you are looking for!"
+        placeholder: "Type your search terms here"

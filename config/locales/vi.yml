@@ -25,3 +25,10 @@ vi:
       answer: "Trả lời"
       vote: "Đánh giá"
       top_user: "Top thành viên"
+      recently_answered: "Trả lời mới"
+      top_views: "Xem nhiều"
+      top_votes: "Đánh giá cao"
+      search_panel:
+        title: "BẠN CÓ CÂU HỎI?"
+        content: "Nếu bạn có câu hỏi về kỷ thuật, góp ý về công ty hay muốn thổ lộ tâm tình trong confession bạn có thể tìm kiếm tại đây!"
+        placeholder: "Nhập từ khóa để tìm kiếm"
