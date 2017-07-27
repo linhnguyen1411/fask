@@ -1,5 +1,5 @@
 Given /^I see logo$/ do
-  page.assert_selector "img", id: "fask-logo"
+  page.assert_selector "img", id: "fask-logo", class: "logo"
 end
 
 When /^I am click logo$/ do
