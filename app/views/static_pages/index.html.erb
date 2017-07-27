@@ -6,8 +6,9 @@
         <%= label_tag "", t(".search_panel.title"), class: "search-title" %>
         <%= label_tag "", t(".search_panel.content"), class: "search-content" %>
         <div>
-          <%= text_field_tag "", "", class: "field-search", placeholder: "Type your search terms here" %>
-          <%= link_to t(".search"), "#", class: "btn btn-search" %>
+          <%= text_field_tag "index-field-search", "", class: "field-search",
+            placeholder: t(".search_panel.placeholder") %>
+          <%= link_to t(".search"), "#", id: "index-btn-search", class: "btn btn-search" %>
         </div>
       </div>
     </div>
