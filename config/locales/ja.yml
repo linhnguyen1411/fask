@@ -6,7 +6,7 @@ ja:
     ja: "日本語"
   layouts:
     header:
-      home: "Home"
+      home: "ホーム"
       help: "Help"
       mobile_app: "Mobile App"
       login: "Login"
@@ -17,6 +17,17 @@ ja:
       feedback: "Feedback"
       confession: "Confession"
       post_question: "Post question"
+      announcement: "Announcement"
+    footer:
+      detail: "会社情報 ベトナムのFramgiaは日本では100％を投資されています. 電話アプリケーション、 ゲーム、ソーシャルアプリケーションやWebベースのアプリケーションを構築に特化."
+      copyright: "Copyright 2016 Framgia, Inc. All rights reserved."
+      address: "13フロアのKeangnam, E6の小包, Pham Hung 砂糖,Tu Liem Nam, Ha Noi, Viet Nam"
+      phone: "84-4-3795-5417"
+      email: "hr_team@framgia.com"
+      reader: "ドキュメントの使用"
+      home: "ホーム"
+      company_name: "Framgia Vietnam"
+      site_links: "Site Links"
   static_pages:
     index:
       search: "Search"
@@ -36,3 +47,8 @@ ja:
   qa_knowlegeds:
     show:
       error_voted_question: "You are voted for this question."
+      error_liked_question:  "You are liked for this answer"
+  posts:
+    show:
+      post_not_exist: "Find not found."
+      view_counts: "%{number} views"

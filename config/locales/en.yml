@@ -17,6 +17,17 @@ en:
       feedback: "Feedback"
       confession: "Confession"
       post_question: "Post question"
+      announcement: "Announcement"
+    footer:
+      detail: "About Framgia Viet Nam Framgia Vietnam is a company 100% Japan funded specializing in design, development applications such as mobile phone software, games, social and website applications."
+      copyright: "Copyright 2016 Framgia, Inc. All rights reserved."
+      address: "13F Keangnam Landmark 72 Tower, Plot E6, Pham Hung Road, Nam Tu Liem, Ha Noi, Viet Nam"
+      phone: "84-4-3795-5417"
+      email: "hr_team@framgia.com"
+      reader: "Using document"
+      home: "Home"
+      company_name: "Framgia Vietnam"
+      site_links: "Site Links"
   static_pages:
     index:
       search: "Search"
@@ -37,3 +48,8 @@ en:
     show:
       error_voted_question: "You are voted for this question."
       error_liked_question:  "You are liked for this answer"
+  posts:
+    show:
+      post_not_exist: "Find not found."
+      view_counts: "%{number} views"
+      thread_answers: "Thread answers"

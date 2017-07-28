@@ -1,73 +1,106 @@
-<nav class="navbar navbar-inverse navbar-fixed-top nav-top">
+<div class="top-bar">
   <div class="container">
     <div class="row">
-      <div class="container-left">
-        <%= link_to "#", class: "link-item" do %>
-        <i class="fa fa-home" aria-hidden="true"></i>
-        <%= t ".home" %>
-        <% end %> |
-        <%= link_to "#", class: "link-item" do %>
-        <i class="fa fa-info-circle" aria-hidden="true"></i>
-        <%= t ".help" %>
-        <% end %> |
-        <%= link_to "#", class: "link-item" do %>
-        <i class="fa fa-mobile" aria-hidden="true"></i>
-        <%= t ".mobile_app" %>
-        <% end %>
+      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-4">
+        <ul class="top-nav nav-left">
+          <li><%= link_to t(".home"), root_path %></li>
+          <li class="hidden-xs"><%= link_to t(".help"), "#" %></li>
+          <li class="hidden-xs"><%= link_to t(".mobile_app"), "#" %></a>
+          </li>
+        </ul>
       </div>
-      <div class="container-right">
-        <%= link_to "#", class: "link-item" do %>
-        <i class="fa fa-sign-in" aria-hidden="true"></i>
-        <%= t ".login" %>
-        <% end %> |
-        <%= link_to "#", class: "link-item" do %>
-        <i class="fa fa-user-plus" aria-hidden="true"></i>
-        <%= t ".signup" %>
-        <% end %> |
-        <div class="dropdown">
-          <%= link_to "#", class: "link-item dropdown-toggle", "data-toggle": "dropdown" do %>
-          <%= image_tag "profile", class: "image-profile" %>
-          <%= "Pham Thanh Luan" %>
-          <span class="caret"></span>
-          <% end %>
-          <ul class="dropdown-menu">
-            <li><a href="#"><%= t ".profile" %></a></li>
-            <li><a href="#"><%= t ".logout" %></a></li>
-          </ul>
-        </div>
-        <div class="dropdown change-language">
-          <%= link_to "#", class: "link-item dropdown-toggle", "data-toggle": "dropdown" do %>
-          <%= image_tag "vi" %>
-          <span class="caret"></span>
-          <% end %>
-          <ul class="dropdown-menu">
-            <li><a href="#"><%= t "language.vi" %></a></li>
-            <li><a href="#"><%= t "language.en" %></a></li>
-            <li><a href="#"><%= t "language.ja" %></a></li>
-          </ul>
-        </div>
+      <div class="col-lg-8 col-md-8 col-sm-6 col-xs-8">
+        <ul class="top-nav nav-right">
+          <li>
+            <%= link_to "#" do %>
+              <i class="fa fa-lock" aria-hidden="true"></i>
+              <%= t ".login" %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "#" do %>
+              <i class="fa fa-user-plus" aria-hidden="true"></i>
+              <%= t ".signup" %>
+            <% end %>
+          </li>
+          <li class="dropdown">
+            <%= link_to "#", class: "dropdown-toggle",
+              data: {hover: "dropdown", tooggle: "dropdown", animations: "fadeInUp"} do %>
+              <%= image_tag "authors/13.jpg", class: "img-circle resize" %>
+              <span class="hidden-xs small-padding">
+                <span>Umair</span>
+                <i class="fa fa-caret-down"></i>
+              </span>
+            <% end %>
+            <ul class="dropdown-menu ">
+              <li>
+                <%= link_to "#" do %>
+                  <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                  <%= t ".profile" %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "#" do %>
+                  <i class="fa fa-sign-out" aria-hidden="true"></i>
+                  <%= t ".logout" %>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <%= link_to "#", class: "dropdown-toggle",
+              data: {hover: "dropdown", tooggle: "dropdown", animations: "fadeInUp"} do %>
+              <%= image_tag "vi", class: "img-circle resize image-language" %>
+            <% end %>
+            <ul class="dropdown-menu ">
+              <li>
+                <%= link_to "#" do %>
+                  <%= image_tag "vi", class: "img-circle resize image-language"  %>
+                  <%= t "language.vi" %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "#" do %>
+                  <%= image_tag "en", class: "img-circle resize image-language"  %>
+                  <%= t "language.en" %>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to "#" do %>
+                  <%= image_tag "ja", class: "img-circle resize image-language"  %>
+                  <%= t "language.ja" %>
+                <% end %>
+              </li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-</nav>
-<nav class="navbar navbar-inverse navbar-fixed-top nav-bottom">
+</div>
+<div class="navbar navbar-default">
   <div class="container">
-    <div class="row">
-      <%= link_to root_path do %>
-        <%= image_tag "logo", class: "logo", id: "fask-logo" %>
+    <div class="navbar-header">
+      <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag "logo", class: "img-responsive image-logo" %>
       <% end %>
-      <div class="choose-type">
-        <%= link_to "#", class: "choose-item" do %>
-        <%= t ".q_a" %>
-        <% end %>
-        <%= link_to "#", class: "choose-item" do %>
-        <%= t ".feedback" %>
-        <% end %>
-        <%= link_to "#", class: "choose-item" do %>
-        <%= t ".confession" %>
-        <% end %>
-        <%= link_to t(".post_question"), "#", class: "post-question"  %>
-      </div>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="hidden-sm"><%= link_to t(".q_a"), "#" %></li>
+        <li><%= link_to t(".feedback"), "#" %></li>
+        <li><%= link_to t(".confession"), "#" %></li>
+        <li>
+          <div class="btn-nav">
+            <%= link_to t(".post_question"), "#", class: "btn btn-primary btn-small navbar-btn" %>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
-</nav>
+</div>

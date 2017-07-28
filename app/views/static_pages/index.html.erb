@@ -1,103 +1,11 @@
-<div class="panel-search">
-  <span class="custom-background"></span>
-  <div class="container">
-    <div class="row">
-      <div class="search">
-        <%= label_tag "", t(".search_panel.title"), class: "search-title" %>
-        <%= label_tag "", t(".search_panel.content"), class: "search-content" %>
-        <div>
-          <%= text_field_tag "index-field-search", "", class: "field-search",
-            placeholder: t(".search_panel.placeholder") %>
-          <%= link_to t(".search"), "#", id: "index-btn-search", class: "btn btn-search" %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container">
-  <div class="row">
-    <div class="content">
-      <div class="row">
-        <div class="col-md-8 col-xs-12 choose-type-question">
-          <div class="choose-type text-center">
-            <%= link_to "#", class: "item item-active" do %>
-              <i class="fa fa-clock-o" aria-hidden="true"></i>
-              <%= t ".recent_question" %>
-            <% end %>
-            <%= link_to "#", class: "item" do %>
-              <i class="fa fa-calendar-plus-o" aria-hidden="true"></i>
-              <%= t ".recently_answered" %>
-            <% end %>
-             <%= link_to "#", class: "item" do %>
-              <i class="fa fa-eye" aria-hidden="true"></i>
-              <%= t ".top_views" %>
-            <% end %>
-             <%= link_to "#", class: "item" do %>
-              <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-              <%= t ".top_votes" %>
-            <% end %>
-          </div>
-          <div class="list-question">
-            <div class="row question-item">
-              <div class="col-md-2 user-avatar">
-                <%= image_tag "profile" %>
-                <br>
-                <%= "design" %>
-              </div>
-              <div class="col-md-10 question-content">
-                <div class="title">
-                  <%= "Chang co cai gi de ma hoi ca?" %>
-                  <div class="general-question">
-                    <div class="item">
-                      <div><%= "100" %></div>
-                      <div><%= t ".view" %></div>
-                    </div>
-                    <div class="item">
-                      <div><%= "120" %></div>
-                      <div><%= t ".answer" %></div>
-                    </div>
-                    <div class="item">
-                      <div><%= "10" %></div>
-                      <div><%= t ".vote" %></div>
-                    </div>
-                  </div>
-                  <div class="count-time">
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>: 8 mintes ago
-                  </div>
-                </div>
-                <div class="content">
-                  <%= "As i am fetching the data from database and displaying it in front end.Need to display only job name once i click on more info text it should display the rest of the text and clicking on more info again the text should be hided.
-
-                  Now it is displaying all the text at the time page loading only once clicking on more info it is hiding the text and showing the text." %>
-                </div>
-                <div class="post-tag">
-                  <%= link_to "php", "#", class: "btn" %>
-                  <%= link_to "javascript", "#", class: "btn" %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-xs-0 list-top">
-          <div class="title">
-            <%= label_tag "", t(".top_user") %>
-          </div>
-          <div class="row item">
-            <div class="col-md-3 user-avatar">
-              <%= image_tag "profile", class: "img-circle" %>
-            </div>
-            <div class="col-md-9 info-user">
-              <%= label_tag "name", "Pham Thanh Luan", class: "name" %>
-              </br>
-              <%= label_tag "role", "Design", class: "role" %>
-              </br>
-              <i class="fa fa-user-plus" aria-hidden="true"></i>: 200 |
-              <i class="fa fa-clipboard" aria-hidden="true"></i>: 120 |
-              <i class="fa fa-commenting" aria-hidden="true"></i></i>: 300
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="full-section search-section">
+  <div class="search-area container">
+    <h3 class="search-title"><%= t ".search_panel.title" %></h3>
+    <p class="search-tag-line"><%= t ".search_panel.content" %></p>
+    <form autocomplete="off" method="get" class="search-form clearfix" id="search-form">
+      <input type="text" title="* Please enter a search term!"
+        placeholder="Type your search terms here" class="search-term " autocomplete="off">
+      <input type="submit" value="Search" class="search-btn">
+    </form>
   </div>
 </div>

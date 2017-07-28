@@ -7,11 +7,9 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="home-header">
-      <%= render "layouts/header" %>
-    </div>
-    <div class="body">
-      <%= yield %>
-    </div>
+    <div class="preloader"><span class="preloader-gif"></span></div>
+    <%= render "layouts/header" %>
+    <%= yield %>
+    <%= render "layouts/footer" %>
   </body>
 </html>
