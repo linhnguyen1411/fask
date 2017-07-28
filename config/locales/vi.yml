@@ -32,3 +32,7 @@ vi:
         title: "BẠN CÓ CÂU HỎI?"
         content: "Nếu bạn có câu hỏi về kỷ thuật, góp ý về công ty hay muốn thổ lộ tâm tình trong confession bạn có thể tìm kiếm tại đây!"
         placeholder: "Nhập từ khóa để tìm kiếm"
+      question_not_exist: "Không có câu hỏi nào."
+  qa_knowlegeds:
+    show:
+      error_voted_question: "Bạn đả vote cho câu hỏi này."
