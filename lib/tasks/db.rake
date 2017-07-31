@@ -6,24 +6,39 @@ namespace :db do
   end
   task create_users: :environment do
     User.create!(
+      name: "User Hidden",
+      email: "user12211332244564324632@framgia.com",
+      position: "Manager",
+      code: Faker::Code.asin,
+      password: "Aa@123",
+      password_confirmation: "Aa@123"
+    )
+
+    User.create!(
       name: "Hoang Nhac Trung",
       email: "hoang.nhac.trung@framgia.com",
       position: "Manager",
-      code: Faker::Code.asin
+      code: Faker::Code.asin,
+      password: "Aa@123",
+      password_confirmation: "Aa@123"
     )
 
     User.create!(
       name: "Tran Duc Quoc",
       email: "tran.duc.quoc@framgia.com",
       position: "Leader",
-      code: Faker::Code.asin
+      code: Faker::Code.asin,
+      password: "Aa@123",
+      password_confirmation: "Aa@123"
     )
 
     User.create!(
       name: "Ho Quoc Hai",
       email: "ho.quoc.hai@framgia.com",
       position: "Member",
-      code: Faker::Code.asin
+      code: Faker::Code.asin,
+      password: "Aa@123",
+      password_confirmation: "Aa@123"
     )
 
     5.times do
@@ -31,7 +46,9 @@ namespace :db do
         name: Faker::Name.name,
         email: Faker::Internet.email,
         position: "Member",
-        code: Faker::Code.asin
+        code: Faker::Code.asin,
+        password: "Aa@123",
+        password_confirmation: "Aa@123"
       )
     end
   end

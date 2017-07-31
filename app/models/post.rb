@@ -10,6 +10,6 @@ class Post < ApplicationRecord
   has_and_belongs_to_many :tags
 
   belongs_to :user
-  belongs_to :work_space
+  belongs_to :work_space, optional: true
   belongs_to :topic
 end

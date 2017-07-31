@@ -9,7 +9,12 @@
   <body>
     <div class="preloader"><span class="preloader-gif"></span></div>
     <%= render "layouts/header" %>
-    <%= yield %>
+    <div class="main-content-area">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+      <%= yield %>
+    </div>
     <%= render "layouts/footer" %>
   </body>
 </html>
