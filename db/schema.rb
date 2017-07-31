@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170717061843) do
+ActiveRecord::Schema.define(version: 20170731022248) do
 
-  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "trackable_type"
     t.integer  "trackable_id"
     t.string   "owner_type"
@@ -28,81 +28,58 @@ ActiveRecord::Schema.define(version: 20170717061843) do
     t.index ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
   end
 
-  create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "content",    limit: 65535
-    t.integer  "parent_id",                default: 0
+  create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "content",                     null: false
+    t.integer  "parent_id"
+    t.boolean  "best_answer", default: false
     t.integer  "user_id"
     t.integer  "post_id"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["post_id"], name: "index_answers_on_post_id", using: :btree
     t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
   end
 
-  create_table "clips", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "clips", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "post_id"
+    t.integer "user_id"
     t.index ["post_id"], name: "index_clips_on_post_id", using: :btree
     t.index ["user_id"], name: "index_clips_on_user_id", using: :btree
   end
 
-  create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.integer  "parent_id",  default: 0
-    t.integer  "status"
-    t.integer  "owner_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.index ["owner_id"], name: "index_companies_on_owner_id", using: :btree
-  end
-
-  create_table "follows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "content",    null: false
     t.integer  "user_id"
-    t.string   "followtable_type"
-    t.integer  "followtable_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.index ["followtable_type", "followtable_id"], name: "index_follows_on_followtable_type_and_followtable_id", using: :btree
-    t.index ["user_id"], name: "index_follows_on_user_id", using: :btree
-  end
-
-  create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.integer  "activity_id"
-    t.boolean  "is_seen"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["activity_id"], name: "index_notifications_on_activity_id", using: :btree
-    t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
-  end
-
-  create_table "post_tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "post_id"
-    t.integer  "tag_id"
+    t.integer  "answer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_post_tags_on_post_id", using: :btree
-    t.index ["tag_id"], name: "index_post_tags_on_tag_id", using: :btree
+    t.index ["answer_id"], name: "index_comments_on_answer_id", using: :btree
+    t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
+    t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
-  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
-    t.text     "content",       limit: 65535
-    t.integer  "view_counts"
-    t.integer  "status"
+    t.string   "content",       null: false
     t.integer  "user_id"
     t.integer  "topic_id"
     t.integer  "work_space_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["topic_id"], name: "index_posts_on_topic_id", using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
     t.index ["work_space_id"], name: "index_posts_on_work_space_id", using: :btree
   end
 
-  create_table "reactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "posts_tags", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
+    t.index ["post_id"], name: "index_posts_tags_on_post_id", using: :btree
+    t.index ["tag_id"], name: "index_posts_tags_on_tag_id", using: :btree
+  end
+
+  create_table "reactions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "target_type"
     t.integer  "user_id"
     t.string   "reactiontable_type"
@@ -113,81 +90,71 @@ ActiveRecord::Schema.define(version: 20170717061843) do
     t.index ["user_id"], name: "index_reactions_on_user_id", using: :btree
   end
 
-  create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "icon"
+  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "follower_id"
+    t.integer "following_id"
+  end
+
+  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "name",       null: false
+    t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
+  create_table "topics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "topic_managers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.integer  "topic_id"
+  create_table "topics_users", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "topic_id"
+    t.integer "user_id"
+    t.index ["topic_id"], name: "index_topics_users_on_topic_id", using: :btree
+    t.index ["user_id"], name: "index_topics_users_on_user_id", using: :btree
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "email",      null: false
+    t.string   "name"
+    t.string   "position"
+    t.string   "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["topic_id"], name: "index_topic_managers_on_topic_id", using: :btree
-    t.index ["user_id"], name: "index_topic_managers_on_user_id", using: :btree
   end
 
-  create_table "topics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.text     "description", limit: 65535
-    t.string   "icon"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+  create_table "users_work_spaces", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer "post_id"
+    t.integer "user_id"
+    t.index ["post_id"], name: "index_users_work_spaces_on_post_id", using: :btree
+    t.index ["user_id"], name: "index_users_work_spaces_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.string   "avatar"
-    t.string   "chatwork_id"
-    t.integer  "company_id"
-    t.integer  "language"
-    t.integer  "role_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  end
-
-  create_table "work_spaces", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.integer  "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_work_spaces_on_company_id", using: :btree
+  create_table "work_spaces", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "name",        null: false
+    t.string   "area"
+    t.string   "image"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_foreign_key "answers", "posts"
   add_foreign_key "answers", "users"
   add_foreign_key "clips", "posts"
   add_foreign_key "clips", "users"
-  add_foreign_key "follows", "users"
-  add_foreign_key "notifications", "activities"
-  add_foreign_key "notifications", "users"
-  add_foreign_key "post_tags", "posts"
-  add_foreign_key "post_tags", "tags"
+  add_foreign_key "comments", "answers"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "posts", "topics"
   add_foreign_key "posts", "users"
   add_foreign_key "posts", "work_spaces"
+  add_foreign_key "posts_tags", "posts"
+  add_foreign_key "posts_tags", "tags"
   add_foreign_key "reactions", "users"
-  add_foreign_key "topic_managers", "topics"
-  add_foreign_key "topic_managers", "users"
-  add_foreign_key "work_spaces", "companies"
+  add_foreign_key "topics_users", "topics"
+  add_foreign_key "topics_users", "users"
+  add_foreign_key "users_work_spaces", "posts"
+  add_foreign_key "users_work_spaces", "users"
 end

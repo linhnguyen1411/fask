@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :topic do
-    name "Q-A KNOWLEDGE"
+    name {Faker::Lorem.sentence}
   end
 end

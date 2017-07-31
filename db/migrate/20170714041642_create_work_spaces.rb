@@ -1,8 +1,10 @@
 class CreateWorkSpaces < ActiveRecord::Migration[5.0]
   def change
     create_table :work_spaces do |t|
-      t.string :name
-      t.references :company, index: true, foreign_key: true
+      t.string :name, null: false
+      t.string :area
+      t.string :image
+      t.string :description
 
       t.timestamps
     end
