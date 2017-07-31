@@ -4,6 +4,15 @@ ja:
     vi: "Tiếng Việt"
     en: "English"
     ja: "日本語"
+  activerecord:
+    attributes:
+      user:
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"
+    models:
+      user: "ユーザ"
   layouts:
     header:
       home: "ホーム"
@@ -52,3 +61,28 @@ ja:
     show:
       post_not_exist: "Find not found."
       view_counts: "%{number} views"
+  devise:
+    sessions:
+      new:
+        sign_in: "ログイン"
+        breadcrumb: "Sign In To Your Account"
+        home: "Home"
+        sign_in_facebook: "Sign In with Facebook"
+        sign_in_google: "Sign In with Google"
+        or: "OR"
+        remember_me: "Remember me!"
+        sign_up_help_block: "You have't account?"
+    registrations:
+      new:
+        sign_up: "アカウント登録"
+        breadcrumb: "Create Account"
+        home: "Home"
+        sign_in_facebook: "Sign In with Facebook"
+        sign_in_google: "Sign In with Google"
+        or: "OR"
+        sign_in_help_block: "Already Register Sign In!"
+  errors:
+    messages:
+      not_saved:
+        one: "エラーが発生したため %{resource} は保存されませんでした。"
+        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"

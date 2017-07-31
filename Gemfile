@@ -24,6 +24,9 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "pry"
   gem "faker"
+  gem "devise"
+  gem "devise-i18n"
+  gem "rails-i18n"
 end
 
 group :development do

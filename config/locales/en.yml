@@ -4,6 +4,15 @@ en:
     vi: "Tiếng Việt"
     en: "English"
     ja: "日本語"
+  activerecord:
+    attributes:
+      user:
+        email: Email
+        password: Password
+        password_confirmation: Password confirmation
+        remember_me: Remember me
+    models:
+      user: User
   layouts:
     header:
       home: "Home"
@@ -53,3 +62,28 @@ en:
       post_not_exist: "Find not found."
       view_counts: "%{number} views"
       thread_answers: "Thread answers"
+  devise:
+    sessions:
+      new:
+        sign_in: "Sign In"
+        breadcrumb: "Sign In To Your Account"
+        home: "Home"
+        sign_in_facebook: "Sign In with Facebook"
+        sign_in_google: "Sign In with Google"
+        or: "OR"
+        remember_me: "Remember me!"
+        sign_up_help_block: "You have't account?"
+    registrations:
+      new:
+        sign_up: "Sign Up"
+        breadcrumb: "Create Account"
+        home: "Home"
+        sign_in_facebook: "Sign In with Facebook"
+        sign_in_google: "Sign In with Google"
+        or: "OR"
+        sign_in_help_block: "Already Register Sign In!"
+  errors:
+    messages:
+      not_saved:
+        one: '1 error prohibited this %{resource} from being saved:'
+        other: "%{count} errors prohibited this %{resource} from being saved:"
