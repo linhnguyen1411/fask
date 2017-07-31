@@ -17,6 +17,17 @@ vi:
       feedback: "Góp ý"
       confession: "Confession"
       post_question: "Gửi câu hỏi"
+      announcement: "Thông báo"
+    footer:
+      detail: "Về công ty Framgia Việt Nam Framgia Việt Nam là công ty 100% vốn đầu tư Nhật Bản, chuyên xây dựng những ứng dụng trên điện thoại, game, các ứng dụng xã hội và các ứng dụng trên nền Web."
+      copyright: "Copyright 2016 Framgia, Inc. All rights reserved."
+      address: "Tầng 13 tòa nhà Keangnam Landmark, Lô E6, Đường Phạm Hùng, Từ Liêm Nam, Hà Nội, Việt Nam"
+      phone: "84-4-3795-5417"
+      email: "hr_team@framgia.com"
+      reader: "Tài liệu sử dụng"
+      home: "Trang chủ"
+      company_name: "Framgia Vietnam"
+      site_links: "Site Links"
   static_pages:
     index:
       search: "Tìm kiếm"
@@ -36,3 +47,8 @@ vi:
   qa_knowlegeds:
     show:
       error_voted_question: "Bạn đả vote cho câu hỏi này."
+      error_liked_question: "Bạn đã thích trả lời này."
+  posts:
+    show:
+      post_not_exist: "Không tìm thấy."
+      view_counts: "%{number} lượt xem"

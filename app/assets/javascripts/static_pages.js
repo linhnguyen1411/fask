@@ -1,14 +1,14 @@
-function image_circle() {
-  image_width = parseInt($('.img-circle').css('width').replace('px',''));
-  $('.img-circle').css('height', image_width);
-  item_width = parseInt($('.img-circle').parents('.item').css('height'));
-  if(item_width - 20 > image_width)
-    $('.img-circle').parents('.user-avatar').css('padding-top', (item_width - 20 - image_width)/2);
+function vote_panel_move_with_queston() {
+  vote_height = $('.vote-panel').height();
+  post_height = $('.show-post').height();
+  $(window).scroll(function(){
+    window_top = $(window).scrollTop();
+    if(window_top < (post_height - vote_height)) {
+      $(".vote-panel").stop().animate({"marginTop": ($(window).scrollTop()) + "px", "marginLeft":($(window).scrollLeft()) + "px"}, "slow" );
+    }
+  });
 }
 
 $(document).ready(function(){
-  image_circle();
-  window.onresize = function(event) {
-    image_circle();
-  };
+  vote_panel_move_with_queston();
 });
