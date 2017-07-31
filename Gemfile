@@ -2,7 +2,6 @@ source "https://rubygems.org"
 
 gem "bootstrap-sass", "~> 3.3.6"
 gem "coffee-rails", "~> 4.2"
-gem "devise"
 gem "jbuilder", "~> 2.5"
 gem "jquery-rails"
 gem "mysql2", ">= 0.3.18", "< 0.5"
@@ -13,7 +12,6 @@ gem "sass-rails", "~> 5.0"
 gem "sdoc", "~> 0.4.0", group: :doc
 gem "turbolinks", "~> 5"
 gem "uglifier", ">= 1.3.0"
-gem "devise"
 gem "font-awesome-sass"
 gem "rubocop", require: false
 

@@ -1,5 +1,4 @@
 class Topic < ApplicationRecord
-  has_many :topic_managers, dependent: :destroy
   has_many :posts, dependent: :destroy
-  has_many :users, through: :topic_managers
+  has_and_belongs_to_many :users
 end

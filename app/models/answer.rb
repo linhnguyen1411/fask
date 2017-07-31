@@ -2,7 +2,7 @@ class Answer < ApplicationRecord
   include PublicActivity::Model
   tracked
 
-  has_many :follows, as: :followtable
+  has_many :comments
   has_many :reactions, as: :reactiontable
 
   belongs_to :post
