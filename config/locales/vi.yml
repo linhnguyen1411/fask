@@ -4,6 +4,16 @@ vi:
     vi: "Tiếng Việt"
     en: "English"
     ja: "日本語"
+  activerecord:
+    attributes:
+      user:
+        email: Email
+        password: Mật khẩu
+        password_confirmation: Xác nhận mật khẩu
+        remember_me: Ghi nhớ đăng nhập
+        name: Tên người dùng
+    models:
+      user: Người dùng
   layouts:
     header:
       home: "Trang Chủ"
@@ -52,3 +62,28 @@ vi:
     show:
       post_not_exist: "Không tìm thấy."
       view_counts: "%{number} lượt xem"
+  devise:
+    sessions:
+      new:
+        sign_in: "Đăng Nhập"
+        breadcrumb: "Đăng Nhập Vào Tài Khoản Của Bạn"
+        home: "Trang chủ"
+        sign_in_facebook: "Đăng nhập với Facebook"
+        sign_in_google: "Đăng nhập với Google"
+        or: "HOẶC"
+        remember_me: "Ghi nhớ!"
+        sign_up_help_block: "Bạn chưa có tài khoản"
+    registrations:
+      new:
+        sign_up: "Đăng ký"
+        breadcrumb: "Tạo tài khoản"
+        home: "Trang chủ"
+        sign_in_facebook: "Đăng nhập với Facebook"
+        sign_in_google: "Đăng nhập với Google"
+        or: "HOẶC"
+        sign_in_help_block: "Bạn đã có tài khoản!"
+  errors:
+    messages:
+      not_saved:
+        one: '1 lỗi khi lưu %{resource}:'
+        other: "%{count} lỗi khi lưu %{resource}:"
