@@ -4,7 +4,7 @@ class CreateWorkSpaces < ActiveRecord::Migration[5.0]
       t.string :name, null: false
       t.string :area
       t.string :image
-      t.string :description
+      t.text :description
 
       t.timestamps
     end
