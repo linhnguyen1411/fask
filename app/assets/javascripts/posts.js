@@ -1,4 +1,4 @@
-function load_choose_location() {
+function load_choose_toppic() {
   var value = $('#select-toppic').val();
   var check_user_login = $('#check_user_login').val();
   if(value === '1') {
@@ -62,10 +62,10 @@ function load_form_login_when_post(item) {
 }
 
 $(document).ready(function(){
-  load_choose_location();
+  load_choose_toppic();
 
   $('#select-toppic').change(function(){
-    load_choose_location();
+    load_choose_toppic();
   });
 
   $('#anonymous').change(function(){

@@ -12,4 +12,9 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :work_space, optional: true
   belongs_to :topic
+
+  validates :title, presence: true,
+    length: {maximum: Settings.post.max_title, minimum: Settings.post.min_title}
+  validates :content, presence: true
+
 end

@@ -43,4 +43,6 @@ group :test do
   gem "cucumber-rails", require: false
   gem "database_cleaner"
   gem "selenium-webdriver"
+  gem "rails-controller-testing"
+  gem "simplecov", require: false
 end
