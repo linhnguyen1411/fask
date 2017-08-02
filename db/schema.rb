@@ -29,13 +29,13 @@ ActiveRecord::Schema.define(version: 20170802013927) do
   end
 
   create_table "answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "content",                     null: false
+    t.text     "content",     limit: 65535,                 null: false
     t.integer  "parent_id"
-    t.boolean  "best_answer", default: false
+    t.boolean  "best_answer",               default: false
     t.integer  "user_id"
     t.integer  "post_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.index ["post_id"], name: "index_answers_on_post_id", using: :btree
     t.index ["user_id"], name: "index_answers_on_user_id", using: :btree
   end
@@ -48,12 +48,12 @@ ActiveRecord::Schema.define(version: 20170802013927) do
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "content",    null: false
+    t.text     "content",    limit: 65535, null: false
     t.integer  "user_id"
     t.integer  "post_id"
     t.integer  "answer_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.index ["answer_id"], name: "index_comments_on_answer_id", using: :btree
     t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
@@ -61,12 +61,12 @@ ActiveRecord::Schema.define(version: 20170802013927) do
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
-    t.string   "content",       null: false
+    t.text     "content",       limit: 65535, null: false
     t.integer  "user_id"
     t.integer  "topic_id"
     t.integer  "work_space_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["topic_id"], name: "index_posts_on_topic_id", using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
     t.index ["work_space_id"], name: "index_posts_on_work_space_id", using: :btree
@@ -144,12 +144,12 @@ ActiveRecord::Schema.define(version: 20170802013927) do
   end
 
   create_table "work_spaces", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",        null: false
+    t.string   "name",                      null: false
     t.string   "area"
     t.string   "image"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.text     "description", limit: 65535
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_foreign_key "answers", "posts"
