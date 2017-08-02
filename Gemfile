@@ -13,6 +13,9 @@ gem "sdoc", "~> 0.4.0", group: :doc
 gem "uglifier", ">= 1.3.0"
 gem "font-awesome-sass"
 gem "rubocop", require: false
+gem "config"
+gem "wysiwyg-rails"
+gem "i18n-js"
 
 group :development, :test do
   gem "byebug"

@@ -1,0 +1,9 @@
+post:
+  max_title: 250
+  min_title: 6
+  min_content: 6
+topic:
+  q_a: "1"
+  feedback: "2"
+  confesstion: "3"
+anonymous: "1"
