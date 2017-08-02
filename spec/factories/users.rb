@@ -5,5 +5,6 @@ FactoryGirl.define do
     avatar {Faker::Avatar.image}
     position {"Developer"}
     code {Faker::Code.asin}
+    password {"Aa@123"}
   end
 end
