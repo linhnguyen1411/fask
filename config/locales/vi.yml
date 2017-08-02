@@ -72,7 +72,8 @@ vi:
         sign_in_google: "Đăng nhập với Google"
         or: "HOẶC"
         remember_me: "Ghi nhớ!"
-        sign_up_help_block: "Bạn chưa có tài khoản"
+        sign_up_help_block: "Bạn chưa có tài khoản?"
+        forgot_password: "Bạn quên mật khẩu để đăng nhập!!!"
     registrations:
       new:
         sign_up: "Đăng ký"
@@ -82,6 +83,33 @@ vi:
         sign_in_google: "Đăng nhập với Google"
         or: "HOẶC"
         sign_in_help_block: "Bạn đã có tài khoản!"
+    passwords:
+      new:
+        forgot_password: "Quên mật khẩu"
+        breadcrumb: "Quên mật khẩu để đăng nhập"
+        sign_in_facebook: "Đăng nhập với Facebook"
+        sign_in_google: "Đăng nhập với Google"
+        or: "HOẶC"
+        home: "Trang chủ"
+        sign_in_help_block: "Bạn đã có tài khoản!"
+        sign_up_help_block: "Bạn chưa có tài khoản?"
+        btn_forgot_password: "Gởi cho tôi hướng dẫn đặt lại mật khẩu"
+      edit:
+        change_password: "Thay đổi mật khẩu"
+        breadcrumb: "Thay Đổi Mật Khẩu Của Bạn"
+        sign_in_facebook: "Đăng nhập với Facebook"
+        sign_in_google: "Đăng nhập với Google"
+        or: "HOẶC"
+        home: "Trang chủ"
+        sign_in_help_block: "Bạn đã có tài khoản!"
+        sign_up_help_block: "Bạn chưa có tài khoản?"
+    mailer:
+      reset_password_instructions:
+        hello: "Xin chào"
+        introduction: "Bạn đã đã yêu cầu thay đổi mật khẩu. Bạn có thể làm theo hướng dẫn dưới đây."
+        btn_change_password: "Thay đổi mật khẩu"
+        helper: "<p>Nếu bạn không yêu cầu thay đổi mật khẩu, hãy bỏ qua mail này.</p>
+         <p>Mật khẩu của bạn sẽ không thay đổi cho đến khi bạn truy cập link trên và tạo mật khẩu mới.</p>"
   errors:
     messages:
       not_saved:
