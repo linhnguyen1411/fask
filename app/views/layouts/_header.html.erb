@@ -15,9 +15,13 @@
             <li class="dropdown">
               <%= link_to "#", class: "dropdown-toggle",
                 data: {hover: "dropdown", tooggle: "dropdown", animations: "fadeInUp"} do %>
-                  <%= image_tag "authors/13.jpg", class: "img-circle resize" %>
+                  <% if current_user.avatar? %>
+                    <%= image_tag current_user.avatar, class: "img-circle resize" %>
+                  <% else %>
+                    <%= image_tag "no_avatar.png", class: "img-circle resize" %>
+                  <% end %>
                 <span class="hidden-xs small-padding">
-                  <span>Umair</span>
+                  <span><%= current_user.name %></span>
                   <i class="fa fa-caret-down"></i>
                 </span>
               <% end %>

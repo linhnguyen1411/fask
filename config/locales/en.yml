@@ -73,6 +73,7 @@ en:
         or: "OR"
         remember_me: "Remember me!"
         sign_up_help_block: "You have't account?"
+        forgot_password: "You Forgot Password To Sign In!!!"
     registrations:
       new:
         sign_up: "Sign Up"
@@ -82,6 +83,33 @@ en:
         sign_in_google: "Sign In with Google"
         or: "OR"
         sign_in_help_block: "Already Register Sign In!"
+    passwords:
+      new:
+        forgot_password: "Forgot password"
+        breadcrumb: "Forgot Password To Sign in"
+        sign_in_facebook: "Sign In with Facebook"
+        sign_in_google: "Sign In with Google"
+        or: "OR"
+        home: "Home"
+        sign_in_help_block: "Already Register Sign In!"
+        sign_up_help_block: "You have't account?"
+        btn_forgot_password: "Send me reset password instructions"
+      edit:
+        change_password: "Change my password"
+        breadcrumb: "Change Password Of You"
+        sign_in_facebook: "Sign In with Facebook"
+        sign_in_google: "Sign In with Google"
+        or: "OR"
+        home: "Home"
+        sign_in_help_block: "Already Register Sign In!"
+        sign_up_help_block: "You have't account?"
+    mailer:
+      reset_password_instructions:
+        hello: "Hello"
+        introduction: "Someone has requested a link to change your password. You can do this through the link below."
+        btn_change_password: "Change my password"
+        helper: "<p>If you didn't request this, please ignore this email.</p>
+         <p>Your password won't change until you access the link above and create a new one.</p>"
   errors:
     messages:
       not_saved:
