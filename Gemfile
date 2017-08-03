@@ -16,6 +16,7 @@ gem "rubocop", require: false
 gem "config"
 gem "wysiwyg-rails"
 gem "i18n-js"
+gem "paranoia", "~> 2.2.0.pre"
 
 group :development, :test do
   gem "byebug"

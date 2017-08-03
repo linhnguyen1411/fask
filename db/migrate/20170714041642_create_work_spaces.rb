@@ -5,6 +5,7 @@ class CreateWorkSpaces < ActiveRecord::Migration[5.0]
       t.string :area
       t.string :image
       t.text :description
+      t.datetime :deleted_at, index: true
 
       t.timestamps
     end

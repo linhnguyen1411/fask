@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.0]
       t.string :name
       t.string :position
       t.string :code, unique: true
+      t.datetime :deleted_at, index: true
 
       t.timestamps
     end

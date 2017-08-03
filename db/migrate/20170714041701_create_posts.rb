@@ -3,6 +3,7 @@ class CreatePosts < ActiveRecord::Migration[5.0]
     create_table :posts do |t|
       t.string :title
       t.text :content, null: false
+      t.datetime :deleted_at, index: true
       t.references :user, index: true, foreign_key: true
       t.references :topic, index: true, foreign_key: true
       t.references :work_space, index: true, foreign_key: true
