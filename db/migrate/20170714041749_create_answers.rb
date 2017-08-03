@@ -4,6 +4,7 @@ class CreateAnswers < ActiveRecord::Migration[5.0]
       t.text :content, null: false
       t.integer :parent_id
       t.boolean :best_answer, default: false
+      t.datetime :deleted_at, index: true
       t.references :user, index: true, foreign_key: true
       t.references :post, index: true, foreign_key: true
 

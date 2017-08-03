@@ -2,6 +2,8 @@ class Answer < ApplicationRecord
   include PublicActivity::Model
   tracked
 
+  acts_as_paranoid
+
   has_many :comments
   has_many :reactions, as: :reactiontable
 

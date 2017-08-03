@@ -1,3 +1,5 @@
 class Tag < ApplicationRecord
-  has_and_belongs_to_many :posts
+  acts_as_paranoid
+  has_many :posts_tag, dependent: :destroy
+  has_many :posts, through: :posts_tag
 end

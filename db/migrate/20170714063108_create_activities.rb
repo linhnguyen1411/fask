@@ -8,6 +8,7 @@ class CreateActivities < ActiveRecord::Migration
       t.string  :key
       t.text    :parameters
       t.belongs_to :recipient, :polymorphic => true
+      t.datetime :deleted_at, index: true
 
       t.timestamps
     end
