@@ -64,15 +64,33 @@ class PostsController < ApplicationController
     end
   end
 
-  def create_post params
-    post = Post.new params
+  def create_post post_params
+    post = Post.new post_params
     post.user_id = @user.id
     if post.save
+      save_tags(post) if params[:tags].present?
       flash[:success] = t ".create_success"
       redirect_to root_path
     else
       flash[:danger] = t ".create_error"
       render :new
     end
+  end
+
+  def save_tags post
+    params[:tags].split(",").each do |item|
+      tag = Tag.find_by name: item
+      if tag.present?
+        tag.update_attribute :used_count, tag.used_count + Settings.plus_one
+        save_post_tags post, tag
+      else
+        tag = Tag.create name: item
+        save_post_tags post, tag
+      end
+    end
+  end
+
+  def save_post_tags post, tag
+    PostsTag.create post_id: post.id, tag_id: tag.id
   end
 end

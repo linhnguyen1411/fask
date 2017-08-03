@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root "static_pages#index"
 
   resources :posts, only: [:new, :create]
+  resources :tags, only: :index
 end

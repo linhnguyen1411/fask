@@ -127,6 +127,7 @@ namespace :db do
 
   task create_posts: :environment do
     Post.create!(
+      title: "Góp ý vê ghế ngồi",
       user_id: User.order("RAND()").first.id,
       topic_id: 2,
       work_space_id: WorkSpace.order("RAND()").first.id,
@@ -136,6 +137,7 @@ namespace :db do
     )
 
     Post.create!(
+      title: "Bằng khen cá nhân",
       user_id: User.order("RAND()").first.id,
       topic_id: 2,
       work_space_id: WorkSpace.order("RAND()").first.id,
@@ -148,6 +150,7 @@ namespace :db do
     )
 
     Post.create!(
+      title: "Thêm khẩu trang ý tế vào tủ thuốc",
       user_id: User.order("RAND()").first.id,
       topic_id: 2,
       work_space_id: WorkSpace.order("RAND()").first.id,
@@ -158,6 +161,7 @@ namespace :db do
     )
 
     Post.create!(
+      title: "Radio confesstion",
       user_id: User.order("RAND()").first.id,
       topic_id: 2,
       work_space_id: WorkSpace.order("RAND()").first.id,
