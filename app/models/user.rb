@@ -20,4 +20,6 @@ class User < ApplicationRecord
     foreign_key: :following_id, dependent: :destroy
   has_many :following, through: :active_relationships, source: :following
   has_many :followers, through: :passive_relationships, source: :follower
+
+  scope :not_user_hiddent, -> {where.not id: Settings.id_user_hiddent}
 end

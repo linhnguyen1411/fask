@@ -74,6 +74,7 @@ ja:
         btn_post: "Publish Your Post"
         tags: "Tags"
         add_a_tag: "Add a tag"
+        search_user_not_found: "User not found..."
       login:
         email: "Email"
         password: "Password"
