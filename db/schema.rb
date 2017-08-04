@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803044053) do
+ActiveRecord::Schema.define(version: 20170803113927) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "trackable_type"
@@ -67,13 +67,14 @@ ActiveRecord::Schema.define(version: 20170803044053) do
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
-    t.text     "content",       limit: 65535, null: false
+    t.text     "content",       limit: 65535,             null: false
     t.datetime "deleted_at"
     t.integer  "user_id"
     t.integer  "topic_id"
     t.integer  "work_space_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.integer  "count_view",                  default: 0
     t.index ["deleted_at"], name: "index_posts_on_deleted_at", using: :btree
     t.index ["topic_id"], name: "index_posts_on_topic_id", using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree

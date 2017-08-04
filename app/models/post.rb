@@ -2,6 +2,8 @@ class Post < ApplicationRecord
   include PublicActivity::Model
   tracked
 
+  paginates_per Settings.paginate_default
+
   acts_as_paranoid
 
   has_many :comments, dependent: :destroy
@@ -20,4 +22,7 @@ class Post < ApplicationRecord
     length: {maximum: Settings.post.max_title, minimum: Settings.post.min_title}
   validates :content, presence: true
 
+  scope :get_post_by_topic, -> topic_id {where topic_id: topic_id}
+
+  scope :newest, -> {order created_at: :desc}
 end
