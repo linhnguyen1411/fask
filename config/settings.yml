@@ -9,3 +9,4 @@ topic:
 anonymous: "1"
 max_search_tags: 5
 plus_one: 1
+paginate_default: 4

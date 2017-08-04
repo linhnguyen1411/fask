@@ -135,8 +135,25 @@ vi:
         btn_change_password: "Thay đổi mật khẩu"
         helper: "<p>Nếu bạn không yêu cầu thay đổi mật khẩu, hãy bỏ qua mail này.</p>
          <p>Mật khẩu của bạn sẽ không thay đổi cho đến khi bạn truy cập link trên và tạo mật khẩu mới.</p>"
+  topics:
+    show:
+      recent_questions: "Câu hỏi gần đây"
+      popular_response: "Phản hồi phổ biến"
+      recently_answered: "Trả lời gần đây"
+      no_answer: "Chưa trả lời"
+      view_all_question: "Xem tất cả câu trả lời"
+    post:
+      view: "Lượt xem"
+      answers: "Số lượng câu trả lời"
+      votes: "Số lượng bầu chọn"
   errors:
     messages:
       not_saved:
         one: '1 lỗi khi lưu %{resource}:'
         other: "%{count} lỗi khi lưu %{resource}:"
+  views:
+    pagination:
+      first: "&laquo; Trang đầu tiên"
+      last: "Trang cuối cùng &raquo;"
+      previous: "&lsaquo; Trang trước"
+      next: "Trang kế tiếp &rsaquo;"

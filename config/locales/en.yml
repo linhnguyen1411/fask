@@ -135,8 +135,25 @@ en:
         btn_change_password: "Change my password"
         helper: "<p>If you didn't request this, please ignore this email.</p>
          <p>Your password won't change until you access the link above and create a new one.</p>"
+  topics:
+    show:
+      recent_questions: "Recent Questions"
+      popular_response: "Popular Response"
+      recently_answered: "Recently Answered"
+      no_answer: "No Answer"
+      view_all_question: "View All Question"
+    post:
+      view: "Views"
+      answers: "Answers"
+      votes: "Votes"
   errors:
     messages:
       not_saved:
         one: '1 error prohibited this %{resource} from being saved:'
         other: "%{count} errors prohibited this %{resource} from being saved:"
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Prev"
+      next: "Next &rsaquo;"
