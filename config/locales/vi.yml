@@ -73,6 +73,8 @@ vi:
       with_member: "Tạo bài viết với tư cách thành viên"
       with_anonymous: "Tạo bài viết ẩn danh"
       btn_post: "Gửi bài viết"
+      tags: "Gắn thẻ"
+      add_a_tag: "Thêm tag"
     login:
       email: "Email"
       password: "Mật khẩu"

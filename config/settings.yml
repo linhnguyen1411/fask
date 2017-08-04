@@ -7,3 +7,5 @@ topic:
   feedback: "2"
   confesstion: "3"
 anonymous: "1"
+max_search_tags: 5
+plus_one: 1

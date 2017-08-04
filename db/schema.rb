@@ -110,11 +110,12 @@ ActiveRecord::Schema.define(version: 20170803044053) do
   end
 
   create_table "tags", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name",       null: false
+    t.string   "name",                   null: false
     t.string   "image"
     t.datetime "deleted_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "used_count", default: 1
     t.index ["deleted_at"], name: "index_tags_on_deleted_at", using: :btree
   end
 

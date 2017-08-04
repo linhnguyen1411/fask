@@ -72,6 +72,8 @@ en:
         with_member: "Post as member"
         with_anonymous: "Post as anonymous"
         btn_post: "Publish Your Post"
+        tags: "Tags"
+        add_a_tag: "Add an tag"
       login:
         email: "Email"
         password: "Password"

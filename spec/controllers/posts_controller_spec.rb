@@ -6,6 +6,7 @@ RSpec.describe PostsController, type: :controller do
   let!(:topic_fb){FactoryGirl.create :topic, id: 2, name: "Feedback"}
   let!(:topic_cf){FactoryGirl.create :topic, id: 3, name: "Confesstion"}
   let!(:work_space){FactoryGirl.create :work_space}
+  let!(:tag){FactoryGirl.create :tag}
 
   describe "GET new" do
     it "renders the :new template" do
@@ -90,7 +91,23 @@ RSpec.describe PostsController, type: :controller do
         expect{
           post :create, params: {post: {title: 1234567, content: "1234567",
             topic_id: topic_fb.id, work_space_id: work_space.id}}
-        }.to change(Post, :count).by 1
+        }.to_not change(Tag, :count)
+      end
+
+      it "new post with tag already in the Database" do
+        expect{
+          post :create, params: {post: {title: 1234567, content: "1234567",
+            topic_id: topic_cf.id}, tags: tag.name}
+        }.to_not change(Tag, :count)
+        tag_after = Tag.find_by id: tag.id
+        expect(tag_after.used_count).to eq(tag.used_count + 1)
+      end
+
+      it "new post with tag not already in the Database" do
+        expect{
+          post :create, params: {post: {title: 1234567, content: "1234567",
+            topic_id: topic_cf.id}, tags: "new_name"}
+        }.to change(Tag, :count).by 1
       end
     end
   end
