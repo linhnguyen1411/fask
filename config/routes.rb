@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :posts, only: [:new, :create]
   resources :tags, only: :index
   resources :topics
+  resources :tag_users, only: :index
 end

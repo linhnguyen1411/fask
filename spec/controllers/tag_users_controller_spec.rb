@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TagsController, type: :controller do
+RSpec.describe TagUsersController, type: :controller do
   describe "GET index" do
     it "renders the :index template" do
       get :index, params: {key: "", format: :json}

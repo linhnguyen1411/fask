@@ -47,7 +47,7 @@ function load_choose_toppic() {
 function load_form_login_when_post(item) {
   var check_user_login = $('#check_user_login').val();
   if(check_user_login !== 'true') {
-    var value = $(item).is(":checked");
+    var value = $(item).is(':checked');
     if(value) {
       $(item).closest('.box-panel').find('.form-login').hide('500')
       $('.form-login').find('#user_email').removeAttr('required');
@@ -61,8 +61,19 @@ function load_form_login_when_post(item) {
   }
 }
 
+function load_tag_user_of_post() {
+  $('.tag-user-item').each(function(){
+    if($(this).find('.fa').length == 0) {
+      html = $(this).html();
+      html = '<i class="fa fa-address-book-o" aria-hidden="true"></i>' + html
+      $(this).html(html);
+    }
+  });
+}
+
 $(document).ready(function(){
   load_choose_toppic();
+  load_tag_user_of_post();
 
   $('#select-toppic').change(function(){
     load_choose_toppic();

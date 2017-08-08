@@ -75,6 +75,7 @@ vi:
       btn_post: "Gửi bài viết"
       tags: "Gắn thẻ"
       add_a_tag: "Thêm tag"
+      search_user_not_found: "Không tìm thấy user nào..."
     login:
       email: "Email"
       password: "Mật khẩu"
