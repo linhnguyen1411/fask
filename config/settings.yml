@@ -6,6 +6,11 @@ topic:
   q_a: "1"
   feedback: "2"
   confesstion: "3"
+  type_sort:
+    recently: "newest"
+    popular: "popular"
+    recently_answer: "recently_answer"
+    no_answer: "no_answer"
 anonymous: "1"
 max_search_tags: 5
 plus_one: 1

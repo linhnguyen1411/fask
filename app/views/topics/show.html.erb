@@ -9,25 +9,29 @@
             <div class="panel-heading">
               <!-- Tabs -->
               <ul class="nav panel-tabs">
-                <li  class="active">
+                <li class="<%= add_class_active_to_show_page params[:type],
+                  Settings.topic.type_sort.recently, true %>">
                   <a data-toggle="tab" href="#tab1">
                     <i class="fa fa-clock-o" aria-hidden="true"></i>
                     <span class="hidden-xs"><%= t ".recent_questions" %></span>
                   </a>
                 </li>
-                <li>
+                <li class="<%= add_class_active_to_show_page params[:type],
+                  Settings.topic.type_sort.popular %>">
                   <a data-toggle="tab" href="#tab2">
                     <i class="fa fa-users" aria-hidden="true"></i>
                     <span class="hidden-xs"><%= t ".popular_response" %></span>
                   </a>
                 </li>
-                <li>
+                <li class="<%= add_class_active_to_show_page params[:type],
+                  Settings.topic.type_sort.recently_answer %>">
                   <a data-toggle="tab" href="#tab3">
                     <i class="fa fa-comments-o" aria-hidden="true"></i>
                     <span class="hidden-xs"><%= t ".recently_answered" %></span>
                   </a>
                 </li>
-                <li>
+                <li class="<%= add_class_active_to_show_page params[:type],
+                  Settings.topic.type_sort.no_answer %>">
                   <a data-toggle="tab" href="#tab4">
                     <i class="fa fa-spinner" aria-hidden="true"></i>
                     <span class="hidden-xs"><%= t ".no_answer" %></span>
@@ -38,21 +42,44 @@
           </div>
           <div class="panel-body">
             <div class="tab-content">
-              <div id="tab1" class="tab-pane active">
-                <!-- Question Listing -->
-                <%= render "topics/post" %>
-                <!-- Question Listing End -->
-                <!-- Pagination View More -->
-                <% if !params[:all] %>
-                  <div class="text-center clearfix">
-                    <%=
-                      link_to t(".view_all_question"),
-                      topic_path(params[:id], all: true),
-                      class: "btn btn-primary btn-lg"
-                    %>
-                  </div>
-                <% end %>
-                <!-- Pagination View More End -->
+              <!-- Recent Question -->
+              <div id="tab1" class="tab-pane <%= add_class_active_to_show_page params[:type],
+                Settings.topic.type_sort.recently, true %>">
+                <%= render "topics/post",
+                  posts: @support.recent_posts,
+                  type: Settings.topic.type_sort.recently
+                %>
+                <%= render "topics/view_all", type: Settings.topic.type_sort.recently %>
+              </div>
+
+              <!-- Popular Response -->
+              <div id="tab2" class="tab-pane <%= add_class_active_to_show_page params[:type],
+                Settings.topic.type_sort.popular %>">
+                <%= render "topics/post",
+                  posts: @support.popular_posts,
+                  type: Settings.topic.type_sort.popular
+                %>
+                <%= render "topics/view_all", type: Settings.topic.type_sort.popular %>
+              </div>
+
+              <!-- Recently Answer -->
+              <div id="tab3" class="tab-pane <%= add_class_active_to_show_page params[:type],
+                Settings.topic.type_sort.recently_answer %>">
+                <%= render "topics/post",
+                  posts: @support.recently_answer_of_post,
+                  type: Settings.topic.type_sort.recently_answer
+                %>
+                <%= render "topics/view_all", type: Settings.topic.type_sort.recently_answer %>
+              </div>
+
+              <!-- No Answer -->
+              <div id="tab4" class="tab-pane <%= add_class_active_to_show_page params[:type],
+                Settings.topic.type_sort.no_answer %>">
+                <%= render "topics/post",
+                  posts: @support.posts_no_answer,
+                  type: Settings.topic.type_sort.no_answer
+                %>
+                <%= render "topics/view_all", type: Settings.topic.type_sort.no_answer %>
               </div>
             </div>
           </div>

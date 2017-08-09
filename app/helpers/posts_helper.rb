@@ -10,4 +10,8 @@ module PostsHelper
   def count_vote post
     post.reactions.upvote.size - post.reactions.downvote.size
   end
+
+  def add_class_active_to_show_page type_input, type_sort, is_first_tab = false
+    !type_input && is_first_tab || type_input && type_input == type_sort ? "active" : ""
+  end
 end
