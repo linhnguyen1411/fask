@@ -53,12 +53,15 @@ vi:
         title: "BẠN CÓ CÂU HỎI?"
         content: "Nếu bạn có câu hỏi về kỷ thuật, góp ý về công ty hay muốn thổ lộ tâm tình trong confession bạn có thể tìm kiếm tại đây!"
         placeholder: "Nhập từ khóa để tìm kiếm"
+        button: "Tìm kiếm"
       question_not_exist: "Không có câu hỏi nào."
   qa_knowlegeds:
     show:
       error_voted_question: "Bạn đả vote cho câu hỏi này."
       error_liked_question: "Bạn đã thích trả lời này."
   posts:
+    index:
+      not_found: "Không tìm thấy"
     new:
       title: "Gửi câu hỏi kỹ thuật, góp ý cho công ty hay gửi tâm tư tình cảm vào confession."
       toppic: "Chọn topic"

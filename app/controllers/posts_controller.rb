@@ -1,6 +1,15 @@
 class PostsController < ApplicationController
   before_action :check_user, only: :create
 
+  def index
+   if params[:query].present?
+     @posts = Post.search params[:query],  page: params[:page],
+       per_page: Settings.paginate_default
+   else
+     @posts = Post.page(params[:page]).per Settings.paginate_default
+   end
+  end
+
   def new
     @post = Post.new
   end
