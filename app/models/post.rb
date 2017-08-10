@@ -25,4 +25,10 @@ class Post < ApplicationRecord
   scope :get_post_by_topic, -> topic_id {where topic_id: topic_id}
 
   scope :newest, -> {order created_at: :desc}
+
+  scope :popular, -> {order count_view: :desc}
+
+  scope :recently_answer, -> {joins(:answers).group("answers.post_id").order("answers.created_at desc")}
+
+  scope :no_answer, -> {includes(:answers).where(answers: {id: nil})}
 end

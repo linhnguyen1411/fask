@@ -142,6 +142,7 @@ vi:
       popular_response: "Phản hồi phổ biến"
       recently_answered: "Trả lời gần đây"
       no_answer: "Chưa trả lời"
+    view_all:
       view_all_question: "Xem tất cả câu trả lời"
     post:
       view: "Lượt xem"

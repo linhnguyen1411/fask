@@ -142,6 +142,7 @@ en:
       popular_response: "Popular Response"
       recently_answered: "Recently Answered"
       no_answer: "No Answer"
+    view_all:
       view_all_question: "View All Question"
     post:
       view: "Views"

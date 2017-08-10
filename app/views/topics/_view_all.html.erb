@@ -1,0 +1,8 @@
+<% if !params[:all] || params[:type] != type %>
+  <div class="text-center clearfix">
+    <%= link_to t(".view_all_question"),
+      topic_path(params[:id], all: true, type: type),
+      class: "btn btn-primary btn-lg"
+    %>
+  </div>
+<% end %>
