@@ -24,6 +24,8 @@ class Post < ApplicationRecord
     length: {maximum: Settings.post.max_title, minimum: Settings.post.min_title}
   validates :content, presence: true
 
+  delegate :name, :position, to: :user, prefix: true
+
   scope :get_post_by_topic, -> topic_id {where topic_id: topic_id}
 
   scope :newest, -> {order created_at: :desc}
@@ -33,4 +35,6 @@ class Post < ApplicationRecord
   scope :recently_answer, -> {joins(:answers).group("answers.post_id").order("answers.created_at desc")}
 
   scope :no_answer, -> {includes(:answers).where(answers: {id: nil})}
+
+  scope :recently_comment, -> {joins(:comments).group("comments.post_id").order("comments.created_at desc")}
 end

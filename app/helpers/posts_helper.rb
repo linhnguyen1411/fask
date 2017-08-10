@@ -14,4 +14,8 @@ module PostsHelper
   def add_class_active_to_show_page type_input, type_sort, is_first_tab = false
     !type_input && is_first_tab || type_input && type_input == type_sort ? "active" : ""
   end
+
+  def user_comment_recently_of_post post
+    post.comments.first.user_name
+  end
 end

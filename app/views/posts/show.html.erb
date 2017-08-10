@@ -1,0 +1,104 @@
+<div class="main-content-area">
+  <section class="page-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-7 co-xs-12 text-left">
+          <h1><%= t ".detail" %></h1>
+        </div>
+        <div class="col-md-6 col-sm-5 co-xs-12 text-right">
+          <div class="bread">
+            <ol class="breadcrumb">
+              <li><%= link_to t(".home"), root_path %></li>
+              <li class="active"><%= t ".detail" %></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-padding-80 white question-details">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
+          <div class="listing-grid ">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <h3><%= @post.title %></h3>
+                <div class="listing-meta">
+                  <span>
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    <%= time_ago_in_words @post.created_at %>
+                  </span>
+                  <span>
+                    <i class="fa fa fa-eye" aria-hidden="true"></i>
+                    <%= @post.count_view %>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <%= raw @post.content %>
+                <div class="tagcloud">
+                  <% @post.tags.each do |tag| %>
+                    <a href="#"><%= tag.name %></a>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <div class="thread-reply">
+            <h2><%= t ".thread_answers" %> </h2>
+            <%= render partial: "posts/answer", collection: @post.answers, as: :answer %>
+            <div class="clearfix"></div>
+            <form>
+              <div class="form-group">
+                <label><%= t ".post_your_answer" %></label>
+                <textarea cols="12" rows="7" class="form-control"
+                  placeholder="<%= t ".answer_placeholder" %>">
+                </textarea>
+              </div>
+              <button class="btn btn-primary btn-lg btn-block">
+                <%= t ".post_your_answer" %>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12 clearfix">
+          <div class="side-bar">
+            <div class="widget">
+              <div class="widget-image widget-image-sm"> <%= image_tag "light-background.jpg" %>
+                <div class="widget-image-content text-center">
+                  <%= image_tag get_avatar_user(@post.user), class: "img-thumbnail" %>
+                  <h2 class="widget-heading text-light">
+                    <strong><%= @post.user_name %></strong>
+                  </h2>
+                  <h4 class="widget-heading text-light-op">
+                    <em><%= @post.user_position %></em>
+                  </h4>
+                </div>
+              </div>
+            </div>
+            <div class="widget">
+              <div class="recent-comments">
+                <h2><%= t ".hot_question" %></h2>
+                <hr class="widget-separator no-margin">
+                <%= render partial: "posts/extension_post",
+                  collection: @post_extension.hot_post, as: :post,
+                  locals: { type: Settings.post.extension.hot_question } %>
+              </div>
+            </div>
+            <div class="widget">
+              <div class="recent-comments">
+                <h2><%= t ".recent_comments" %></h2>
+                <hr class="widget-separator no-margin">
+                <%= render partial: "posts/extension_post",
+                  collection: @post_extension.hot_post, as: :post,
+                  locals: { type: Settings.post.extension.recent_comment } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

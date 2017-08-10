@@ -2,6 +2,9 @@ post:
   max_title: 250
   min_title: 6
   min_content: 6
+  extension:
+    hot_question: "hot_question"
+    recent_comment: "recent_comment"
 topic:
   q_a: "1"
   feedback: "2"
