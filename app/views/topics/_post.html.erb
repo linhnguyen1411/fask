@@ -38,7 +38,7 @@
           </ul>
         </div>
         <div class="col-md-10 col-sm-10  col-xs-12">
-          <p><%= post.content %></p>
+          <%= raw truncate(post.content, length: Settings.content_max_length) %>
           <div class="pull-right tagcloud">
             <% post.tags.each do |tag| %>
               <a href="#"><%= tag.name %></a>

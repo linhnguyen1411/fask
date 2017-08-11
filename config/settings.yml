@@ -16,3 +16,4 @@ max_search_tags: 5
 plus_one: 1
 paginate_default: 4
 id_user_hiddent: 1
+content_max_length: 500

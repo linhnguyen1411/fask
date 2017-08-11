@@ -52,12 +52,15 @@ en:
         title: "HAVE A QUESTION?"
         content: "If you have any knowledge-question/company-feedback/funny-confesstion you can ask below or enter what you are looking for!"
         placeholder: "Type your search terms here"
+        button: "Search"
       question_not_exist: "Question not exist."
   qa_knowlegeds:
     show:
       error_voted_question: "You are voted for this question."
       error_liked_question:  "You are liked for this answer"
   posts:
+    index:
+      not_found: "Not found"
     new:
       title: "Post Your QA-Knowledge/Feedback/Confession"
       toppic: "Choose toppic"

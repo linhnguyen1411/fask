@@ -6,6 +6,8 @@ class Post < ApplicationRecord
 
   acts_as_paranoid
 
+  searchkick
+
   has_many :comments, dependent: :destroy
   has_many :answers, dependent: :destroy
   has_many :reactions, as: :reactiontable

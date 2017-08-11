@@ -1,11 +1,14 @@
-<div class="full-section search-section">
-  <div class="search-area container">
-    <h3 class="search-title"><%= t ".search_panel.title" %></h3>
-    <p class="search-tag-line"><%= t ".search_panel.content" %></p>
-    <form autocomplete="off" method="get" class="search-form clearfix" id="search-form">
-      <input type="text" title="* Please enter a search term!"
-        placeholder="Type your search terms here" class="search-term " autocomplete="off">
-      <input type="submit" value="Search" class="search-btn">
-    </form>
+<div>
+  <div class="full-section search-section">
+    <div class="search-area container">
+      <h3 class="search-title"><%= t ".search_panel.title" %></h3>
+      <p class="search-tag-line"><%= t ".search_panel.content" %></p>
+      <%= form_tag "/posts", method: :get, class: "search-form clearfix",
+        id: "search-form" do %>
+        <%= text_field_tag "query", params[:query], class: "form-control
+          search-term", placeholder: t(".search_panel.placeholder") %>
+        <%= submit_tag t(".search_panel.button"), class: "search-btn" %>
+      <% end %>
+    </div>
   </div>
 </div>
