@@ -162,3 +162,10 @@ vi:
       last: "Trang cuối cùng &raquo;"
       previous: "&lsaquo; Trang trước"
       next: "Trang kế tiếp &rsaquo;"
+  profile:
+    title: "Chỉnh sửa thông tin cá nhân"
+    update_success: "Cập nhật thông tin cá nhân thành công."
+    update_error: "Cập nhật thông tin cá nhân thất bại."
+    update_image: "Cập nhật hình đại diện"
+    btn_update: "Cập nhật"
+    btn_choose_avatar: "Chọn hình đại diện"

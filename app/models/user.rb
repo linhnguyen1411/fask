@@ -22,4 +22,6 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
 
   scope :not_user_hiddent, -> {where.not id: Settings.id_user_hiddent}
+
+  mount_uploader :avatar, UserAvatarUploader
 end

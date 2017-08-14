@@ -162,3 +162,10 @@ ja:
         last: "Last &raquo;"
         previous: "&lsaquo; Prev"
         next: "Next &rsaquo;"
+  profile:
+    title: "Edit profile"
+    update_success: "Update profile success."
+    update_error: "Update profile error."
+    update_image: "Update Avatar"
+    btn_update: "Update My Profile"
+    btn_choose_avatar: "Choose avatar"

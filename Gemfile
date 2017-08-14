@@ -20,6 +20,9 @@ gem "i18n-js"
 gem "paranoia", "~> 2.2.0.pre"
 gem "ransack"
 gem "searchkick"
+gem "carrierwave",             "0.10.0"
+gem "mini_magick",             "3.8.0"
+gem "cloudinary"
 
 group :development, :test do
   gem "byebug"
