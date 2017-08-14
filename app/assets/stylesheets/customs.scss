@@ -36,3 +36,18 @@
     cursor: pointer;
   }
 }
+
+.img-upload {
+  width: 300px;
+  height: 300px;
+  border-radius: 300px;
+  box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.26);
+  object-fit: cover;
+}
+
+.truncate-post {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+}

@@ -15,11 +15,7 @@
             <li class="dropdown">
               <%= link_to "#", class: "dropdown-toggle",
                 data: {hover: "dropdown", tooggle: "dropdown", animations: "fadeInUp"} do %>
-                  <% if current_user.avatar? %>
-                    <%= image_tag current_user.avatar, class: "img-circle resize" %>
-                  <% else %>
-                    <%= image_tag "no_avatar.png", class: "img-circle resize" %>
-                  <% end %>
+                <%= image_tag current_user.avatar, class: "img-circle resize" %>
                 <span class="hidden-xs small-padding">
                   <span><%= current_user.name %></span>
                   <i class="fa fa-caret-down"></i>
@@ -27,7 +23,7 @@
               <% end %>
               <ul class="dropdown-menu ">
                 <li>
-                  <%= link_to "#" do %>
+                  <%= link_to edit_user_registration_path do %>
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                     <%= t ".profile" %>
                   <% end %>
