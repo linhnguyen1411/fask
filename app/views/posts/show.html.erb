@@ -48,20 +48,38 @@
           <div class="clearfix"></div>
           <div class="thread-reply">
             <h2><%= t ".thread_answers" %> </h2>
-            <%= render partial: "posts/answer", collection: @post.answers, as: :answer %>
+            <% if @post.answers.present? %>
+              <%= render partial: "posts/answer", collection: @post.answers, as: :answer %>
+            <% else %>
+              <%= label_tag "", t(".post_not_answers"), class: "post-not-answers" %>
+            <% end %>
             <div class="clearfix"></div>
-            <form>
-              <div class="form-group">
-                <label><%= t ".post_your_answer" %></label>
-                <textarea cols="12" rows="7" class="form-control"
-                  placeholder="<%= t ".answer_placeholder" %>">
-                </textarea>
-              </div>
-              <button class="btn btn-primary btn-lg btn-block">
-                <%= t ".post_your_answer" %>
-              </button>
-            </form>
           </div>
+          <%= form_for @answer do |f| %>
+            <%= f.hidden_field :post_id, value: @post.id %>
+            <div class="form-group">
+              <h2><%= t ".post_your_answer" %></h2>
+              <%= f.text_area :content, minlength: Settings.post.min_title,
+                required: true, class: "form-control froalaEditor" %>
+            </div>
+            <div class="row form-login">
+              <% unless current_user.present? %>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label><%= t ".login.email" %></label>
+                    <%= email_field_tag "user_email", "", required: true, class: "form-control" %>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label><%= t ".login.password" %></label>
+                    <%= password_field_tag "user_password", "", required: true, class: "form-control" %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <%= f.submit t(".post_your_answer"), class: "btn btn-primary btn-lg btn-block" %>
+          <% end %>
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12 clearfix">
           <div class="side-bar">

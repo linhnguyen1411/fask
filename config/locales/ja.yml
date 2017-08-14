@@ -98,6 +98,8 @@ ja:
       hot_question: "Hot Questions"
       recent_comments: "Recent Comments"
       not_found: "Not found this question"
+      post_not_answers: "There are no answers to this question..."
+      post_your_answer: "Post Your Answer"
     answer:
       correct_answer: "Correct Answer"
       like_answer: "Like This Answer"
@@ -182,3 +184,9 @@ ja:
     update_image: "Update Avatar"
     btn_update: "Update My Profile"
     btn_choose_avatar: "Choose avatar"
+  answers:
+    create:
+      email_or_password_not_exist: "Email/Password not exist."
+      post_not_exist: "Find not found."
+      create_success: "Create answer success."
+      create_error: "Create answer error."
