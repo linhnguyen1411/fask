@@ -1,0 +1,13 @@
+<ul>
+  <% if type == Settings.post.extension.recent_comment %>
+    <li class="recentcomments">
+      <span class="comment-author-link">
+      <%= user_comment_recently_of_post post %></span> <%= t ".on" %>
+      <%= link_to post.title, post_path(post.id) %>
+    </li>
+  <% else %>
+    <li>
+      <%= link_to post.title, post_path(post.id) %>
+    </li>
+  <% end %>
+</ul>

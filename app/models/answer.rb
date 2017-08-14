@@ -4,6 +4,8 @@ class Answer < ApplicationRecord
 
   acts_as_paranoid
 
+  delegate :name, to: :user, prefix: true
+
   has_many :comments
   has_many :reactions, as: :reactiontable
 

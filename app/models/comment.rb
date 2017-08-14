@@ -4,6 +4,8 @@ class Comment < ApplicationRecord
 
   acts_as_paranoid
 
+  delegate :name, to: :user, prefix: true
+
   belongs_to :user
   belongs_to :post
   belongs_to :answer

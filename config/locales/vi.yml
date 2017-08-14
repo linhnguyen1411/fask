@@ -91,6 +91,19 @@ vi:
       post_not_exist: "Không tìm thấy."
       view_counts: "%{number} lượt xem"
       thread_answers: "Câu trả lời"
+      detail: "Chi tiết câu hỏi"
+      home: "Trang chủ"
+      post_your_answer: "Đăng câu trả lời của bạn"
+      answer_placeholder: "Tôi có một phương án khác!"
+      hot_question: "Câu hỏi hay"
+      recent_comments: "Bình luận gần đây"
+      not_found: "Không tìm thấy câu hỏi này"
+    answer:
+      correct_answer: "Câu trả lời đúng"
+      like_answer: "Thích câu trả lời này"
+      spam: "Spam"
+    extension_post:
+      on: "trên"
   devise:
     sessions:
       new:

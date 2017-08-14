@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   before_action :check_user, only: :create
+  before_action :load_post, only: :show
 
   def index
    if params[:query].present?
-     @posts = Post.search params[:query],  page: params[:page],
-       per_page: Settings.paginate_default
+     @posts = Post.search params[:query], page: params[:page]
    else
      @posts = Post.page(params[:page]).per Settings.paginate_default
    end
@@ -12,6 +12,10 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+  end
+
+  def show
+    @post_extension = Supports::PostSupport.new Post, nil, nil, nil, nil
   end
 
   def create
@@ -101,5 +105,12 @@ class PostsController < ApplicationController
 
   def save_post_tags post, tag
     PostsTag.create post_id: post.id, tag_id: tag.id
+  end
+
+  def load_post
+    @post = Post.find_by id: params[:id]
+    return if @post
+    flash[:danger] = t ".not_found"
+    redirect_to root_path
   end
 end
