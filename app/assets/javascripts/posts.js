@@ -71,9 +71,67 @@ function load_tag_user_of_post() {
   });
 }
 
+function move_panel_vote() {
+  $(window).scroll(function(){
+    if ($(window).scrollTop() < ($('#post-body').height() - $('.vote-of-post').height())) {
+      $('.vote-of-post').stop().animate({'marginTop': ($(window).scrollTop()) + 'px'}, 'slow' );
+    }
+  });
+}
+
+function reaction_vote_post() {
+  $('.btn-loggin-continue').click(function(){
+    swal({
+      title: I18n.t('error'),
+      text: I18n.t('login_to_continue'),
+      type: 'error',
+      showCancelButton: true,
+      cancelButtonText: I18n.t('cancel'),
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: I18n.t('ok'),
+      closeOnConfirm: false
+    },
+    function(){
+      window.location.href = '/users/sign_in';
+    });
+  });
+
+  $('.btn-vote').click(function(){
+    var type = $(this).data('type');
+    var model = $(this).data('model');
+    var id = $(this).data('id');
+    $.ajax({
+      url: '/reactions',
+      type: 'POST',
+      dataType: 'json',
+      data: {
+        type: type,
+        model: model,
+        item_id: id
+      },
+      success: function (data) {
+        if(data.type === 'success') {
+          sweetAlert(I18n.t('reactions.create.success'), '', 'success');
+          if(model === 'Post') {
+            $('.point-vote').html('').toggle(200);
+            $('.point-vote').html(data.data).toggle(200);
+          }
+        }
+        else
+          sweetAlert(I18n.t('reactions.create.error'), '', 'error');
+      },
+      error: function () {
+        response([]);
+      }
+    });
+  });
+}
+
 $(document).ready(function(){
   load_choose_toppic();
   load_tag_user_of_post();
+  move_panel_vote();
+  reaction_vote_post();
 
   $('#select-toppic').change(function(){
     load_choose_toppic();
