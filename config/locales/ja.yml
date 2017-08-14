@@ -48,6 +48,13 @@ ja:
       recently_answered: "Recently answered"
       top_views: "Top views"
       top_votes: "Top vote"
+      top_users: "Top Users"
+      comment: "comment"
+      how_it_works: "How  It Works"
+      title_step: "Create An Account, Post Your Question and Find Your Solution"
+      step_1: "Create An Account"
+      step_2: "Post Your Question"
+      step_3: "Find Your Solution"
       search_panel:
         title: "HAVE A QUESTION?"
         content: "If you have any knowledge-question/company-feedback/funny-confesstion you can ask below or enter what you are looking for!"

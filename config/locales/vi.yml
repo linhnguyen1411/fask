@@ -49,6 +49,13 @@ vi:
       recently_answered: "Trả lời mới"
       top_views: "Xem nhiều"
       top_votes: "Đánh giá cao"
+      top_users: "Bảng xếp hạng người dùng"
+      comment: "bình luận"
+      how_it_works: "Các bước thực hiện"
+      title_step: "Tạo một tài khoản, đăng câu hỏi và tìm kiếm câu trả lời"
+      step_1: "Tạo một tài khoản"
+      step_2: "Đăng câu hỏi"
+      step_3: "Tìm kiếm câu trả lời"
       search_panel:
         title: "BẠN CÓ CÂU HỎI?"
         content: "Nếu bạn có câu hỏi về kỷ thuật, góp ý về công ty hay muốn thổ lộ tâm tình trong confession bạn có thể tìm kiếm tại đây!"

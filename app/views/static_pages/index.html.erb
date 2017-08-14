@@ -11,4 +11,79 @@
       <% end %>
     </div>
   </div>
+
+  <section class="custom-padding" id="how-it-work">
+    <div class="container">
+      <!-- title-section -->
+      <div class="main-heading text-center">
+        <h2><%= t ".how_it_works" %></h2>
+        <div class="slices"><span class="slice">
+          </span><span class="slice"></span><span class="slice"></span>
+        </div>
+        <p><%= t ".title_step" %></p>
+      </div>
+
+      <!-- End title-section -->
+      <div class="row">
+        <div class="col-sm-4 col-md-4 col-xs-12  center-responsive">
+          <%= image_tag "step1.png", class: "img-responsive" %>
+          <h4><a href="#"><%= t ".step_1" %></a></h4>
+        </div>
+        <div class="col-sm-4 col-md-4 col-xs-12 center-responsive get-arrow">
+          <%= image_tag "step2.png", class: "img-responsive" %>
+          <h4><a href="#"><%= t ".step_2" %></a></h4>
+        </div>
+        <div class="col-sm-4 col-md-4 col-xs-12 center-responsive get-arrow">
+          <%= image_tag "step3.png", class: "img-responsive" %>
+          <h4><a href="#"><%= t ".step_3" %></a></h4>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <!-- end container -->
+  </section>
+
+  <section class="section-padding-80 white" id="latest-post">
+    <div class="container">
+      <div class="row">
+        <!-- Content Area Bar -->
+        <div class="col-md-8 col-sm-12">
+          <div class="listing">
+            <!-- Question Area Panel -->
+            <div class="listing-area">
+              <%= render partial: "static_pages/post", collection: @posts, as: :post %>
+            </div>
+            <div class="text-center clearfix">
+              <%= paginate @posts %>
+            </div>
+          </div>
+        </div>
+        <!-- Content Area Bar End -->
+
+        <!-- Right Sidebar -->
+        <div class="col-md-4 col-sm-12 col-xs-12 clearfix">
+          <div class="side-bar">
+            <!-- widget -->
+            <div class="widget">
+              <h2><%= t ".top_users" %></h2>
+              <hr class="widget-separator no-margin">
+              <%= render partial: "static_pages/top_users", collection: @topUsers, as: :user %>
+            </div>
+            <!-- widget -->
+            <div class="widget">
+              <div class="recent-comments">
+                <h2><%= t ".recent_comments" %></h2>
+                <hr class="widget-separator no-margin">
+                <%= render partial: "static_pages/recent_comments", collection: @recentComments, as: :comment %>
+              </div>
+            </div>
+            <!-- widget end -->
+          </div>
+        </div>
+        <!-- Right Sidebar End -->
+        <div class="clearfix"></div>
+      </div>
+    </div>
+      <!-- end container -->
+  </section>
 </div>
