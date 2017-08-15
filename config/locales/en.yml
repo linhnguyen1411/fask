@@ -112,6 +112,7 @@ en:
       correct_answer: "Correct Answer"
       like_answer: "Like This Answer"
       spam: "Spam"
+      love: "Love"
     extension_post:
       on: "on"
   devise:

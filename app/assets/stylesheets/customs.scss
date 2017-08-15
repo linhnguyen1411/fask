@@ -75,3 +75,11 @@
     text-shadow: 1px 1px 3px;
   }
 }
+
+.fa-thumbs-down {
+  transform: rotateY(3rad);
+  -moz-transform: rotateY(3rad);
+  -webkit-transform: rotateY(3rad);
+  -ms-transform: rotateY(3rad);
+  -o-transform: rotateY(3rad);
+}

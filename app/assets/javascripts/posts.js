@@ -100,30 +100,41 @@ function reaction_vote_post() {
     var type = $(this).data('type');
     var model = $(this).data('model');
     var id = $(this).data('id');
-    $.ajax({
-      url: '/reactions',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        type: type,
-        model: model,
-        item_id: id
-      },
-      success: function (data) {
-        if(data.type === 'success') {
-          sweetAlert(I18n.t('reactions.create.success'), '', 'success');
-          if(model === 'Post') {
-            $('.point-vote').html('').toggle(200);
-            $('.point-vote').html(data.data).toggle(200);
+    var lct = this;
+    if(typeof(type) === 'undefined' || typeof(model) === 'undefined' || typeof(id) === 'undefined')
+      sweetAlert(I18n.t('reactions.create.error'), '', 'error');
+    else {
+      $.ajax({
+        url: '/reactions',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+          type: type,
+          model: model,
+          item_id: id
+        },
+        success: function (data) {
+          if(data.type === 'success') {
+            sweetAlert(I18n.t('reactions.create.success'), '', 'success');
+            if(model === 'Post') {
+              $('.point-vote').html('').toggle(200);
+              $('.point-vote').html(data.data).toggle(200);
+            }
+            else {
+              var data = data.data;
+              $(lct).closest('div').find('.count-like').html('(' + data[0] + ')');
+              $(lct).closest('div').find('.count-dislike').html('(' + data[1] + ')');
+              $(lct).closest('div').find('.count-heart').html('(' + data[2] + ')');
+            }
           }
+          else
+            sweetAlert(I18n.t('reactions.create.error'), '', 'error');
+        },
+        error: function () {
+          response([]);
         }
-        else
-          sweetAlert(I18n.t('reactions.create.error'), '', 'error');
-      },
-      error: function () {
-        response([]);
-      }
-    });
+      });
+    }
   });
 }
 

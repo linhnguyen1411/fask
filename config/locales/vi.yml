@@ -111,6 +111,7 @@ vi:
       correct_answer: "Câu trả lời đúng"
       like_answer: "Thích câu trả lời này"
       spam: "Spam"
+      love: "Yêu thích"
     extension_post:
       on: "trên"
   devise:

@@ -39,7 +39,7 @@ class ReactionsController < ApplicationController
     if item.class.name == Post.name
       return item.reactions.upvote.size - item.reactions.downvote.size
     else
-      return [item.like, item.dislike, item.heart]
+      return [item.reactions.like.size, item.reactions.dislike.size, item.reactions.heart.size]
     end
   end
 end
