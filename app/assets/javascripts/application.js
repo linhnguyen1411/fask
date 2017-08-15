@@ -18,6 +18,7 @@
 //= require i18n.js
 //= require i18n/translations
 //= require_tree .
+//= require sweetalert/dist/sweetalert.min.js
 
 $(document).ready(function(){
   $('a').tooltip();

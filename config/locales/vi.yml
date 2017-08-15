@@ -197,3 +197,12 @@ vi:
       post_not_exist: "Không tìm thấy."
       create_success: "Tạo câu trả lời thành công."
       create_error: "Tạo câu trả lời thất bại."
+  login_to_continue: "Vui lòng đăng nhập để sử dụng chức năng này."
+  error: "Lỗi"
+  warning: "Cảnh báo"
+  ok: "Đồng ý"
+  cancel: "Hủy"
+  reactions:
+    create:
+      success: "Thành công"
+      error: "Thất bại"

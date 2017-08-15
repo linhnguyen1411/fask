@@ -19,28 +19,63 @@
   <section class="section-padding-80 white question-details">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12">
-          <div class="listing-grid ">
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <h3><%= @post.title %></h3>
-                <div class="listing-meta">
-                  <span>
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                    <%= time_ago_in_words @post.created_at %>
-                  </span>
-                  <span>
-                    <i class="fa fa fa-eye" aria-hidden="true"></i>
-                    <%= @post.count_view %>
-                  </span>
-                </div>
+        <div class="col-md-8 col-sm-12 col-xs-12">
+          <div class="row">
+            <div class="col-md-1">
+              <div class="row vote-of-post text-center">
+                <% if current_user.present? %>
+                  <div class="btn-action">
+                    <%= link_to "javascript:", class: "btn-vote",
+                      data: {type: Settings.reaction_type.up, model: Post.name, id: @post.id} do %>
+                      <i class="fa fa-angle-up" aria-hidden="true"></i>
+                    <% end %>
+                  </div>
+                  <div class="point-vote"><%= count_vote @post %></div>
+                  <div class="btn-action">
+                    <%= link_to "javascript:", class: "btn-vote",
+                      data: {type: Settings.reaction_type.down, model: Post.name, id: @post.id} do %>
+                      <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    <% end %>
+                  </div>
+                <% else %>
+                  <div class="btn-action">
+                    <%= link_to "javascript:", class: "btn-loggin-continue" do %>
+                      <i class="fa fa-angle-up" aria-hidden="true"></i>
+                    <% end %>
+                  </div>
+                  <div class="point-vote"><%= count_vote @post %></div>
+                  <div class="btn-action">
+                    <%= link_to "javascript:", class: "btn-loggin-continue" do %>
+                      <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    <% end %>
+                  </div>
+                <% end %>
               </div>
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <%= raw @post.content %>
-                <div class="tagcloud">
-                  <% @post.tags.each do |tag| %>
-                    <a href="#"><%= tag.name %></a>
-                  <% end %>
+            </div>
+            <div class="col-md-11">
+              <div class="listing-grid">
+                <div class="row" id="post-body">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <h3><%= @post.title %></h3>
+                    <div class="listing-meta">
+                      <span>
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <%= time_ago_in_words @post.created_at %>
+                      </span>
+                      <span>
+                        <i class="fa fa fa-eye" aria-hidden="true"></i>
+                        <%= @post.count_view %>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <%= raw @post.content %>
+                    <div class="tagcloud">
+                      <% @post.tags.each do |tag| %>
+                        <a href="#"><%= tag.name %></a>
+                      <% end %>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

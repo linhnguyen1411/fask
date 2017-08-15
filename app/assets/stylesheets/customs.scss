@@ -61,3 +61,17 @@
   padding: 15px;
   color: gray;
 }
+
+.vote-of-post {
+  font-size: 25px;
+  font-weight: bold;
+  color: black;
+  box-shadow: 2px 2px 1px 1px grey;
+  border-radius: 10px;
+  .point-vote {
+    padding: 5px 0;
+  }
+  .btn-vote:hover {
+    text-shadow: 1px 1px 3px;
+  }
+}
