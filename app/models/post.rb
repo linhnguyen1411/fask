@@ -24,7 +24,7 @@ class Post < ApplicationRecord
     length: {maximum: Settings.post.max_title, minimum: Settings.post.min_title}
   validates :content, presence: true
 
-  delegate :name, :position, to: :user, prefix: true
+  delegate :name, :position, :avatar, to: :user, prefix: true
 
   scope :get_post_by_topic, -> topic_id {where topic_id: topic_id}
 

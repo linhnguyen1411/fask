@@ -24,4 +24,8 @@ class User < ApplicationRecord
   scope :not_user_hiddent, -> {where.not id: Settings.id_user_hiddent}
 
   mount_uploader :avatar, UserAvatarUploader
+
+  scope :top_users, -> do
+    joins(:answers).group("answers.user_id").order("count(answers.user_id) desc")
+  end
 end
