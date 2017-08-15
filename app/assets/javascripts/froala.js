@@ -118,7 +118,7 @@ function ajax_tag_users(key) {
 }
 
 function btn_tag_users_event() {
-  $('#tagUsers-1').click(function(){
+  $('[id^="tagUsers"]').click(function(){
     $('.tagUsers-search').val('');
     ajax_tag_users('');
     $('.tagUsers-search').keyup(function(){

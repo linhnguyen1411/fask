@@ -18,4 +18,10 @@ module PostsHelper
   def user_comment_recently_of_post post
     post.comments.first.user_name
   end
+
+  def load_btn_correct_answer answer, post
+    if current_user.present? && !answer.best_answer && current_user.id == post.user_id
+      return link_to t(".correct_answer"), "javascript:", class: "btn btn-sm btn-default btn-hover-primary"
+    end
+  end
 end

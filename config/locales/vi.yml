@@ -105,6 +105,8 @@ vi:
       hot_question: "Câu hỏi hay"
       recent_comments: "Bình luận gần đây"
       not_found: "Không tìm thấy câu hỏi này"
+      post_not_answers: "Chưa có câu trả lời nào cho câu hỏi này..."
+      post_your_answer: "Gửi câu trả lời của bạn"
     answer:
       correct_answer: "Câu trả lời đúng"
       like_answer: "Thích câu trả lời này"
@@ -189,3 +191,9 @@ vi:
     update_image: "Cập nhật hình đại diện"
     btn_update: "Cập nhật"
     btn_choose_avatar: "Chọn hình đại diện"
+  answers:
+    create:
+      email_or_password_not_exist: "Email/Mật khẩu không đúng."
+      post_not_exist: "Không tìm thấy."
+      create_success: "Tạo câu trả lời thành công."
+      create_error: "Tạo câu trả lời thất bại."

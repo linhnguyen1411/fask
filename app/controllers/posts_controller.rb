@@ -16,6 +16,7 @@ class PostsController < ApplicationController
 
   def show
     @post_extension = Supports::PostSupport.new Post, nil, nil, nil, nil
+    @answer = Answer.new
   end
 
   def create
@@ -53,7 +54,9 @@ class PostsController < ApplicationController
         @user = current_user
       else
         @user = User.find_by email: params[:user_email]
-        unless @user.present? && @user.valid_password?(params[:user_password])
+        if @user.present? && @user.valid_password?(params[:user_password])
+          sign_in @user
+        else
           flash[:danger] = t ".email_or_password_not_exist"
           render :new
         end
@@ -66,7 +69,9 @@ class PostsController < ApplicationController
           @user = current_user
         else
           @user = User.find_by email: params[:user_email]
-          unless @user.present? && @user.valid_password?(params[:user_password])
+          if @user.present? && @user.valid_password?(params[:user_password])
+            sign_in @user
+          else
             flash[:danger] = t ".email_or_password_not_exist"
             render :new
           end

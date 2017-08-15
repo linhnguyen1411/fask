@@ -46,8 +46,18 @@
 }
 
 .truncate-post {
+  max-height: 100px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
+}
+
+.post-not-answers {
+  font-weight: 200;
+  font-style: italic;
+  width: 100%;
+  text-align: center;
+  padding: 15px;
+  color: gray;
 }
