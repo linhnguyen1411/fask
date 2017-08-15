@@ -135,7 +135,9 @@ $(document).ready(function(){
     'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL',
     'formatUL', 'outdent', 'indent', '-', 'insertLink', 'insertImage', 'insertVideo',
     'insertFile', 'insertTable', '|', 'quote', 'insertHR', 'undo', 'redo', 'clearFormatting',
-    'selectAll', 'html', 'tagUsers']
+    'selectAll', 'html', 'tagUsers'],
+    imageUploadURL: '/upload_image',
+    imageUploadParams: {id: 'my_editor'}
   });
   btn_tag_users_event();
 });

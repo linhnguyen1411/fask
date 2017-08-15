@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :check_user, only: :create
   before_action :load_post, only: :show
+  before_action :plus_count_view, only: :show
 
   def index
    if params[:query].present?
@@ -112,5 +113,9 @@ class PostsController < ApplicationController
     return if @post
     flash[:danger] = t ".not_found"
     redirect_to root_path
+  end
+
+  def plus_count_view
+    @post.update_attributes count_view: @post.count_view + 1
   end
 end

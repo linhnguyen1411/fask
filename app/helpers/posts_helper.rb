@@ -16,6 +16,6 @@ module PostsHelper
   end
 
   def user_comment_recently_of_post post
-    post.comments.first.user_name
+    post.comments.first.user_name if post.comments.present?
   end
 end
