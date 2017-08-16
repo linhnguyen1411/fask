@@ -13,8 +13,8 @@ class Post < ApplicationRecord
   has_many :reactions, as: :reactiontable
   has_many :clips, class_name: Clip.name,
     foreign_key: :post_id, dependent: :destroy
-  has_many :posts_tag, dependent: :destroy
-  has_many :tags, through: :posts_tag
+  has_many :posts_tags, dependent: :destroy
+  has_many :tags, through: :posts_tags
 
   belongs_to :user
   belongs_to :work_space, optional: true
