@@ -10,9 +10,9 @@ class User < ApplicationRecord
   has_many :clips, class_name: Clip.name,
     foreign_key: :user_id, dependent: :destroy
   has_many :users_work_spaces, dependent: :destroy
-  has_many :work_spaces, through: :users_work_space
-  has_many :topics_user, dependent: :destroy
-  has_many :topics, through: :topics_user
+  has_many :work_spaces, as: :users_work_space
+  has_many :topics, as: :topices_user
+  has_many :topices_user, dependent: :destroy
 
   has_many :active_relationships, class_name: Relationship.name,
     foreign_key: :follower_id, dependent: :destroy

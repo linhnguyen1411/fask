@@ -137,13 +137,6 @@ ActiveRecord::Schema.define(version: 20170803113927) do
     t.index ["deleted_at"], name: "index_topics_on_deleted_at", using: :btree
   end
 
-  create_table "topics_users", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer "topic_id"
-    t.integer "user_id"
-    t.index ["topic_id"], name: "index_topics_users_on_topic_id", using: :btree
-    t.index ["user_id"], name: "index_topics_users_on_user_id", using: :btree
-  end
-
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                               null: false
     t.string   "name"
@@ -202,8 +195,6 @@ ActiveRecord::Schema.define(version: 20170803113927) do
   add_foreign_key "reactions", "users"
   add_foreign_key "topices_users", "topics"
   add_foreign_key "topices_users", "users"
-  add_foreign_key "topics_users", "topics"
-  add_foreign_key "topics_users", "users"
   add_foreign_key "users_work_spaces", "users"
   add_foreign_key "users_work_spaces", "work_spaces"
 end
