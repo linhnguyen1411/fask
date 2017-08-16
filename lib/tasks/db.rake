@@ -2,7 +2,8 @@ namespace :db do
   desc "TODO"
   task make_data: [:create_users, :create_tags, :create_work_spaces,
     :create_topics, :create_posts, :create_answers,
-    :create_relationships, :create_comments, :create_clips] do
+    :create_relationships, :create_comments, :create_clips,
+    :create_topices_users, :create_users_work_spaces] do
   end
   task create_users: :environment do
     User.create!(
@@ -244,5 +245,24 @@ namespace :db do
         user_id: User.order("RAND()").first.id
       )
     end
+  end
+
+  task create_topices_users: :environment do
+    TopicesUser.create!(
+      user_id: 2,
+      topic_id: 2
+    )
+
+    TopicesUser.create!(
+      user_id: 3,
+      topic_id: 1
+    )
+  end
+
+  task create_users_work_spaces: :environment do
+    UsersWorkSpace.create!(
+      user_id: 4,
+      work_space_id: 2,
+    )
   end
 end
