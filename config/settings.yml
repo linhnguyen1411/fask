@@ -5,6 +5,10 @@ post:
   extension:
     hot_question: "hot_question"
     recent_comment: "recent_comment"
+comment:
+  object_type:
+    post: "post"
+    answer: "answer"
 topic:
   q_a: "1"
   feedback: "2"

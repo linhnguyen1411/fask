@@ -16,7 +16,7 @@ module PostsHelper
   end
 
   def user_comment_recently_of_post post
-    post.comments.first.user_name if post.comments.present?
+    post.comments.present? ? post.comments.first.user.name : nil
   end
 
   def load_btn_correct_answer answer, post
