@@ -28,11 +28,11 @@ module PostsHelper
   def load_btn_reactions_answer answer, title, type
     case
     when type == Settings.reaction_type.like
-      content = '<span class="count-like">(' + "#{answer.reactions.like.size}" + ')</span><i class="fa fa-thumbs-up"></i>'
+      content = '<span class="count-like">' + "#{answer.reactions.like.size}" + '</span><i class="fa fa-thumbs-up"></i>'
     when type == Settings.reaction_type.dislike
-      content = '<span class="count-dislike">(' + "#{answer.reactions.dislike.size}" + ')</span><i class="fa fa-thumbs-down"></i>'
+      content = '<span class="count-dislike">' + "#{answer.reactions.dislike.size}" + '</span><i class="fa fa-thumbs-down"></i>'
     else
-      content = '<span class="count-heart">(' + "#{answer.reactions.heart.size}" + ')</span><i class="fa fa-heartbeat"></i>'
+      content = '<span class="count-heart">' + "#{answer.reactions.heart.size}" + '</span><i class="fa fa-heartbeat"></i>'
     end
     if current_user.present?
       link_to "javascript:", class: "btn btn-sm btn-default btn-vote",

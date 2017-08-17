@@ -115,16 +115,15 @@ function reaction_vote_post() {
         },
         success: function (data) {
           if(data.type === 'success') {
-            sweetAlert(I18n.t('reactions.create.success'), '', 'success');
             if(model === 'Post') {
               $('.point-vote').html('').toggle(200);
               $('.point-vote').html(data.data).toggle(200);
             }
             else {
               var data = data.data;
-              $(lct).closest('div').find('.count-like').html('(' + data[0] + ')');
-              $(lct).closest('div').find('.count-dislike').html('(' + data[1] + ')');
-              $(lct).closest('div').find('.count-heart').html('(' + data[2] + ')');
+              $(lct).closest('div').find('.count-like').html('' + data[0] + '');
+              $(lct).closest('div').find('.count-dislike').html('' + data[1] + '');
+              $(lct).closest('div').find('.count-heart').html('' + data[2] + '');
             }
           }
           else
