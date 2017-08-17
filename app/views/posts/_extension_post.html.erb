@@ -1,4 +1,5 @@
-<ul>
+<hr class="widget-separator no-margin">
+<ul class="recentcomments">
   <% if type == Settings.post.extension.recent_comment %>
     <li class="recentcomments">
       <span class="comment-author-link">
@@ -6,7 +7,7 @@
       <%= link_to post.title, post_path(post.id) %>
     </li>
   <% else %>
-    <li>
+    <li class="recentcomments">
       <%= link_to post.title, post_path(post.id) %>
     </li>
   <% end %>
