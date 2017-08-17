@@ -16,41 +16,58 @@
       </div>
     </div>
   </section>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
+  <%= form_for(@user, url: user_registration_path,
     html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
     <section class="section-padding-80 white" id="login">
       <div class="container">
         <div class="row">
-          <div class="col-sm-6 col-md-4">
-            <div class="box-panel">
-                <div class="form-group text-center">
-                  <label><%= t "profile.update_image" %></label>
-                  <%= image_tag current_user.avatar, class: "img-upload" %>
-                </div>
-                <span class="input-group-btn text-center">
-                  <span class="btn btn-primary btn-lg btn-file">
-                    <%= t "profile.btn_choose_avatar" %>
-                    <%= f.file_field :avatar, accept: Settings.pictures.accepted_files,
-                      class: "upload-user-avatar" %>
+          <div class="col-sm-6 col-md-6">
+            <div class="row">
+              <div class="box-panel">
+                  <div class="form-group text-center">
+                    <%= image_tag current_user.avatar, class: "img-upload" %>
+                  </div>
+                  <span class="input-group-btn text-center">
+                    <span class="btn btn-primary btn-lg btn-file">
+                      <%= t "profile.btn_choose_avatar" %>
+                      <%= f.file_field :avatar, accept: Settings.pictures.accepted_files,
+                        class: "upload-user-avatar" %>
+                    </span>
                   </span>
-                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="box-panel">
+                  <div class="form-group">
+                    <%= label_tag :email %>
+                    <%= f.email_field :email, class: "form-control", disabled: true %>
+                  </div>
+                  <div class="form-group">
+                    <%= label_tag :name %>
+                    <%= f.text_field :name, class: "form-control" %>
+                  </div>
+                  <%= f.submit t("profile.btn_update"), class: "btn btn-primary btn-lg form-button" %>
+              </div>
             </div>
           </div>
-          <div class="col-md-8">
-            <div class="box-panel">
-                <div class="form-group">
-                  <%= label_tag :email %>
-                  <%= f.email_field :email, class: "form-control", disabled: true %>
+          <div class="col-md-6 col-sm-8 col-xs-12">
+            <section class="section-padding-40">
+              <div class="listing-area">
+                <% @activities.each do |activity| %>
+                  <div class="activity">
+                    <div class="listing-grid">
+                      <%= t ".activities.you" %>
+                      <%= show_activities activity %>
+                    </div>
+                  </div>
+                  <% end %>
                 </div>
-                <div class="form-group">
-                  <%= label_tag :name %>
-                  <%= f.text_field :name, class: "form-control" %>
-                </div>
-                <%= f.submit t("profile.btn_update"), class: "btn btn-primary btn-lg form-button" %>
-            </div>
+              <div class="text-center clearfix">
+                <%= paginate @activities %>
+              </div>
+            </section>
           </div>
-          <div class="clearfix"></div>
         </div>
       </div>
     </section>
