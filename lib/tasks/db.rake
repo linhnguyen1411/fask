@@ -2,7 +2,7 @@ namespace :db do
   desc "TODO"
   task make_data: [:create_users, :create_tags, :create_work_spaces,
     :create_topics, :create_posts, :create_answers,
-    :create_relationships, :create_comments, :create_clips,
+    :create_relationships, :create_clips,
     :create_topices_users, :create_users_work_spaces] do
   end
   task create_users: :environment do
@@ -223,17 +223,6 @@ namespace :db do
       Relationship.create!(
         follower_id: followerId,
         following_id: User.order("RAND()").where.not(id: followerId).first.id
-      )
-    end
-  end
-
-  task create_comments: :environment do
-    20.times do
-      Comment.create!(
-        content: Faker::Lorem.paragraph,
-        user_id: User.order("RAND()").first.id,
-        post_id: Post.order("RAND()").first.id,
-        answer_id: Answer.order("RAND()").first.id
       )
     end
   end

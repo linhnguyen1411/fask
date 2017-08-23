@@ -8,7 +8,7 @@ class Post < ApplicationRecord
 
   searchkick
 
-  has_many :comments, dependent: :destroy
+  has_many :comments, as: :commentable
   has_many :answers, dependent: :destroy
   has_many :reactions, as: :reactiontable
   has_many :clips, class_name: Clip.name,
@@ -36,5 +36,5 @@ class Post < ApplicationRecord
 
   scope :no_answer, -> {includes(:answers).where(answers: {id: nil})}
 
-  scope :recently_comment, -> {joins(:comments).group("comments.post_id").order("comments.created_at desc")}
+  scope :recently_comment, -> {joins(:comments).group("comments.commentable_id").order("comments.created_at desc")}
 end

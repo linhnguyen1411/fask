@@ -2,6 +2,6 @@
 <ul id="recentcomments">
   <li class="recentcomments">
     <span class="comment-author-link"><%= comment.user_name %></span>
-    <%= t ".comment" %> <a href="#"><%= comment.post_title %></a>
+    <%= t ".comment" %> <a href="#"><%= comment.commentable.title %></a>
   </li>
 </ul>
