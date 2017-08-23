@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   resources :tag_users, only: :index
   resources :answers, only: :create
   resources :reactions, only: :create
+  resources :comments, only: :create
 end

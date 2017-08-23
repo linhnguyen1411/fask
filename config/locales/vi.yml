@@ -118,6 +118,7 @@ vi:
       not_found: "Không tìm thấy câu hỏi này"
       post_not_answers: "Chưa có câu trả lời nào cho câu hỏi này..."
       post_your_answer: "Gửi câu trả lời của bạn"
+      btn_comment: "Bình luận"
     answer:
       correct_answer: "Câu trả lời đúng"
       like_answer: "Thích câu trả lời này"
@@ -125,6 +126,18 @@ vi:
       love: "Yêu thích"
     extension_post:
       on: "trên"
+  comments:
+    not_found: "Không tìm thấy đối tượng này"
+    index:
+      spam: "Spam"
+      like_comment: "Thích bình luận lời này"
+    create:
+      btn_comment: "Bình luận"
+      content: "Nhập bình luận của bạn..."
+  shared:
+    error_messages:
+      info: "Biểu mẫu này có"
+      problem: "vấn đề"
   devise:
     sessions:
       new:

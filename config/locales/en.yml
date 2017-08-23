@@ -119,6 +119,7 @@ en:
       not_found: "Not found this question"
       post_not_answers: "There are no answers to this question..."
       post_your_answer: "Post Your Answer"
+      btn_comment: "Comment"
     answer:
       correct_answer: "Correct Answer"
       like_answer: "Like This Answer"
@@ -126,6 +127,18 @@ en:
       love: "Love"
     extension_post:
       on: "on"
+  comments:
+    not_found: "Not found this object"
+    index:
+      like_comment: "Like This Comment"
+      spam: "Spam"
+    create:
+      btn_comment: "Comment"
+      content: "Enter comment of you..."
+  shared:
+    error_messages:
+      info: "This form has"
+      problem: "problem"
   devise:
     sessions:
       new:

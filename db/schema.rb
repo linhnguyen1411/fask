@@ -70,16 +70,18 @@ ActiveRecord::Schema.define(version: 20170816044502) do
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.text     "content",    limit: 65535, null: false
+    t.text     "content",          limit: 65535, null: false
     t.datetime "deleted_at"
     t.integer  "user_id"
-    t.integer  "post_id"
-    t.integer  "answer_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.index ["answer_id"], name: "index_comments_on_answer_id", using: :btree
+    t.string   "comments_type"
+    t.integer  "comments_id"
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
+    t.index ["comments_type", "comments_id"], name: "index_comments_on_comments_type_and_comments_id", using: :btree
     t.index ["deleted_at"], name: "index_comments_on_deleted_at", using: :btree
-    t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
@@ -202,8 +204,6 @@ ActiveRecord::Schema.define(version: 20170816044502) do
   add_foreign_key "answers", "users"
   add_foreign_key "clips", "posts"
   add_foreign_key "clips", "users"
-  add_foreign_key "comments", "answers"
-  add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "topics"
   add_foreign_key "posts", "users"

@@ -1,0 +1,10 @@
+$('.comment-list')
+  .html('<%= j render partial: "comments/index",
+    collection: @object.comments, as: :comment %>')
+  .appendTo('.comment-list');
+
+$('.comment-new').html('<%= j render "comments/create",
+  comment: @object.comments.new,
+  object_id: @object.id,
+  object_type: Settings.comment.object_type.post,
+  button_name: t("comments.create.btn_comment") %>');

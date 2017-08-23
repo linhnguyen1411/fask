@@ -1,0 +1,29 @@
+<div class="media-block card-box ribbon-content">
+  <div class="media-left">
+    <%= link_to (image_tag get_avatar_user(comment.user), class: "img-sm"), "#",
+      data: {toggle: "tooltip", placement: "bottom",
+      original_title: comment.user_name} %>
+  </div>
+  <div class="media-body">
+    <div class="mar-btm">
+      <h4>
+        <%= link_to comment.user_name,
+          class: "btn-link text-semibold media-heading box-inline" %>
+      </h4>
+      <p class="text-muted text-sm">
+        <%= time_ago_in_words comment.created_at %>
+      </p>
+    </div>
+    <p><%= raw comment.content %></p>
+    <div class="pad-ver pull-right">
+      <%= link_to raw("<i class='fa fa-thumbs-up'></i>"), "#",
+        class: "btn btn-sm btn-default btn-hover-success",
+        data: {toggle: "tooltip", placement: "bottom",
+        original_title: t(".like_comment")} %>
+      <%= link_to raw("<i class='fa fa-thumbs-down'></i>"), "#",
+        class: "btn btn-sm btn-default btn-hover-success",
+        data: {toggle: "tooltip", placement: "bottom",
+        original_title: t(".spam")} %>
+    </div>
+  </div>
+</div>

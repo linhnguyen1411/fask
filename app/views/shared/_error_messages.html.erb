@@ -1,0 +1,8 @@
+<% if object.errors.any? %>
+  <p><%= t ".info" %> <%= pluralize(object.errors.count, t(".problem")) %></p>
+  <ul>
+    <% object.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>

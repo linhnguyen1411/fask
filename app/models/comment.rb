@@ -8,6 +8,5 @@ class Comment < ApplicationRecord
   delegate :title, to: :post, prefix: true
 
   belongs_to :user
-  belongs_to :post
-  belongs_to :answer
+  belongs_to :commentable, polymorphic: true
 end
