@@ -65,6 +65,17 @@ ja:
     show:
       error_voted_question: "You are voted for this question."
       error_liked_question:  "You are liked for this answer"
+  activities:
+    you: "You"
+    on: "on"
+    posted: "posted"
+    answered: "answered"
+    commented: "commented"
+    liked: "liked"
+    unliked: "unliked"
+    followed: "followed"
+    unfollowed: "unfollowed"
+    cliped: "cliped"
   posts:
     index:
       not_found: "Not found"

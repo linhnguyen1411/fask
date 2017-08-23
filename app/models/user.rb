@@ -28,4 +28,8 @@ class User < ApplicationRecord
   scope :top_users, -> do
     joins(:answers).group("answers.user_id").order("count(answers.user_id) desc")
   end
+
+  scope :get_activities, -> current_user do
+    PublicActivity::Activity.order("created_at desc").where(owner_id: current_user.id)
+  end
 end

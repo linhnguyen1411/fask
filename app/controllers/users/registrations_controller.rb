@@ -10,6 +10,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     redirect_to edit_user_registration_path
   end
 
+  def edit
+    @activities = User.get_activities(current_user).page(Settings.paginate_offset).
+      per Settings.activities.items_per_page
+  end
+
   protected
 
   def configure_permitted_parameters

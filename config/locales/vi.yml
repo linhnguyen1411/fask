@@ -66,6 +66,17 @@ vi:
     show:
       error_voted_question: "Bạn đả vote cho câu hỏi này."
       error_liked_question: "Bạn đã thích trả lời này."
+  activities:
+    you: "Bạn"
+    on: "on"
+    posted: "đã đăng"
+    answered: "đã trả lời"
+    commented: "đã bình luận"
+    liked: "đã thích"
+    unliked: "đã bỏ thích"
+    followed: "đã theo dõi"
+    unfollowed: "đã bỏ theo dõi"
+    cliped: "đã đánh dấu"
   posts:
     index:
       not_found: "Không tìm thấy"
