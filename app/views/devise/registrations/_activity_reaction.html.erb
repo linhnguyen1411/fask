@@ -1,6 +1,6 @@
-<%= link_to activity.trackable.post.title, post_path(activity.trackable.post) %>
-<%= link_to topic_path(activity.trackable.post.topic) do %>
-  <span class="badge"><%= activity.trackable.post.topic.name %></span>
+<%= link_to post.title, post_path(post) %>
+<%= link_to topic_path(post.topic) do %>
+  <span class="badge"><%= post.topic_name %></span>
 <% end %>
 <div class="listing-meta">
   <span>

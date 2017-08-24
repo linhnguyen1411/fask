@@ -83,3 +83,8 @@
   -ms-transform: rotateY(3rad);
   -o-transform: rotateY(3rad);
 }
+
+.topic-active {
+  color: #be161e !important;
+  text-shadow: 1px 1px 1px rgba(190, 22, 30, 0.38);
+}

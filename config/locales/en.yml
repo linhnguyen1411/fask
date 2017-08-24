@@ -62,6 +62,20 @@ en:
         placeholder: "Type your search terms here"
         button: "Search"
       question_not_exist: "Question not exist."
+      total_post: "Total Posts"
+      total_answer: "Total Answers"
+      total_member: "Total Members"
+      total_comment: "Total Comments"
+      app:
+        title: "Download Our Apps"
+        available: "Available on the"
+        android: "Google Store"
+        ios: "iOS App Store"
+      login:
+        title: "Join Us On"
+        facebook: "FACEBOOK"
+        google: "GOOGLE PLUS"
+        framgia: "FRAMGIA ACCOUNT"
   qa_knowlegeds:
     show:
       error_voted_question: "You are voted for this question."

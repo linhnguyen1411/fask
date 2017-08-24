@@ -62,6 +62,20 @@ vi:
         placeholder: "Nhập từ khóa để tìm kiếm"
         button: "Tìm kiếm"
       question_not_exist: "Không có câu hỏi nào."
+      total_post: "Tổng Số Bài Viết"
+      total_answer: "Tổng Số Câu Trả Lời"
+      total_member: "Tổng Số Thành Viên"
+      total_comment: "Tổng Số Comment"
+      app:
+        title: "Download Our Apps"
+        available: "Available on the"
+        android: "Google Store"
+        ios: "iOS App Store"
+      login:
+        title: "Join Us On"
+        facebook: "FACEBOOK"
+        google: "GOOGLE PLUS"
+        framgia: "FRAMGIA ACCOUNT"
   qa_knowlegeds:
     show:
       error_voted_question: "Bạn đả vote cho câu hỏi này."

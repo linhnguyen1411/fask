@@ -14,7 +14,6 @@
 
   <section class="custom-padding" id="how-it-work">
     <div class="container">
-      <!-- title-section -->
       <div class="main-heading text-center">
         <h2><%= t ".how_it_works" %></h2>
         <div class="slices"><span class="slice">
@@ -22,8 +21,6 @@
         </div>
         <p><%= t ".title_step" %></p>
       </div>
-
-      <!-- End title-section -->
       <div class="row">
         <div class="col-sm-4 col-md-4 col-xs-12  center-responsive">
           <%= image_tag "step1.png", class: "img-responsive" %>
@@ -40,16 +37,13 @@
         <div class="clearfix"></div>
       </div>
     </div>
-    <!-- end container -->
   </section>
 
   <section class="section-padding-80 white" id="latest-post">
     <div class="container">
       <div class="row">
-        <!-- Content Area Bar -->
         <div class="col-md-8 col-sm-12">
           <div class="listing">
-            <!-- Question Area Panel -->
             <div class="listing-area">
               <%= render partial: "static_pages/post", collection: @posts, as: :post %>
             </div>
@@ -58,18 +52,13 @@
             </div>
           </div>
         </div>
-        <!-- Content Area Bar End -->
-
-        <!-- Right Sidebar -->
         <div class="col-md-4 col-sm-12 col-xs-12 clearfix">
           <div class="side-bar">
-            <!-- widget -->
             <div class="widget">
               <h2><%= t ".top_users" %></h2>
               <hr class="widget-separator no-margin">
               <%= render partial: "static_pages/top_users", collection: @topUsers, as: :user %>
             </div>
-            <!-- widget -->
             <div class="widget">
               <div class="recent-comments">
                 <h2><%= t ".recent_comments" %></h2>
@@ -77,13 +66,174 @@
                 <%= render partial: "static_pages/recent_comments", collection: @recentComments, as: :comment %>
               </div>
             </div>
-            <!-- widget end -->
           </div>
         </div>
-        <!-- Right Sidebar End -->
         <div class="clearfix"></div>
       </div>
     </div>
-      <!-- end container -->
+  </section>
+  <div class="main-content-area">
+    <div class="parallex section-padding fun-facts-bg text-center" data-stellar-background-ratio="0.1">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 col-sm-3 col-md-3">
+            <div class="statistic-percent" data-perc="356">
+              <div class="facts-icons"><i class="fa fa-newspaper-o" aria-hidden="true"></i></i>
+              </div>
+              <div class="fact"> <span class="percentfactor"><%= total_post %></span>
+                <p><%= t ".total_post" %></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3 col-md-3">
+            <div class="statistic-percent" data-perc="126">
+              <div class="facts-icons"><i class="fa fa-comments-o" aria-hidden="true"></i></span>
+              </div>
+              <div class="fact"> <span class="percentfactor"><%= total_answer %></span>
+                <p><%= t ".total_answer" %></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3 col-md-3">
+            <div class="statistic-percent" data-perc="434">
+              <div class="facts-icons"><i class="fa fa-commenting-o" aria-hidden="true"></i></span>
+              </div>
+              <div class="fact"> <span class="percentfactor"><%= total_comment %></span>
+                <p><%= t ".total_comment" %></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3 col-md-3">
+            <div class="statistic-percent" data-perc="274">
+              <div class="facts-icons"><i class="fa fa-users" aria-hidden="true"></i></span>
+              </div>
+              <div class="fact"> <span class="percentfactor"><%= total_member %></span>
+                <p><%= t ".total_member" %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="custom-padding" id="clients">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2 col-sm-4 col-xs-6 client-block">
+          <div class="client-item client-item-style-2">
+            <%= link_to "#", title: "Cliens Logo" do %>
+              <%= image_tag "client_5", alt: "Clients Logo" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-2 col-xs-6 col-sm-4 client-block">
+          <div class="client-item client-item-style-2">
+            <%= link_to "#", title: "Cliens Logo" do %>
+              <%= image_tag "client_6", alt: "Clients Logo" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-2  col-xs-6 col-sm-4 client-block">
+          <div class="client-item client-item-style-2">
+            <%= link_to "#", title: "Cliens Logo" do %>
+              <%= image_tag "client_7", alt: "Clients Logo" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-2 col-xs-6 col-sm-4 client-block">
+          <div class="client-item client-item-style-2">
+            <%= link_to "#", title: "Cliens Logo" do %>
+              <%= image_tag "client_8", alt: "Clients Logo" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-2 col-xs-6 col-sm-4 client-block">
+          <div class="client-item client-item-style-2">
+            <%= link_to "#", title: "Cliens Logo" do %>
+              <%= image_tag "client_9", alt: "Clients Logo" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-2 col-xs-6 col-sm-4 client-block">
+          <div class="client-item client-item-style-2">
+            <%= link_to "#", title: "Cliens Logo" do %>
+              <%= image_tag "client_10" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="parallex section-padding  our-apps text-center">
+    <div class="container">
+      <div class="main-heading text-center">
+        <h2><%= t ".app.title" %></h2>
+        <hr class="main">
+      </div>
+      <div class="row">
+        <div class="app-content">
+          <div class="col-md-2  col-sm-2"></div>
+          <div class="col-md-4 col-sm-4">
+            <%= link_to "#", class: "app-grid" do %>
+              <span class="app-icon"><%= image_tag "index-mobile-ios" %></span>
+              <div class="app-title">
+                <h5><%= t ".app.available" %></h5>
+                <h3><%= t ".app.ios" %></h3>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <%= link_to "#", class: "app-grid" do %>
+              <span class="app-icon"><%= image_tag "index-mobile-android" %></span>
+              <div class="app-title">
+                <h5><%= t ".app.available" %></h5>
+                <h3><%= t ".app.android" %></h3>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-md-2  col-sm-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section id="social-media">
+    <div class="block no-padding">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="social-bar">
+            <ul>
+              <li class="social2">
+                <%= link_to "#" do %>
+                  <%= image_tag "index-framgia" %>
+                  <span>
+                    <%= t ".login.title" %>
+                    <strong><%= t ".login.framgia" %></strong>
+                  </span>
+                <% end %>
+              </li>
+              <li class="social1">
+                <%= link_to "#" do %>
+                  <%= image_tag "index-facebook" %>
+                  <span>
+                    <%= t ".login.title" %>
+                    <strong><%= t ".login.facebook" %></strong>
+                  </span>
+                <% end %>
+              </li>
+              <li class="social3">
+                <%= link_to "#" do %>
+                  <%= image_tag "index-google" %>
+                  <span>
+                    <%= t ".login.title" %>
+                    <strong><%= t ".login.google" %></strong>
+                  </span>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
