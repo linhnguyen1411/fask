@@ -8,6 +8,31 @@ RSpec.describe PostsController, type: :controller do
   let!(:work_space){FactoryGirl.create :work_space}
   let!(:tag){FactoryGirl.create :tag}
 
+  describe "GET index" do
+    let(:topic) {FactoryGirl.create :topic}
+    let(:post) do
+      FactoryGirl.create :post, work_space: work_space, user: user, topic: topic
+    end
+
+    context "when params[:query] and params[:page] is null" do
+      before do
+        get :index
+      end
+
+      it {expect(response).to be_success}
+      it {expect(assigns(:posts)).to eq [post]}
+    end
+
+    context "when params[:page] is present" do
+      before do
+        get :index, params: {page: 1}
+      end
+
+      it {expect(response).to be_success}
+      it {expect(assigns(:posts)).to eq [post]}
+    end
+  end
+
   describe "GET new" do
     it "renders the :new template" do
       get :new
@@ -108,6 +133,28 @@ RSpec.describe PostsController, type: :controller do
           post :create, params: {post: {title: 1234567, content: "1234567",
             topic_id: topic_cf.id}, tags: "new_name"}
         }.to change(Tag, :count).by 1
+      end
+    end
+
+    describe "GET #show" do
+      let(:topic) {FactoryGirl.create :topic}
+      let(:post) do
+        FactoryGirl.create :post, work_space: work_space, user: user, topic: topic
+      end
+      before {get :show, params: {id: post}}
+
+      context "when load post success" do
+        it {expect(assigns :post_extension).to be_a Supports::PostSupport}
+        it {expect(assigns :answer).to be_a Answer}
+        it {expect(assigns :post).to eq post}
+      end
+
+      context "when load post failed" do
+        before {get :show, params: {id: post.id + 1}}
+
+        it {expect(assigns :post_extension).to be_a Supports::PostSupport}
+        it {expect(assigns :answer).to be_a Answer}
+        it {expect(assigns(:post)).to eq nil}
       end
     end
   end
