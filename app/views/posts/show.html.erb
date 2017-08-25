@@ -85,6 +85,9 @@
           <div class="comment-list">
             <%= render partial: "comments/index", collection: @post.comments, as: :comment %>
           </div>
+          <div class="add-new-comment">
+            <%= link_to t(".new_comment"), "javascript:", id: "add-new-comment", is_login: current_user.present? %>
+          </div>
           <% if user_signed_in? %>
             <div class="comment-new">
               <%= render "comments/create",

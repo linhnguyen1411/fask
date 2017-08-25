@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins
   mount RailsAdmin::Engine => "/admin", as: :rails_admin
-  devise_for :users, controllers: { registrations: "users/registrations" }
+  devise_for :users, controllers: {registrations: "users/registrations", sessions: "sessions/sessions"}
   root "static_pages#index"
 
   post "/upload_image", to: "images#upload_image"

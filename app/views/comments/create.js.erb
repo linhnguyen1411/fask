@@ -3,6 +3,9 @@ $('.comment-list')
     collection: @object.comments, as: :comment %>')
   .appendTo('.comment-list');
 
+$('.comment-new').hide();
+$('#add-new-comment').show();
+
 $('.comment-new').html('<%= j render "comments/create",
   comment: @object.comments.new,
   object_id: @object.id,
