@@ -89,7 +89,7 @@ class PostsController < ApplicationController
     if post.save
       save_tags(post) if params[:tags].present?
       flash[:success] = t ".create_success"
-      redirect_to root_path
+      redirect_to post_path(post.id)
     else
       flash[:danger] = t ".create_error"
       render :new
