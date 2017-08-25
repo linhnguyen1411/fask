@@ -133,6 +133,7 @@ vi:
       post_not_answers: "Chưa có câu trả lời nào cho câu hỏi này..."
       post_your_answer: "Gửi câu trả lời của bạn"
       btn_comment: "Bình luận"
+      new_comment: "Viết bình luận"
     answer:
       correct_answer: "Câu trả lời đúng"
       like_answer: "Thích câu trả lời này"

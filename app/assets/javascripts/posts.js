@@ -137,7 +137,32 @@ function reaction_vote_post() {
   });
 }
 
+function add_new_comment() {
+  $('#add-new-comment').click(function(){
+    if ($(this).attr('is_login') === 'true') {
+      $(this).css('display','none');
+      $('.comment-new').show('500');
+    }
+    else {
+      swal({
+        title: I18n.t('warning'),
+        text: I18n.t('login_to_continue'),
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: I18n.t('ok'),
+        cancelButtonText: I18n.t('cancel'),
+        closeOnConfirm: false
+      },
+      function(){
+        window.location.replace('/users/sign_in');
+      });
+    }
+  });
+}
+
 $(document).ready(function(){
+  add_new_comment();
   load_choose_toppic();
   load_tag_user_of_post();
   move_panel_vote();
