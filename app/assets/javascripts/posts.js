@@ -161,7 +161,33 @@ function add_new_comment() {
   });
 }
 
+function correct_answer() {
+  $('.correct-answer').click(function(){
+    var item = this;
+    var answer_id = $(this).data('id')
+    $.ajax({
+        url: '/answers/' + answer_id + '/edit',
+        type: 'GET',
+        dataType: 'json',
+        data: {},
+        success: function (data) {
+          if(data.sesulf) {
+            $(item).hide('300');
+            var html = '<div class="ribbon base"><span>'+ I18n.t('posts.answer.correct_answer') +'</span></div>';
+            $(item).closest('.ribbon-content').find('.best-answer').html(html);
+          }
+          else
+            sweetAlert(I18n.t('reactions.create.error'), '', 'error');
+        },
+        error: function () {
+          response([]);
+        }
+      });
+  });
+}
+
 $(document).ready(function(){
+  correct_answer();
   add_new_comment();
   load_choose_toppic();
   load_tag_user_of_post();

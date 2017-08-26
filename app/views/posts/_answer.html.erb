@@ -1,9 +1,11 @@
 <div class="media-block card-box ribbon-content">
-  <% if answer.best_answer %>
-    <div class="ribbon base">
-      <span><%= t ".correct_answer" %></span>
-    </div>
-  <% end %>
+  <div class="best-answer">
+    <% if answer.best_answer %>
+      <div class="ribbon base">
+        <span><%= t ".correct_answer" %></span>
+      </div>
+    <% end %>
+  </div>
   <div class="media-left">
     <a data-toggle="tooltip" data-placement="bottom"
        data-original-title="<%= answer.user_name %>" href="#">
@@ -24,9 +26,9 @@
     </div>
     <p><%= raw answer.content %></p>
     <div class="pad-ver pull-right">
-      <%= load_btn_reactions_answer answer, t(".like_answer"), Settings.reaction_type.like %>
-      <%= load_btn_reactions_answer answer, t(".spam"), Settings.reaction_type.dislike %>
-      <%= load_btn_reactions_answer answer, t(".love"), Settings.reaction_type.heart %>
+      <%= load_btn_reactions answer, t(".like_answer"), Settings.reaction_type.like %>
+      <%= load_btn_reactions answer, t(".spam"), Settings.reaction_type.dislike %>
+      <%= load_btn_reactions answer, t(".love"), Settings.reaction_type.heart %>
       <%= load_btn_correct_answer answer, @post %>
     </div>
   </div>
