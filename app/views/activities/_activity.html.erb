@@ -1,0 +1,25 @@
+<div class="activity-item">
+  <div class="row">
+    <div class="col-md-5">
+      <span class="item-icon">
+        <%= raw icon %>
+      </span>
+      <span class="item-title">
+        <%= "#{title} " %>
+        <%= link_to post.title, post_path(activity.trackable) %>
+        <%= link_to topic_path(post) do %>
+          <span class="badge"><%= post.topic_name %></span>
+        <% end %>
+        <div class="listing-meta">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>
+          <%= t ".activities.on" %> <%= time_ago_in_words activity.created_at %>
+        </div>
+      </span>
+    </div>
+    <div class="col-md-7">
+      <div class="item-content">
+        <%= raw content %>
+      </div>
+    </div>
+  </div>
+</div>
