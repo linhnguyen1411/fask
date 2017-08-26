@@ -5,8 +5,6 @@ RSpec.describe Post, type: :model do
   let(:topic){FactoryGirl.create :topic}
 
   context "association" do
-    it{is_expected.to have_many :comments}
-    it{is_expected.to have_many :answers}
     it{is_expected.to have_many :reactions}
     it{is_expected.to have_many :clips}
     it{expect have_and_belong_to_many :tags}

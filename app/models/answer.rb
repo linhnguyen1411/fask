@@ -6,7 +6,7 @@ class Answer < ApplicationRecord
 
   delegate :name, to: :user, prefix: true
 
-  has_many :comments
+  has_many :comments, as: :commentable
   has_many :reactions, as: :reactiontable
 
   belongs_to :post

@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
     if @comment.save
       respond_to do |format|
         format.html do
-          redirect_to post_path(post: @object)
+          redirect_to post_path @object
         end
         format.js
       end
