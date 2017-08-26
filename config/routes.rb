@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :admins
   mount RailsAdmin::Engine => "/admin", as: :rails_admin
   devise_for :users, controllers: {registrations: "users/registrations", sessions: "sessions/sessions"}
@@ -14,4 +15,5 @@ Rails.application.routes.draw do
   resources :answers, only: :create
   resources :reactions, only: :create
   resources :comments, only: :create
+  resources :activities, only: :index
 end

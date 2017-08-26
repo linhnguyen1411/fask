@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   include PublicActivity::Model
-  tracked owner: ->(controller, model){controller && controller.current_user}
+  tracked only:[:create], owner: ->(controller, model){controller && controller.current_user}
 
   paginates_per Settings.paginate_default
 
