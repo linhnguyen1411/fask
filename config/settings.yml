@@ -38,4 +38,3 @@ success: "success"
 error: "error"
 activities:
   items_per_page: 10
-
