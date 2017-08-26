@@ -17,14 +17,8 @@
     </div>
     <p><%= raw comment.content %></p>
     <div class="pad-ver pull-right">
-      <%= link_to raw("<i class='fa fa-thumbs-up'></i>"), "#",
-        class: "btn btn-sm btn-default btn-hover-success",
-        data: {toggle: "tooltip", placement: "bottom",
-        original_title: t(".like_comment")} %>
-      <%= link_to raw("<i class='fa fa-thumbs-down'></i>"), "#",
-        class: "btn btn-sm btn-default btn-hover-success",
-        data: {toggle: "tooltip", placement: "bottom",
-        original_title: t(".spam")} %>
+      <%= load_btn_reactions comment, t("posts.answer.like_answer"), Settings.reaction_type.like %>
+      <%= load_btn_reactions comment, t("posts.answer.spam"), Settings.reaction_type.dislike %>
     </div>
   </div>
 </div>

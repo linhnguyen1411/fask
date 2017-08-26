@@ -25,6 +25,8 @@ class ReactionsController < ApplicationController
       @item = Post.find_by id: params[:item_id]
     when params[:model] == Answer.name
       @item = Answer.find_by id: params[:item_id]
+    when params[:model] == Comment.name
+      @item = Comment.find_by id: params[:item_id]
     end
     unless @item.present?
       respond_to do |format|
