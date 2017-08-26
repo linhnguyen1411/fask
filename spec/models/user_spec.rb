@@ -1,11 +1,6 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  let(:work_space) {FactoryGirl.create :work_space}
-  let(:user) {FactoryGirl.create :user}
-  let(:topic) {FactoryGirl.create :topic}
-  let!(:post) {FactoryGirl.create :post, work_space: work_space, user: user,
-    topic: topic}
 
   context "association" do
     it{expect have_many :posts}
