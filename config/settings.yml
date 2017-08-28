@@ -26,6 +26,7 @@ paginate_default: 4
 id_user_hiddent: 1
 content_max_length: 500
 limit_top: 3
+limit_tag: 5
 pictures:
   accepted_files: "image/jpeg, image/gif, image/png"
 reaction_type:

@@ -41,7 +41,7 @@
           <%= raw post.content %>
           <div class="pull-right tagcloud">
             <% post.tags.each do |tag| %>
-              <a href="#"><%= tag.name %></a>
+              <%= link_to tag.name, "#" %>
             <% end %>
           </div>
         </div>

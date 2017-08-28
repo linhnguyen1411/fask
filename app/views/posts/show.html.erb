@@ -73,7 +73,7 @@
                     <%= raw @post.content %>
                     <div class="tagcloud">
                       <% @post.tags.each do |tag| %>
-                        <a href="#"><%= tag.name %></a>
+                        <%= link_to tag.name, root_path + "?tag_id=#{tag.id}" %>
                       <% end %>
                     </div>
                   </div>

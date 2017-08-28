@@ -1,0 +1,12 @@
+<hr class="widget-separator no-margin">
+<div class="media-group">
+  <div class="media-group-item">
+    <div class="media">
+
+      <%= link_to "?tag_id=#{tag.id}" do %>
+        <%= tag.name %>
+        <span class="badge"><%= tag.posts_tags.size %></span>
+      <% end %>
+    </div>
+  </div>
+</div>

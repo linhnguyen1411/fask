@@ -34,9 +34,17 @@ class Post < ApplicationRecord
 
   scope :popular, -> {order count_view: :desc}
 
-  scope :recently_answer, -> {joins(:answers).group("answers.post_id").order("answers.created_at desc")}
+  scope :recently_answer, -> do
+    joins(:answers).group("answers.post_id").order "answers.created_at desc"
+  end
 
   scope :no_answer, -> {includes(:answers).where(answers: {id: nil})}
 
-  scope :recently_comment, -> {joins(:comments).group("comments.commentable_id").order("comments.created_at desc")}
+  scope :recently_comment, -> do
+    joins(:comments).group("comments.commentable_id").order "comments.created_at desc"
+  end
+
+  scope :by_tags, -> tag_id do
+    joins(:posts_tags).where "posts_tags.tag_id = ?", tag_id
+  end
 end

@@ -4,4 +4,9 @@ class Tag < ApplicationRecord
   has_many :posts, through: :posts_tags
 
   scope :by_used_count, ->{order(used_count: :desc).limit Settings.max_search_tags}
+
+  scope :top_tags, -> do
+    joins(:posts_tags).includes(:posts).group("posts_tags.tag_id").
+      order "count(posts_tags.post_id) DESC"
+  end
 end
