@@ -14,7 +14,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
     before {get :edit, params: {id: user.id}}
 
     context "when don't have activities" do
-      it {expect(assigns(:activities)).to eq []}
+      it {expect(assigns(:activities)).to eq nil}
     end
   end
 

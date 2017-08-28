@@ -34,6 +34,31 @@ RSpec.describe Supports::PostSupport, type: :model do
     end
   end
 
+  describe "#recently_answer_of_post" do
+    it "post no answer" do
+      expect(subject.recently_answer_of_post).to eq []
+    end
+
+    it "post have answer" do
+      FactoryGirl.create :answer, user: user, post: post
+
+      expect(subject.recently_answer_of_post).to eq [post]
+    end
+  end
+
+  describe "#recent_comment_of_post" do
+    it "post no comment" do
+      expect(subject.recent_comment_of_post).to eq []
+    end
+
+    it "post have comment" do
+      FactoryGirl.create :comment, user_id: user.id, commentable_id: post.id,
+        commentable_type: "Post"
+
+      expect(subject.recent_comment_of_post).to eq [post]
+    end
+  end
+
   describe "#hot_post" do
     it {expect(subject.hot_post).to eq [post]}
   end
