@@ -1,11 +1,14 @@
-$('.comment-list').html('<%= j render partial: "posts/comment", collection: @object.comments, as: :comment %>')
-  .appendTo('.comment-list');
+var item = '#comment-list-<%= "#{@object.class.name.downcase}-#{@object.id}" %>'
 
-$('.comment-new').hide();
-$('#add-new-comment').show();
+$('<%= j render partial: "posts/comment", collection: [@comment], as: :comment %>')
+  .hide().appendTo(item).show('500');
 
-$('.comment-new').html('<%= j render "comments/create", comment: @object.comments.new,
-  object_id: @object.id, object_type: Settings.comment.object_type.post,
+$(item).closest('.form-new-commment').find('.comment-new').hide();
+$(item).closest('.form-new-commment').find('.add-new-comment').show();
+
+$(item).closest('.form-new-commment').find('.comment-new')
+  .html('<%= j render "comments/create", comment: @object.comments.new,
+  object_id: @object.id, object_type: @object.class.name.downcase,
   button_name: t("comments.create.btn_comment") %>');
 
 $('.btn-vote').unbind();

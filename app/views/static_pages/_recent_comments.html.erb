@@ -1,7 +1,9 @@
-<hr class="widget-separator no-margin">
-<ul id="recentcomments">
-  <li class="recentcomments">
-    <span class="comment-author-link"><%= comment.user_name %></span>
-    <%= t ".comment" %> <a href="#"><%= comment.commentable.title %></a>
-  </li>
-</ul>
+<% if comment.commentable_type == Post.name %>
+  <hr class="widget-separator no-margin">
+  <ul id="recentcomments">
+    <li class="recentcomments">
+      <span class="comment-author-link"><%= comment.user_name %></span>
+      <%= t ".comment" %> </a><%= link_to comment.commentable.title, post_path(comment.commentable.id) %>
+    </li>
+  </ul>
+<% end %>

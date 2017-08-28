@@ -138,10 +138,10 @@ function reaction_vote_post() {
 }
 
 function add_new_comment() {
-  $('#add-new-comment').click(function(){
+  $('.add-new-comment').click(function(){
     if ($(this).attr('is_login') === 'true') {
       $(this).css('display','none');
-      $('.comment-new').show('500');
+      $(this).closest('.form-new-commment').find('.comment-new').show('500');
     }
     else {
       swal({
