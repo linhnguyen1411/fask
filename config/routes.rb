@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :tags, only: :index
   resources :topics
   resources :tag_users, only: :index
-  resources :answers, only: :create
+  resources :answers, only: [:create, :edit]
   resources :reactions, only: :create
   resources :comments, only: :create
   resources :activities, only: :index

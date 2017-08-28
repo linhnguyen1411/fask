@@ -250,6 +250,7 @@ en:
       post_not_exist: "Find not found."
       create_success: "Create answer success."
       create_error: "Create answer error."
+    not_found: "Answer not found."
   login_to_continue: "Please login to use this function."
   error: "Error"
   warning: "Warning"

@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
   before_action :check_post, only: :create
   before_action :check_user, only: :create
+  before_action :load_answer, only: :edit
 
   def create
     answer = current_user.answers.new answer_params
@@ -10,6 +11,20 @@ class AnswersController < ApplicationController
       flash[:danger] = t ".create_danger"
     end
     redirect_to post_path(@post.id)
+  end
+
+  def edit
+    success = false
+    if @answer.post.user == current_user
+      if @answer.best_answer == false && @answer.update_attributes(best_answer: true)
+        success = true
+      end
+    end
+    respond_to do |format|
+      format.json do
+        render json: {sesulf: success}
+      end
+    end
   end
 
   private
@@ -38,5 +53,12 @@ class AnswersController < ApplicationController
       flash[:danger] = t ".post_not_exist"
       redirect_to root_path
     end
+  end
+
+  def load_answer
+    @answer = Answer.find_by id: params[:id]
+    return if @answer
+    flash[:danger] = t ".answer_not_exist"
+    redirect_to root_path
   end
 end
