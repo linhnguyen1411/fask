@@ -32,4 +32,23 @@
       <%= load_btn_correct_answer answer, @post %>
     </div>
   </div>
+  <div class="one-line"></div>
+  <div class="form-new-commment">
+    <div class="comment-list" id="comment-list-answer-<%= answer.id %>">
+      <%= render partial: "comment", collection: answer.comments, as: :comment %>
+    </div>
+    <div class="btn-new-comment">
+      <%= link_to t("posts.show.new_comment"), "javascript:", class: "add-new-comment",
+        is_login: user_signed_in? %>
+    </div>
+    <% if user_signed_in? %>
+      <div class="comment-new">
+        <%= render "comments/create",
+          comment: answer.comments.new,
+          object_id: answer.id,
+          object_type: Settings.comment.object_type.answer,
+          button_name: t("posts.show.btn_comment") %>
+      </div>
+    <% end %>
+  </div>
 </div>
