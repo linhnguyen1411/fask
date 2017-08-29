@@ -1,6 +1,6 @@
 class Comment < ApplicationRecord
   include PublicActivity::Model
-  tracked owner: ->(controller, model){controller && controller.current_user}
+  tracked only:[:create],  owner: ->(controller, model){controller && controller.current_user}
 
   acts_as_paranoid
 
@@ -9,5 +9,6 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :commentable, polymorphic: true
 
-  has_many :reactions, as: :reactiontable
+  has_many :reactions, as: :reactiontable, dependent: :destroy
+  has_many :activities, as: :trackable, class_name: "PublicActivity::Activity", dependent: :destroy
 end

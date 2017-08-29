@@ -148,6 +148,7 @@ en:
       post_your_answer: "Post Your Answer"
       btn_comment: "Comment"
       new_comment: "Add a new comment..."
+      edit_comment: "Edit comment"
     answer:
       correct_answer: "Correct Answer"
       like_answer: "Like This Answer"
@@ -163,6 +164,8 @@ en:
     create:
       btn_comment: "Comment"
       content: "Enter comment of you..."
+    destroy:
+      are_you_sure: "You are sure to delete this comment?"
   shared:
     error_messages:
       info: "This form has"
@@ -258,6 +261,8 @@ en:
   warning: "Warning"
   ok: "Ok"
   cancel: "Cancel"
+  edit: "Edit"
+  delete: "Delete"
   reactions:
     create:
       success: "Success"

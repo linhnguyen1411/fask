@@ -166,27 +166,96 @@ function correct_answer() {
     var item = this;
     var answer_id = $(this).data('id')
     $.ajax({
-        url: '/answers/' + answer_id + '/edit',
-        type: 'GET',
+      url: '/answers/' + answer_id + '/edit',
+      type: 'GET',
+      dataType: 'json',
+      data: {},
+      success: function (data) {
+        if(data.sesulf) {
+          $(item).hide('300');
+          var html = '<div class="ribbon base"><span>'+ I18n.t('posts.answer.correct_answer') +'</span></div>';
+          $(item).closest('.ribbon-content').find('.best-answer').html(html);
+        }
+        else
+          sweetAlert(I18n.t('reactions.create.error'), '', 'error');
+      },
+      error: function () {
+        response([]);
+      }
+    });
+  });
+}
+
+function load_modal_edit_comment() {
+  $('.btn-edit-comment').click(function(){
+    $('#comment-content').attr('data-id', $(this).data('id'));
+    $('#comment-content').val($(this).closest('.item-body').find('.content').html());
+  });
+}
+
+function appcept_edit_comment() {
+  $('.btn-accept-edit-comment').click(function(){
+    var content = $('#comment-content').val();
+    var id = $('#comment-content').attr('data-id');
+    $.ajax({
+      url: '/comments/' + id,
+      type: 'PATCH',
+      dataType: 'json',
+      data: {
+        content: content
+      },
+      success: function (data) {
+        if (data.type) {
+          $('.comment-item-' + id).find('.content').hide();
+          $('.comment-item-' + id).find('.content').html(data.content);
+          $('.comment-item-' + id).find('.content').show('500');
+        }
+        else
+          sweetAlert(I18n.t('reactions.create.error'), '', 'error');
+      },
+      error: function () {}
+    });
+  });
+}
+
+function delete_comment() {
+  $('.btn-delete-comment').click(function(){
+    var id = $(this).data('id');
+    swal({
+      title: I18n.t('warning'),
+      text: I18n.t('comments.destroy.are_you_sure'),
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: I18n.t('ok'),
+      cancelButtonText: I18n.t('cancel'),
+      closeOnConfirm: false
+    },
+    function(){
+      $.ajax({
+        url: '/comments/' + id,
+        type: 'DELETE',
         dataType: 'json',
         data: {},
         success: function (data) {
-          if(data.sesulf) {
-            $(item).hide('300');
-            var html = '<div class="ribbon base"><span>'+ I18n.t('posts.answer.correct_answer') +'</span></div>';
-            $(item).closest('.ribbon-content').find('.best-answer').html(html);
+          if (data.type) {
+            sweetAlert(I18n.t('reactions.create.success'), '', 'success');
+            $('.comment-item-' + id).hide('500')
+            setTimeout(function(){$('.comment-item-' + id).remove();}, 700);
           }
           else
             sweetAlert(I18n.t('reactions.create.error'), '', 'error');
         },
-        error: function () {
-          response([]);
-        }
+        error: function () {}
       });
+    });
   });
 }
 
 $(document).ready(function(){
+  delete_comment();
+  appcept_edit_comment();
+  load_modal_edit_comment();
   correct_answer();
   add_new_comment();
   load_choose_toppic();

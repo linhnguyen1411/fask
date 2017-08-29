@@ -147,6 +147,7 @@ vi:
       post_your_answer: "Gửi câu trả lời của bạn"
       btn_comment: "Bình luận"
       new_comment: "Viết bình luận"
+      edit_comment: "Chỉnh sửa bình luận"
     answer:
       correct_answer: "Câu trả lời đúng"
       like_answer: "Thích câu trả lời này"
@@ -256,6 +257,8 @@ vi:
   warning: "Cảnh báo"
   ok: "Đồng ý"
   cancel: "Hủy"
+  edit: "Sửa"
+  delete: "Xóa"
   reactions:
     create:
       success: "Thành công"
