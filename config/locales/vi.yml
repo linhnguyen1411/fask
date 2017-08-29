@@ -51,6 +51,8 @@ vi:
       top_views: "Xem nhiều"
       top_votes: "Đánh giá cao"
       top_users: "Bảng xếp hạng người dùng"
+      popular_tags: "Top các tags"
+      all_tags: "Tất cả tags"
       comment: "bình luận"
       how_it_works: "Các bước thực hiện"
       title_step: "Tạo một tài khoản, đăng câu hỏi và tìm kiếm câu trả lời"

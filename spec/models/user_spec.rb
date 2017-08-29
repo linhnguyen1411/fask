@@ -22,7 +22,7 @@ RSpec.describe User, type: :model do
       it {is_expected.to validate_presence_of :name}
     end
 
-    describe "#get_activities" do
+    describe ".get_activities" do
       context "get activities with user signed in" do
         it "have activities" do
           user.id = nil
@@ -35,7 +35,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    describe "#top_users" do
+    describe ".top_users" do
       it "dont't have user" do
         expect(User.top_users.length).to be 0
       end

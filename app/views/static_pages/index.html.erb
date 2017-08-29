@@ -55,6 +55,14 @@
         <div class="col-md-4 col-sm-12 col-xs-12 clearfix">
           <div class="side-bar">
             <div class="widget">
+              <h2><%= t ".popular_tags" %></h2>
+              <hr class="widget-separator no-margin">
+              <%= render partial: "static_pages/tags", collection: @tags, as: :tag %>
+              <div class="all_tags">
+                <%= link_to t(".all_tags"), "#" %>
+              </div>
+            </div>
+            <div class="widget">
               <h2><%= t ".top_users" %></h2>
               <hr class="widget-separator no-margin">
               <%= render partial: "static_pages/top_users", collection: @topUsers, as: :user %>

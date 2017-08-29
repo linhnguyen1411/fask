@@ -45,26 +45,6 @@ RSpec.describe Post, type: :model do
     created_at: DateTime.new(2016, 03, 01)
   end
 
-  let!(:comment) do
-    FactoryGirl.create :comment,
-    user_id: user.id,
-    commentable_id: post_x.id,
-    commentable_type: "Post",
-    created_at: DateTime.new(2016, 01, 01)
-
-    FactoryGirl.create :comment,
-    user_id: user.id,
-    commentable_id: post_y.id,
-    commentable_type: "Post",
-    created_at: DateTime.new(2016, 02, 01)
-
-    FactoryGirl.create :comment,
-    user_id: user.id,
-    commentable_id: post_z.id,
-    commentable_type: "Post",
-    created_at: DateTime.new(2016, 03, 01)
-  end
-
   context "association" do
     it{is_expected.to have_many :reactions}
     it{is_expected.to have_many :clips}
@@ -110,61 +90,84 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  describe "scope" do
-    context "get post by topic" do
-      it "fail" do
-        expect(Post.get_post_by_topic(0).count).to eq 0
-      end
+  context ".by_tags" do
+    let(:tag) {FactoryGirl.create :tag}
 
-      it "success" do
-        expect(Post.get_post_by_topic(topic.id).count).to be > 0
-      end
+    it "when tag_id is nil" do
+      expect(Post.by_tags(nil).count).to eq 0
     end
 
-    context "newest" do
-      it "fail" do
-        expect(Post.newest).not_to eq([post_x, post_y, post_z])
-      end
+    it "when tag_id is present" do
+      FactoryGirl.create :posts_tag, post_id: post_x.id, tag_id: tag.id
+      expect(Post.by_tags(tag.id).count).to be > 0
+    end
+  end
 
-      it "success" do
-        expect(Post.newest).to eq([post_z, post_y, post_x])
-      end
+  context ".recently_comment" do
+    it "don't have comment" do
+      expect(Post.recently_comment.length).to eq 0
     end
 
-    context "popular" do
-      it "fail" do
-        expect(Post.popular).not_to eq([post_z, post_y, post_x])
-      end
+    it "have comments" do
+      FactoryGirl.create :comment, user_id: user.id, commentable_id: post_x.id,
+        commentable_type: "Post"
+      expect(Post.recently_comment.length).to be > 0
+    end
+  end
 
-      it "success" do
-        expect(Post.popular).to eq([post_x, post_y, post_z])
-      end
+  context ".get_post_by_topic" do
+    it "fail" do
+      expect(Post.get_post_by_topic(0).count).to eq 0
     end
 
-    context "recently answer" do
-      it "fail" do
-        expect(Post.recently_answer).not_to eq([post_x, post_y, post_z])
-      end
+    it "success" do
+      expect(Post.get_post_by_topic(topic.id).count).to be > 0
+    end
+  end
 
-      it "success" do
-        expect(Post.recently_answer).to eq([post_z, post_y, post_x])
-      end
+  context ".newest" do
+    it "fail" do
+      expect(Post.newest).not_to eq([post_x, post_y, post_z])
     end
 
-    context "no answer" do
-      it "success" do
-        expect(Post.no_answer.count).to eq 0
-      end
+    it "success" do
+      expect(Post.newest).to eq([post_z, post_y, post_x])
+    end
+  end
+
+  context ".popular" do
+    it "fail" do
+      expect(Post.popular).not_to eq([post_z, post_y, post_x])
     end
 
-    context "recently comment" do
-      it "fail" do
-        expect(Post.recently_answer).not_to eq([post_x, post_y, post_z])
-      end
+    it "success" do
+      expect(Post.popular).to eq([post_x, post_y, post_z])
+    end
+  end
 
-      it "success" do
-        expect(Post.recently_answer).to eq([post_z, post_y, post_x])
-      end
+  context ".recently_answer" do
+    it "fail" do
+      expect(Post.recently_answer).not_to eq([post_x, post_y, post_z])
+    end
+
+    it "success" do
+      expect(Post.recently_answer).to eq([post_z, post_y, post_x])
+    end
+  end
+
+  context ".no_answer" do
+    it "success" do
+      expect(Post.no_answer.count).to eq 0
+    end
+  end
+
+  context ".recently_answer" do
+    it "fail" do
+      expect(Post.recently_answer).not_to eq([post_x, post_y, post_z])
+    end
+
+    it "success" do
+      expect(Post.recently_answer).to eq([post_z, post_y, post_x])
     end
   end
 end
