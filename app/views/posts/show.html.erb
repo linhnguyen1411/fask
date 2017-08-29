@@ -175,3 +175,26 @@
     </div>
   </section>
 </div>
+
+<div class="modal fade" id="modal-edit-comment">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><%= t ".edit_comment" %></h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <%= text_area_tag "comment-content", "", placeholder: t("comments.create.content"),
+            minlength: Settings.post.min_title, required: true, class: "form-control resize-none" %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-xs btn-default" data-dismiss="modal"><%= t "cancel" %></button>
+        <button type="button" class="btn btn-xs btn-primary
+          btn-accept-edit-comment" data-dismiss="modal">
+          <%= t "ok" %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

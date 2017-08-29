@@ -6,7 +6,7 @@
       </span>
       <span class="item-title">
         <%= "#{title} " %>
-        <%= link_to post.title, post_path(activity.trackable) %>
+        <%= link_to post.title, post_path(post.id) %>
         <%= link_to topic_path(post) do %>
           <span class="badge"><%= post.topic_name %></span>
         <% end %>

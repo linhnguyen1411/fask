@@ -48,4 +48,16 @@ module PostsHelper
       end
     end
   end
+
+  def load_button_edit_delete_comment comment
+    if current_user.present? && comment.user == current_user
+      (link_to "#modal-edit-comment", data: {toggle: "modal", id: comment.id},
+        class: "btn-edit-comment" do
+        raw '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ' + t("edit")
+      end) + " | " +
+      (link_to "javascript:", class: "btn-delete-comment", data: {id: comment.id} do
+        raw '<i class="fa fa-trash-o" aria-hidden="true"></i> ' + t("delete")
+      end)
+    end
+  end
 end
