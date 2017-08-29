@@ -2,7 +2,8 @@ require "rails_helper"
 
 RSpec.describe User, type: :model do
   let(:work_space) {FactoryGirl.create :work_space}
-  let(:user) {FactoryGirl.create :user}
+  let!(:user) {FactoryGirl.create :user}
+  let!(:user_a) {FactoryGirl.create :user}
   let(:topic) {FactoryGirl.create :topic}
   let!(:post) do
     FactoryGirl.create :post, work_space: work_space, user: user, topic: topic
@@ -43,6 +44,27 @@ RSpec.describe User, type: :model do
       it "have users" do
         FactoryGirl.create :answer, user: user, post: post
         expect(User.top_users.length).to be 1
+      end
+    end
+
+    describe ".follow" do
+      it do
+        User.follow(user, user_a.id)
+        expect(User.check_follow(user, user_a)).to eq 1
+      end
+    end
+
+    describe ".unfollow" do
+      it do
+        User.follow(user, user_a.id)
+        User.unfollow(user, user_a.id)
+        expect(User.check_follow(user, user_a)).to eq 0
+      end
+    end
+
+    describe ".get_users_not_contain_id" do
+      it do
+        expect(User.get_users_not_contain_id(user).length).to eq 1
       end
     end
   end

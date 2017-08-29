@@ -1,0 +1,67 @@
+<div class="main-content-area">
+  <section class="page-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-7 co-xs-12 text-left">
+          <h1><%= t ".detail" %></h1>
+        </div>
+        <div class="col-md-6 col-sm-5 co-xs-12 text-right">
+          <div class="bread">
+            <ol class="breadcrumb">
+              <li><%= link_to t(".home"), root_path %></li>
+              <li><%= link_to t(".user_list"), users_path %></li>
+              <li class="active"><%= t ".detail" %></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-padding-80 white question-details">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-12 col-xs-12">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a data-toggle="tab" class="custom_text_link" href="#question">
+                <%= t ".question" %>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" class="custom_text_link" href="#answer">
+                <%= t ".answer" %>
+              </a>
+            </li>
+            <li>
+              <a data-toggle="tab" class="custom_text_link" href="#comment">
+                <%= t ".comment" %>
+              </a>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <div id="question" class="tab-pane fade in active">
+              <%= render partial: "post", collection: @user.posts, as: :post %>
+            </div>
+            <div id="answer" class="tab-pane fade">
+              <%= render partial: "answer", collection: @user.answers, as: :answer %>
+            </div>
+            <div id="comment" class="tab-pane fade">
+              <%= render partial: "comment", collection: @user.comments, as: :comment %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12 clearfix">
+          <div class="row">
+            <%= image_tag get_avatar_user(@user), class: "img-circle avatar_user" %>
+          </div>
+          <div class="row">
+            <p><span class="fa fa-address-card-o"></span> <%= @user.name %></p>
+            <p><span class="fa fa-envelope-o"></span> <%= @user.email %></p>
+            <p><span class="fa fa-street-view"></span> <%= @user.position %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

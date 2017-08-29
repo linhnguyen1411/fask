@@ -47,6 +47,7 @@ vi:
       answer: "Trả lời"
       vote: "Đánh giá"
       top_user: "Top thành viên"
+      all_user: "Tất cả thành viên"
       recently_answered: "Trả lời mới"
       top_views: "Xem nhiều"
       top_votes: "Đánh giá cao"
@@ -276,3 +277,26 @@ vi:
     create:
       success: "Thành công"
       error: "Thất bại"
+  users:
+    index:
+      breadcrumb: "Danh sách người dùng"
+      home: "Trang chủ"
+      not_found: "Không tìm thấy người dùng này"
+      follow_error: "Xử lý theo dõi thất bại. Vui lòng thử lại!"
+    user:
+      follow: "Theo dõi"
+      following: "Đang theo dõi"
+      comment: "Bình luận"
+      question: "Câu hỏi"
+      answer: "Câu trả lời"
+    show:
+      detail: "Chi tiết người dùng"
+      home: "Trang chủ"
+      user_list: "Danh sách người dùng"
+      question: "Câu hỏi"
+      answer: "Câu trả lời"
+      comment: "Bình luận"
+    answer:
+      on: "Trên"
+    comment:
+      on: "Trên"

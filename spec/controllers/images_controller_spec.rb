@@ -1,6 +1,8 @@
 require "rails_helper"
 
 RSpec.describe ImagesController, type: :controller do
+  FileUtils::mkdir_p Rails.root.join("public/uploads/floala")
+
   describe "POST #upload_image" do
     context "when upload not file" do
       before {post :upload_image}

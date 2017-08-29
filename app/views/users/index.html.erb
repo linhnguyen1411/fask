@@ -1,0 +1,31 @@
+  <div class="main-content-area">
+  <section class="page-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-7 co-xs-12 text-left">
+          <h1><%= t ".breadcrumb" %></h1>
+        </div>
+        <div class="col-md-6 col-sm-5 co-xs-12 text-right">
+          <div class="bread">
+            <ol class="breadcrumb">
+              <li><%= link_to t(".home"), root_path %></li>
+              <li class="active"><%= t ".breadcrumb" %></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="white question-tabs padding-bottom-80" id="latest-post">
+    <div class="container">
+      <div class="listing-grid">
+        <div class="row">
+          <%= render partial: "user", collection: @users, as: :user %>
+        </div>
+      </div>
+      <div class="text-center clearfix">
+        <%= paginate @users %>
+      </div>
+    </div>
+  </section>
+</div>
