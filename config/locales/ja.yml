@@ -148,6 +148,16 @@ ja:
       btn_comment: "Comment"
       new_comment: "Add a new comment..."
       edit_comment: "Edit comment"
+    update:
+      success: "Update post success."
+      error: "update post error."
+    destroy:
+      success: "Delete post success."
+      error: "Detele post error."
+      are_you_sure: "You are sure to delete this post?"
+    edit:
+      title: "Edit post"
+      btn_edit: "Update Now"
     answer:
       correct_answer: "Correct Answer"
       like_answer: "Like This Answer"

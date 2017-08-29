@@ -67,6 +67,9 @@
                         <i class="fa fa fa-eye" aria-hidden="true"></i>
                         <%= @post.count_view %> <%= t "posts.index.view" %>
                       </span>
+                      <span class="float-right">
+                        <%= raw load_button_edit_delete_post(@post) %>
+                      </span>
                     </div>
                   </div>
                   <div class="col-md-12 col-sm-12 col-xs-12">

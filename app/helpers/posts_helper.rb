@@ -60,4 +60,19 @@ module PostsHelper
       end)
     end
   end
+
+  def load_button_edit_delete_post post
+    if current_user.present? && post.user == current_user
+      (link_to edit_post_path(post.id) do
+        raw '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ' + t("edit")
+      end) + " | " +
+      (link_to "javascript:", id: "btn-delete-post", data: {id: post.id} do
+        raw '<i class="fa fa-trash-o" aria-hidden="true"></i> ' + t("delete")
+      end)
+    end
+  end
+
+  def value_tags tags
+    tags.map(&:name).to_s.gsub(/[\"\]\[]/, "")
+  end
 end

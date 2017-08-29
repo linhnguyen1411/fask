@@ -10,5 +10,6 @@ class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true
 
   has_many :reactions, as: :reactiontable, dependent: :destroy
-  has_many :activities, as: :trackable, class_name: "PublicActivity::Activity", dependent: :destroy
+  has_many :activities, as: :trackable,
+    class_name: "PublicActivity::Activity", dependent: :destroy
 end

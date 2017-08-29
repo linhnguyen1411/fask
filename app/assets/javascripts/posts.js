@@ -252,7 +252,41 @@ function delete_comment() {
   });
 }
 
+function delete_post() {
+  $('#btn-delete-post').click(function(){
+    var id = $(this).data('id');
+    swal({
+      title: I18n.t('warning'),
+      text: I18n.t('posts.destroy.are_you_sure'),
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: I18n.t('ok'),
+      cancelButtonText: I18n.t('cancel'),
+      closeOnConfirm: false
+    },
+    function(){
+      $.ajax({
+        url: '/posts/' + id,
+        type: 'DELETE',
+        dataType: 'json',
+        data: {},
+        success: function (data) {
+          if (data.type) {
+            sweetAlert(I18n.t('reactions.create.success'), '', 'success');
+            window.location.replace('/');
+          }
+          else
+            sweetAlert(I18n.t('reactions.create.error'), '', 'error');
+        },
+        error: function () {}
+      });
+    });
+  });
+}
+
 $(document).ready(function(){
+  delete_post();
   delete_comment();
   appcept_edit_comment();
   load_modal_edit_comment();

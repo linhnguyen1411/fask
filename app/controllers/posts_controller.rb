@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :check_user, only: :create
-  before_action :load_post, only: :show
+  before_action :load_post, except: [:new, :index, :create]
   before_action :plus_count_view, only: :show
 
   def index
@@ -34,6 +34,37 @@ class PostsController < ApplicationController
     end
   end
 
+  def edit
+    @tags = @post.tags
+  end
+
+  def update
+    if @post.user == current_user
+      @post.tags.destroy_all
+      save_tags(@post) if params[:tags].present?
+      if @post.update_attributes update_post_params
+        flash[:success] = t ".success"
+      else
+        flash[:danger] = t ".error"
+      end
+    else
+      flash[:danger] = ".error"
+    end
+    redirect_to post_path(@post.id)
+  end
+
+  def destroy
+    success = false
+    if @post.user == current_user && @post.destroy
+      success = true
+    end
+    respond_to do |fomat|
+      fomat.json do
+        render json: {type: success}
+      end
+    end
+  end
+
   private
   def qa_params
     params.require(:post).permit :topic_id, :title, :content
@@ -45,6 +76,10 @@ class PostsController < ApplicationController
 
   def confesstion_params
     params.require(:post).permit :topic_id, :title, :content
+  end
+
+  def update_post_params
+    params.require(:post).permit :title, :content
   end
 
   def check_user
