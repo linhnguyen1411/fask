@@ -59,7 +59,8 @@
               <hr class="widget-separator no-margin">
               <%= render partial: "static_pages/tags", collection: @tags, as: :tag %>
               <div class="all_tags">
-                <%= link_to t(".all_tags"), "#" %>
+                <span class="glyphicon glyphicon-tags"></span>
+                <%= link_to t(".all_tags"), tags_path %>
               </div>
             </div>
             <div class="widget">

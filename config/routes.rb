@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get "/download_file/:name", to: "images#access_file", as: :upload_access_file, name: /.*/
 
   resources :posts
+  resources :suggest_tags, only: :index
   resources :tags, only: :index
   resources :topics
   resources :tag_users, only: :index

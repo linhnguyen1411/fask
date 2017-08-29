@@ -165,3 +165,21 @@ p {
 .resize-none {
   resize: none;
 }
+
+.fixed-size-square {
+  display: table;
+  width: 180px;
+  height: 180px;
+  background: #4679BD;
+}
+.fixed-size-square span {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  font-size: 20px;
+}
+
+.cursor-custom {
+  cursor:pointer;
+}
