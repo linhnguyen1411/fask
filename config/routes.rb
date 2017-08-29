@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post "/upload_image", to: "images#upload_image"
   get "/download_file/:name", to: "images#access_file", as: :upload_access_file, name: /.*/
 
-  resources :posts, except: [:edit, :update, :destroy]
+  resources :posts
   resources :tags, only: :index
   resources :topics
   resources :tag_users, only: :index

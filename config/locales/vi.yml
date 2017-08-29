@@ -148,6 +148,16 @@ vi:
       btn_comment: "Bình luận"
       new_comment: "Viết bình luận"
       edit_comment: "Chỉnh sửa bình luận"
+    update:
+      success: "Cập nhật bài viết thành công."
+      error: "Cập nhật bài viết thất bại."
+    destroy:
+      success: "Xóa bài viết thành công."
+      error: "Xóa bài viết thất bại."
+      are_you_sure: "Bạn có chắc chắn muốn xóa bài viết này?"
+    edit:
+      title: "Chỉnh sửa bài viết"
+      btn_edit: "Cập nhật ngay"
     answer:
       correct_answer: "Câu trả lời đúng"
       like_answer: "Thích câu trả lời này"

@@ -8,13 +8,15 @@ class Post < ApplicationRecord
 
   searchkick
 
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, dependent: :destroy
   has_many :answers, dependent: :destroy
-  has_many :reactions, as: :reactiontable
+  has_many :reactions, as: :reactiontable, dependent: :destroy
   has_many :clips, class_name: Clip.name,
     foreign_key: :post_id, dependent: :destroy
   has_many :posts_tags, dependent: :destroy
   has_many :tags, through: :posts_tags
+  has_many :activities, as: :trackable,
+    class_name: "PublicActivity::Activity", dependent: :destroy
 
   belongs_to :user
   belongs_to :work_space, optional: true

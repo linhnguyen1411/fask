@@ -1,0 +1,62 @@
+<%= form_for @post do |f| %>
+  <section class="page-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-7 co-xs-12 text-left">
+          <h1><%= t ".title" %></h1>
+        </div>
+        <div class="col-md-6 col-sm-5 co-xs-12 text-right">
+          <div class="bread">
+            <ol class="breadcrumb">
+              <li><%= link_to t(".home"), root_path %></li>
+              <li class="active"><%= t ".title" %></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-padding-80 white" id="post-question">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-xs-12">
+          <div class="box-panel">
+            <h2><%= t ".title" %></h2>
+            <hr>
+            <div class="margin-top-40">
+              <div class="form-group">
+                <label><%= t ".toppic" %></label>
+                <%= f.select :topic_id, load_select_box_topic, {}, {disabled: true,
+                  class: "questions-category form-control", id: "select-toppic"} %>
+              </div>
+              <div class="form-group">
+                <label><%= t ".location" %></label>
+                <%= f.select :work_space_id, load_select_box_location, {}, {disabled: true,
+                  class: "questions-category form-control disabled", id: "select-location"} %>
+              </div>
+              <div class="form-group">
+                <label><%= t ".form.title" %></label>
+                <%= f.text_field :title, maxlength: Settings.post.max_title,
+                  minlength: Settings.post.min_title, required: true, class: "form-control" %>
+              </div>
+              <div class="form-group">
+                <label><%= t ".form.tags" %></label>
+                <%= text_field_tag :tags, value_tags(@tags), class: "form-control",
+                  data: {role: "tagsinput"} %>
+              </div>
+              <div class="form-group">
+                <label><%= t ".form.content" %></label>
+                <%= f.text_area :content, minlength: Settings.post.min_title,
+                  required: true, class: "form-control froalaEditor" %>
+              </div>
+              <%= f.submit t(".btn_edit"), class: "btn btn-primary pull-right" %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-xs-0">
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </section>
+<% end %>
