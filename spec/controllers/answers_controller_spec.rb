@@ -83,4 +83,34 @@ RSpec.describe AnswersController, type: :controller do
       it {expect {post :create, params: params}.to change(Answer, :count).by 0}
     end
   end
+
+  describe "PATCH #edit" do
+    let(:post) do
+      FactoryGirl.create :post, work_space: work_space, user: user, topic: topic
+    end
+    let!(:answer) do
+      FactoryGirl.create :answer, user: user, post: post, best_answer: false
+    end
+    let(:valid_params) {{id: answer.id}}
+    let(:invalid_params) {{id: 0}}
+
+    before do
+      sign_in user
+    end
+
+    context "when params[:id] exist" do
+      before {patch :edit, params: valid_params, xhr: true}
+      let(:result) {{sesulf: true}}
+
+      it {expect(subject.status).to eq 200}
+      it {expect(subject.response_body).to eq [result.to_json]}
+    end
+
+    context "when params[:id] not exist" do
+      before {patch :edit, params: invalid_params, xhr: true}
+
+      it {expect(subject.status).to eq 302}
+      it {expect(flash[:danger]).to eq "Answer not exist"}
+    end
+  end
 end
