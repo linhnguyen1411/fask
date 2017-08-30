@@ -67,6 +67,10 @@
               <h2><%= t ".top_users" %></h2>
               <hr class="widget-separator no-margin">
               <%= render partial: "static_pages/top_users", collection: @topUsers, as: :user %>
+              <h4 class="f-right">
+                <span class="fa fa-users"></span>
+                <%= link_to t(".all_user"), users_path %>
+              </h4>
             </div>
             <div class="widget">
               <div class="recent-comments">

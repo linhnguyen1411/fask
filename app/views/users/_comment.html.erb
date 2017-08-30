@@ -1,0 +1,13 @@
+<div class="col-md-12">
+  <div class="col-md-12">
+    <h4>
+      <%= truncate(comment.content, length: Settings.limit_string.content) %>
+      <%= t ".on" %>
+      <% if (comment.commentable_type === Post.name)  %>
+        <%= link_to comment.commentable.title, post_path(comment.commentable.id) %>
+      <% else  %>
+        <%= link_to comment.commentable.post.title, post_path(comment.commentable.post.id) %>
+      <% end  %>
+    </h4>
+  </div>
+</div>

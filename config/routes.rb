@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   resources :reactions, only: :create
   resources :comments, only: [:create, :update, :destroy]
   resources :activities, only: :index
+  resources :users, only: [:index, :show]
+  resources :follows, only: :update
 end

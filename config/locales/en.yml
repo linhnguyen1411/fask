@@ -46,6 +46,7 @@ en:
       answer: "Answer"
       vote: "Vote"
       top_user: "Top User"
+      all_user: "All User"
       recent_comments: "Recent Comments"
       recently_answered: "Recently answered"
       top_views: "Top views"
@@ -280,3 +281,26 @@ en:
     create:
       success: "Success"
       error: "Error"
+  users:
+    index:
+      breadcrumb: "List Users"
+      home: "Home"
+      not_found: "Not found this user"
+      follow_error: "Handle follow fail. Please try again!"
+    user:
+      follow: "Follow"
+      following: "Following"
+      comment: "Comment"
+      question: "Question"
+      answer: "Answer"
+    show:
+      detail: "Show Detail User"
+      home: "Home"
+      user_list: "User List"
+      question: "Question"
+      answer: "Answer"
+      comment: "Comment"
+    answer:
+      on: "On"
+    comment:
+      on: "On"

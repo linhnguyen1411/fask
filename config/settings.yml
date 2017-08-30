@@ -24,6 +24,7 @@ plus_one: 1
 paginate_offset: 1
 paginate_default: 4
 paginate_tags: 20
+paginate_users: 6
 id_user_hiddent: 1
 content_max_length: 500
 limit_top: 3
@@ -40,3 +41,9 @@ success: "success"
 error: "error"
 activities:
   items_per_page: 10
+relationships:
+  follow: "follow"
+  unfollow: "unfollow"
+limit_string:
+  content: 200
+  name: 50
