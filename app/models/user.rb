@@ -42,7 +42,7 @@ class User < ApplicationRecord
   end
 
   scope :unfollow, -> current_user, user_id do
-    current_user.active_relationships.where(following_id: user_id).delete_all
+    current_user.active_relationships.where(following_id: user_id).first.destroy
   end
 
   scope :check_follow, -> current_user, user_id do

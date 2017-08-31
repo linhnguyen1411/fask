@@ -33,6 +33,12 @@ module ApplicationHelper
       content = activity.trackable.reactiontable.content
       title = @title
       icon = @icon
+    when Relationship.name
+      render_relationship activity
+      title = @title
+      icon = @icon
+      post = nil
+      content = nil
     end
     render "activity", post: post, activity: activity,
       title: title, icon: icon, content: content
@@ -71,5 +77,14 @@ module ApplicationHelper
         @post = activity.trackable.reactiontable.commentable.post
       end
     end
+  end
+  def render_relationship activity
+    if activity.key == Relationship.name.downcase + "." + Settings.activity.key.unfollow
+      type = t "activities.unfollowed"
+    else
+      type = t "activities.followed"
+    end
+    @icon = "<i class='fa fa-user'></i>"
+    @title = t("activities.you") + type + "<a href=" + user_path(activity.recipient.id) +">" + activity.recipient.name + "</a>"
   end
 end

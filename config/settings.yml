@@ -47,3 +47,7 @@ relationships:
 limit_string:
   content: 200
   name: 50
+activity:
+  key:
+    follow: "create"
+    unfollow: "destroy"
