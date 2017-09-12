@@ -267,12 +267,15 @@ vi:
       answer_not_exist: "Câu trả lời không tồn tại"
     not_found: "Không tìm thấy câu trả lời."
   login_to_continue: "Vui lòng đăng nhập để sử dụng chức năng này."
+  success: "Thành công"
   error: "Lỗi"
   warning: "Cảnh báo"
   ok: "Đồng ý"
   cancel: "Hủy"
   edit: "Sửa"
   delete: "Xóa"
+  clip: "Ghim bài"
+  unclip: "Bỏ ghim bài"
   reactions:
     create:
       success: "Thành công"
@@ -300,3 +303,8 @@ vi:
       on: "Trên"
     comment:
       on: "Trên"
+  clips:
+    create_success: "Ghim bài viết thành công."
+    create_error: "Ghim bài viết thất bại."
+    destroy_success: "Bỏ ghim bài viết thành công."
+    destroy_error: "Bỏ ghim bài viết thất bại."

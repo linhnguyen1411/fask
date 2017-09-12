@@ -61,18 +61,35 @@ module PostsHelper
     end
   end
 
-  def load_button_edit_delete_post post
-    if current_user.present? && post.user == current_user
+  def load_button_functions_post post
+    case
+    when current_user.present? && post.user == current_user
       (link_to edit_post_path(post.id) do
         raw '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ' + t("edit")
       end) + " | " +
       (link_to "javascript:", id: "btn-delete-post", data: {id: post.id} do
         raw '<i class="fa fa-trash-o" aria-hidden="true"></i> ' + t("delete")
       end)
+    when current_user.present? && post.user != current_user
+      if Clip.find_by user_id: current_user.id, post_id:  post.id
+        (link_to "javascript:", id: "btn-destroy-clip", data: {id: post.id} do
+          raw '<i class="fa fa-paperclip" aria-hidden="true"></i> ' + t("unclip")
+        end)
+      else
+        (link_to "javascript:", id: "btn-create-clip", data: {id: post.id} do
+          raw '<i class="fa fa-paperclip" aria-hidden="true"></i> ' + t("clip")
+        end)
+      end
     end
   end
 
   def value_tags tags
     tags.map(&:name).to_s.gsub(/[\"\]\[]/, "")
+  end
+
+  def load_icon_clip post
+    if Clip.find_by user_id: current_user.id, post_id:  post.id
+      raw '<span class="glyphicon glyphicon-pushpin icon-clip"></span>'
+    end
   end
 end
