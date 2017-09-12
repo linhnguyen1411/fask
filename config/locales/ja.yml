@@ -266,12 +266,15 @@ ja:
       edit:
         answer_not_exist: "Answer not exist"
   login_to_continue: "Please login to use this function."
+  success: "Success"
   error: "Error"
   warning: "Warning"
   ok: "Ok"
   cancel: "Cancel"
   edit: "Edit"
   delete: "Delete"
+  clip: "Clip"
+  unclip: "Unclip"
   reactions:
     create:
       success: "Success"
@@ -299,3 +302,8 @@ ja:
       on: "On"
     comment:
       on: "On"
+  clips:
+    create_success: "Clip post success."
+    create_error: "Clip post error."
+    destroy_success: "Unclip post success."
+    destroy_error: "Unclip post error."
