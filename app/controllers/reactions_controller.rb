@@ -2,10 +2,11 @@ class ReactionsController < ApplicationController
   before_action :load_item, only: :create
 
   def create
-    @reaction = Reaction.find_or_create_by reactiontable_type: @item.class.name,
+    @reaction = Reaction.find_or_initialize_by reactiontable_type: @item.class.name,
       reactiontable_id: @item.id, user_id: current_user.id
     resufl = {}
-    if @reaction.update_attributes target_type: params[:type]
+    @reaction.target_type = params[:type]
+    if @reaction.save
       resufl = {type: Settings.success, data: load_resufl(@item)}
     else
       resufl = {type: Settings.error}
