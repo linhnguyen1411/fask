@@ -88,7 +88,7 @@ module PostsHelper
   end
 
   def load_icon_clip post
-    if Clip.find_by user_id: current_user.id, post_id:  post.id
+    if current_user.present? && Clip.find_by(user_id: current_user.id, post_id:  post.id)
       raw '<span class="glyphicon glyphicon-pushpin icon-clip"></span>'
     end
   end

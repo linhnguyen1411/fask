@@ -11,7 +11,18 @@
       </div>
       <div class="col-lg-8 col-md-8 col-sm-6 col-xs-8">
         <ul class="top-nav nav-right">
+          <%= hidden_field_tag "user-loged-in", user_signed_in? ? current_user.id : false %>
           <% if user_signed_in? %>
+            <li class="dropdown notification">
+              <%= link_to "#", class: "dropdown-toggle",
+                data: {hover: "dropdown", tooggle: "dropdown", animations: "fadeInUp"} do %>
+                <span class="fa fa-bell notification-icon" aria-hidden="true"></span>
+                <span class="notification-count"><span class="number"><%= cout_noti %></span></span>
+              <% end %>
+              <ul class="dropdown-menu">
+                <%= render partial: "layouts/notification", collection: @notifications, as: :noti %>
+              </ul>
+            </li>
             <li class="dropdown">
               <%= link_to "#", class: "dropdown-toggle",
                 data: {hover: "dropdown", tooggle: "dropdown", animations: "fadeInUp"} do %>
@@ -21,7 +32,7 @@
                   <i class="fa fa-caret-down"></i>
                 </span>
               <% end %>
-              <ul class="dropdown-menu ">
+              <ul class="dropdown-menu">
                 <li>
                   <%= link_to activities_path do %>
                     <i class="fa fa-calendar" aria-hidden="true"></i>

@@ -1,7 +1,4 @@
 class Post < ApplicationRecord
-  include PublicActivity::Model
-  tracked only:[:create], owner: ->(controller, model){controller && controller.current_user}
-
   paginates_per Settings.paginate_default
 
   acts_as_paranoid
@@ -15,12 +12,13 @@ class Post < ApplicationRecord
     foreign_key: :post_id, dependent: :destroy
   has_many :posts_tags, dependent: :destroy
   has_many :tags, through: :posts_tags
-  has_many :activities, as: :trackable,
-    class_name: "PublicActivity::Activity", dependent: :destroy
+  has_many :activities, as: :trackable, dependent: :destroy
 
   belongs_to :user
   belongs_to :work_space, optional: true
   belongs_to :topic
+
+  after_create :create_activity
 
   validates :title, presence: true,
     length: {maximum: Settings.post.max_title, minimum: Settings.post.min_title}
@@ -48,5 +46,11 @@ class Post < ApplicationRecord
 
   scope :by_tags, -> tag_id do
     joins(:posts_tags).where "posts_tags.tag_id = ?", tag_id
+  end
+
+  private
+
+  def create_activity
+    self.activities.create owner: self.user
   end
 end

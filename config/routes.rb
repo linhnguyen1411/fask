@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  mount ActionCable.server => "/cable"
+
   devise_for :admins
   mount RailsAdmin::Engine => "/admin", as: :rails_admin
   devise_for :users, controllers: {registrations: "users/registrations", sessions: "sessions/sessions"}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170816044502) do
+ActiveRecord::Schema.define(version: 20170913011719) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "trackable_type"
@@ -83,6 +83,16 @@ ActiveRecord::Schema.define(version: 20170816044502) do
     t.index ["comments_type", "comments_id"], name: "index_comments_on_comments_type_and_comments_id", using: :btree
     t.index ["deleted_at"], name: "index_comments_on_deleted_at", using: :btree
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
+  end
+
+  create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "activity_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["activity_id"], name: "index_notifications_on_activity_id", using: :btree
+    t.index ["user_id", "activity_id"], name: "index_notifications_on_user_id_and_activity_id", using: :btree
+    t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree
   end
 
   create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -205,6 +215,8 @@ ActiveRecord::Schema.define(version: 20170816044502) do
   add_foreign_key "clips", "posts"
   add_foreign_key "clips", "users"
   add_foreign_key "comments", "users"
+  add_foreign_key "notifications", "activities"
+  add_foreign_key "notifications", "users"
   add_foreign_key "posts", "topics"
   add_foreign_key "posts", "users"
   add_foreign_key "posts", "work_spaces"

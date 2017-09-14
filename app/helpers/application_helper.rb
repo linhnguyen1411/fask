@@ -87,4 +87,8 @@ module ApplicationHelper
     @icon = "<i class='fa fa-user'></i>"
     @title = t("activities.you") + type + "<a href=" + user_path(activity.recipient.id) +">" + activity.recipient.name + "</a>"
   end
+
+  def cout_noti
+    current_user.notifications.size
+  end
 end
