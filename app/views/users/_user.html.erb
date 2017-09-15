@@ -1,35 +1,41 @@
-<div class="col-md-4">
-  <%= link_to (image_tag get_avatar_user(user), class: "img-circle avatar_user"),
+<div class="user-item">
+  <% if user_signed_in? %>
+    <div class="ticker-follow-<%= check_follow user.id %>">
+      <%= t(".following") %>
+    </div>
+  <% end %>
+  <%= link_to (image_tag get_avatar_user(user), class: "img-circle avatar-user"),
     user_path(user.id) %>
   <p>
     <%= link_to raw("<b>" + truncate(user.name, length: Settings.limit_string.name) + "</b>"),
       user_path(user.id), class: "custom_text_link" %>
-    <br>
-    <span class="badge" data-toggle="tooltip" title="<%= t ".question" %>">
-      <span class="fa fa-pencil"> <%= user.posts.size %></span>
-    </span>
-    <span class="badge" data-toggle="tooltip" title="<%= t ".answer" %>">
-      <span class="fa fa-reply"> <%= user.answers.size %></span>
-    </span>
-    <span class="badge" data-toggle="tooltip" title="<%= t ".comment" %>">
-      <span class="fa fa-comment"> <%= user.comments.size %></span>
-    </span>
+    <div class="list-info">
+      <span class="badge info-item" data-toggle="tooltip" title="<%= t ".question" %>">
+        <span class="fa fa-pencil"> <%= user.posts.size %></span>
+      </span>
+      <span class="badge info-item" data-toggle="tooltip" title="<%= t ".answer" %>">
+        <span class="fa fa-reply"> <%= user.answers.size %></span>
+      </span>
+      <span class="badge info-item" data-toggle="tooltip" title="<%= t ".comment" %>">
+        <span class="fa fa-comment"> <%= user.comments.size %></span>
+      </span>
+    </div>
   </p>
-  <div class="follow_unfollow_<%= user.id %>">
+  <div class="follow_unfollow_<%= user.id %> list-function">
     <% if user_signed_in? %>
       <% if check_follow user.id %>
-        <%= link_to t(".following"), "javascript:void(0)",
-        class: "btn btn-success btn-xs",
+        <%= link_to t(".unfollow"), "javascript:void(0)",
+        class: "btn btn-warning btn-xs",
         onclick:"handle_follow_user('" + user.id.to_s + "', '" + follow_path(user.id) + "')" %>
       <% else  %>
         <%= link_to t(".follow"), "javascript:void(0)",
-        class: "btn btn-default btn-xs",
+        class: "btn btn-success btn-xs",
         onclick: "handle_follow_user('" + user.id.to_s + "', '" + follow_path(user.id) + "')" %>
       <% end %>
     <% else %>
       <div class="btn-new-comment">
         <%= link_to t(".follow"), "javascript:void(0)",
-          class: "btn btn-primary btn-xs add-new-comment",
+          class: "btn btn-success btn-xs add-new-comment",
           is_login: user_signed_in? %>
       </div>
     <% end  %>

@@ -290,6 +290,7 @@ vi:
     user:
       follow: "Theo dõi"
       following: "Đang theo dõi"
+      unfollow: "Bỏ theo dõi"
       comment: "Bình luận"
       question: "Câu hỏi"
       answer: "Câu trả lời"
