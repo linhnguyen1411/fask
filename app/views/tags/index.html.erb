@@ -1,13 +1,33 @@
-<div>
-  <center><h1><%= t ".tags" %> (<%= @tags.length %>)</h1></center>
-  <section class="custom-padding" id="how-it-work">
+<div class="main-content-area">
+  <section class="page-title">
     <div class="container">
-      <div class="col-md-12">
-        <%= render partial: "tags/tag", collection: @tags, as: :tag %>
+      <div class="row">
+        <div class="col-md-6 col-sm-7 co-xs-12 text-left">
+          <h1><%= t ".title" %></h1>
+        </div>
+        <div class="col-md-6 col-sm-5 co-xs-12 text-right">
+          <div class="bread">
+            <ol class="breadcrumb">
+              <li><%= link_to t(".home"), root_path %></li>
+              <li class="active"><%= t ".title" %></li>
+            </ol>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="text-center clearfix">
-      <%= paginate @tags %>
+  </section>
+  <section class="section-padding-40 white">
+    <div class="container">
+      <div class="col-sm-12">
+        <section class="custom-padding" id="how-it-work">
+          <div class="list-tags">
+            <%= render partial: "tags/tag", collection: @tags, as: :tag %>
+          </div>
+          <div class="text-center clearfix">
+            <%= paginate @tags %>
+          </div>
+        </section>
+      </div>
     </div>
   </section>
 </div>

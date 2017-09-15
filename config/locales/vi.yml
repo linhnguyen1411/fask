@@ -332,3 +332,12 @@ vi:
       home: "Trang chủ"
     seen_all: "Đánh dấu đã xem tất cả"
     view_all: "Xem tất cả"
+  tags:
+    index:
+      title: "Danh sách thẻ"
+      home: "Home"
+      follow: "Theo dõi"
+      following: "Đang theo dõi"
+      unfollow: "Bỏ theo dõi"
+      post: "Bài viết"
+      follwer: "Người theo dõi"

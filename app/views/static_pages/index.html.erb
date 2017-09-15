@@ -57,20 +57,26 @@
             <div class="widget">
               <h2><%= t ".popular_tags" %></h2>
               <hr class="widget-separator no-margin">
-              <%= render partial: "static_pages/tags", collection: @tags, as: :tag %>
+              <div class="list-top-tags">
+                <%= render partial: "static_pages/tags", collection: @tags, as: :tag %>
+              </div>
               <div class="all_tags">
-                <span class="glyphicon glyphicon-tags"></span>
-                <%= link_to t(".all_tags"), tags_path %>
+                <%= link_to tags_path do %>
+                   <span class="glyphicon glyphicon-tags"></span>
+                  <%= t ".all_tags" %>
+                <% end %>
               </div>
             </div>
             <div class="widget">
               <h2><%= t ".top_users" %></h2>
               <hr class="widget-separator no-margin">
               <%= render partial: "static_pages/top_users", collection: @topUsers, as: :user %>
-              <h4 class="f-right">
-                <span class="fa fa-users"></span>
-                <%= link_to t(".all_user"), users_path %>
-              </h4>
+              <div class="all_tags">
+                <%= link_to users_path do %>
+                   <span class="fa fa-users"></span>
+                  <%= t ".all_user" %>
+                <% end %>
+              </div>
             </div>
             <div class="widget">
               <div class="recent-comments">
