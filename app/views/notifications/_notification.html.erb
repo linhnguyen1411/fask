@@ -1,0 +1,17 @@
+<div class="notification-item <%= notification.not_seen? ? "status-no-seen" : "" %>">
+  <%= link_to post_path(notification.load_message.last, noti_id: notification.id), class: "notiication" do %>
+    <div class="col-md-2 text-center">
+      <%= image_tag notification.activity.owner.avatar, class: "user-avatar" %>
+    </div>
+    <div class="col-md-10">
+      <div class="row pd-top-10">
+        <span class="user-name"><%= notification.activity.owner.name %></span>
+        <span class="time">
+          <i class="fa fa-clock-o" aria-hidden="true"></i>:
+          <%= time_ago_in_words notification.created_at %>
+        </span>
+      </div>
+      <span class="content"><%= notification.load_message.first %></span>
+    </div>
+  <% end %>
+</div>

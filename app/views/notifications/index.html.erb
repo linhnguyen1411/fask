@@ -1,0 +1,28 @@
+<div class="main-content-area">
+  <section class="page-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-7 co-xs-12 text-left">
+          <h1><%= t ".title" %></h1>
+        </div>
+        <div class="col-md-6 col-sm-5 co-xs-12 text-right">
+          <div class="bread">
+            <ol class="breadcrumb">
+              <li><%= link_to t(".home"), root_path %></li>
+              <li class="active"><%= t ".title" %></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section-padding-40 white">
+    <div class="container">
+      <div class="col-sm-12">
+        <div class="all-notification">
+          <%= render partial: "notification", collection: @notifications, as: :notification %>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

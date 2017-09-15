@@ -250,6 +250,7 @@ vi:
       last: "Trang cuối cùng &raquo;"
       previous: "&lsaquo; Trang trước"
       next: "Trang kế tiếp &rsaquo;"
+      truncate: "..."
   profile:
     title: "Chỉnh sửa thông tin cá nhân"
     update_success: "Cập nhật thông tin cá nhân thành công."
@@ -324,3 +325,9 @@ vi:
     new: " mới"
     in: " trong"
     topic: " chủ đề"
+  notifications:
+    index:
+      title: "Thông báo"
+      home: "Trang chủ"
+    seen_all: "Đánh dấu đã xem tất cả"
+    view_all: "Xem tất cả"

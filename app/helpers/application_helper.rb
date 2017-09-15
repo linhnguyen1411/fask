@@ -89,6 +89,6 @@ module ApplicationHelper
   end
 
   def cout_noti
-    current_user.notifications.size
+    current_user.notifications.not_seen.size
   end
 end

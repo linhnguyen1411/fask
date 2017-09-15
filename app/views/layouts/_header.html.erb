@@ -20,7 +20,19 @@
                 <span class="notification-count"><span class="number"><%= cout_noti %></span></span>
               <% end %>
               <ul class="dropdown-menu">
-                <%= render partial: "layouts/notification", collection: @notifications, as: :noti %>
+                <div class="list-notifications">
+                  <%= render partial: "layouts/notification", collection: @list_notifications, as: :noti %>
+                </div>
+                <div class="notification-function">
+                  <%= link_to "javascript:", class: "notification-function-seen-all" do %>
+                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                    <%= t "notifications.seen_all" %>
+                  <% end %>
+                  <%= link_to notifications_path, class: "notification-function-view-all" do %>
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                    <%= t "notifications.view_all" %>
+                  <% end %>
+                </div>
               </ul>
             </li>
             <li class="dropdown">

@@ -250,6 +250,7 @@ ja:
         last: "Last &raquo;"
         previous: "&lsaquo; Prev"
         next: "Next &rsaquo;"
+        truncate: "..."
   profile:
     title: "Edit profile"
     update_success: "Update profile success."
@@ -323,3 +324,9 @@ ja:
     new: " new"
     in: " in"
     topic: " topic"
+  notifications:
+    index:
+      title: "Notifications"
+      home: "Home"
+    seen_all: "Seen it all"
+    view_all: "View all"

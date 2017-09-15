@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170913011719) do
+ActiveRecord::Schema.define(version: 20170914093018) do
 
   create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "trackable_type"
@@ -88,8 +88,9 @@ ActiveRecord::Schema.define(version: 20170913011719) do
   create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "activity_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "status",      default: 0
     t.index ["activity_id"], name: "index_notifications_on_activity_id", using: :btree
     t.index ["user_id", "activity_id"], name: "index_notifications_on_user_id_and_activity_id", using: :btree
     t.index ["user_id"], name: "index_notifications_on_user_id", using: :btree

@@ -3,24 +3,26 @@ class Activity < PublicActivity::Activity
 
   has_many :notifications
 
-  after_create :create_notification
+  after_create :add_notification
 
   private
 
-  def create_notification
+  def add_notification
     case self.trackable.class.name
     when Post.name
       self.owner.followers.each do |user|
-        self.notifications.create user_id: user.id
+        create_notification user.id
       end
     when Answer.name
-      user_id = self.trackable.post.user_id
-      self.notifications.create user_id: user_id
+      create_notification self.trackable.post.user_id
     when Comment.name
-      self.notifications.create user_id: self.trackable.commentable.user_id
+      create_notification  self.trackable.commentable.user_id
     when Reaction.name
-      object = self.trackable.reactiontable
-      self.notifications.create user_id: object.user_id
+      create_notification self.trackable.reactiontable.user_id
     end
+  end
+
+  def create_notification user_id
+    self.notifications.create(user_id: user_id) if self.owner_id != user_id
   end
 end

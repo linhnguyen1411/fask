@@ -15,7 +15,13 @@ class ApplicationController < ActionController::Base
 
   def load_notification
     if user_signed_in?
-      @notifications = current_user.notifications.by_date
+      if params[:noti_id].present?
+        notification = Notification.find_by id: params[:noti_id]
+        if notification.present? && notification.user_id == current_user.id && notification.no_seen?
+          notification.update_attributes status: :seen
+        end
+      end
+      @list_notifications = current_user.notifications.by_date.limit Settings.limit_notification
     end
   end
 end
