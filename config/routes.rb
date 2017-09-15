@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   resources :follows, only: :update
   resources :clips, only: [:create, :destroy]
+  resources :notifications, only: [:index, :update]
 end

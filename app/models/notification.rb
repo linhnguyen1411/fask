@@ -4,7 +4,9 @@ class Notification < ApplicationRecord
 
   after_create :send_notification
 
-  scope :by_date, -> {order(created_at: :desc).limit 5}
+  scope :by_date, -> {order created_at: :desc}
+
+  enum status: {not_seen: 0, seen: 1}
 
   def load_message
     return false if self.activity.nil?

@@ -1,4 +1,6 @@
 $(document).ready(function(){
+  seen_all()
+
   var loged = $('#user-loged-in').val();
   if(loged != false) {
     (function() {
@@ -21,9 +23,9 @@ $(document).ready(function(){
 });
 
 function add_noti(data) {
-  var noti = $(".notification").find(".dropdown-menu");
+  var noti = $(".notification").find(".list-notifications");
   var list_noti = noti.find("li")
-  var html = '<li><a href="' + data.url + '" class="notification-item" data-original-title="" '
+  var html = '<li><a href="' + data.url + '" class="notification-item status-no-seen" data-original-title="" '
     +'title=""><div class="col-md-2 text-center"><img class="user-avatar" src="'
     + data.img + '" alt="No avatar"></div><div class="col-md-10"><div class="row pd-top-10"><span class="user-name">'
     + data.name + '</span><span class="time">' + data.time + '</span></div><span class="content">'
@@ -40,4 +42,25 @@ function add_noti(data) {
     noti.html(html + new_html);
   }
   $('.notification-count').find('.number').html(parseInt($('.notification-count').find('.number').html()) + 1);
+}
+
+function seen_all() {
+  $('.notification-function-seen-all').click(function(){
+    $.ajax({
+      url: '/notifications/0',
+      type: 'PUT',
+      dataType: 'json',
+      data: {},
+      success: function (data) {
+        if(data.type) {
+          $('.status-no-seen').removeClass('status-no-seen');
+        }
+        else
+          sweetAlert(I18n.t('reactions.create.error'), '', 'error');
+      },
+      error: function () {
+        response([]);
+      }
+    });
+  });
 }
