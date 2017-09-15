@@ -1,0 +1,50 @@
+.show-all-user {
+  .list-user {
+    text-align: center;
+    .user-item {
+      text-align: center;
+
+      box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.38);
+      margin: 1%;
+      width: 20%;
+      display: inline-block;
+      padding: 25px;
+      position: relative;
+      border-radius: 5px;
+      margin-top: 50px;
+      .ticker-follow-true {
+        position: absolute;
+        top: -14px;
+        right: 10px;
+        border: solid 1px;
+        padding: 0 5px;
+        margin: 0;
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.32);
+        background-color: #5cb85c;
+        color: white;
+        border-radius: 5px;
+      }
+      .ticker-follow-false {
+        display: none;
+      }
+      .avatar-user {
+        width: 130px;
+        height: 130px;
+        object-fit: cover;
+        border: solid 1px;
+        border-radius: 15px;
+        box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.29);
+      }
+      .list-info {
+        .info-item {
+          border-radius: 5px;
+        }
+      }
+      .list-function {
+        .btn {
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+}

@@ -13,7 +13,7 @@ class Notification < ApplicationRecord
     activity = self.activity
     case activity.trackable.class.name
     when Post.name
-      post = activity.trackable.reactiontable
+      post = activity.trackable
       @message = activity.owner.name + I18n.t("noti.just") + I18n.t("noti.send") + I18n.t("noti.post") + I18n.t("noti.new") + I18n.t("noti.in") + I18n.t("noti.topic") + " #{post.topic.name}"
     when Answer.name
       post = activity.trackable.post

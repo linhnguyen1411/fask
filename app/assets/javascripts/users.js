@@ -25,15 +25,17 @@ function handle_follow_user(id, route) {
         var onClickFun = 'onclick=handle_follow_user("' + id + '","' + route + '")';
 
         if (data.relationships === 'follow') {
-          html = '<a class="btn btn-success btn-xs btn_handle_follow"' +
+          html = '<a class="btn btn-warning btn-xs btn_handle_follow"' +
             'href="javascript:void(0)"' + onClickFun + '>' +
-            I18n.t('users.user.following') +
+            I18n.t('users.user.unfollow') +
             '</a>';
+          $('.follow_unfollow_' + id).closest('.user-item').find('.ticker-follow-false').removeClass('ticker-follow-false').addClass('ticker-follow-true');
         } else {
-          html = '<a class="btn btn-default btn-xs btn_handle_follow"' +
+          html = '<a class="btn btn-success btn-xs btn_handle_follow"' +
             'href="javascript:void(0)"' + onClickFun + '>' +
             I18n.t('users.user.follow') +
             '</a>';
+          $('.follow_unfollow_' + id).closest('.user-item').find('.ticker-follow-true').removeClass('ticker-follow-true').addClass('ticker-follow-false');
         }
 
         $('.follow_unfollow_' + id).html(html);

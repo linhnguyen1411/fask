@@ -289,6 +289,7 @@ ja:
     user:
       follow: "Follow"
       following: "Following"
+      unfollow: "Unfollow"
       comment: "Comment"
       question: "Question"
       answer: "Answer"
