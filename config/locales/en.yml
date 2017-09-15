@@ -336,3 +336,12 @@ en:
       home: "Home"
     seen_all: "Seen it all"
     view_all: "View all"
+  tags:
+    index:
+      title: "List tags"
+      home: "Home"
+      follow: "Follow"
+      following: "Following"
+      unfollow: "Unfollow"
+      post: "Post"
+      follwer: "Follwer"

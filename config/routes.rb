@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :posts
   resources :suggest_tags, only: :index
-  resources :tags, only: :index
+  resources :tags, only: [:index, :show]
   resources :topics
   resources :tag_users, only: :index
   resources :answers, only: [:create, :edit]

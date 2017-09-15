@@ -1,11 +1,4 @@
-<hr class="widget-separator no-margin">
-<div class="media-group">
-  <div class="media-group-item listing-grid custom-tag">
-    <div class="tagcloud">
-      <%= link_to "?tag_id=#{tag.id}" do %>
-        <%= tag.name %>
-        <span class="badge"><%= tag.posts_tags.size %></span>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= link_to tag_path(tag.id), class: "tag-item" do %>
+  <%= tag.name %>
+  <span><%= tag.posts_tags.size %></span>
+<% end %>
