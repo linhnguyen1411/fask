@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include PublicActivity::StoreController
 
   before_action :load_notification
+  before_action :set_locale
 
   def after_sign_in_path_for resource
     session[:before_login_url] if session[:before_login_url].present?
@@ -23,5 +24,10 @@ class ApplicationController < ActionController::Base
       end
       @list_notifications = current_user.notifications.by_date.limit Settings.limit_notification
     end
+  end
+
+  def set_locale
+    I18n.locale = session[:locale] || I18n.default_locale
+    session[:locale] = I18n.locale
   end
 end
