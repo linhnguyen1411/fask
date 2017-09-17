@@ -52,3 +52,7 @@ activity:
   key:
     follow: "create"
     unfollow: "destroy"
+languages:
+  vi: "vi"
+  en: "en"
+  ja: "ja"

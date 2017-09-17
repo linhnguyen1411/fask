@@ -110,28 +110,29 @@ vi:
     index:
       not_found: "Không tìm thấy"
     new:
+      title_name: "Bài viêt mới"
       title: "Gửi câu hỏi kỹ thuật, góp ý cho công ty hay gửi tâm tư tình cảm vào confession."
       toppic: "Chọn topic"
       location: "Chi nhánh"
       qa_info: "Bạn có thắc mắc về kỹ thuật, vui lòng đăng nhập và đặt câu hỏi ở đây. Đội ngũ member luôn hộ trợ nhiệt tình cho bạn."
       feedback_info: "Bạn có đề xuất để xây dựng công ty hay câu hỏi về chính sách công ty mà bạn muốn được trả lời. Xin vui lòng phản hồi ở đây. Bạn có thể gửi bài dưới danh tính cá nhân hoặc ẩn danh."
       confession_info: "Bạn có tâm tư tình cảm muốn thổ lộ nhưng không đủ tự tin. Hãy để f-ask làm điều đó thay bạn. F-ask không lưu bất cứ thông tin gì của bạn tại confesstion."
-    form:
-      title: "Tiêu đề"
-      content: "Nội dung"
-      tags: "Tags"
-      with_member: "Tạo bài viết với tư cách thành viên"
-      with_anonymous: "Tạo bài viết ẩn danh"
-      btn_post: "Gửi bài viết"
-      tags: "Gắn thẻ"
-      add_a_tag: "Thêm tag"
-      search_user_not_found: "Không tìm thấy user nào..."
+      form:
+        title: "Tiêu đề"
+        content: "Nội dung"
+        tags: "Tags"
+        with_member: "Tạo bài viết với tư cách thành viên"
+        with_anonymous: "Tạo bài viết ẩn danh"
+        btn_post: "Gửi bài viết"
+        tags: "Gắn thẻ"
+        add_a_tag: "Thêm tag"
+        search_user_not_found: "Không tìm thấy user nào..."
     login:
       email: "Email"
       password: "Mật khẩu"
     create:
       email_or_password_not_exist: "Email/Mật khẩu không đúng."
-      create_success: "Tạo bài bviết thành công"
+      create_success: "Tạo bài viết thành công"
       create_error: "Tạo bài viết thất bại"
       topic_not_exist: "Topic không tồn tại"
     show:

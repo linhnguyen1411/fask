@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   post "/upload_image", to: "images#upload_image"
   get "/download_file/:name", to: "images#access_file", as: :upload_access_file, name: /.*/
+  get "/change_languages/update"
 
   resources :posts
   resources :suggest_tags, only: :index
@@ -23,4 +24,5 @@ Rails.application.routes.draw do
   resources :follows, only: :update
   resources :clips, only: [:create, :destroy]
   resources :notifications, only: [:index, :update]
+
 end

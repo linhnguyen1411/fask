@@ -91,4 +91,8 @@ module ApplicationHelper
   def cout_noti
     current_user.notifications.not_seen.size
   end
+
+  def selected_language
+     session[:locale]
+  end
 end

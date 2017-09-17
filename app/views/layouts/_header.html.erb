@@ -82,23 +82,24 @@
           <li class="dropdown">
             <%= link_to "#", class: "dropdown-toggle",
               data: {hover: "dropdown", tooggle: "dropdown", animations: "fadeInUp"} do %>
-              <%= image_tag "vi", class: "img-circle resize image-language" %>
+              <%= image_tag selected_language.present? ? selected_language : I18n.default_locale.to_s,
+                class: "img-circle resize image-language" %>
             <% end %>
             <ul class="dropdown-menu ">
               <li>
-                <%= link_to "#" do %>
+                <%= link_to "javascript:", class: "choose-language", id: Settings.languages.vi do %>
                   <%= image_tag "vi", class: "img-circle resize image-language"  %>
                   <%= t "language.vi" %>
                 <% end %>
               </li>
               <li>
-                <%= link_to "#" do %>
+                <%= link_to "javascript:", class: "choose-language", id: Settings.languages.en do %>
                   <%= image_tag "en", class: "img-circle resize image-language"  %>
                   <%= t "language.en" %>
                 <% end %>
               </li>
               <li>
-                <%= link_to "#" do %>
+                <%= link_to "javascript:", class: "choose-language", id: Settings.languages.ja do %>
                   <%= image_tag "ja", class: "img-circle resize image-language"  %>
                   <%= t "language.ja" %>
                 <% end %>

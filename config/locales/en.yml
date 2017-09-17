@@ -110,6 +110,7 @@ en:
     index:
       not_found: "Not found"
     new:
+      title_name: "New post"
       title: "Post Your QA-Knowledge/Feedback/Confession"
       toppic: "Choose toppic"
       location: "Location"

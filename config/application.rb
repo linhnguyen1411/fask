@@ -22,7 +22,7 @@ module Fask
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    config.i18n.default_locale = :vi
+    config.i18n.default_locale = :en
     config.i18n.available_locales = [:vi, :en, :ja]
     config.assets.paths << Rails.root.join("vendor", "assets", "bower_components")
     config.autoload_paths << Rails.root.join("lib/test.rb")
