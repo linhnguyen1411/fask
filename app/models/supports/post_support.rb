@@ -36,7 +36,7 @@ class Supports::PostSupport
   private
   def get_post_by_topic topic_id, type_input, type, all, page
     if all && type_input == type
-      @post.send(type).get_post_by_topic(topic_id).page page
+      @post.send(type).get_post_by_topic(topic_id).page(page).per Settings.paginate_posts
     else
       @post.send(type).get_post_by_topic(topic_id).limit Settings.paginate_default
     end

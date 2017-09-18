@@ -188,6 +188,7 @@ vi:
         home: "Trang chủ"
         sign_in_facebook: "Đăng nhập với Facebook"
         sign_in_google: "Đăng nhập với Google"
+        sign_in_wsm: "Đăng nhập với WSM"
         or: "HOẶC"
         remember_me: "Ghi nhớ!"
         sign_up_help_block: "Bạn chưa có tài khoản?"
@@ -231,7 +232,7 @@ vi:
   topics:
     show:
       recent_questions: "Câu hỏi gần đây"
-      popular_response: "Phản hồi phổ biến"
+      popular_response: "Câu hỏi phổ biến"
       recently_answered: "Trả lời gần đây"
       no_answer: "Chưa trả lời"
     view_all:

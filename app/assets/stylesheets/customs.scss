@@ -191,3 +191,21 @@ p {
 .notification-text {
   top: 20%;
 }
+
+.wsm {
+  background-color: #ff8100;
+  width: 100%;
+  color: white;
+  .icons {
+    width: 40px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+  }
+}
+
+.wsm:hover {
+  background-color: #ff8100;
+  width: 100%;
+  color: white;
+  text-shadow: 1px 1px 3px;
+}
