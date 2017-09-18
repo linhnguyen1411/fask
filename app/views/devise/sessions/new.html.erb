@@ -28,10 +28,17 @@
             <a href="#" class="btn btn-default google"><i class="fa fa-google-plus icons"></i>
               <%= t ".sign_in_google" %>
             </a> -->
-            <%= link_to "#", class: "btn btn-default wsm" do %>
-              <%= image_tag "icon-wsm.png", class: "icons" %>
-              <%= t ".sign_in_wsm" %>
-            <% end %>
+
+            <%- if devise_mapping.omniauthable? %>
+              <div class="login-with-framgia text-center">
+                <%- resource_class.omniauth_providers.each do |provider| %>
+                  <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-default wsm" do %>
+                    <%= image_tag "icon-wsm", class: "icons" %>
+                    <%= t ".sign_in_wsm" %>
+                  <% end %>
+                <% end -%>
+              </div>
+            <% end -%>
             <p class="text-center margin-top-10"><span class="span-line"><%= t ".or" %></span>
             </p>
             <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
