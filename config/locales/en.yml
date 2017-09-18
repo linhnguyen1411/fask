@@ -29,8 +29,8 @@ en:
       announcement: "Announcement"
       timeline: "Time Line"
     footer:
-      detail: "About Framgia Viet Nam Framgia Vietnam is a company 100% Japan funded specializing in design, development applications such as mobile phone software, games, social and website applications."
-      copyright: "Copyright 2016 Framgia, Inc. All rights reserved."
+      detail: "Framgia Viet Nam is a company 100% Japan funded specializing in design, development applications such as mobile phone software, games, social and website applications."
+      copyright: "Copyright 2017 Framgia, Inc. All rights reserved."
       address: "13F Keangnam Landmark 72 Tower, Plot E6, Pham Hung Road, Nam Tu Liem, Ha Noi, Viet Nam"
       phone: "84-4-3795-5417"
       email: "hr_team@framgia.com"
@@ -57,8 +57,8 @@ en:
       tags: "TAGS"
       comment: "comment"
       how_it_works: "How  It Works"
-      title_step: "Create An Account, Post Your Question and Find Your Solution"
-      step_1: "Create An Account"
+      title_step: "Login/Not Login, Post Your Question and Find Your Solution"
+      step_1: "Login/Not Login"
       step_2: "Post Your Question"
       step_3: "Find Your Solution"
       search_panel:
@@ -264,6 +264,12 @@ en:
     btn_update: "Update My Profile"
     btn_choose_avatar: "Choose avatar"
     activities: "Activities"
+    btn_update_pass: "Update Password"
+    update_password:
+      success: "Update password success"
+      error: "Update password error"
+      current_password_wrong: "Current password wrong"
+      confirm_password_wrong: "Confirm new password wrong"
   answers:
     create:
       email_or_password_not_exist: "Email/Password not exist."

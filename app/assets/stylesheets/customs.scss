@@ -197,6 +197,8 @@ p {
   width: 100%;
   color: white;
   .icons {
+    float: left;
+    margin-left: 20px !important;
     width: 40px;
     margin-top: -10px;
     margin-bottom: -10px;
@@ -208,4 +210,12 @@ p {
   width: 100%;
   color: white;
   text-shadow: 1px 1px 3px;
+}
+
+.wsm-icon {
+  width: 56.5px;
+}
+
+.mg-bt-0 {
+  margin-bottom: 0 !important;
 }
