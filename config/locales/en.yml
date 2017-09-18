@@ -191,6 +191,7 @@ en:
         home: "Home"
         sign_in_facebook: "Sign In with Facebook"
         sign_in_google: "Sign In with Google"
+        sign_in_wsm: "Sign In with WSM"
         or: "OR"
         remember_me: "Remember me!"
         sign_up_help_block: "You have't account?"
@@ -234,7 +235,7 @@ en:
   topics:
     show:
       recent_questions: "Recent Questions"
-      popular_response: "Popular Response"
+      popular_response: "Popular Questions"
       recently_answered: "Recently Answered"
       no_answer: "No Answer"
     view_all:

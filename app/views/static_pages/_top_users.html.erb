@@ -8,7 +8,7 @@
         </div>
       </div>
       <div class="media-body">
-        <h4 class="media-heading"><a href="profile.html"><%= user.name %></a></h4>
+        <h4 class="media-heading"><%= link_to user.name, user_path(user.id) %></h4>
         <small class="media-meta"><%= user.position %></small>
       </div>
     </div>
