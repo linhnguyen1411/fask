@@ -25,6 +25,8 @@ gem "mini_magick",             "3.8.0"
 gem "cloudinary"
 gem "rails_admin", "~> 1.2"
 gem "redis", "~> 3.0"
+gem "omniauth-framgia", git: "https://github.com/framgia-education/omniauth-framgia.git"
+gem "figaro"
 
 group :development, :test do
   gem "byebug"

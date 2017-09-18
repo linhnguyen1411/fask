@@ -43,6 +43,7 @@ Gemfile.lock
 # Ignore Byebug command history file.
 .byebug_history
 /config/database.yml
+/config/application.yml
 /test/
 
 config/settings.local.yml

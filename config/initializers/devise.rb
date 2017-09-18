@@ -25,4 +25,11 @@ Devise.setup do |config|
 
   config.sign_out_via = Rails.env.test? ? :get : :delete
 
+  config.omniauth :framgia, ENV["APP_ID"], ENV["APP_SECRET"],
+    client_options: {
+      site: "http://10.0.1.14/",
+      authorize_url: "https://wsm.framgia.vn/authorize",
+      token_url: "http://10.0.1.14/auth/access_token"
+    }
+
 end

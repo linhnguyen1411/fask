@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
+  devise :omniauthable, omniauth_providers: [:framgia]
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :reactions, dependent: :destroy
@@ -48,5 +49,19 @@ class User < ApplicationRecord
 
   scope :check_follow, -> current_user, user_id do
     current_user.active_relationships.where(following_id: user_id).count
+  end
+
+  class << self
+    def from_omniauth auth
+      user = find_or_initialize_by email: auth.info.email
+      if user.present?
+        password = User.generate_unique_secure_token[0..9]
+        user.name = auth.info.name
+        user.remote_avatar_url = auth.info.avatar if auth.info.avatar.present?
+        user.password = password if user.new_record?
+        user.save
+        user
+      end
+    end
   end
 end
