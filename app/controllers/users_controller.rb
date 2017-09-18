@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :load_user, only: :show
+  before_action :load_user, only: [:show, :update]
 
   def index
     if user_signed_in?
@@ -13,6 +13,25 @@ class UsersController < ApplicationController
   end
 
   def show
+  end
+
+  def update
+    success = false
+    if @user.valid_password? params[:current_password]
+      if @user.update_attributes password: params[:new_password]
+        mess = t "profile.update_password.success"
+        success = true
+      else
+        mess =  t "profile.update_password.error"
+      end
+    else
+      mess = t "profile.update_password.current_password_wrong"
+    end
+    respond_to do |format|
+      format.json do
+        render json: {type: success, mess: mess}
+      end
+    end
   end
 
   private

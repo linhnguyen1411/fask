@@ -23,15 +23,15 @@ vi:
       signup: "Đăng Ký"
       profile: "Thông tin cá nhân"
       logout: "Đăng xuất"
-      q_a: "Hỏi đáp"
-      feedback: "Góp ý"
+      q_a: "Hỏi đáp kỹ thuật"
+      feedback: "Hòm thư góp ý"
       confession: "Confession"
       post_question: "Gửi câu hỏi"
       announcement: "Thông báo"
       timeline: "Nhật ký hoạt động"
     footer:
-      detail: "Về công ty Framgia Việt Nam Framgia Việt Nam là công ty 100% vốn đầu tư Nhật Bản, chuyên xây dựng những ứng dụng trên điện thoại, game, các ứng dụng xã hội và các ứng dụng trên nền Web."
-      copyright: "Copyright 2016 Framgia, Inc. All rights reserved."
+      detail: "Framgia Việt Nam là công ty 100% vốn đầu tư Nhật Bản, chuyên xây dựng những ứng dụng trên điện thoại, game, các ứng dụng xã hội và các ứng dụng trên nền Web."
+      copyright: "Copyright 2017 Framgia, Inc. All rights reserved."
       address: "Tầng 13 tòa nhà Keangnam Landmark, Lô E6, Đường Phạm Hùng, Từ Liêm Nam, Hà Nội, Việt Nam"
       phone: "84-4-3795-5417"
       email: "hr_team@framgia.com"
@@ -57,8 +57,8 @@ vi:
       tags: "Danh sách các tags"
       comment: "bình luận"
       how_it_works: "Các bước thực hiện"
-      title_step: "Tạo một tài khoản, đăng câu hỏi và tìm kiếm câu trả lời"
-      step_1: "Tạo một tài khoản"
+      title_step: "Đăng nhập hoặc Không đăng nhập, đăng câu hỏi và tìm kiếm câu trả lời"
+      step_1: "Đăng nhập/Không đăng nhập"
       step_2: "Đăng câu hỏi"
       step_3: "Tìm kiếm câu trả lời"
       search_panel:
@@ -260,6 +260,12 @@ vi:
     update_image: "Cập nhật hình đại diện"
     btn_update: "Cập nhật"
     btn_choose_avatar: "Chọn hình đại diện"
+    btn_update_pass: "Cập nhật mật khẩu"
+    update_password:
+      success: "Cập nhật mật khẩu thành công"
+      error: "Cập nhật mật khẩu thất bại"
+      current_password_wrong: "Mật khẩu hiện tại không đúng"
+      confirm_password_wrong: "Mật khẩu xác nhận không đúng"
   answers:
     create:
       email_or_password_not_exist: "Email/Mật khẩu không đúng."
