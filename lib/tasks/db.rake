@@ -1,10 +1,20 @@
 namespace :db do
   desc "TODO"
-  task make_data: [:create_users, :create_tags, :create_work_spaces,
+  task make_data: [:create_admin, :create_users, :create_tags, :create_work_spaces,
     :create_topics, :create_posts, :create_answers,
     :create_relationships, :create_clips,
     :create_topices_users, :create_users_work_spaces] do
   end
+
+  task create_admin: :environment do
+      Admin.create!(
+      name: "Admin",
+      email: "fask.info@gmail.com",
+      password: "Aa@123",
+      password_confirmation: "Aa@123"
+    )
+  end
+
   task create_users: :environment do
     User.create!(
       name: "User Hidden",
@@ -46,6 +56,15 @@ namespace :db do
       name: "Le Thi Hong Thuy",
       email: "le.thi.hong.thuy@framgia.com",
       position: "BO",
+      code: Faker::Code.asin,
+      password: "Aa@123",
+      password_confirmation: "Aa@123"
+    )
+
+    User.create!(
+      name: "Pham Thanh Luan",
+      email: "pham.thanh.luan@framgia.com",
+      position: "Member",
       code: Faker::Code.asin,
       password: "Aa@123",
       password_confirmation: "Aa@123"
@@ -93,19 +112,31 @@ namespace :db do
 
   task create_work_spaces: :environment do
     WorkSpace.create!(
-      name: "Da Nang",
+      name: "Đà Nẵng Office",
       area: "Da Nang City",
       description: "Framgia Da Nang"
     )
 
     WorkSpace.create!(
-      name: "Ho Chi Minh",
+      name: "Hà Nội Office",
       area: "Ho Chi Minh City",
       description: "Framgia Ho Chi Minh"
     )
 
     WorkSpace.create!(
-      name: "Ha Noi",
+      name: "HCMC Office",
+      area: "Ha Noi capital",
+      description: "Framgia Ha Noi"
+    )
+
+    WorkSpace.create!(
+      name: "TKC Office",
+      area: "Ha Noi capital",
+      description: "Framgia Ha Noi"
+    )
+
+    WorkSpace.create!(
+      name: "Handico Office",
       area: "Ha Noi capital",
       description: "Framgia Ha Noi"
     )
@@ -201,7 +232,7 @@ namespace :db do
     )
 
     Post.create!(
-      title: "Tuyền Web developer intern/fresher",
+      title: "Web developer intern/fresher",
       user_id: 1,
       topic_id: 3,
       work_space_id: WorkSpace.order("RAND()").first.id,
@@ -227,19 +258,142 @@ namespace :db do
       Ps: mình biết sau khi đọc stt này sẽ có nhiều cao thủ tự xưng vào chém (hihi)
       From: Trẻ trâu đi làm"
     )
+
+    Post.create!(
+      # 10
+      title: "Loa tại VP Đà Nẵng",
+      user_id: 1,
+      topic_id: 1,
+      work_space_id: 1,
+      content: "Bo xem lại chất lượng loa ở vp ĐN. Loa dùng được 2 tuần đến 1 tháng lại hư."
+    )
+
+    Post.create!(
+      # 11
+      title: "Chơi bowling",
+      user_id: 1,
+      topic_id: 2,
+      work_space_id: 2,
+      content: "Năm ngoái Framgia HN có chương trình chơi bowling,
+      mình thấy chương trình khá vui và bổ ích, gắn kết tinh thần đồng đội,
+      các thành viên Framgia. Mình mong  sẽ có thêm lần thứ 2, thứ 3, ... thứ n nữa.
+      Không biết công ty có dự định tổ chức chương trình này nữa không?"
+    )
+
+    Post.create!(
+      # 12
+      title: "Đồ uống công ty",
+      user_id: 1,
+      topic_id: 2,
+      work_space_id: WorkSpace.order("RAND()").first.id,
+      content: "Cty mình có thể mua thêm ống hút ở khu uống nước khu buzz được không ạ?
+      nhiều lúc mình pha cafe nhưng không biết lấy gì để khuấy."
+    )
+
+     Post.create!(
+      # 13
+      title: "Di chuyển lên/xuống văn phòng",
+      user_id: 1,
+      topic_id: 2,
+      work_space_id: 1,
+      content: "Em muốn có chút ý kiến về cầu thang bộ ở văn phòng Đà Nẵng.
+      Hiện tại mật độ nhân viên thuộc các công ty ở toà nhà đang tăng lên với tốc độ chóng mặt.
+      Buổi sáng chờ thang máy mất quá nhiều thời gian và bị động, chưa kể đến những lúc có 1/3 thang thường xuyên không hoạt động.
+      Vậy có thể nào sau thời gian các chị lao công dọn dẹp buổi sáng thì nhờ các chị ấy mở luôn cửa thang bộ được không ạ.
+      Vì lí do an toàn thì có thể mở từ 7h30 trở đi chứ không cần sớm quá.
+      Như vậy sẽ giúp cho khá nhiều nhân viên tiết kiệm được thời gian buổi sáng và chủ động hơn trong việc lên văn phòng của mình;
+      phần nào đó cũng giúp cho các chị em,người đang ốm, mẹ bầu . . .
+      có nhiều cơ hội được đi thang máy hơn mà không phải chờ đợi quá nhiều lượt ạ (bow)"
+    )
+
+    Post.create!(
+      # 14
+      title: "<3 Bùi Dương",
+      user_id: 1,
+      topic_id: 3,
+      work_space_id: 3,
+      content: "E muốn hỏi a Bùi Dương có người yêu chưa ạ?Để ý anh lâu lắm rồi *_*"
+    )
+
+    Post.create!(
+      # 15
+      title: "Cảm nắng",
+      user_id: 1,
+      topic_id: 3,
+      work_space_id: 4,
+      content: "Dạ em đang cảm nắng một em team Design and Marketing tên Phạm Thị Thu Hà ạ,
+      hình như tên như thế mà em không chắc vì công ty mình toàn để tên không dấu (facepalm).
+      Không hiểu sao mới gặp có 1 lần mà đã thấy thích thích rồi, xinh cũng không xinh lắm,
+      đẹp cũng không đẹp lắm, nhưng cuốn hút lắm ạ.
+      Có anh chị nào cho em xin info em ấy được không ạ, có link facebook thì càng tốt ạ.
+      From: Một zai Intern Ruby, không có gì nổi bật và đặc biệt cho lắm. Được cái vui tính và dễ gần thôi ạ."
+    )
+
+    Post.create!(
+      # 16
+      title: "Thèm yêu",
+      user_id: 1,
+      topic_id: 3,
+      work_space_id: 3,
+      content: "Muốn yêu 1 e gái làm ở Framgia quá , nhưng lại ko biết e nào chưa có người yêu cơ !
+      Ps : Không biết các em gái ở framgia có kiêu không nhỉ @@
+      From: 1 chàng trai FA ở Framgia"
+    )
+
+    Post.create!(
+      # 17
+      title: "Gửi anh Nguyễn Anh Tuấn B",
+      user_id: 1,
+      topic_id: 3,
+      work_space_id: 2,
+      content: "Nguyễn Anh Tuấn B ơi, mẫu bạn gái của đằng ấy là gì thế? (nguong)
+      Đằng ấy đã có người thương chưa? Tớ bị xao xuyến rồi thì phải làm sao? (khoc2)
+      From: Bạn gái thầm thương trộm nhớ cậu đã lâu"
+    )
+
+    Post.create!(
+      # 18
+      title: "Sum Up The Remix",
+      user_id: 1,
+      topic_id: 3,
+      work_space_id: 1,
+      content: "Văn nghệ Sum Up là một chương trình hay nhất đợt nghỉ vừa rồi.
+      Đội Galaxy gì đó thật ấn tượng, tuy nhiên mình thấy các bạn nữ hát hơi kém đội High.
+      Đội nam bên Galaxy thì siêu ổn, đặc biệt bạn quần rách đzai.
+      Đạo cụ sân khấu đẹp, nhảy đẹp, nhất là phải. Đội CH quá ko liên quan.
+      Đà Nẵng đáng yêu lần sau sẽ hay hơn nữa. Tóm lại là mê Sum Up The Remix.
+      From: Đà Nẵng Framgiaer"
+    )
+
+    Post.create!(
+      # 19
+      title: "Nhung khu Buzz",
+      user_id: 1,
+      topic_id: 3,
+      work_space_id: 3,
+      content: "Cho hỏi bạn Nhung cao cao xinh xinh ngồi bên Buzz có người yêu chưa vậy?
+      Mấy lần gặp nhìn vào đôi mắt mà chẳng dám nhìn lại lần nữa iiii...
+      Hỏi vậy thôi chứ có biết chưa có người yêu hay chưa thì cũng (haizz)
+      From: Chuột lang giấu tên
+      Ad: Nghe đến chuột lang dễ thương nhỉ :)"
+    )
+
+    Post.create!(
+      # 20
+      title: "<3 Bùi Dương",
+      user_id: 1,
+      topic_id: 2,
+      work_space_id: WorkSpace.order("RAND()").first.id,
+      content: "Sao công ty không có câu lạc bộ Tiếng Anh nhỉ,
+      có lần ai nói với mình là tiếng anh mọi người đều giỏi rồi nên không cần,
+      nhưng thực tế mọi người có thể đều nhìn thấy trình độ tiếng anh của mọi ngừời trong những bài morning speech thực tế rất kém.
+      Một công ty IT thì tiếng anh là một yếu tố quan trọng,
+      mong công ty sẽ có clb tiếng anh dạy tiếng anh như clb tiếng Nhật,
+      để thỏa mãn nhu cầu được phát triển tiếng anh hơn nữa của mọi người"
+    )
   end
 
   task create_answers: :environment do
-    Answer.create!(
-      user_id: 5,
-      post_id: 1,
-      content: "Cảm ơn bạn đã đóng góp ý kiến! Bàn của Công ty được trang bị
-      theo kích thước và chiều cao chuẩn với môi trường làm việc. Tùy theo vóc
-      dáng của người sử dụng mà có thể điều chỉnh độ cao của ghế để có tư thế
-      làm việc thoải mái nhất. Ghế của Công ty là loại ghế có thể điều chỉnh độ
-      cao được. Bạn có thể điều chỉnh bằng cách nâng cần gạt ở ngay dưới ghế nhé.",
-    )
-
     Answer.create!(
       user_id: 5,
       post_id: 2,
@@ -318,6 +472,43 @@ namespace :db do
       user_id: 3,
       post_id: 9,
       content: "Phiến diện nhưng ko hẳn đã sai. Bạn đưa ra vài ví dụ thực tế (về code) bạn đã gặp và cách bạn góp ý xem nào"
+    )
+
+    Answer.create!(
+      user_id: 5,
+      post_id: 10,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Back Office đang kiểm tra tình hình hỏng hóc của loa nghiệm trọng đến đâu để tính phương án sửa chữa triệt để hoặc thay thế mới"
+    )
+
+    Answer.create!(
+      user_id: 5,
+      post_id: 11,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      IC team sẽ xem xét các hoạt động để kết hợp tổ chức cùng các tiệc quý của công ty."
+    )
+
+    Answer.create!(
+      user_id: 5,
+      post_id: 12,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Công ty sẽ bổ sung đồ khuấy đặt tại FreeSpace của văn phòng Buzz.
+      Công ty sẽ chuẩn bị 2 cốc đặt tại đây, 1 cốc đựng đồ khuấy sạch,
+      1 cốc có nước để khi các bạn khuấy xong sẽ đặt đồ khuấy sử dụng rồi vào đó."
+    )
+
+    Answer.create!(
+      user_id: 5,
+      post_id: 13,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Cầu thang bộ của các tòa nhà cao tầng được thiết kế để đảm bảo an ninh,
+      nhân viên có thể đi ra được nhưng người ngoài sẽ không vào bên trong được.
+      Hiện nay văn phòng Đà Nẵng có 1 cửa cầu thang bộ để nhân viên đi ra ngoài,
+      tuy nhiên, cửa cầu thang bộ này lại nằm ngay trong văn phòng Công ty, như vậy nếu mở cửa,
+      người lạ cũng có thể vào mà không cần quẹt thẻ, điều này ảnh hưởng rất lớn đến Security.
+      Công ty cũng đã cân nhắc đến việc lắp máy quẹt thẻ tại cửa cầu thang bộ, tuy nhiên đây là diện tích của tòa nhà,
+      Công ty không thể can thiệp. Để đảm bảo an ninh, hiện tại Công ty không thể mở cửa cầu thang bộ được.
+      Các bạn hãy cố gắng đi sớm hơn để tránh tắc thang máy nhé."
     )
 
   end
