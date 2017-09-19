@@ -27,6 +27,10 @@ gem "rails_admin", "~> 1.2"
 gem "redis", "~> 3.0"
 gem "omniauth-framgia", git: "https://github.com/framgia-education/omniauth-framgia.git"
 gem "figaro"
+gem "devise"
+gem "devise-i18n"
+gem "rails-i18n"
+gem "kaminari"
 
 group :development, :test do
   gem "byebug"
@@ -38,10 +42,7 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "pry"
   gem "faker"
-  gem "devise"
-  gem "devise-i18n"
-  gem "rails-i18n"
-  gem "kaminari"
+
 end
 
 group :development do
