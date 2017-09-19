@@ -14,10 +14,10 @@ class Notification < ApplicationRecord
     case activity.trackable.class.name
     when Post.name
       post = activity.trackable
-      @message = activity.owner.name + I18n.t("noti.just") + I18n.t("noti.send") + I18n.t("noti.post") + I18n.t("noti.new") + I18n.t("noti.in") + I18n.t("noti.topic") + " #{post.topic.name}"
+      @message = I18n.t("noti.just") + I18n.t("noti.send") + I18n.t("noti.post") + I18n.t("noti.new") + I18n.t("noti.in") + I18n.t("noti.topic") + " #{post.topic.name}"
     when Answer.name
       post = activity.trackable.post
-      @message = activity.owner.name + I18n.t("noti.just") + I18n.t("noti.ans") + I18n.t("noti.in") + I18n.t("noti.post") + " #{post.title}"
+      @message = I18n.t("noti.just") + I18n.t("noti.ans") + I18n.t("noti.in") + I18n.t("noti.post") + " #{post.title}"
     when Comment.name
       if activity.trackable.commentable.class.name == Post.name
         post = activity.trackable.commentable
@@ -26,7 +26,7 @@ class Notification < ApplicationRecord
         post = activity.trackable.commentable.post
         item = I18n.t("noti.answer")
       end
-      @message = activity.owner.name + I18n.t("noti.just") + I18n.t("noti.comment") + I18n.t("noti.in") + item + I18n.t("noti.of_you")
+      @message = I18n.t("noti.just") + I18n.t("noti.comment") + I18n.t("noti.in") + item + I18n.t("noti.of_you")
     when Reaction.name
       object = activity.trackable.reactiontable
       case object.class.name
@@ -44,7 +44,7 @@ class Notification < ApplicationRecord
         end
         item = I18n.t("noti.comment")
       end
-      @message = activity.owner.name + I18n.t("noti.just") + I18n.t("noti.#{activity.trackable.target_type.to_s}") + item + I18n.t("noti.of_you")
+      @message = I18n.t("noti.just") + I18n.t("noti.#{activity.trackable.target_type.to_s}") + item + I18n.t("noti.of_you")
     end
     [@message, post.id]
   end
