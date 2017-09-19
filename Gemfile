@@ -31,6 +31,7 @@ gem "devise"
 gem "devise-i18n"
 gem "rails-i18n"
 gem "kaminari"
+gem "faker"
 
 group :development, :test do
   gem "byebug"
@@ -41,13 +42,11 @@ group :development, :test do
   gem "rspec-rails"
   gem "factory_girl_rails"
   gem "pry"
-  gem "faker"
 
 end
 
 group :development do
   gem "web-console", "~> 2.0"
-
   gem "spring"
 end
 
