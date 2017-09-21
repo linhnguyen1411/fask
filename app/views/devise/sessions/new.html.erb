@@ -33,7 +33,7 @@
               <div class="login-with-framgia text-center">
                 <%- resource_class.omniauth_providers.each do |provider| %>
                   <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-default wsm" do %>
-                    <%= image_tag "icon-wsm", class: "icons" %>
+                    <%= image_tag "icon-wsm.png", class: "icons" %>
                     <%= t ".sign_in_wsm" %>
                   <% end %>
                 <% end -%>
