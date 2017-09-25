@@ -1,9 +1,9 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe UsersController, type: :controller do
-  let!(:users) {FactoryGirl.create_list :user, 2}
-
   describe "GET #index" do
+    let!(:users) {FactoryGirl.create_list :user, 2}
+
     context "when user not login" do
       before {get :index}
 
@@ -25,16 +25,59 @@ RSpec.describe UsersController, type: :controller do
 
   describe "GET #show" do
     let(:user) {FactoryGirl.create :user}
+
+    context "when load user success" do
       before {get :show, params: {id: user}}
 
-      context "when load user success" do
-        it {expect(assigns :user).to eq user}
-      end
+      it {expect(assigns :user).to eq user}
+    end
 
-      context "when load post failed" do
-        before {get :show, params: {id: 0}}
+    context "when load user failed" do
+      before {get :show, params: {id: 0}}
 
-        it {expect(assigns(:user)).to eq nil}
+      it {expect(assigns(:user)).to eq nil}
+    end
+  end
+
+
+  describe "PUT #update" do
+    let(:user) {FactoryGirl.create :user}
+    before {sign_in user}
+
+    context "update successful when valid current password" do
+      before do
+        put :update,
+        params: {id: user.id, current_password: "Aa@123", new_password: "123456"},
+        xhr: true
       end
+      let(:result) {{type: true, mess: I18n.t("profile.update_password.success")}}
+
+      it {expect(subject.status).to eq 200}
+      it {expect(subject.response_body).to eq [result.to_json]}
+    end
+
+    context "update failure when valid current password" do
+      before do
+        put :update,
+        params: {id: user.id, current_password: "Aa@123", new_password: ""},
+        xhr: true
+      end
+      let(:result) {{type: false, mess: I18n.t("profile.update_password.error")}}
+
+      it {expect(subject.status).to eq 200}
+      it {expect(subject.response_body).to eq [result.to_json]}
+    end
+
+    context "when invalid current password" do
+      before do
+        put :update,
+        params: {id: user.id, current_password: "123456", new_password: "123456"},
+        xhr: true
+      end
+      let(:result) {{type: false, mess: I18n.t("profile.update_password.current_password_wrong")}}
+
+      it {expect(subject.status).to eq 200}
+      it {expect(subject.response_body).to eq [result.to_json]}
+    end
   end
 end
