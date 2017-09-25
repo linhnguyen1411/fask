@@ -236,7 +236,7 @@ vi:
       recently_answered: "Trả lời gần đây"
       no_answer: "Chưa trả lời"
     view_all:
-      view_all_question: "Xem tất cả câu trả lời"
+      view_all_question: "Xem tất cả câu hỏi"
     post:
       view: "Lượt xem"
       answers: "Số lượng câu trả lời"
