@@ -5,8 +5,11 @@ class ReactionsController < ApplicationController
     @reaction = Reaction.find_or_initialize_by reactiontable_type: @item.class.name,
       reactiontable_id: @item.id, user_id: current_user.id
     resufl = {}
-    @reaction.target_type = params[:type]
-    if @reaction.save
+    if Reaction.target_types.include? params[:type]
+      @reaction.target_type = params[:type]
+      @target_type = true
+    end
+    if @reaction.save && @target_type
       resufl = {type: Settings.success, data: load_resufl(@item)}
     else
       resufl = {type: Settings.error}
