@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :users,
     controllers: {
       omniauth_callbacks: "omniauth_callbacks",
-      registrations: "devise/registrations",
+      registrations: "users/registrations",
       sessions: "sessions/sessions"
     }
   root "static_pages#index"
