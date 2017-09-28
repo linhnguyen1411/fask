@@ -30,4 +30,8 @@ Rails.application.routes.draw do
   resources :clips, only: [:create, :destroy]
   resources :notifications, only: [:index, :update]
 
+  namespace :dashboard do
+    resources :posts
+  end
+
 end
