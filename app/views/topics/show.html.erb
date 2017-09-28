@@ -47,40 +47,44 @@
               <div id="tab1" class="tab-pane <%= add_class_active_to_show_page params[:type],
                 Settings.topic.type_sort.recently, true %>">
                 <%= render "topics/post",
-                  posts: @support.recent_posts,
-                  type: Settings.topic.type_sort.recently
-                %>
-                <%= render "topics/view_all", type: Settings.topic.type_sort.recently %>
+                  posts: @support.recent_posts[:posts],
+                  type: Settings.topic.type_sort.recently %>
+                <% if @support.recent_posts[:count_posts] > Settings.paginate_default %>
+                  <%= render "topics/view_all", type: Settings.topic.type_sort.recently %>
+                <% end %>
               </div>
 
               <!-- Popular Response -->
               <div id="tab2" class="tab-pane <%= add_class_active_to_show_page params[:type],
                 Settings.topic.type_sort.popular %>">
                 <%= render "topics/post",
-                  posts: @support.popular_posts,
-                  type: Settings.topic.type_sort.popular
-                %>
-                <%= render "topics/view_all", type: Settings.topic.type_sort.popular %>
+                  posts: @support.popular_posts[:posts],
+                  type: Settings.topic.type_sort.popular %>
+                <% if @support.popular_posts[:count_posts] > Settings.paginate_default %>
+                  <%= render "topics/view_all", type: Settings.topic.type_sort.popular %>
+                <% end %>
               </div>
 
               <!-- Recently Answer -->
               <div id="tab3" class="tab-pane <%= add_class_active_to_show_page params[:type],
                 Settings.topic.type_sort.recently_answer %>">
                 <%= render "topics/post",
-                  posts: @support.recently_answer_of_post,
-                  type: Settings.topic.type_sort.recently_answer
-                %>
-                <%= render "topics/view_all", type: Settings.topic.type_sort.recently_answer %>
+                  posts: @support.recently_answer_of_post[:posts],
+                  type: Settings.topic.type_sort.recently_answer %>
+                <% if @support.recently_answer_of_post[:count_posts] > Settings.paginate_default  %>
+                  <%= render "topics/view_all", type: Settings.topic.type_sort.recently_answer %>
+                <% end %>
               </div>
 
               <!-- No Answer -->
               <div id="tab4" class="tab-pane <%= add_class_active_to_show_page params[:type],
                 Settings.topic.type_sort.no_answer %>">
                 <%= render "topics/post",
-                  posts: @support.posts_no_answer,
-                  type: Settings.topic.type_sort.no_answer
-                %>
-                <%= render "topics/view_all", type: Settings.topic.type_sort.no_answer %>
+                  posts: @support.posts_no_answer[:posts],
+                  type: Settings.topic.type_sort.no_answer %>
+                <% if @support.posts_no_answer[:count_posts] > Settings.paginate_default %>
+                  <%= render "topics/view_all", type: Settings.topic.type_sort.no_answer %>
+                <% end %>
               </div>
             </div>
           </div>
