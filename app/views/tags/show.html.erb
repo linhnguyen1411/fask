@@ -1,0 +1,74 @@
+<div>
+  <section class="section-padding-10 white">
+    <div class="container">
+      <div class="col-sm-12">
+        <section class="custom-padding" id="how-it-work">
+          <div class="list-tags">
+            <div class="tag-item">
+              <div class="panel-left">
+                <%= image_tag @tag.image.present? ? @tag.image : "tag_default", class: "tag-image" %>
+              </div>
+              <div class="panel-right">
+                <div class="tag-name"><%= @tag.name %></div>
+                <div class="tag-follow">
+                  <i class="fa fa-user-plus" aria-hidden="true"></i>:
+                  <%= @tag.used_count %> <%= t "tags.index.follower" %>
+                </div>
+                <div class="tag-post">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>:
+                  <%= @tag.used_count %> <%= t "tags.index.post" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding-80 white" id="latest-post">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-12">
+          <div class="listing">
+            <div class="listing-area">
+              <ul class="nav nav-tabs">
+                  <li class="active">
+                    <a data-toggle="tab" href="#post"><%= t "tags.index.post" %></a>
+                  </li>
+                </ul>
+                <div class="tab-content">
+                  <div id="post" class="tab-pane fade in active">
+                    <div class="well">
+                      <div class="panel-group">
+                        <div>
+                          <%= render "posts_tag", posts_tags: @posts_tag %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-12 col-xs-12 clearfix">
+          <div class="side-bar">
+            <div class="widget">
+              <h2><%= t ".popular_tags" %></h2>
+              <hr class="widget-separator no-margin">
+              <div class="list-top-tags">
+                 <%= render partial: "static_pages/tags", collection: @tag_popular, as: :tag %>
+              </div>
+              <div class="all_tags">
+                <%= link_to tags_path do %>
+                   <span class="glyphicon glyphicon-tags"></span>
+                  <%= t ".all_tags" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
