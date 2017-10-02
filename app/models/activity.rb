@@ -1,7 +1,7 @@
 class Activity < PublicActivity::Activity
   belongs_to :trackable, polymorphic: true
 
-  has_many :notifications
+  has_many :notifications, dependent: :destroy
 
   after_create :add_notification
 
