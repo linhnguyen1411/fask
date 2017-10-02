@@ -219,3 +219,12 @@ p {
 .mg-bt-0 {
   margin-bottom: 0 !important;
 }
+.content-post{
+  max-height: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.listing-grid p {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
