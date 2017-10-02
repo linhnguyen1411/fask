@@ -18,11 +18,11 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       if params[:noti_id].present?
         notification = Notification.find_by id: params[:noti_id]
-        if notification.present? && notification.user_id == current_user.id && notification.no_seen?
+        if notification.present? && notification.user_id == current_user.id && notification.not_seen?
           notification.update_attributes status: :seen
         end
       end
-      @list_notifications = current_user.notifications.by_date.limit Settings.limit_notification
+      @list_notifications = current_user.notifications.by_date
     end
   end
 
