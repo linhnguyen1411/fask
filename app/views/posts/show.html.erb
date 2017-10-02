@@ -87,7 +87,7 @@
           <div class="clearfix"></div>
           <div class="form-new-commment">
             <div class="comment-list" id="comment-list-post-<%= @post.id %>">
-              <%= render partial: "comment", collection: @post.comments, as: :comment %>
+              <%= render partial: "posts/comment", collection: @post.comments, as: :comment %>
             </div>
             <div class="btn-new-comment">
               <%= link_to t(".new_comment"), "javascript:", class: "add-new-comment",

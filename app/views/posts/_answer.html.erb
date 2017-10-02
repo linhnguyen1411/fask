@@ -35,7 +35,7 @@
   <div class="one-line"></div>
   <div class="form-new-commment">
     <div class="comment-list" id="comment-list-answer-<%= answer.id %>">
-      <%= render partial: "comment", collection: answer.comments, as: :comment %>
+      <%= render partial: "posts/comment", collection: answer.comments, as: :comment %>
     </div>
     <div class="btn-new-comment">
       <%= link_to t("posts.show.new_comment"), "javascript:", class: "add-new-comment",
