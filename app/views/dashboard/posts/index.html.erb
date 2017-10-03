@@ -40,7 +40,9 @@
               </ul>
             </div>
             <div class="col-md-10 col-sm-10 col-xs-12 truncate-post">
-              <%= raw post.content %>
+              <div class="content-post">
+                <%= raw post.content %>
+              </div>
               <div class="pull-right tagcloud">
                 <% post.tags.each do |tag| %>
                   <%= link_to tag.name, "#" %>
