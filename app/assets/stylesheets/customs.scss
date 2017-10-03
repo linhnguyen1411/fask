@@ -233,11 +233,34 @@ p {
 }
 @media (min-width: 992px){
   .content-notification{
-    margin-left: -45px !important;
+    margin-left: -80px !important;
+  }
+  .search-header{
+    width: 120% !important;
   }
 }
 @media (min-width: 768px){
   .content-notification{
     margin-left: -15px;
   }
+}
+
+.btn-submit-search{
+  left: 15px;
+  top: 10px;
+  position: absolute;
+  z-index: 2;
+  background: none;
+  border: none;
+
+}
+.btn-submit-search:focus{
+  outline:0;
+}
+.time-notification{
+  float: right;
+}
+.time-notification .time{
+  padding-top: 50px !important;
+  padding-right: 0px !important;
 }

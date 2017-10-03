@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
    if params[:query].present?
-     @posts = Post.search params[:query], page: params[:page]
+     @posts = Post.search params[:query], page: params[:page], per_page: Settings.paginate_default
    else
      @posts = Post.page(params[:page]).per Settings.paginate_default
    end

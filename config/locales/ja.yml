@@ -29,6 +29,8 @@ ja:
       announcement: "Announcement"
       timeline: "Time Line"
       question: "Question"
+      search_panel:
+        placeholder: "サーチ..."
     footer:
       detail: "会社情報 ベトナムのFramgiaは日本では100％を投資されています. 電話アプリケーション、 ゲーム、ソーシャルアプリケーションやWebベースのアプリケーションを構築に特化."
       copyright: "Copyright 2016 Framgia, Inc. All rights reserved."

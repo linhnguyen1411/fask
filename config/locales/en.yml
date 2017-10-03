@@ -29,6 +29,8 @@ en:
       announcement: "Announcement"
       timeline: "Time Line"
       question: "Question"
+      search_panel:
+        placeholder: "Search..."
     footer:
       detail: "Framgia Viet Nam is a company 100% Japan funded specializing in design, development applications such as mobile phone software, games, social and website applications."
       copyright: "Copyright 2017 Framgia, Inc. All rights reserved."
