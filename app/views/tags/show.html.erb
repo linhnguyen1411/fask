@@ -1,7 +1,7 @@
 <div>
   <section class="section-padding-10 white">
     <div class="container">
-      <div class="col-sm-12">
+      <div class="col-sm-12 info-tag">
         <section class="custom-padding" id="how-it-work">
           <div class="list-tags">
             <div class="tag-item">
@@ -16,7 +16,7 @@
                 </div>
                 <div class="tag-post">
                   <i class="fa fa-file-text-o" aria-hidden="true"></i>:
-                  <%= @tag.used_count %> <%= t "tags.index.post" %>
+                  <%= @tag.posts_tags.size %> <%= t "tags.index.post" %>
                 </div>
               </div>
             </div>
@@ -26,28 +26,22 @@
     </div>
   </section>
 
-  <section class="section-padding-80 white" id="latest-post">
+  <section class="white padding-bottom-30" id="latest-post">
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-sm-12">
           <div class="listing">
-            <div class="listing-area">
-              <ul class="nav nav-tabs">
-                  <li class="active">
-                    <a data-toggle="tab" href="#post"><%= t "tags.index.post" %></a>
-                  </li>
-                </ul>
-                <div class="tab-content">
-                  <div id="post" class="tab-pane fade in active">
-                    <div class="well">
-                      <div class="panel-group">
-                        <div>
-                          <%= render "posts_tag", posts_tags: @posts_tag %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+            <div class="listing-area tab-post">
+              <ul class="nav nav-tabs list-tab">
+                <li class="active">
+                  <a data-toggle="tab" href="#post"><%= t "tags.index.post" %></a>
+                </li>
+              </ul>
+              <div class="tab-content tab-content-post">
+                <div id="post" class="tab-pane active">
+                  <%= render "posts_tag", posts_tags: @posts_tag %>
                 </div>
+              </div>
             </div>
           </div>
         </div>
@@ -57,11 +51,11 @@
               <h2><%= t ".popular_tags" %></h2>
               <hr class="widget-separator no-margin">
               <div class="list-top-tags">
-                 <%= render partial: "static_pages/tags", collection: @tag_popular, as: :tag %>
+                <%= render partial: "static_pages/tags", collection: @tag_popular, as: :tag %>
               </div>
               <div class="all_tags">
                 <%= link_to tags_path do %>
-                   <span class="glyphicon glyphicon-tags"></span>
+                  <span class="glyphicon glyphicon-tags"></span>
                   <%= t ".all_tags" %>
                 <% end %>
               </div>

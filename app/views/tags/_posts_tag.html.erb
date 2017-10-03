@@ -23,10 +23,12 @@
         </div>
 
         <div class="col-md-10 col-sm-10  col-xs-12">
-          <%= raw truncate(post.content, length: Settings.content_max_length) %>
+          <div class="content-post">
+            <%= raw post.content %>
+          </div>
           <div class="pull-right tagcloud">
             <% post.tags.each do |tag| %>
-              <a href="#"><%= tag.name %></a>
+              <%= link_to tag.name, tag %>
             <% end %>
           </div>
         </div>
