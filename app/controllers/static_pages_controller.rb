@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def index
+    @home_page = true
     if params[:tag_id].nil?
       @posts = Post.page(params[:page]).per Settings.paginate_default
     else
