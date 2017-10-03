@@ -1,9 +1,9 @@
 <div class="notification-item <%= notification.not_seen? ? "status-no-seen" : "" %>">
   <%= link_to post_path(notification.load_message.last, noti_id: notification.id), class: "notiication" do %>
-    <div class="col-md-2 text-center">
+    <div class="col-md-2 col-sm-2 col-xs-12">
       <%= image_tag notification.activity.owner.avatar, class: "user-avatar" %>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-10 col-sm-10 col-xs-12 content-notification" >
       <div class="row pd-top-10">
         <span class="user-name"><%= notification.activity.owner.name %></span>
         <span class="time">

@@ -1,6 +1,6 @@
 <% if @posts.present? %>
-  <% @posts.each do |post| %>
-    <section class="section-padding-80 white">
+  <section class="section-padding-80 white">
+    <% @posts.each do |post| %>
       <div class="container">
         <div class="listing-grid">
           <div class="row">
@@ -52,9 +52,9 @@
           </div>
         </div>
       </div>
-    </section>
-  <% end %>
+    <% end %>
     <div class="text-center clearfix">
       <%= paginate @posts %>
     </div>
+  </section>
 <% end %>

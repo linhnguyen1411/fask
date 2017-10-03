@@ -228,3 +228,16 @@ p {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.text-center.owner-avatar{
+  width: 12%
+}
+@media (min-width: 992px){
+  .content-notification{
+    margin-left: -45px !important;
+  }
+}
+@media (min-width: 768px){
+  .content-notification{
+    margin-left: -15px;
+  }
+}
