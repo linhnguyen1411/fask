@@ -1,6 +1,6 @@
 <div class="main-content-area">
   <!-- =-=-=-=-=-=-= Latest Questions  =-=-=-=-=-=-= -->
-  <section class="white question-tabs padding-bottom-80" id="latest-post">
+  <section class="white question-tabs padding-bottom-30" id="latest-post">
     <div class="container">
       <div class="row">
         <!-- Content Area Bar -->
@@ -30,14 +30,13 @@
                           </span>
                         </div>
                       </div>
-
                       <div class="col-md-10 col-sm-10  col-xs-12">
                         <div class="content-post">
                           <%= raw post.content %>
                         </div>
                         <div class="pull-right tagcloud">
                           <% post.tags.each do |tag| %>
-                            <a href="#"><%= tag.name %></a>
+                            <%= link_to tag.name, tag %>
                           <% end %>
                         </div>
                       </div>
@@ -47,9 +46,9 @@
                 <% else %>
                   <center><h1><%= t ".not_found" %></h1></center>
               <% end %>
-            </div>
-            <div class="text-center clearfix">
-              <%= paginate @posts %>
+              <div class="text-center clearfix">
+                <%= paginate @posts %>
+              </div>
             </div>
           </div>
         </div>
