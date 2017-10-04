@@ -64,6 +64,12 @@
                   <% end %>
                 </li>
                 <li>
+                  <%= link_to edit_user_setting_path(current_user) do %>
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    <%= t "setting" %>
+                  <% end %>
+                </li>
+                <li>
                   <%= link_to destroy_user_session_path, method: :delete do %>
                     <i class="fa fa-sign-out" aria-hidden="true"></i>
                     <%= t ".logout" %>

@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   acts_as_paranoid
 
+  serialize :notification_settings, Hash
+  serialize :email_settings, Hash
+
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:framgia]

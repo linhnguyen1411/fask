@@ -95,4 +95,56 @@ module ApplicationHelper
   def selected_language
      session[:locale]
   end
+
+  def checked_all_notification_setting
+    (checked_notification_setting?(Settings.index_zero_in_array) &&
+      checked_notification_setting?(Settings.index_one_in_array) &&
+      checked_notification_setting?(Settings.index_two_in_array) &&
+      checked_notification_setting?(Settings.index_three_in_array) &&
+      checked_notification_setting?(Settings.index_four_in_array) &&
+      checked_notification_setting?(Settings.index_five_in_array) &&
+      checked_notification_setting?(Settings.index_six_in_array) &&
+      checked_notification_setting?(Settings.index_seven_in_array) &&
+      checked_notification_setting?(Settings.index_eight_in_array) &&
+      checked_notification_setting?(Settings.index_nine_in_array)) ? "checked" : ""
+  end
+
+  def checked_all_email_setting
+    (checked_email_setting?(Settings.index_zero_in_array) &&
+      checked_email_setting?(Settings.index_one_in_array) &&
+      checked_email_setting?(Settings.index_two_in_array) &&
+      checked_email_setting?(Settings.index_three_in_array) &&
+      checked_email_setting?(Settings.index_four_in_array) &&
+      checked_email_setting?(Settings.index_five_in_array) &&
+      checked_email_setting?(Settings.index_six_in_array) &&
+      checked_email_setting?(Settings.index_seven_in_array) &&
+      checked_email_setting?(Settings.index_eight_in_array) &&
+      checked_email_setting?(Settings.index_nine_in_array)) ? "checked" : ""
+  end
+
+  def checked_notification_setting? index
+    if current_user.notification_settings.present?
+      case current_user.notification_settings.values[index]
+      when Settings.serialize_false
+        return false
+      when Settings.serialize_true
+        return true
+      end
+    else
+      return true
+    end
+  end
+
+  def checked_email_setting? index
+    if current_user.email_settings.present?
+      case current_user.email_settings.values[index]
+      when Settings.serialize_false
+        return false
+      when Settings.serialize_true
+        return true
+      end
+    else
+      return true
+    end
+  end
 end
