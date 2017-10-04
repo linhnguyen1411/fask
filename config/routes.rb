@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       sessions: "sessions/sessions"
     }
   root "static_pages#index"
+  get "login", to: "static_pages#new"
 
   post "/upload_image", to: "images#upload_image"
   get "/download_file/:name", to: "images#access_file", as: :upload_access_file, name: /.*/

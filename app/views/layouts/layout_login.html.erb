@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= t "fask" %></title>
+    <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="main-content-area">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %>"><%= value %></div>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
+<script type="text/javascript">
+  I18n.defaultLocale = "<%= I18n.default_locale %>";
+  I18n.locale = "<%= I18n.locale %>";
+</script>
