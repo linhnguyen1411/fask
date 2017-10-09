@@ -1,0 +1,37 @@
+<div class="view-login">
+  <span class="background"></span>
+  <div class="web-logo">
+    <%= image_tag "logo" %>
+  </div>
+  <div class="form-login">
+      <label class="title">Login</label>
+      <br>
+      <div class="form-login-with">
+        <!--<%= link_to "#", class: "btn-login" do %>
+          <span class="icon"><i class="fa fa-facebook-official" aria-hidden="true"></i></span>
+          <span class="text"> Login with facebook</span>
+        <% end %>-->
+        <%= link_to "#", class: "btn-login" do %>
+          <span class="icon"><%= image_tag "icon-wsm" %></span>
+          <span class="text"> Login with WSM</span>
+        <% end %>
+      </div>
+      <span class="line"></span>
+      <div class="group-field">
+        <label class="field-tilte"><i class="fa fa-envelope-o" aria-hidden="true"></i></label>
+        <%= text_field_tag "", "", class: "field field-name" %>
+      </div>
+      <div class="group-field">
+        <label class="field-tilte"><i class="fa fa-key" aria-hidden="true"></i></label>
+        <%= password_field_tag "", "", class: "field field-password" %>
+      </div>
+      <div class="remember-password">
+          <label class="left"><input type="checkbox" value="">Remember password!!!</label>
+          <a class="right"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Forgot password!</a>
+      </div>
+      <br>
+      <div class="button-submit">
+        <%= button_tag "Login", class: "btn-login" %>
+      </div>
+  </div>
+</div>
