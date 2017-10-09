@@ -57,3 +57,15 @@ languages:
   vi: "vi"
   en: "en"
   ja: "ja"
+index_zero_in_array: 0
+index_one_in_array: 1
+index_two_in_array: 2
+index_three_in_array: 3
+index_four_in_array: 4
+index_five_in_array: 5
+index_six_in_array: 6
+index_seven_in_array: 7
+index_eight_in_array: 8
+index_nine_in_array: 9
+serialize_true: "1"
+serialize_false: "0"

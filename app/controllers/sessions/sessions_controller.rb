@@ -1,4 +1,5 @@
 class Sessions::SessionsController < Devise::SessionsController
+  after_action :set_locate, only: :create
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -23,4 +24,11 @@ class Sessions::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  private
+
+  def set_locate
+    I18n.locale = current_user.language
+    session[:locale] = I18n.locale
+  end
 end

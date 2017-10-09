@@ -11,14 +11,49 @@ class Activity < PublicActivity::Activity
     case self.trackable.class.name
     when Post.name
       self.owner.followers.each do |user|
-        create_notification user.id
+        if (user.notification_settings.nil? ||
+          user.notification_settings[:create_post] == Settings.serialize_true)
+          create_notification user.id
+        end
       end
     when Answer.name
-      create_notification self.trackable.post.user_id
+      if (self.trackable.post.user.notification_settings.empty? ||
+        self.trackable.post.user.notification_settings[:reply_post] == Settings.serialize_true)
+        create_notification self.trackable.post.user_id
+      end
     when Comment.name
-      create_notification  self.trackable.commentable.user_id
+      commentable = self.trackable.commentable
+      case commentable.class.name
+      when Post.name
+        if (commentable.user.notification_settings.empty? ||
+          commentable.user.notification_settings[:comment_post] == Settings.serialize_true)
+          create_notification commentable.user_id
+        end
+      when Answer.name
+        if (commentable.user.notification_settings.empty? ||
+          commentable.user.notification_settings[:comment_answer] == Settings.serialize_true)
+          create_notification commentable.user_id
+        end
+      end
     when Reaction.name
-      create_notification self.trackable.reactiontable.user_id
+      reactiontable = self.trackable.reactiontable
+      case reactiontable.class.name
+      when Answer.name
+        if (reactiontable.user.notification_settings.empty? ||
+          reactiontable.user.notification_settings[:llc_answer] == Settings.serialize_true)
+          create_notification reactiontable.user_id
+        end
+      when Comment.name
+        if (reactiontable.user.notification_settings.empty? ||
+          reactiontable.user.notification_settings[:like_comment] == Settings.serialize_true)
+          create_notification reactiontable.user_id
+        end
+      when Post.name
+        if (reactiontable.user.notification_settings.empty? ||
+          reactiontable.user.notification_settings[:up_down_vote_post] == Settings.serialize_true)
+          create_notification reactiontable.user_id
+        end
+      end
     end
   end
 
