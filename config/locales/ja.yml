@@ -83,6 +83,18 @@ ja:
         facebook: "FACEBOOK"
         google: "GOOGLE PLUS"
         framgia: "FRAMGIA ACCOUNT"
+    new:
+      sign_in: "ログイン"
+      breadcrumb: "Sign In To Your Account"
+      home: "Home"
+      sign_in_facebook: "Sign In with Facebook"
+      sign_in_google: "Sign In with Google"
+      sign_in_wsm: "Sign In with WSM"
+      or: "OR"
+      remember_me: "Remember me!"
+      sign_up_help_block: "You have't account?"
+      forgot_password: "You Forgot Password To Sign In!!!"
+      login: "Login"
   qa_knowlegeds:
     show:
       error_voted_question: "You are voted for this question."

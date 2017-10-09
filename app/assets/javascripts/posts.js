@@ -114,7 +114,7 @@ function reaction_vote_post() {
           item_id: id
         },
         success: function (data) {
-          if(data.type === 'success') {
+          if(data.type) {
             if(model === 'Post') {
               $('.point-vote').html('').toggle(200);
               $('.point-vote').html(data.data).toggle(200);
@@ -126,6 +126,8 @@ function reaction_vote_post() {
               $(lct).closest('div').find('.count-heart').html('' + data[2] + '');
             }
           }
+          else if(data.not_login)
+            window.location.replace('/users/sign_in');
           else
             sweetAlert(I18n.t('reactions.create.error'), '', 'error');
         },
@@ -171,11 +173,13 @@ function correct_answer() {
       dataType: 'json',
       data: {},
       success: function (data) {
-        if(data.sesulf) {
+        if(data.type) {
           $(item).hide('300');
           var html = '<div class="ribbon base"><span>'+ I18n.t('posts.answer.correct_answer') +'</span></div>';
           $(item).closest('.ribbon-content').find('.best-answer').html(html);
         }
+        else if(data.not_login)
+          window.location.replace('/users/sign_in');
         else
           sweetAlert(I18n.t('reactions.create.error'), '', 'error');
       },
@@ -210,6 +214,8 @@ function appcept_edit_comment() {
           $('.comment-item-' + id).find('.content').html(data.content);
           $('.comment-item-' + id).find('.content').show('500');
         }
+        else if(data.not_login)
+          window.location.replace('/users/sign_in');
         else
           sweetAlert(I18n.t('reactions.create.error'), '', 'error');
       },
@@ -243,6 +249,8 @@ function delete_comment() {
             $('.comment-item-' + id).hide('500')
             setTimeout(function(){$('.comment-item-' + id).remove();}, 700);
           }
+          else if(data.not_login)
+            window.location.replace('/users/sign_in');
           else
             sweetAlert(I18n.t('reactions.create.error'), '', 'error');
         },
@@ -276,6 +284,8 @@ function delete_post() {
             sweetAlert(I18n.t('reactions.create.success'), '', 'success');
             window.location.replace('/');
           }
+          else if(data.not_login)
+            window.location.replace('/users/sign_in');
           else
             sweetAlert(I18n.t('reactions.create.error'), '', 'error');
         },

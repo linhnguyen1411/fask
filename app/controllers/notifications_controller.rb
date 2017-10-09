@@ -1,10 +1,8 @@
 class NotificationsController < ApplicationController
+  before_action :authenticate_user
+
   def index
-    if user_signed_in?
-      @notifications = current_user.notifications.by_date.page(params[:page]).per Settings.paginate_default
-    else
-      redirect_to root_path
-    end
+    @notifications = current_user.notifications.by_date.page(params[:page]).per Settings.paginate_default
   end
 
   def update

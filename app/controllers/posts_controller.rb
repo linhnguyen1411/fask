@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user
   before_action :check_user, only: :create
   before_action :load_post, except: [:new, :index, :create]
   before_action :plus_count_view, only: :show
@@ -85,36 +86,16 @@ class PostsController < ApplicationController
   def check_user
     @post = Post.new feedback_params
     case
-    when params[:post][:topic_id] == Settings.topic.q_a
-      if current_user.present?
-        @user = current_user
-      else
-        @user = User.find_by email: params[:user_email]
-        if @user.present? && @user.valid_password?(params[:user_password])
-          sign_in @user
-        else
-          flash[:danger] = t ".email_or_password_not_exist"
-          render :new
-        end
-      end
+    when params[:post][:topic_id] == Settings.topic.confesstion
+       @user = User.first
     when params[:post][:topic_id] == Settings.topic.feedback
       if params[:anonymous] == Settings.anonymous
         @user = User.first
       else
-        if current_user.present?
-          @user = current_user
-        else
-          @user = User.find_by email: params[:user_email]
-          if @user.present? && @user.valid_password?(params[:user_password])
-            sign_in @user
-          else
-            flash[:danger] = t ".email_or_password_not_exist"
-            render :new
-          end
-        end
+        @user = current_user
       end
     else
-      @user = User.first
+      @user = current_user
     end
   end
 

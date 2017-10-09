@@ -1,4 +1,5 @@
 class ReactionsController < ApplicationController
+  before_action :authenticate_user
   before_action :load_item, only: :create
 
   def create
@@ -10,9 +11,9 @@ class ReactionsController < ApplicationController
       @target_type = true
     end
     if @reaction.save && @target_type
-      resufl = {type: Settings.success, data: load_resufl(@item)}
+      resufl = {type: true, data: load_resufl(@item)}
     else
-      resufl = {type: Settings.error}
+      resufl = {type: false}
     end
     respond_to do |format|
       format.json do
@@ -35,7 +36,7 @@ class ReactionsController < ApplicationController
     unless @item.present?
       respond_to do |format|
         format.json do
-          render json: {type: Settings.error}
+          render json: {type: false}
         end
       end
     end

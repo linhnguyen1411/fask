@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user
   before_action :check_post, only: :create
-  before_action :check_user, only: :create
   before_action :load_answer, only: :edit
 
   def create
@@ -22,7 +22,7 @@ class AnswersController < ApplicationController
     end
     respond_to do |format|
       format.json do
-        render json: {sesulf: success}
+        render json: {type: success}
       end
     end
   end
@@ -31,20 +31,6 @@ class AnswersController < ApplicationController
 
   def answer_params
     params.require(:answer).permit :content, :post_id, :parent_id
-  end
-
-  def check_user
-    @answer = Answer.new answer_params
-    unless current_user.present?
-      @user = User.find_by email: params[:user_email]
-      if @user.present? && @user.valid_password?(params[:user_password])
-        sign_in @user
-      else
-        @post_extension = Supports::PostSupport.new Post, nil, nil, nil, nil
-        flash[:danger] = t ".email_or_password_not_exist"
-        render "posts/show"
-      end
-    end
   end
 
   def check_post

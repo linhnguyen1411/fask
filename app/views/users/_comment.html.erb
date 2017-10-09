@@ -1,7 +1,9 @@
 <div class="col-md-12">
   <div class="col-md-12">
     <h4>
-      <%= truncate(comment.content, length: Settings.limit_string.content) %>
+      <div class="content-post">
+        <%= raw comment.content %>
+      </div>
       <%= t ".on" %>
       <% if (comment.commentable_type === Post.name)  %>
         <%= link_to comment.commentable.title, post_path(comment.commentable.id) %>

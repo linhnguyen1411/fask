@@ -1,5 +1,6 @@
 class Sessions::SessionsController < Devise::SessionsController
   after_action :set_locate, only: :create
+  layout "layout_login", only: :new
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

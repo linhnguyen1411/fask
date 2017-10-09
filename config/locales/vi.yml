@@ -84,6 +84,18 @@ vi:
         facebook: "FACEBOOK"
         google: "GOOGLE PLUS"
         framgia: "FRAMGIA ACCOUNT"
+    new:
+      sign_in: "Đăng Nhập"
+      breadcrumb: "Đăng Nhập Vào Tài Khoản Của Bạn"
+      home: "Trang chủ"
+      sign_in_facebook: "Đăng nhập với Facebook"
+      sign_in_google: "Đăng nhập với Google"
+      sign_in_wsm: "Đăng nhập với WSM"
+      or: "HOẶC"
+      remember_me: "Ghi nhớ!"
+      sign_up_help_block: "Bạn chưa có tài khoản?"
+      forgot_password: "Bạn quên mật khẩu để đăng nhập!!!"
+      login: "Đăng nhập"
   qa_knowlegeds:
     show:
       error_voted_question: "Bạn đả vote cho câu hỏi này."

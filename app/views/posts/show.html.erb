@@ -120,12 +120,14 @@
               <%= f.text_area :content, minlength: Settings.post.min_title,
                 required: true, class: "form-control froalaEditor" %>
             </div>
+ <!--            when not login
             <div class="row form-login">
               <% unless current_user.present? %>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label><%= t ".login.email" %></label>
-                    <%= email_field_tag "user_email", "", required: true, class: "form-control" %>
+                    <%= email_field_tag "user_email", "", required: true,
+                      class: "form-control" %>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -137,7 +139,7 @@
               <% end %>
             </div>
             <%= f.submit t(".post_your_answer"), class: "btn btn-primary btn-lg btn-block" %>
-          <% end %>
+          <% end %> -->
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12 clearfix">
           <div class="side-bar">

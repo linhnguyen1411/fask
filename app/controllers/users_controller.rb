@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :load_user, only: [:show, :update]
+  before_action :authenticate_user
 
   def index
     if user_signed_in?

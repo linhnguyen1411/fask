@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+  before_action :authenticate_user
   before_action :load_tag, only: :show
 
   def index
@@ -12,6 +13,7 @@ class TagsController < ApplicationController
   end
 
   private
+
   def load_tag
     @tag = Tag.find_by id: params[:id]
     return if @tag
