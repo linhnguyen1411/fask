@@ -12,8 +12,7 @@ class StaticPagesController < ApplicationController
       @recentComments = Comment.order("id desc").limit Settings.limit_top
       @tags = Tag.top_tags.limit Settings.limit_tag
     else
-      @new_user = User.new
-      render :new, layout: "layout_login"
+      redirect_to new_user_session_path
     end
   end
 end
