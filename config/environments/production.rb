@@ -76,4 +76,16 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = {host: ENV["FASK_MAILER_HOST"]}
+  config.action_mailer.smtp_settings = {
+    address: ENV["FASK_EMAIL_ADDRESS"],
+    port: 587,
+    domain: ENV["FASK_EMAIL_DOMAIN"],
+    user_name: ENV["FASK_EMAIL_USERNAME"],
+    password: ENV["FASK_EMAIL_PASSWORD"],
+    authentication: ENV["FASK_EMAIL_AUTHENTICAION"],
+    enable_starttls_auto: true
+  }
 end

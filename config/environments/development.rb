@@ -47,11 +47,11 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default charset: "utf-8"
   ActionMailer::Base.smtp_settings = {
-    address: "smtp.gmail.com",
+    address: ENV["FASK_EMAIL_ADDRESS"],
     port: 587,
-    authentication: "plain",
-    domain: "gmail.com",
-    user_name: "<user_name>",
-    password: "<password>"
+    authentication: ENV["FASK_EMAIL_AUTHENTICAION"],
+    domain: ENV["FASK_EMAIL_DOMAIN"],
+    user_name: ENV["FASK_EMAIL_USERNAME"],
+    password: ENV["FASK_EMAIL_PASSWORD"]
   }
 end

@@ -54,6 +54,7 @@ function seen_all() {
       success: function (data) {
         if(data.type) {
           $('.status-no-seen').removeClass('status-no-seen');
+          $('.number').text("0");
         }
         else if(data.not_login)
           window.location.replace('/users/sign_in');
