@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :null_session
 
   include PublicActivity::StoreController
 
@@ -10,6 +10,15 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for resource
     session[:before_login_url] if session[:before_login_url].present?
+  end
+
+  def authenticate_user
+    return if user_signed_in?
+    respond_to do |format|
+      format.html {redirect_to new_user_session_path}
+      format.json {render json: {type: false, not_login: true}}
+      format.js {render :template  => "shared/sign_in.js.erb"}
+    end
   end
 
   private

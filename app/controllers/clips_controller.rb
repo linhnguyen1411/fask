@@ -1,4 +1,5 @@
 class ClipsController < ApplicationController
+  before_action :authenticate_user
 
   def create
     success = false
@@ -10,10 +11,10 @@ class ClipsController < ApplicationController
         end
       end
       respond_to do |format|
-      format.json do
-        render json: {type: success}
+        format.json do
+          render json: {type: success}
+        end
       end
-    end
     end
   end
 

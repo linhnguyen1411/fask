@@ -1,90 +1,59 @@
-<div class="main-content-area">
-  <section class="page-title">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-sm-7 co-xs-12 text-left">
-          <h1><%= t ".breadcrumb" %></h1>
-        </div>
-        <div class="col-md-6 col-sm-5 co-xs-12 text-right">
-          <div class="bread">
-            <ol class="breadcrumb">
-              <li><%= link_to t(".home"), root_path %></li>
-              <li class="active"><%= t ".sign_in" %></li>
-            </ol>
-          </div>
-        </div>
+<div class="view-login">
+  <span class="background"></span>
+  <div class="web-logo">
+    <%= image_tag "logo" %>
+  </div>
+  <div class="form-login">
+    <label class="title">Login</label>
+    <br>
+    <div class="form-login-with">
+      <!--<%= link_to "#", class: "btn-login" do %>
+        <span class="icon"><i class="fa fa-facebook-official" aria-hidden="true"></i></span>
+        <span class="text"> Login with facebook</span>
+      <% end %>-->
+    <%- if devise_mapping.omniauthable? %>
+      <div class="login-with-framgia text-center">
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to omniauth_authorize_path(resource_name, provider),
+            class: "btn-login" do %>
+            <span class="icon"><%= image_tag "icon-wsm" %></span>
+            <span class="text"><%= t ".sign_in_wsm" %></span>
+          <% end %>
+        <% end -%>
       </div>
+    <% end -%>
     </div>
-  </section>
-  <section class="section-padding-80 white" id="login">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
-
-          <div class="box-panel">
-            <!-- <a href="#" class="btn btn-default facebook"><i class="fa fa-facebook icons"></i>
-              <%= t ".sign_in_facebook" %>
-            </a>
-            <a href="#" class="btn btn-default google"><i class="fa fa-google-plus icons"></i>
-              <%= t ".sign_in_google" %>
-            </a> -->
-
-            <%- if devise_mapping.omniauthable? %>
-              <div class="login-with-framgia text-center">
-                <%- resource_class.omniauth_providers.each do |provider| %>
-                  <%= link_to omniauth_authorize_path(resource_name, provider), class: "btn btn-default wsm" do %>
-                    <%= image_tag "icon-wsm.png", class: "icons" %>
-                    <%= t ".sign_in_wsm" %>
-                  <% end %>
-                <% end -%>
-              </div>
-            <% end -%>
-            <p class="text-center margin-top-10"><span class="span-line"><%= t ".or" %></span>
-            </p>
-            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-              <div class="error_explanation">
-                <%- flash.each do |name, msg| -%>
-                  <%= content_tag :div, msg, id: "flash_#{name}" %>
-                <%- end -%>
-              </div>
-
-              <div class="field form-group">
-                <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: true %>
-              </div>
-
-              <div class="field form-group">
-                <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: true %>
-              </div>
-
-              <div class="form-group">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="checkbox flat-checkbox">
-                      <% if devise_mapping.rememberable? -%>
-                        <label>
-                          <%= f.check_box :remember_me %>
-                          <span class="fa fa-check"></span> <%= t ".remember_me" %>
-                        </label>
-                      <% end -%>
-                    </div>
-                  </div>
-                  <div class="col-xs-6 text-right">
-                    <p class="help-block">
-                      <%= link_to t(".sign_up_help_block"), new_user_registration_path %>
-                    </p>
-                    <p class="help-block">
-                      <%= link_to t(".forgot_password"), new_user_password_path %>
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <%= f.submit t(".sign_in"), class: "btn btn-primary btn-lg btn-block" %>
-            <% end %>
-          </div>
-        </div>
-        <div class="clearfix"></div>
+    <span class="line"></span>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="error_explanation custom-error">
+        <%- flash.each do |name, msg| -%>
+          <%= content_tag :div, msg, id: "flash_#{name}" %>
+        <%- end -%>
       </div>
-    </div>
-  </section>
+      <div class="group-field">
+        <label class="field-tilte"><i class="fa fa-envelope-o" aria-hidden="true"></i></label>
+        <%= f.email_field :email, autofocus: true, class: "field field-name",
+          placeholder: true %>
+      </div>
+      <div class="group-field">
+        <label class="field-tilte"><i class="fa fa-key" aria-hidden="true"></i></label>
+        <%= f.password_field :password, autocomplete: "off",
+          class: "field field-password", placeholder: true %>
+      </div>
+      <div class="remember-password">
+        <label class="left">
+          <%= f.check_box :remember_me %>
+          <%= t ".remember_me" %>
+        </label>
+        <%= link_to new_user_password_path, class: "right" do %>
+          <%= t(".forgot_password") %>
+          <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+        <% end %>
+      </div>
+      <br>
+      <div class="button-submit">
+         <%= f.submit t(".sign_in"), class: "btn-login" %>
+      </div>
+    <% end %>
+  </div>
 </div>

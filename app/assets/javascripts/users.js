@@ -22,7 +22,7 @@ function handle_follow_user(id, route) {
     type: 'PUT',
     dataType: 'json',
     success: function (data) {
-      if(data.type === 'success') {
+      if(data.type) {
         var html = '';
         var onClickFun = 'onclick=handle_follow_user("' + id + '","' + route + '")';
 
@@ -42,9 +42,10 @@ function handle_follow_user(id, route) {
 
         $('.follow_unfollow_' + id).html(html);
       }
-      else {
+      else if(data.not_login)
+        window.location.replace('/users/sign_in');
+      else
         sweetAlert(I18n.t('users.index.follow_error'), '', 'error');
-      }
     },
     error: function () {
       response([]);
@@ -70,6 +71,8 @@ function update_password() {
         success: function (data) {
           if(data.type)
             sweetAlert(I18n.t('success'), data.mess, 'success');
+          else if(data.not_login)
+            window.location.replace('/users/sign_in');
           else
             sweetAlert(I18n.t('error'), data.mess, 'error');
         },

@@ -55,6 +55,8 @@ function seen_all() {
         if(data.type) {
           $('.status-no-seen').removeClass('status-no-seen');
         }
+        else if(data.not_login)
+          window.location.replace('/users/sign_in');
         else
           sweetAlert(I18n.t('reactions.create.error'), '', 'error');
       },
