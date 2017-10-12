@@ -21,7 +21,7 @@ class UserSettingsController < ApplicationController
       notification_settings: [:comment_post, :comment_answer, :reply_post,
         :up_down_vote_post, :like_comment, :llc_answer, :clip_post, :tag_post,
         :follow_user, :create_post],
-      email_settings: [:comments_post, :comment_answer, :reply_post,
+      email_settings: [:comment_post, :comment_answer, :reply_post,
         :like_comment, :llc_answer, :clip_post, :tag_post]
     )
   end

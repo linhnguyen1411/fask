@@ -224,6 +224,42 @@ function appcept_edit_comment() {
   });
 }
 
+function delete_answer() {
+  $('.btn-delete-answer').click(function(){
+    var id = $(this).data('id');
+    swal({
+      title: I18n.t('warning'),
+      text: I18n.t('answers.destroy.are_you_sure'),
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: I18n.t('ok'),
+      cancelButtonText: I18n.t('cancel'),
+      closeOnConfirm: false
+    },
+    function(){
+      $.ajax({
+        url: '/answers/' + id,
+        type: 'DELETE',
+        dataType: 'json',
+        data: {},
+        success: function (data) {
+          if (data.type) {
+            sweetAlert(I18n.t('reactions.create.success'), '', 'success');
+            $('.comment-item-' + id).hide('500')
+            setTimeout(function(){$('.answer-' + id).remove();}, 700);
+          }
+          else if(data.not_login)
+            window.location.replace('/users/sign_in');
+          else
+            sweetAlert(I18n.t('reactions.create.error'), '', 'error');
+        },
+        error: function () {}
+      });
+    });
+  });
+}
+
 function delete_comment() {
   $('.btn-delete-comment').click(function(){
     var id = $(this).data('id');
@@ -298,6 +334,7 @@ function delete_post() {
 $(document).ready(function(){
   delete_post();
   delete_comment();
+  delete_answer();
   appcept_edit_comment();
   load_modal_edit_comment();
   correct_answer();

@@ -116,10 +116,7 @@ module ApplicationHelper
       checked_email_setting?(Settings.index_three_in_array) &&
       checked_email_setting?(Settings.index_four_in_array) &&
       checked_email_setting?(Settings.index_five_in_array) &&
-      checked_email_setting?(Settings.index_six_in_array) &&
-      checked_email_setting?(Settings.index_seven_in_array) &&
-      checked_email_setting?(Settings.index_eight_in_array) &&
-      checked_email_setting?(Settings.index_nine_in_array)) ? "checked" : ""
+      checked_email_setting?(Settings.index_six_in_array)) ? "checked" : ""
   end
 
   def checked_notification_setting? index
