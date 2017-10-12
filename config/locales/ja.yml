@@ -283,6 +283,8 @@ ja:
       current_password_wrong: "現在のパスワードの誤り"
       confirm_password_wrong: "新しいパスワードを間違って確認する"
   answers:
+    update:
+      update_error: "Update failed"
     create:
       email_or_password_not_exist: "メールアドレス/パスワードが存在しません"
       post_not_exist: "見つからない"
@@ -385,3 +387,5 @@ ja:
     update_settings_fail: "Update settings failed"
     update: "更新"
   setting: "設定"
+  update_your_answer: "Update Your Answer"
+  post_your_answer: "Post Your Answer"

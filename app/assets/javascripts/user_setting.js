@@ -22,7 +22,7 @@ $(document).ready(function() {
   var tag_post_email = $('#turn-tag-posts-email');
 
     function setChecked(currentCheck, allCheck, otherCheck1, otherCheck2, otherCheck3,
-    otherCheck4, otherCheck5, otherCheck6, otherCheck7 = '', otherCheck8 = '', otherCheck9 = '') {
+    otherCheck4, otherCheck5, otherCheck6, otherCheck7, otherCheck8, otherCheck9) {
     if (currentCheck.is(':checked')) {
       if (otherCheck1.is(':checked') && otherCheck2.is(':checked') &&
         otherCheck3.is(':checked') && otherCheck4.is(':checked') &&
@@ -133,30 +133,30 @@ $(document).ready(function() {
   });
   comment_post_email.on('change', function() {
     setChecked(comment_post_email, all_email, comment_answer_email, reply_post_email,
-      like_comment_email, llc_answer_email, clip_post_email, tag_post_email);
+      like_comment_email, llc_answer_email, clip_post_email, tag_post_email, '', '', '');
   });
   comment_answer_email.on('change', function() {
     setChecked(comment_answer_email, all_email, comment_post_email, reply_post_email,
-      like_comment_email, llc_answer_email, clip_post_email, tag_post_email);
+      like_comment_email, llc_answer_email, clip_post_email, tag_post_email, '', '', '');
   });
   reply_post_email.on('change', function() {
     setChecked(reply_post_email, all_email, comment_answer_email, comment_post_email,
-      like_comment_email, llc_answer_email, clip_post_email, tag_post_email);
+      like_comment_email, llc_answer_email, clip_post_email, tag_post_email, '', '', '');
   });
   like_comment_email.on('change', function() {
     setChecked(like_comment_email, all_email, llc_answer_email, clip_post_email,
-      tag_post_email, reply_post_email, comment_answer_email, comment_post_email);
+      tag_post_email, reply_post_email, comment_answer_email, comment_post_email, '', '', '');
   });
   llc_answer_email.on('change', function() {
     setChecked(llc_answer_email, all_email, comment_answer_email, comment_post_email,
-      reply_post_email, like_comment_email, clip_post_email, tag_post_email);
+      reply_post_email, like_comment_email, clip_post_email, tag_post_email, '', '', '');
   });
   clip_post_email.on('change', function() {
     setChecked(clip_post_email, all_email, reply_post_email, comment_answer_email,
-      comment_post_email, like_comment_email, llc_answer_email, tag_post_email);
+      comment_post_email, like_comment_email, llc_answer_email, tag_post_email, '', '', '');
   });
   tag_post_email.on('change', function() {
     setChecked(tag_post_email, all_email, like_comment_email, llc_answer_email,
-      clip_post_email, reply_post_email, comment_answer_email, comment_post_email);
+      clip_post_email, reply_post_email, comment_answer_email, comment_post_email, '', '', '');
   });
 });

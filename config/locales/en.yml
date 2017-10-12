@@ -286,14 +286,20 @@ en:
       current_password_wrong: "Current password wrong"
       confirm_password_wrong: "Confirm new password wrong"
   answers:
+    update:
+      update_error: "Update failed"
     create:
       email_or_password_not_exist: "Email/Password not exist."
       post_not_exist: "Find not found."
       create_success: "Create answer success."
       create_error: "Create answer error."
-    edit:
+    load_answer:
       answer_not_exist: "Answer not exist"
+    check_user:
+      wrong_user: "invalid user"
     not_found: "Answer not found."
+    destroy:
+      are_you_sure: "You are sure to delete this answer?"
   login_to_continue: "Please login to use this function."
   success: "Success"
   error: "Error"
@@ -389,3 +395,5 @@ en:
     update_settings_fail: "Update settings failed"
     update: "Update"
   setting: "Setting"
+  update_your_answer: "Update Your Answer"
+  post_your_answer: "Post Your Answer"

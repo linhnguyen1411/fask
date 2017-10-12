@@ -1,4 +1,5 @@
-<div class="media-block card-box ribbon-content">
+<div class="media-block card-box ribbon-content answer-<%= answer.id %>"
+  id="answer-<%= answer.id %>">
   <div class="best-answer">
     <% if answer.best_answer %>
       <div class="ribbon base">
@@ -12,19 +13,19 @@
       <%= image_tag get_avatar_user(answer.user), class: "img-sm" %>
     </a>
   </div>
-  <div class="media-body">
+  <div class="media-body item-answer">
     <div class="mar-btm">
-      <h4>
-        <a href="#" class="btn-link text-semibold media-heading box-inline">
-          <%= answer.user_name %>
-        </a>
+      <h4 class="item-name">
+        <%= link_to answer.user_name, answer.user,
+          class: "btn-link text-semibold media-heading box-inline" %>
       </h4>
-      <p class="text-muted text-sm">
+      <p class="text-muted text-sm item-time">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
         <%= time_ago_in_words answer.created_at %>
+        <%= raw load_button_edit_delete_answer(answer)  %>
       </p>
     </div>
-    <p><%= raw answer.content %></p>
+    <div class="content" id="content-<%= answer.id %>"><%= raw answer.content %></div>
     <div class="pad-ver pull-right">
       <%= load_btn_reactions answer, t(".like_answer"), Settings.reaction_type.like %>
       <%= load_btn_reactions answer, t(".spam"), Settings.reaction_type.dislike %>

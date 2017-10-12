@@ -421,3 +421,12 @@ p {
 .btn-login .icon{
   padding-left: 8px !important;
 }
+.item-answer > .content{
+  clear: both;
+}
+.item-answer > .mar-btm > .item-name{
+  float: left;
+}
+.item-answer > .mar-btm > .item-time{
+  float: right;
+}

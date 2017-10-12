@@ -1,0 +1,6 @@
+<% provide :button_text, t('update_your_answer') %>
+$('#answer-form').html(
+  '<%= j(render("posts/answer_form", answer: @answer, post: @answer.post, option: {remote: true})) %>');
+$('html,body').animate({
+  scrollTop:  $('#answer-form').offset().top
+}, 700);
