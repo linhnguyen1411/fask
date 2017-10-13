@@ -397,3 +397,4 @@ en:
   setting: "Setting"
   update_your_answer: "Update Your Answer"
   post_your_answer: "Post Your Answer"
+  auth_fail: "Auth failure"
