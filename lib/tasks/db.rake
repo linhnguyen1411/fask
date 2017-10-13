@@ -19,7 +19,7 @@ namespace :db do
     User.create!(
       name: "User Hidden",
       email: "user12211332244564324632@framgia.com",
-      position: "Manager",
+      position: "Member",
       code: Faker::Code.asin,
       password: "Aa@123",
       password_confirmation: "Aa@123"
@@ -380,7 +380,7 @@ namespace :db do
 
     Post.create!(
       # 20
-      title: "<3 Bùi Dương",
+      title: "Câu lạc bộ Tiếng Anh",
       user_id: 1,
       topic_id: 2,
       work_space_id: WorkSpace.order("RAND()").first.id,
