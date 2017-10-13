@@ -63,6 +63,7 @@ class User < ApplicationRecord
         user.position = auth.info.position.name if auth.info.position.present?
         user.remote_avatar_url = auth.info.avatar if auth.info.avatar.present?
         user.password = password if user.new_record?
+        user.is_create_by_wsm = true if user.new_record?
         user.save
         user
       end
