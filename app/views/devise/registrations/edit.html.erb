@@ -26,7 +26,7 @@
             <div class="box-panel">
                 <div class="form-group text-center">
                   <label><%= t "profile.update_image" %></label>
-                  <%= image_tag current_user.avatar, class: "img-upload" %>
+                  <%= image_tag current_user.avatar.url, class: "img-upload" %>
                 </div>
                 <span class="input-group-btn text-center">
                   <span class="btn btn-primary btn-lg btn-file">
