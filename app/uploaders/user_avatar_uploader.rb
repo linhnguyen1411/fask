@@ -6,7 +6,22 @@ class UserAvatarUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
+  if Rails.env.production?
+    include Cloudinary::CarrierWave
+    process tags: ["post_picture"]
+  end
+
+  process resize_to_limit: [400, 400]
+
   process convert: "png"
+
+  version :standard do
+    process resize_to_fill: [128, 128, :north]
+  end
+
+  version :thumbnail do
+    resize_to_fit 50, 50
+  end
 
 
   # Choose what kind of storage to use for this uploader:

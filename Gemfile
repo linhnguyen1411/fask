@@ -32,6 +32,7 @@ gem "devise-i18n"
 gem "rails-i18n"
 gem "kaminari"
 gem "faker"
+gem "cloudinary"
 
 group :development, :test do
   gem "byebug"
