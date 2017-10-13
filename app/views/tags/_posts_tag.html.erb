@@ -9,7 +9,7 @@
           </a>
         </div>
         <div class="col-md-7 col-sm-8  col-xs-12">
-          <h3><a href="#"> <%= post.title %></a></h3>
+          <h3><%= link_to post.title, post_path(post.id) %></a></h3>
           <div class="listing-meta">
             <span>
               <i class="fa fa-clock-o" aria-hidden="true"></i>
