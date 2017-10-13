@@ -61,7 +61,7 @@ class User < ApplicationRecord
         password = User.generate_unique_secure_token[0..9]
         user.name = auth.info.name
         user.position = auth.info.position.name if auth.info.position.present?
-        user.remote_avatar_url = auth.info.avatar if auth.info.avatar.present?
+        user.remote_avatar_url = auth.info.avatar.gsub("http://", "https://") if auth.info.avatar.present?
         user.password = password if user.new_record?
         user.is_create_by_wsm = true if user.new_record?
         user.save
