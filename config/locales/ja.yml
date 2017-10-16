@@ -124,6 +124,8 @@ ja:
   posts:
     index:
       not_found: "見つかりません"
+      all_posts: "投稿"
+      all_clips: "固定"
     new:
       title_name: "新しい投稿"
       title: "Post Your QA-Knowledge/Feedback/Confession"
