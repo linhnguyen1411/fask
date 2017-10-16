@@ -430,3 +430,13 @@ p {
 .item-answer > .mar-btm > .item-time{
   float: right;
 }
+.clips-tab > li.active > a {
+  color: #be161e !important;
+  border-top: 3px solid #be161e;
+}
+.clips-tab > li > a {
+  color: #999999;
+}
+.clips-tab > li >a:hover {
+  color: #be161e !important;
+}

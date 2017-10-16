@@ -49,6 +49,8 @@ class Post < ApplicationRecord
     joins(:posts_tags).where "posts_tags.tag_id = ?", tag_id
   end
 
+  scope :list_posts_clip, ->post_ids{where(id: post_ids)}
+
   private
 
   def create_activity

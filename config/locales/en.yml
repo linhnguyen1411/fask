@@ -124,6 +124,8 @@ en:
   posts:
     index:
       not_found: "Not found"
+      all_posts: "Your Posts"
+      all_clips: "Your Clips "
     new:
       title_name: "New post"
       title: "Post Your QA-Knowledge/Feedback/Confession"

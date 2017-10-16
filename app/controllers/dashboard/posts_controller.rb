@@ -3,5 +3,7 @@ class Dashboard::PostsController < ApplicationController
 
   def index
     @posts = current_user.posts.page(params[:page]).per Settings.paginate_default
+    @clips_posts = Post.list_posts_clip(current_user.clips.pluck(:post_id))
+      .page(params[:page]).per Settings.paginate_default
   end
 end

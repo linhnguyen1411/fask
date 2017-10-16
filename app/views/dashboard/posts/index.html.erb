@@ -1,60 +1,130 @@
 <% if @posts.present? %>
   <section class="section-padding-40 white">
-    <% @posts.each do |post| %>
-      <div class="container">
-        <div class="listing-grid">
-          <div class="row">
-            <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
-              <a data-toggle="tooltip" data-placement="bottom"
-                data-original-title="<%= post.user.name %>" href="#">
-                <%= image_tag post.user.avatar.url, class: "img-responsive center-block" %>
-              </a>
-            </div>
-            <div class="col-md-7 col-sm-8  col-xs-12">
-              <h3><%= link_to post.title, post_path(post.id) %></h3>
-              <div class="listing-meta">
-                <span>
-                  <i class="fa fa-clock-o" aria-hidden="true"></i>
-                  <%= time_ago_in_words post.created_at %>
-                </span>
-                <span>
-                  <i class="fa fa fa-eye" aria-hidden="true"></i>
-                  <%= post.count_view %> <%= t ".view" %>
-                </span>
-              </div>
-            </div>
-            <div class="col-md-3 col-sm-2 col-xs-12">
-              <ul class="question-statistic">
-                <li class="active">
+    <div class="container">
+    <ul class="nav nav-tabs clips-tab" >
+      <li class="active"><a data-toggle="tab" href="#allposts">
+        <%= t "posts.index.all_posts" %></a></li>
+      <li><a data-toggle="tab" href="#clips">
+        <%= t "posts.index.all_clips" %></a></li>
+    </ul>
+    </div>
+    <div class="tab-content">
+      <div id="allposts" class="tab-pane fade in active">
+        <% @posts.each do |post| %>
+          <div class="container">
+            <div class="listing-grid">
+              <div class="row">
+                <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
                   <a data-toggle="tooltip" data-placement="bottom"
-                    data-original-title="Answers">
-                    <span><%= post.answers.size %></span>
+                    data-original-title="<%= post.user_name %>" href="#">
+                    <%= image_tag post.user_avatar.url, class: "img-responsive center-block" %>
                   </a>
-                </li>
-                <li>
-                  <a data-toggle="tooltip" data-placement="bottom"
-                    data-original-title="Votes">
-                    <span><%= count_vote post %></span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-10 col-sm-10 col-xs-12 truncate-post">
-              <div class="content-post">
-                <%= raw post.content %>
-              </div>
-              <div class="pull-right tagcloud">
-                <% post.tags.each do |tag| %>
-                  <%= link_to tag.name, tag %>
-                <% end %>
+                </div>
+                <div class="col-md-7 col-sm-8  col-xs-12">
+                  <h3><%= link_to post.title, post_path(post.id) %></h3>
+                  <div class="listing-meta">
+                    <span>
+                      <i class="fa fa-clock-o" aria-hidden="true"></i>
+                      <%= time_ago_in_words post.created_at %>
+                    </span>
+                    <span>
+                      <i class="fa fa fa-eye" aria-hidden="true"></i>
+                      <%= post.count_view %> <%= t ".view" %>
+                    </span>
+                  </div>
+                </div>
+                <div class="col-md-3 col-sm-2 col-xs-12">
+                  <ul class="question-statistic">
+                    <li class="active">
+                      <a data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Answers">
+                        <span><%= post.answers.size %></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Votes">
+                        <span><%= count_vote post %></span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-10 col-sm-10 col-xs-12 truncate-post">
+                  <div class="content-post">
+                    <%= raw post.content %>
+                  </div>
+                  <div class="pull-right tagcloud">
+                    <% post.tags.each do |tag| %>
+                      <%= link_to tag.name, tag %>
+                    <% end %>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+        <% end %>
+        <div class="text-center clearfix">
+          <%= paginate @posts %>
         </div>
       </div>
-    <% end %>
-    <div class="text-center clearfix">
-      <%= paginate @posts %>
+      <div id="clips" class="tab-pane fade">
+        <% @clips_posts.each do |post| %>
+            <div class="container">
+              <div class="listing-grid">
+                <div class="row">
+                  <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
+                    <a data-toggle="tooltip" data-placement="bottom"
+                      data-original-title="<%= post.user_name %>" href="#">
+                      <%= image_tag post.user_avatar.url, class: "img-responsive center-block" %>
+                    </a>
+                  </div>
+                  <div class="col-md-7 col-sm-8  col-xs-12">
+                    <h3><%= link_to post.title, post_path(post.id) %></h3>
+                    <div class="listing-meta">
+                      <span>
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <%= time_ago_in_words post.created_at %>
+                      </span>
+                      <span>
+                        <i class="fa fa fa-eye" aria-hidden="true"></i>
+                        <%= post.count_view %> <%= t ".view" %>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-3 col-sm-2 col-xs-12">
+                    <ul class="question-statistic">
+                      <li class="active">
+                        <a data-toggle="tooltip" data-placement="bottom"
+                          data-original-title="Answers">
+                          <span><%= post.answers.size %></span>
+                        </a>
+                      </li>
+                      <li>
+                        <a data-toggle="tooltip" data-placement="bottom"
+                          data-original-title="Votes">
+                          <span><%= count_vote post %></span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-md-10 col-sm-10 col-xs-12 truncate-post">
+                    <div class="content-post">
+                      <%= raw post.content %>
+                    </div>
+                    <div class="pull-right tagcloud">
+                      <% post.tags.each do |tag| %>
+                        <%= link_to tag.name, tag %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+        <div class="text-center clearfix">
+          <%= paginate @clips_posts %>
+        </div>
+      </div>
     </div>
   </section>
 <% end %>
