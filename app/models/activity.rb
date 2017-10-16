@@ -10,10 +10,19 @@ class Activity < PublicActivity::Activity
   def add_notification
     case self.trackable.class.name
     when Post.name
-      self.owner.followers.each do |user|
-        if (user.notification_settings.empty? ||
-          user.notification_settings[:create_post] == Settings.serialize_true)
-          create_notification user.id
+      if(self.trackable.topic_id == Settings.topic.feedback_number)
+        User.hr_administrator.each do |user|
+          if (user.notification_settings.empty? ||
+            user.notification_settings[:create_post] == Settings.serialize_true)
+            create_notification user.id
+          end
+        end
+      else
+        User.all.each do |user|
+          if (user.notification_settings.empty? ||
+            user.notification_settings[:create_post] == Settings.serialize_true)
+            create_notification user.id
+          end
         end
       end
     when Answer.name
