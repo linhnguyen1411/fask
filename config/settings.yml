@@ -10,6 +10,9 @@ comment:
     post: "post"
     answer: "answer"
 topic:
+  q_a_number: 1
+  feedback_number: 2
+  confesstion_number: 3
   q_a: "1"
   feedback: "2"
   confesstion: "3"
@@ -27,6 +30,7 @@ paginate_tags: 20
 paginate_users: 6
 paginate_posts: 10
 id_user_hiddent: 1
+hr_administrator: "Hr administrator"
 content_max_length: 500
 limit_top: 3
 limit_tag: 10

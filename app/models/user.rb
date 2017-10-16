@@ -29,6 +29,7 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   scope :not_user_hiddent, -> {where.not id: Settings.id_user_hiddent}
+  scope :hr_administrator, -> {where position: Settings.hr_administrator}
 
   mount_uploader :avatar, UserAvatarUploader
 
