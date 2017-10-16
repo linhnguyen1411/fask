@@ -1,11 +1,13 @@
 <% if @posts.present? %>
   <section class="section-padding-40 white">
-    <ul class="nav nav-tabs clips-tab" >
-      <li class="active"><a data-toggle="tab" href="#allposts">
-        <%= t "posts.index.all_posts" %></a></li>
-      <li><a data-toggle="tab" href="#clips">
-        <%= t "posts.index.all_clips" %></a></li>
-    </ul>
+    <div class="container">
+      <ul class="nav nav-tabs clips-tab" >
+        <li class="active"><a data-toggle="tab" href="#allposts">
+          <%= t "posts.index.all_posts" %></a></li>
+        <li><a data-toggle="tab" href="#clips">
+          <%= t "posts.index.all_clips" %></a></li>
+      </ul>
+    </div>
     <div class="tab-content">
       <div id="allposts" class="tab-pane fade in active">
         <% @posts.each do |post| %>

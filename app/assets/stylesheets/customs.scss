@@ -111,7 +111,7 @@ a:hover {
       border-radius: 50px;
       border: solid 1px;
       position: absolute;
-      top: 50%;
+      top: 20%;
       transform: translateY(-50%);
     }
     .item-body {
@@ -429,10 +429,6 @@ p {
 }
 .item-answer > .mar-btm > .item-time{
   float: right;
-}
-.clips-tab{
-  margin-left: 6%;
-  margin-right: 6%;
 }
 .clips-tab > li.active > a {
   color: #be161e !important;
