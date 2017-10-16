@@ -351,6 +351,7 @@ ja:
     new: " 新しい"
     in: " に"
     topic: " トピック"
+    clip: " クリップ"
   notifications:
     index:
       title: "通知"

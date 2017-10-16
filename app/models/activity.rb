@@ -11,7 +11,7 @@ class Activity < PublicActivity::Activity
     case self.trackable.class.name
     when Post.name
       self.owner.followers.each do |user|
-        if (user.notification_settings.nil? ||
+        if (user.notification_settings.empty? ||
           user.notification_settings[:create_post] == Settings.serialize_true)
           create_notification user.id
         end
@@ -53,6 +53,11 @@ class Activity < PublicActivity::Activity
           reactiontable.user.notification_settings[:up_down_vote_post] == Settings.serialize_true)
           create_notification reactiontable.user_id
         end
+      end
+    when Clip.name
+      if (self.trackable.post.user.notification_settings.empty? ||
+        self.trackable.post.user.notification_settings[:clip_post] == Settings.serialize_true)
+        create_notification self.trackable.post.user_id
       end
     end
   end

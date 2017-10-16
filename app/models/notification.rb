@@ -45,6 +45,9 @@ class Notification < ApplicationRecord
         item = I18n.t("noti.comment")
       end
       @message = I18n.t("noti.just") + I18n.t("noti.#{activity.trackable.target_type.to_s}") + item + I18n.t("noti.of_you")
+    when Clip.name
+      post = activity.trackable.post
+      @message = I18n.t("noti.just") + I18n.t("noti.clip") + I18n.t("noti.post") + " #{post.title}" + I18n.t("noti.of_you")
     end
     [@message, post.id]
   end
