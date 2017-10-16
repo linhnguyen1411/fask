@@ -359,6 +359,7 @@ en:
     new: " new"
     in: " in"
     topic: " topic"
+    clip: " clip"
   notifications:
     index:
       title: "Notifications"

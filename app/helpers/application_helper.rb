@@ -39,6 +39,11 @@ module ApplicationHelper
       icon = @icon
       post = nil
       content = nil
+    when Clip.name
+      title = t("activities.you") + t("activities.cliped") + t("activities.post")
+      icon = '<i class="glyphicon glyphicon-pushpin" aria-hidden="true"></i>'
+      post = activity.trackable.post if activity.trackable.present?
+      content = nil
     end
     render "activity", post: post, activity: activity,
       title: title, icon: icon, content: content

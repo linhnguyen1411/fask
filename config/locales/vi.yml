@@ -355,6 +355,7 @@ vi:
     new: " mới"
     in: " trong"
     topic: " chủ đề"
+    clip: " ghim"
   notifications:
     index:
       title: "Thông báo"
