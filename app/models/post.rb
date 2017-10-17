@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   paginates_per Settings.paginate_default
 
+  STANDARDIZE_REGEX = /<a class=\"tag-user-item\" href=\"\/users\/\d{1,}\"><i class=\"fa fa-address-book-o\"><\/i><\/a>|<a href=\"\/users\/\d{1,}\" class=\"tag-user-item\"><\/a>/
   acts_as_paranoid
 
   searchkick
@@ -59,5 +60,6 @@ class Post < ApplicationRecord
 
   def standardize_content
     content.remove! "<p><br></p>"
+    content.remove! STANDARDIZE_REGEX
   end
 end
