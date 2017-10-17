@@ -159,7 +159,7 @@ namespace :db do
   task create_posts: :environment do
     Post.create!(
       title: "Góp ý vê ghế ngồi",
-      user_id: 3,
+      user_id: 1,
       topic_id: 2,
       work_space_id: 3,
       content: "Ghế quá cao so với mặt sàn mà bàn lại không có chổ để chân. Ngồi
@@ -182,7 +182,7 @@ namespace :db do
 
     Post.create!(
       title: "Thêm khẩu trang ý tế vào tủ thuốc",
-      user_id: 3,
+      user_id: 1,
       topic_id: 2,
       work_space_id: 1,
       content: "Ngày trước mình nhớ công ty có khẩu trang y tế cho mọi người và
@@ -193,7 +193,7 @@ namespace :db do
 
     Post.create!(
       title: "Radio confesstion",
-      user_id: 3,
+      user_id: 1,
       topic_id: 2,
       work_space_id: 3,
       content: "Chương trình radio confession rất hay, nhưng có những lúc ngày
@@ -204,7 +204,7 @@ namespace :db do
 
     Post.create!(
       title: "Tìm hiểu về quy trình review bài báo khoa học",
-      user_id: 3,
+      user_id: 1,
       topic_id: 1,
       work_space_id: WorkSpace.order("RAND()").first.id,
       content: "Mình muốn tìm hiểu về quy trình review một bài báo khoa học ra sao.
