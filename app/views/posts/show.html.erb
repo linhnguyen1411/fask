@@ -78,13 +78,14 @@
                           { toggle: "collapse",target: "#share_btn"} do %>
                             <i class="fa fa-share-alt btn-share" aria-hidden="true"></i>
                           <% end %>
-                        <div id="share_btn" class="collapse custom-share">
-                          <%= social_share_button_tag(@post.title) %>
-                        </div>
+
                       </span>
                     </div>
                   </div>
                   <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div id="share_btn" class="collapse custom-share">
+                      <%= social_share_button_tag(@post.title) %>
+                    </div>
                     <%= raw @post.content %>
                     <div class="tagcloud">
                       <% @post.tags.each do |tag| %>

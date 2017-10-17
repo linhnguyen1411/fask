@@ -311,6 +311,12 @@ ja:
       success: "成功"
       error: "エラー"
   users:
+    user_profile: "プロフィール"
+    follower: "フォロワー"
+    clips_post: "クリップ"
+    posts: "ポスト"
+    follow: "フォローする"
+    hire: "私を雇う"
     index:
       breadcrumb: "ユーザーを一覧表示する"
       home: "ホーム"
@@ -395,3 +401,8 @@ ja:
   update_your_answer: "Update Your Answer"
   post_your_answer: "Post Your Answer"
   auth_fail: "故障"
+  social_share_button:
+    share_to: "シェア %{name}"
+    facebook: "Facebook"
+    google_plus: "Google +"
+    twitter: "Twitter"

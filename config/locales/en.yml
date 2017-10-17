@@ -318,6 +318,12 @@ en:
       success: "Success"
       error: "Error"
   users:
+    user_profile: "User Profile"
+    follower: "Follower"
+    clips_post: "Clips Post"
+    posts: "Posts"
+    follow: "Follow"
+    hire: "Hire me"
     index:
       breadcrumb: "List Users"
       home: "Home"
