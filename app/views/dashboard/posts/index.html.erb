@@ -1,4 +1,4 @@
-<% if @posts.present? %>
+<% if @posts.present? || @clips_posts.present? %>
   <section class="section-padding-40 white">
     <div class="container">
       <ul class="nav nav-tabs clips-tab" >
@@ -30,6 +30,10 @@
                     <span>
                       <i class="fa fa fa-eye" aria-hidden="true"></i>
                       <%= post.count_view %> <%= t ".view" %>
+                    </span>
+                    <span>
+                      <i class="fa fa-comment-o" aria-hidden="true"></i>
+                      <%= count_comment post %> <%= t "posts.index.comment" %>
                     </span>
                   </div>
                 </div>
@@ -88,6 +92,10 @@
                       <span>
                         <i class="fa fa fa-eye" aria-hidden="true"></i>
                         <%= post.count_view %> <%= t ".view" %>
+                      </span>
+                      <span>
+                        <i class="fa fa-comment-o" aria-hidden="true"></i>
+                        <%= count_comment post %> <%= t "posts.index.comment" %>
                       </span>
                     </div>
                   </div>
