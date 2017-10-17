@@ -4,30 +4,63 @@ class Activity < PublicActivity::Activity
   has_many :notifications, dependent: :destroy
 
   after_create :add_notification
+  GET_USER_PATH = /href=\"\/users\/\d{1,}/
 
   private
 
   def add_notification
     case self.trackable.class.name
     when Post.name
+      user_path_array = self.trackable.content.scan GET_USER_PATH
+      notified_users = []
+      unless user_path_array.empty?
+        user_path_array.uniq.each do |user_path|
+          user = User.load_user(user_path.slice(Settings.scan_begin_index, user_path.length)).first
+          if user.nil?
+            next
+          elsif (user.notification_settings.empty? ||
+            user.notification_settings[:tag_post] == Settings.serialize_true)
+            notified_users << user
+            is_tag_user = true
+            create_notification user.id, is_tag_user
+          end
+        end
+      end
       if(self.trackable.topic_id == Settings.topic.feedback_number)
         User.hr_administrator.each do |user|
-          if (user.notification_settings.empty? ||
-            user.notification_settings[:create_post] == Settings.serialize_true)
+          if ((!notified_users.include? user) &&
+            (user.notification_settings.empty? || user.notification_settings[:create_post] == Settings.serialize_true))
             create_notification user.id
           end
         end
       else
         User.all.each do |user|
-          if (user.notification_settings.empty? ||
-            user.notification_settings[:create_post] == Settings.serialize_true)
+          if ((!notified_users.include? user) &&
+            (user.notification_settings.empty? ||
+            user.notification_settings[:create_post] == Settings.serialize_true))
             create_notification user.id
           end
         end
       end
     when Answer.name
-      if (self.trackable.post.user.notification_settings.empty? ||
-        self.trackable.post.user.notification_settings[:reply_post] == Settings.serialize_true)
+      user_path_array = self.trackable.content.scan GET_USER_PATH
+      notified_users = []
+      unless user_path_array.empty?
+        user_path_array.uniq.each do |user_path|
+          user = User.load_user(user_path.slice(Settings.scan_begin_index, user_path.length)).first
+          if user.nil?
+            next
+          elsif (user.notification_settings.empty? ||
+            user.notification_settings[:tag_post] == Settings.serialize_true)
+            notified_users << user
+            is_tag_user = true
+            create_notification user.id, is_tag_user
+          end
+        end
+      end
+      if ((!notified_users.include? self.trackable.post.user) &&
+        (self.trackable.post.user.notification_settings.empty? ||
+        self.trackable.post.user.notification_settings[:reply_post] == Settings.serialize_true))
         create_notification self.trackable.post.user_id
       end
     when Comment.name
@@ -68,10 +101,15 @@ class Activity < PublicActivity::Activity
         self.trackable.post.user.notification_settings[:clip_post] == Settings.serialize_true)
         create_notification self.trackable.post.user_id
       end
+    when Relationship.name
+      if (self.recipient.notification_settings.empty? ||
+        self.recipient.notification_settings[:clip_post] == Settings.serialize_true)
+        create_notification self.recipient.id
+      end
     end
   end
 
-  def create_notification user_id
-    self.notifications.create(user_id: user_id) if self.owner_id != user_id
+  def create_notification user_id, is_tag_user = false
+    self.notifications.create(user_id: user_id, is_tag_user: is_tag_user) if self.owner_id != user_id
   end
 end

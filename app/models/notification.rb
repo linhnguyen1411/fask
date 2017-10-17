@@ -13,43 +13,56 @@ class Notification < ApplicationRecord
     activity = self.activity
     case activity.trackable.class.name
     when Post.name
-      post = activity.trackable
-      @message = I18n.t("noti.just") + I18n.t("noti.send") + I18n.t("noti.post") + I18n.t("noti.new") + I18n.t("noti.in") + I18n.t("noti.topic") + " #{post.topic.name}"
+      if self.is_tag_user?
+        post = activity.trackable
+        @message = I18n.t("noti.tag_post") + " \"#{post.title}\""
+      else
+        post = activity.trackable
+        @message = I18n.t("noti.create_post") + " \"#{post.title}\"" + I18n.t("noti.in_topic") + "#{post.topic.name}"
+      end
     when Answer.name
-      post = activity.trackable.post
-      @message = I18n.t("noti.just") + I18n.t("noti.ans") + I18n.t("noti.in") + I18n.t("noti.post") + " #{post.title}"
+      if self.is_tag_user?
+        post = activity.trackable.post
+        @message = I18n.t("noti.tag_answer") + " \"#{post.title}\""
+      else
+        post = activity.trackable.post
+        @message = I18n.t("noti.answer_post") + " \"#{post.title}\""
+      end
     when Comment.name
       if activity.trackable.commentable.class.name == Post.name
         post = activity.trackable.commentable
-        item = I18n.t("noti.post")
+        @message = I18n.t("noti.comment_post") + " \"#{post.title}\""
       else
         post = activity.trackable.commentable.post
-        item = I18n.t("noti.answer")
+        @message = I18n.t("noti.comment_answer") + I18n.t("noti.in_post") + " \"#{post.title}\""
       end
-      @message = I18n.t("noti.just") + I18n.t("noti.comment") + I18n.t("noti.in") + item + I18n.t("noti.of_you")
     when Reaction.name
       object = activity.trackable.reactiontable
       case object.class.name
       when Post.name
         post = object
-        item = I18n.t("noti.post")
+        item = I18n.t("noti.your_post") + " \"#{post.title}\""
       when Answer.name
         post = object.post
-        item = I18n.t("noti.answer")
+        item = I18n.t("noti.your_answer") + I18n.t("noti.in_post") + " \"#{post.title}\""
       else #Comment
         if object.commentable.class.name == Post.name
           post = object.commentable
         else
           post = object.commentable.post
         end
-        item = I18n.t("noti.comment")
+        item = I18n.t("noti.your_comment") + I18n.t("noti.in_post") + " \"#{post.title}\""
       end
-      @message = I18n.t("noti.just") + I18n.t("noti.#{activity.trackable.target_type.to_s}") + item + I18n.t("noti.of_you")
+      @message = I18n.t("noti.have") + I18n.t("noti.#{activity.trackable.target_type.to_s}")  + item
     when Clip.name
       post = activity.trackable.post
-      @message = I18n.t("noti.just") + I18n.t("noti.clip") + I18n.t("noti.post") + " #{post.title}" + I18n.t("noti.of_you")
+      @message = I18n.t("noti.clip_post") + " \"#{post.title}\""
+    when Relationship.name
+      user = activity.recipient
+      @message = I18n.t("noti.follow_user")
     end
-    [@message, post.id]
+    id = post.present? ? post.id : user.id
+    [@message, id]
   end
 
   private

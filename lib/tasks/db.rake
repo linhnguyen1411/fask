@@ -28,7 +28,7 @@ namespace :db do
     User.create!(
       name: "Hoang Nhac Trung",
       email: "hoang.nhac.trung@framgia.com",
-      position: "Manager",
+      position: "Section Manager",
       code: Faker::Code.asin,
       password: "Aa@123",
       password_confirmation: "Aa@123"
@@ -37,7 +37,7 @@ namespace :db do
     User.create!(
       name: "Tran Duc Quoc",
       email: "tran.duc.quoc@framgia.com",
-      position: "Leader",
+      position: "Trainer",
       code: Faker::Code.asin,
       password: "Aa@123",
       password_confirmation: "Aa@123"
@@ -55,7 +55,7 @@ namespace :db do
     User.create!(
       name: "Le Thi Hong Thuy",
       email: "le.thi.hong.thuy@framgia.com",
-      position: "BO",
+      position: "Hr administrator",
       code: Faker::Code.asin,
       password: "Aa@123",
       password_confirmation: "Aa@123"

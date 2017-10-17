@@ -54,6 +54,7 @@ class User < ApplicationRecord
   scope :check_follow, -> current_user, user_id do
     current_user.active_relationships.where(following_id: user_id).count
   end
+  scope :load_user, -> user_id {where id: user_id}
 
   class << self
     def from_omniauth auth
