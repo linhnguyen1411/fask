@@ -315,6 +315,12 @@ vi:
       success: "Thành công"
       error: "Thất bại"
   users:
+    user_profile: "Thông tin cá nhân"
+    follower: "Người theo dõi"
+    clips_post: "Bài đã ghim"
+    posts: "Bài đã viết"
+    follow: "Theo dõi"
+    hire: "Thuê tôi"
     index:
       breadcrumb: "Danh sách người dùng"
       home: "Trang chủ"
@@ -399,3 +405,8 @@ vi:
   update_your_answer: "Cập nhật câu trả lời của bạn"
   post_your_answer: "Gửi câu trả lời của bạn"
   auth_fail: "thất bại"
+  social_share_button:
+    share_to: "Chia sẻ qua %{name}"
+    facebook: "Facebook"
+    google_plus: "Google +"
+    twitter: "Twitter"

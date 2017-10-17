@@ -16,6 +16,53 @@
       </div>
     </div>
   </section>
+  <section id="user-profile" class="user-profile parallex">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-xs-12 col-sm-12">
+          <div class="profile-sec ">
+            <div class="profile-head">
+              <div class="col-md-6 col-xs-12 col-sm-6 no-padding">
+                <div class="profile-avatar">
+                  <span>
+                    <%= image_tag current_user.avatar.url, class: "img-responsive img-circle" %>
+                  </span>
+                  <div class="profile-name">
+                    <h3><%= t "users.user_profile" %></h3>
+                    <i><%= current_user.name %> - <%= current_user.position %></i>
+                    <ul class="social-btns">
+                      <li><a href="#" title=""><i class="fa fa-facebook"></i></a>
+                      </li>
+                      <li><a href="#" title=""><i class="fa fa-google-plus"></i></a>
+                      </li>
+                      <li><a href="#" title=""><i class="fa fa-twitter"></i></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12 col-sm-6 no-padding">
+                <ul class="profile-count">
+                  <li><%= count_follow current_user %><i><%= t "users.follower" %></i>
+                  </li>
+                  <li><%= count_clips current_user %><i><%= t "users.clips_post" %></i>
+                  </li>
+                  <li><%= count_posts current_user %><i><%= t "users.posts" %></i>
+                  </li>
+                </ul>
+                <ul class="profile-connect">
+                  <li><a title="" href="javascript:void(0)"><%= t "users.follow" %></a>
+                  </li>
+                  <li><a title="" href="javascript:void(0)"><%= t "users.hire" %></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
     html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
@@ -62,7 +109,6 @@
     </section>
   <% end %>
 </div>
-
 <div class="modal fade" id="modal-update-password">
   <div class="modal-dialog">
     <div class="modal-content">
