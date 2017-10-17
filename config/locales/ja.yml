@@ -126,6 +126,8 @@ ja:
       not_found: "見つかりません"
       all_posts: "投稿"
       all_clips: "固定"
+      view: "観る"
+      comment: "コメント"
     new:
       title_name: "新しい投稿"
       title: "Post Your QA-Knowledge/Feedback/Confession"

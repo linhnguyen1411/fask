@@ -33,6 +33,7 @@ gem "rails-i18n"
 gem "kaminari"
 gem "faker"
 gem "cloudinary"
+gem "social-share-button"
 
 group :development, :test do
   gem "byebug"

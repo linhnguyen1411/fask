@@ -23,9 +23,21 @@
         <i class="fa fa-clock-o" aria-hidden="true"></i>
         <%= time_ago_in_words answer.created_at %>
         <%= raw load_button_edit_delete_answer(answer)  %>
+        <%= link_to "javascript:void(0)", data:
+          { toggle: "collapse",target: "#share-cmt-#{answer.id}"} do %>
+            <i class="fa fa-share-alt" aria-hidden="true"></i>
+          <% end %>
       </p>
     </div>
-    <div class="content" id="content-<%= answer.id %>"><%= raw answer.content %></div>
+    <div class="content" id="content-<%= answer.id %>">
+      <div id="share-cmt-<%= answer.id %>" class="collapse custom-share-cmt">
+        <% share = "Answer:"+ @post.title %>
+        <%= social_share_button_tag(share) %>
+      </div>
+      <%= raw answer.content %>
+    </div>
+    <div class="pad-ver pull-left">
+    </div>
     <div class="pad-ver pull-right">
       <%= load_btn_reactions answer, t(".like_answer"), Settings.reaction_type.like %>
       <%= load_btn_reactions answer, t(".spam"), Settings.reaction_type.dislike %>
