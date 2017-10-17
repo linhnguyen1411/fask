@@ -14,4 +14,8 @@ module StaticPagesHelper
   def total_comment
     Comment.all.size
   end
+
+  def count_comment post
+    post.comments.size
+  end
 end
