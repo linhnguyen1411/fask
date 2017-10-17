@@ -13,6 +13,7 @@ $(document).ready(function(){
         received: function(data) {
           $.notify(data.mess, "success");
           add_noti(data);
+          noti(data);
         },
         update_counter: function(counter) {
 
@@ -21,6 +22,24 @@ $(document).ready(function(){
     }).call(this);
   }
 });
+function noti(data) {
+  var notification;
+  notification = void 0;
+  if (Notification.permission === 'granted') {
+    notification = new Notification('', {
+      icon: data.img,
+      body: data.mess.replace(/\n/g, ' ').replace(/ +(?= )/g, '')
+    });
+    notification.onclick = function() {
+      window.open(data.url);
+    };
+    return setTimeout((function() {
+      notification.close();
+    }), 15000);
+  } else {
+    return Notification.requestPermission();
+  }
+}
 
 function add_noti(data) {
   var noti = $(".notification").find(".list-notifications");
