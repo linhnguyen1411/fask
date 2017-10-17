@@ -19,6 +19,7 @@
 //= require i18n.js
 //= require i18n/translations
 //= require sweetalert/dist/sweetalert.min.js
+//= require social-share-button
 
 $(document).ready(function(){
   $('a').tooltip();

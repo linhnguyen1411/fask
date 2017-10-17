@@ -126,6 +126,8 @@ vi:
       not_found: "Không tìm thấy"
       all_posts: "Bài viết"
       all_clips: "Bài đã ghim"
+      comment: "LƯỢT BÌNH LUẬN"
+      view: "LƯỢT XEM"
     new:
       title_name: "Bài viêt mới"
       title: "Gửi câu hỏi kỹ thuật, góp ý cho công ty hay gửi tâm tư tình cảm vào confession."
