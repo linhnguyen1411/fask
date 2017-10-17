@@ -17,6 +17,7 @@ ja:
     header:
       home: "ホーム"
       help: "助けて"
+      more_tools: "他のツール"
       mobile_app: "モバイルアプリ"
       login: "ログイン"
       signup: "サインアップ"

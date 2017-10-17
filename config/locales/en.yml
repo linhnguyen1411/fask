@@ -17,6 +17,7 @@ en:
     header:
       home: "Home"
       help: "Help"
+      more_tools: "More Tools"
       mobile_app: "Mobile App"
       login: "Login"
       signup: "Signup"
