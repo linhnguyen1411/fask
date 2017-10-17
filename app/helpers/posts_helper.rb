@@ -7,8 +7,8 @@ module PostsHelper
     WorkSpace.all.collect{|w| [w.name, w.id]}
   end
 
-  def count_comment
-    @post.comments.size
+  def count_comment post
+    post.comments.size
   end
 
   def count_vote post
