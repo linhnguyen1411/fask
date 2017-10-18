@@ -17,7 +17,7 @@ namespace :db do
 
   task create_users: :environment do
     User.create!(
-      name: "User Hidden",
+      name: "Anonymous",
       email: "user12211332244564324632@framgia.com",
       position: "Member",
       code: Faker::Code.asin,
@@ -44,8 +44,8 @@ namespace :db do
     )
 
     User.create!(
-      name: "Ho Quoc Hai",
-      email: "ho.quoc.hai@framgia.com",
+      name: "Pham Thanh Luan",
+      email: "pham.thanh.luan@framgia.com",
       position: "Member",
       code: Faker::Code.asin,
       password: "Aa@123",
@@ -62,9 +62,27 @@ namespace :db do
     )
 
     User.create!(
-      name: "Pham Thanh Luan",
-      email: "pham.thanh.luan@framgia.com",
-      position: "Member",
+      name: "Nguyen Thi Minh Ngoc",
+      email: "nguyen.thi.minh.ngoc@framgia.com",
+      position: "Hr administrator",
+      code: Faker::Code.asin,
+      password: "Aa@123",
+      password_confirmation: "Aa@123"
+    )
+
+    User.create!(
+      name: "Nguyen Thi Uoc Mo",
+      email: "nguyen.thi.uoc.mo@framgia.com",
+      position: "Group Leader (Non-Tech)",
+      code: Faker::Code.asin,
+      password: "Aa@123",
+      password_confirmation: "Aa@123"
+    )
+
+    User.create!(
+      name: "Tran Thi Kim Ngan",
+      email: "tran.thi.kim.ngan@framgia.com",
+      position: "Event Officer",
       code: Faker::Code.asin,
       password: "Aa@123",
       password_confirmation: "Aa@123"
@@ -144,7 +162,7 @@ namespace :db do
 
   task create_topics: :environment do
     Topic.create!(
-      name: "Q-A Knowledge"
+      name: "Knowledge Q&A"
     )
 
     Topic.create!(
@@ -158,67 +176,160 @@ namespace :db do
 
   task create_posts: :environment do
     Post.create!(
-      title: "Góp ý vê ghế ngồi",
+      title: "Góp ý vê hệ thống Redmine",
       user_id: 1,
       topic_id: 2,
-      work_space_id: 3,
-      content: "Ghế quá cao so với mặt sàn mà bàn lại không có chổ để chân. Ngồi
-      chân không chạm đất mỏi, thậm chí còn bị căng cơ và bị xuống máu sưng chân
-      rất khó chịu"
+      work_space_id: 2,
+      content: "Hiện nay hệ thống redmine chỉ lưu 1 người được assign gây khó khăn cho người quản lý.
+      Ví dụ: sau khi dev hoàn thành ticket, sẽ gán lại cho reviewer và bị mất người dev ban đầu (chỉ lưu trong history).
+      khi reviewer muốn comment lại assign cho dev thì phải tìm trong history để gán lại.
+      Cách làm này tạm thời cũng vẫn chạy, nhưng tôi biết là redmine có thể cấu hình lại để thêm vào các position cho rõ ràng,
+      ví dụ: các vai trò: developer, reviewer của một ticket nên được lưu tách biệt để dễ dàng quản lý và theo dõi.
+      (Tại mỗi thời điểm thì tất nhiên chỉ có một assignee). Công ty có thể cấu hình lại redmine cho rõ ràng các role để tiện lợi hơn không?"
     )
 
     Post.create!(
-      title: "Bằng khen cá nhân",
-      user_id: 2,
+      title: "Morning Speech",
+      user_id: 1,
       topic_id: 2,
-      work_space_id: 3,
-      content: "Bằng khen cho những cá nhân nhận được các giải thưởng hàng tháng
-      của công ty, phần tên người nhận giải được viết tay nhưng vấn đề là chữ
-      viết tay nhìn hơi trẻ con, trông không được trang trọng lắm. Dù sao thì
-      cũng là giấy khen, nếu không viết tay thật đẹp (chữ viết hoa,
-      nét đậm nhạt....) thì tốt nhất là in tên lên giấy, chứ viết tay như hiện
-      giờ nhìn giảm giá trị của bằng khen lắm."
+      work_space_id: 2,
+      content: "mình thấy có khá nhiều những bài speech hay. sao công ty không ghi âm lại những bài speech của mọi người rồi up lên viblo hoặc 1 cái gì đó
+      Vừa tôn trọng người trình bày, vừa giúp những ai không có điều kiện nghe (tầng 18, đến muộn, bên buzz...) có thể nghe lại"
     )
 
     Post.create!(
-      title: "Thêm khẩu trang ý tế vào tủ thuốc",
+      title: "Góp ý Nhà vệ sinh/Toilet",
       user_id: 1,
       topic_id: 2,
       work_space_id: 1,
-      content: "Ngày trước mình nhớ công ty có khẩu trang y tế cho mọi người và
-      để ở tủ thuốc dễ dàng lấy, nhưng sao bây giờ mình k thấy khẩu trang để lấy
-      nữa ạ? tủ thuốc cũng mất tiêu rồi ạ. Công ty có thể để khẩu trang y tế
-      ra chỗ dễ nhìn hơn được k ạ? (bow)"
+      content: "Mình có thể yêu cầu tòa nhà cho vài cái biển báo hỏng treo trước của phòng toilet được không?
+      Để người nào đi VS xong nếu cầu hỏng còn biết để thông báo cho người khác với.
+      Em vừa gặp trường hợp mở nắp VS và thấy ..... nhìn tởm. em cảm ơn."
+    )
+
+    Post.create!(
+      title: "Góp ý khăn lau bàn làm việc",
+      user_id: 1,
+      topic_id: 2,
+      work_space_id: 2,
+      content: "Các cô lau bàn làm việc bằng khăn quá cũ hay sao ấy, lông của khăn lau dính lại rất nhiều trên bàn làm việc,
+      nhìn bẩn kinh khủng ấy, nhiều khi mình k để ý để tay lên còn bị ngứa mẩn đỏ cả 2 tay, rất khó chịu.
+      Cá nhân mình nghĩ thà không lau còn hơn, lau lại thấy bẩn hơn.
+      Mình góp ý công ty nên thay khăn lau mới cho các cô lao công ạ, hoặc là không lau nữa (haiz)"
+    )
+
+    Post.create!(
+      title: "Góp ý Cốc uống nước",
+      user_id: 1,
+      topic_id: 2,
+      work_space_id: 2,
+      content: "Công ty mình có thể thay cốc nhựa bằng cốc giấy để bảo vệ môi trường vs sức khỏe đc ko?"
+    )
+
+    Post.create!(
+      title: "Góp ý Nhà vệ sinh nam",
+      user_id: 1,
+      topic_id: 2,
+      work_space_id: 2,
+      content: "Có rất nhiều người ý kiến nhưng dường như k đc để ý đến. Nhà vệ sinh nam xuống cấp.
+      Vòi nước rửa tay quá ngắn gây khó khăn cho việc rửa tay. Nhà vệ sinh cũng không có mùi thơm nữa kể cả buổi sáng.
+      Rất bực mình mỗi lần đi vệ sinh. Mong công ty để ý đến góp ý của nhân viên. Đừng làm ngơ nữa"
+    )
+
+    Post.create!(
+      title: "Góp ý âm lượng quá to khu xanh tím",
+      user_id: 1,
+      topic_id: 2,
+      work_space_id: 2,
+      content: "Là công ty IT nên việc trong giờ làm các thành viên trong dự án trao đổi với nhau là điều dễ hiểu.
+      Tuy nhiên, mình thấy một vài cá nhân thường xuyên trao đổi với nhau với âm lượng quá to mà không ý thức được rằng đang làm ảnh hưởng đến những người ngồi gần,
+      khiến mọi người không thể tập trung làm việc được.
+      Mình không rõ team nào nhưng có một vài bạn nam ở dãy bàn thứ 2, 3 bên trái (nhìn từ free space) thuộc khu xanh tím thường xuyên nói rất to.
+      Nếu có thể rất mong các bạn giảm bớt âm lượng để những người xung quanh  có thể tập trung hơn vào công việc."
+    )
+
+    Post.create!(
+      title: "Góp ý về ý thức",
+      user_id: 1,
+      topic_id: 2,
+      work_space_id: 1,
+      content: "Bạn N div 3 (Đà Nẵng) có thể sử dụng đồ chung của công ty 1 cách có ý thức không vậy?
+      Không phải mình thấy 1 lần mà nhiều lần rồi, lấy nước mà hết cũng không thay bình mới là sao vậy bạn?"
+    )
+
+    Post.create!(
+      title: "Góp ý việc quote ChatWork",
+      user_id: 1,
+      topic_id: 2,
+      work_space_id: 1,
+      content: "Có thể quote những tin nhắn không liên quan mà bỏ đi phần list người được TO được không?
+      Nhiều khi những tin nhắn TO all nhưng không liên quan cứ đi quote lại."
+    )
+
+    Post.create!(
+      title: "Góp ý dùng từ cho vị trí kỹ sư cầu nối",
+      user_id: 1,
+      topic_id: 2,
+      work_space_id: 1,
+      content: "Về vị trí kỹ sư cầu nối, cty dùng cả BSE và BrSE.
+      BSE cũng là từ viết tắt của chứng bệnh bò điên (Bovine Spongiform Encephalopathy (mad cow disease) nên cty nên xem xét chỉ dùng từ khóa BrSE với vị trí là kỹ sư cầu nối."
+    )
+
+    Post.create!(
+      title: "Góp ý giới thiệu về bản thân",
+      user_id: 1,
+      topic_id: 2,
+      work_space_id: 1,
+      content: "Với các email giới thiệu về bản thân nên yêu cầu nhân viên mới ghi thêm là trực thuộc bộ phận nào, chi nhánh nào (HN, DN, HCM?)"
+    )
+
+    Post.create!(
+      title: "Suggest lót thảm bên trong văn phòng",
+      user_id: 1,
+      topic_id: 2,
+      work_space_id: 1,
+      content: "Sau khi ra thăm văn phòng HN, có suggest là văn phòng Đà Nẵng cũng nên lót thảm bên trong như văn phòng HN.
+      Dạo một vòng quanh văn phòng các tầng trên Vĩnh Trung Plaza thấy công ty nào cũng lót thảm trong văn phòng, nhìn rất đẹp ạ :D"
     )
 
     Post.create!(
       title: "Radio confesstion",
       user_id: 1,
       topic_id: 2,
-      work_space_id: 3,
+      work_space_id: 2,
       content: "Chương trình radio confession rất hay, nhưng có những lúc ngày
       cuối tháng rơi vào giữa tuần làm mọi người không nghe được do bận làm
-        việc. Vì vậy đề nghị ban phát thanh nghiên cứu sắp xếp lịch vào NGÀY
-        THỨ 6 CUỐI CÙNG TRONG THÁNG thì sẽ hợp lý hơn."
+      việc. Vì vậy đề nghị ban phát thanh nghiên cứu sắp xếp lịch vào NGÀY
+      THỨ 6 CUỐI CÙNG TRONG THÁNG thì sẽ hợp lý hơn."
     )
 
     Post.create!(
-      title: "Tìm hiểu về quy trình review bài báo khoa học",
+      title: "Ăn sáng ở công ty",
       user_id: 1,
-      topic_id: 1,
-      work_space_id: WorkSpace.order("RAND()").first.id,
-      content: "Mình muốn tìm hiểu về quy trình review một bài báo khoa học ra sao.
-      Có những tiêu chí nào để được chấp nhận publish trên hội nghị"
+      topic_id: 2,
+      work_space_id: 1,
+      content: "Cảm ơn Công ty đã trả lời ý kiến của mình.
+      Như vậy nếu mình ăn sau 7h45, ngồi ở FS, ý thức là đến giờ làm việc rồi nên sẽ ăn trong 5-10ph thôi và k gây ồn ảnh hưởng xung quanh, thì có được phép k?
+      Mình muốn câu trả lời rõ ràng chứ k vòng vo là Công ty k hạn chế nhưng mọi người nên sắp xếp... Bởi vì không sắp xếp được ăn sáng trước đó (con nhỏ đi học sớm, sáng lỡ dậy trễ, trời mưa...hoặc đồng nghiệp muốn ăn cùng nhau) chứ k cố ý.
+      Nên mình muốn câu trả lời là có được phép hay k, nếu k thì để anh em biết tránh luôn. Còn cho phép thì để mọi người thoải mái, chứ k phải như giờ ăn 5ph thôi mà nhìn trước ngó sau, hồi hộp lỡ leader hay mana đi qua bắt gặp rồi đánh giá!"
     )
+
+    Post.create!(
+      title: "Góp ý gửi mail",
+      user_id: 1,
+      topic_id: 2,
+      work_space_id: 1,
+      content: "Vui lòng tạo group mail HN, các thông báo cho HN cũng mail về cho những người cần."
+    )
+
 
     Post.create!(
       title: "Làm sao test R.E.S.T",
       user_id: 4,
       topic_id: 1,
-      work_space_id: WorkSpace.order("RAND()").first.id,
+      work_space_id: 1,
       content: "Chào mọi người mình là mem mới. Mình đang chuẩn bị cho việc test 1 dự án thông qua Webservice (R.E.S.T).
       Mình thì không có kinh nghiệm test API. Nên nhờ mọi người giới thiệu giúp mình tool test cho R.E.S.T và cách dùng tool đó thế nào luôn ạ.
-
       Cảm ơn mọi người.
       Chúc 1 ngày tốt lành."
     )
@@ -227,100 +338,23 @@ namespace :db do
       title: "Responsive web",
       user_id: 4,
       topic_id: 1,
-      work_space_id: WorkSpace.order("RAND()").first.id,
+      work_space_id: 1,
       content: "Mọi người cho mình hỏi kinh nghiệm để code web reponsive theo hướng mobile-first. Mình cảm ơn."
     )
 
     Post.create!(
-      title: "Web developer intern/fresher",
-      user_id: 1,
-      topic_id: 3,
-      work_space_id: WorkSpace.order("RAND()").first.id,
-      content: "Em chào các anh chị. Hiện e đang năm 3 r, e thấy trên web mình có tuyền Web developer intern/fresher.
-      Vậy yêu cầu để ứng tuyển vào vị trí đó là gì ạ, hay yêu cầu về kiến thức như thế nào ạ.
-      Bởi vì trong lương lai không gần thì xa là em có ý định muốn được làm việc ở Framgia :3. Em cám ơn ạ"
-    )
-
-    Post.create!(
-      title: "Phạm Gia",
-      user_id: 1,
-      topic_id: 3,
-      work_space_id: WorkSpace.order("RAND()").first.id,
-      content: "Mình làm ở Phạm Gia cũng đc hơn năm rồi, anh em trong công ty thực sự rất vui vẻ, đoàn kết.
-      Nhưng mình có cảm giác như rất nhiều người đang tự thoả mãn với chính mình.
-      Nghĩ nền tảng kỹ thuật (mình không bàn tới kỹ năng quản lý) mà mình đang có là đủ để giải quyết mọi vấn đề trong công việc,
-      và thế là ngừng học, ngừng code, chơi game, xem phim trong giờ... Có vẻ do làm out source lâu quá rồi,
-      làm nhiều cái dễ quá nên tự thoả mãn. Khi có vấn đề thì đưa ra giải pháp nhưng lại quá tù, góp ý thì không muốn nghe (okay).
-      Mình là 1 kỹ sư thì cứ học, cứ code nhiều là ấm vào thân, ngừng học 1 ngày là tụt lại đi hàng ngàn năm với công nghệ mới.
-      Học từ sách vở, học từ bạn bè đồng nghiệp, nhưng cái học từ đồng nghiệp đang ngày càng xa vời,
-      khi những người quanh ta đang đứng trên đỉnh cao của sự thành công hay lười biếng cũng ko rõ ;)
-      Hằng ngày tới công ty vẫn phải tự nhủ: Tôi ơi, đừng cuốn vào vòng xoáy ăn chơi như mấy người kia =))
-      Ps: mình biết sau khi đọc stt này sẽ có nhiều cao thủ tự xưng vào chém (hihi)
-      From: Trẻ trâu đi làm"
-    )
-
-    Post.create!(
-      # 10
-      title: "Loa tại VP Đà Nẵng",
-      user_id: 1,
-      topic_id: 1,
-      work_space_id: 1,
-      content: "Bo xem lại chất lượng loa ở vp ĐN. Loa dùng được 2 tuần đến 1 tháng lại hư."
-    )
-
-    Post.create!(
-      # 11
-      title: "Chơi bowling",
-      user_id: 1,
-      topic_id: 2,
-      work_space_id: 2,
-      content: "Năm ngoái Framgia HN có chương trình chơi bowling,
-      mình thấy chương trình khá vui và bổ ích, gắn kết tinh thần đồng đội,
-      các thành viên Framgia. Mình mong  sẽ có thêm lần thứ 2, thứ 3, ... thứ n nữa.
-      Không biết công ty có dự định tổ chức chương trình này nữa không?"
-    )
-
-    Post.create!(
-      # 12
-      title: "Đồ uống công ty",
-      user_id: 1,
-      topic_id: 2,
-      work_space_id: WorkSpace.order("RAND()").first.id,
-      content: "Cty mình có thể mua thêm ống hút ở khu uống nước khu buzz được không ạ?
-      nhiều lúc mình pha cafe nhưng không biết lấy gì để khuấy."
-    )
-
-     Post.create!(
-      # 13
-      title: "Di chuyển lên/xuống văn phòng",
-      user_id: 1,
-      topic_id: 2,
-      work_space_id: 1,
-      content: "Em muốn có chút ý kiến về cầu thang bộ ở văn phòng Đà Nẵng.
-      Hiện tại mật độ nhân viên thuộc các công ty ở toà nhà đang tăng lên với tốc độ chóng mặt.
-      Buổi sáng chờ thang máy mất quá nhiều thời gian và bị động, chưa kể đến những lúc có 1/3 thang thường xuyên không hoạt động.
-      Vậy có thể nào sau thời gian các chị lao công dọn dẹp buổi sáng thì nhờ các chị ấy mở luôn cửa thang bộ được không ạ.
-      Vì lí do an toàn thì có thể mở từ 7h30 trở đi chứ không cần sớm quá.
-      Như vậy sẽ giúp cho khá nhiều nhân viên tiết kiệm được thời gian buổi sáng và chủ động hơn trong việc lên văn phòng của mình;
-      phần nào đó cũng giúp cho các chị em,người đang ốm, mẹ bầu . . .
-      có nhiều cơ hội được đi thang máy hơn mà không phải chờ đợi quá nhiều lượt ạ (bow)"
-    )
-
-    Post.create!(
-      # 14
       title: "<3 Bùi Dương",
       user_id: 1,
       topic_id: 3,
-      work_space_id: 3,
+      work_space_id: 2,
       content: "E muốn hỏi a Bùi Dương có người yêu chưa ạ?Để ý anh lâu lắm rồi *_*"
     )
 
     Post.create!(
-      # 15
       title: "Cảm nắng",
       user_id: 1,
       topic_id: 3,
-      work_space_id: 4,
+      work_space_id: 2,
       content: "Dạ em đang cảm nắng một em team Design and Marketing tên Phạm Thị Thu Hà ạ,
       hình như tên như thế mà em không chắc vì công ty mình toàn để tên không dấu (facepalm).
       Không hiểu sao mới gặp có 1 lần mà đã thấy thích thích rồi, xinh cũng không xinh lắm,
@@ -330,18 +364,16 @@ namespace :db do
     )
 
     Post.create!(
-      # 16
-      title: "Thèm yêu",
+      title: "Muốn yêu 1 e gái làm ở Framgia",
       user_id: 1,
       topic_id: 3,
-      work_space_id: 3,
+      work_space_id: 2,
       content: "Muốn yêu 1 e gái làm ở Framgia quá , nhưng lại ko biết e nào chưa có người yêu cơ !
       Ps : Không biết các em gái ở framgia có kiêu không nhỉ @@
       From: 1 chàng trai FA ở Framgia"
     )
 
     Post.create!(
-      # 17
       title: "Gửi anh Nguyễn Anh Tuấn B",
       user_id: 1,
       topic_id: 3,
@@ -352,7 +384,6 @@ namespace :db do
     )
 
     Post.create!(
-      # 18
       title: "Sum Up The Remix",
       user_id: 1,
       topic_id: 3,
@@ -366,11 +397,10 @@ namespace :db do
     )
 
     Post.create!(
-      # 19
       title: "Nhung khu Buzz",
       user_id: 1,
       topic_id: 3,
-      work_space_id: 3,
+      work_space_id: 2,
       content: "Cho hỏi bạn Nhung cao cao xinh xinh ngồi bên Buzz có người yêu chưa vậy?
       Mấy lần gặp nhìn vào đôi mắt mà chẳng dám nhìn lại lần nữa iiii...
       Hỏi vậy thôi chứ có biết chưa có người yêu hay chưa thì cũng (haizz)
@@ -379,74 +409,158 @@ namespace :db do
     )
 
     Post.create!(
-      # 20
-      title: "Câu lạc bộ Tiếng Anh",
+      title: "Gửi bạn lisu",
       user_id: 1,
-      topic_id: 2,
-      work_space_id: WorkSpace.order("RAND()").first.id,
-      content: "Sao công ty không có câu lạc bộ Tiếng Anh nhỉ,
-      có lần ai nói với mình là tiếng anh mọi người đều giỏi rồi nên không cần,
-      nhưng thực tế mọi người có thể đều nhìn thấy trình độ tiếng anh của mọi ngừời trong những bài morning speech thực tế rất kém.
-      Một công ty IT thì tiếng anh là một yếu tố quan trọng,
-      mong công ty sẽ có clb tiếng anh dạy tiếng anh như clb tiếng Nhật,
-      để thỏa mãn nhu cầu được phát triển tiếng anh hơn nữa của mọi người"
+      topic_id: 3,
+      work_space_id: 2,
+      content: "cho hỏi bạn lisu có người yêu chưa ạ? cứ bị thấy bạn ý dễ thương ý ạ"
     )
+
   end
 
   task create_answers: :environment do
     Answer.create!(
-      user_id: 5,
+      user_id: 6,
+      post_id: 1,
+      content: "Cảm ơn bạn đã đóng góp ý kiến! Trong tất cả các hệ thống quản lý công việc, dự án (không chỉ riêng redmine),
+      việc assign ticket hiện tại chỉ assign cho 1 member cụ thể nào đó trong project,
+      còn việc sử dụng position để hệ thống tự động gán cho member thì hiện tại chưa có.
+      Nếu có thể điều chỉnh chức năng như bạn chia sẻ, nhờ bạn trao đổi trực tiếp phương án với GL của mình để GL đó có thể chia sẻ lại
+      với các GL và MN khác nhé, vì nếu có thể xử lý được việc tự động gán member như vậy thì sẽ rất hữu ích cho việc quản lý chung"
+    )
+
+    Answer.create!(
+      user_id: 7,
       post_id: 2,
-      content: "Cảm ơn bạn đã đóng góp ý kiến! Hiện tại, Công ty cũng đang thay
-      đổi hình thức trao giải hàng tháng cho trang trọng và cẩn thận hơn để xứng
-       đáng với tầm quan trọng của giải thưởng. Ý kiến của bạn thực sự rất hữu
-       ích, đây cũng là 1 điều mà bộ phận phụ trách (IC team) cần lưu ý hơn.
-       Cảm ơn ý kiến đóng góp của bạn."
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Hiện tại, IC team cũng đang lên kế hoạch để thay đổi format của chương trình Morning Speech,
+      theo đó, phần bình chọn nhân viên có bài nói hay nhất trong tháng sẽ được thực hiện trên toàn chi nhánh,
+      nội dung các bài nói sẽ được ghi lại để phục vụ quá trình bình chọn.
+      Như vậy, những bạn không có điều kiện nghe MS do ngồi tại văn phòng khác hoặc đến muộn cũng có thể tiếp cận được nội dung các bài MS trước đó."
     )
 
     Answer.create!(
       user_id: 5,
       post_id: 3,
-      content: "Cảm ơn bạn đã đóng góp ý kiến! Tủ thuốc vẫn được đặt ở góc phải
-      trên mặt quầy bar tuy nhiên do kích thước hộp tủ nhỏ nên bị khuất,
-        khó nhìn. Công ty đã chuyển tủ thuốc ra vị trí dễ nhìn hơn: ngay mặt
-        trước của quầy bar. Bạn có thể ra khu vực này để lấy khẩu trang hoặc
-        thuốc, tư trang y tế. Nếu có vấn đề gì vui lòng liên hệ nhân viên trực
-        tại quầy bar."
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Đây là một ý kiến rất hữu ích.
+      BO đã chuẩn bị sẵn những tấm biển báo Nhà vệ sinh/Toilet hỏng để mọi người chủ động treo lên trước cửa phòng vệ sinhkhi cần cảnh báo cho những người sử dụng tiếp theo.
+      BO sẽ gửi thông báo trên box All một lần nữa để mọi người lưu ý về vấn đề này.
+      Bên cạnh đó, khi có trường hợp nhà vệ sinh hỏng xảy ra, mọi người vui lòng báo trực tiếp cho BO sớm để BO thông báo toà nhà xử lý kịp thời nhé."
+    )
+
+    Answer.create!(
+      user_id: 6,
+      post_id: 4,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Công ty luôn chuẩn bị khăn lau mới cho các cô tạp vụ, tuy nhiên diện tích của công ty khá rộng nên có thể việc vệ sinh của các cô vẫn sẽ xẩy ra sơ suất,
+      BO sẽ nhắc nhở thêm các cô về việc này. Nếu bạn thấy bàn vẫn tiếp tục bị bẩn vì bụi khăn, bạn vui lòng liên hệ trực tiếp với bộ phận Admin
+      (Ms. Vũ Tuyết Mai và Ms. Lương Thu Hằng) để các bạn ấy biết được bàn đó thuộc khu vực nào, có cơ sở kiểm tra trực tiếp và báo lại các cô tạp vụ."
+    )
+
+    Answer.create!(
+      user_id: 6,
+      post_id: 5,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Công ty khuyến khích các bạn tự mang cốc cá nhân của mình lên công ty sử dụng để tránh lãng phí đồng thời cũng bảo vệ môi trường.
+      Cốc nhựa hiện tại chỉ sử dụng trong trường hợp bất khả kháng cần dùng ngay và dùng 1 lần.
+      Để đảm bảo sức khoẻ, tiết kiệm và bảo vệ môi trường, mọi người hãy sắm cho mình 1 chiếc cốc cá nhân đặt tại Công ty nhé, các cô tạp vụ sẽ giúp mọi người vệ sinh cốc hàng ngày vào cuối giờ làm việc !"
+    )
+
+    Answer.create!(
+      user_id: 6,
+      post_id: 6,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Bộ phận BO cũng thường xuyên liên hệ để trao đổi với tòa nhà về các vấn đề nhà vệ sinh,
+      tuy nhiên với tần số sử dụng đông như Công ty mình thì ý thức giữ gìn vệ sinh chung đóng vai trò rất quan trọng.
+      Vì vậy, một mặt BO vẫn nhắc nhở tòa nhà chú ý hơn trong việc dọn dẹp, một mặt rất mong mỗi cá nhân có ý thức hơn nữa trong quá trình sử dụng nhà vệ sinh.
+      Hai vẫn đề nổi bật Công ty xin được trả lời như sau:
+      1. Về vòi nước rửa tay quá ngắn: đây là thiết kế chung cho tất cả các nhà vệ sinh trong tòa nhà, nên phía tòa nhà không thể thay đổi riêng cho phía Framgia được, mong bạn thông cảm.
+      2. Về mùi thơm: Cũng có khi máy tỏa mùi thơm bị hết pin cần reset lại, BO đã yêu cầu tòa nhà lên kiểm tra và xử lý khu vực WC nam của công ty."
+    )
+
+    Answer.create!(
+      user_id: 7,
+      post_id: 7,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Đây cũng là vấn đề mà công ty đã nhắc nhở chung nhiều lần trên các phương tiện khác nhau nhưng vẫn có những trường hợp nói to gây ồn làm ảnh hưởng đến mọi người xung quanh.
+      IC team sẽ cân nhắc thêm phương án để truyền thông tới mọi người lưu ý hơn về vấn đề ý thức nơi làm việc.
+      Đồng thời, IC team cũng đã nhắc nhở team dự án ngồi tại khu vực này chú ý trong việc trao đổi giữa các thành viên trong team. Các bạn ấy đã rút kinh nghiệm không nói quá to để tránh làm mất tập trung mọi người ngồi gần đó.
+      Đôi khi do các team say sưa bàn công việc quá mà vô tình gây ảnh hưởng đến mọi người xunh quanh, vấn đề này chúng ta  cũng có thể trực tiếp nhắc nhở lẫn nhau,
+      cùng nhau nâng cao ý thức tại nơi làm việc, như vậy việc cải thiện các vấn đề trong công ty sẽ nhanh và dễ dàng hơn rất nhiều"
     )
 
     Answer.create!(
       user_id: 5,
-      post_id: 4,
+      post_id: 8,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Đối với các trường hợp như vậy, bạn vui lòng nhắc nhở trực tiếp bạn ấy hoặc báo lại cho BO chi nhánh Đà Nẵng để BO nhắc nhở bạn ấy rút kinh nghiệm khi sử dụng vật dụng chung trong Công ty."
+    )
+
+    Answer.create!(
+      user_id: 5,
+      post_id: 9,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Các bộ phận phụ trách thường quote lại các thông báo để remind nhân viên vì sợ mọi người bị miss những thông tin.
+      Các bộ phận sẽ xem xét tính quan trọng của các thông báo để thay đổi tần suất quote lại kèm với việc mention tất cả nhân viên cho phù hợp."
+    )
+
+    Answer.create!(
+      user_id: 5,
+      post_id: 10,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Trong cộng đồng các Công ty Công nghệ thông tin đặc biệt là các Công ty Nhật Bản,
+      Cả 2 từ viết tắt BSE và BrSE đều thể hiện thuật ngữ Bridge System/Software Engineer (Kỹ sư cầu nối).
+      Tuy nhiên, đúng như bạn nói, ở một lĩnh vực khác BSE lại là từ viết tắt của một thuật ngữ dễ gây hiểu lầm.
+      Để tránh nhầm lẫn, Công ty sẽ xem xét việc thống nhất sử dụng duy nhất từ viết tắt duy nhất là BrSE cho vị trí Kỹ sư cầu nối."
+    )
+
+    Answer.create!(
+      user_id: 5,
+      post_id: 11,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Hiện tại với mỗi đợt nhân viên mới PA đều gửi mail 'Welcome new member' tới toàn bộ nhân viên công ty trong đó ghi rất rõ bộ phận công tác,
+      văn phòng làm việc của nhân viên mới, bạn có thể tham khảo thông tin trong mail này.
+      Đồng thời, PA cũng sẽ nhắc nhở nhân viên mới viết đầy đủ những thông tin cần thiết trong mail giới thiệu bản thân để các thành viên trong công ty nắm được rõ hơn."
+    )
+
+    Answer.create!(
+      user_id: 5,
+      post_id: 12,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Hiện tại, Công ty chưa có kế hoạch lót thảm trải sàn tại văn phòng Đà Nẵng do một vài lý do khách quan.
+      Trong tương lai, nếu có kế hoạch nâng cấp và thay đổi nội thất văn phòng Đà Nẵng, chúng tôi sẽ lưu ý đề xuất này của bạn."
+    )
+
+    Answer.create!(
+      user_id: 7,
+      post_id: 13,
       content: "Cảm ơn bạn đã đóng góp ý kiến! Lịch phát Radio Confession không
       cố định ngày thứ 6 cuối cùng của tháng. Mỗi tháng có 1 dịp lễ đặc biệt,
       ban phát thanh dựa vào đó để lên chủ đề, biên tập nội dung và phát vào
       các dịp lễ đặc biệt của tháng đó. Ban phát thanh đã quyết định chuyển giờ
-       phát Radio Confession sang 12:45 thay cho nhạc báo thức buổi trưa để
-       tránh ảnh hưởng đến công việc của các bạn."
+      phát Radio Confession sang 12:45 thay cho nhạc báo thức buổi trưa để
+      tránh ảnh hưởng đến công việc của các bạn."
     )
 
     Answer.create!(
-      user_id: 2,
-      post_id: 5,
-      content: "Theo tìm hiểu của mình thì sau khi gửi bài đến hội nghị sẽ được phân chia các nhóm reviewer để review bài của mình.
-      Sau khi review nhóm đó sẽ quyết định bài báo của mình có được chấp nhận hay không
-      (thời gian khoảng từ 1 tháng đến 4 tháng tùy vào hội nghị). Có một vài quyết định khi review bài báo của bạn như
-      Chấp nhận (A - Publish Unaltered)
-      Chấp nhận với chỉnh sửa nhỏ (AQ - Minor revision)
-      Chỉnh sửa lớn (RQ - Major revision)
-      Từ chối ngay (R - Reject)
-      Thông thường sẽ ít khi nhóm review cho A ngay từ lần đầu mà sẽ có comment để chỉnh sửa (để cho họ còn có công review :D).
-      Nếu không bị Reject thì bạn sẽ phải chỉnh sửa bài báo cho phù hợp với những comment của người review hoặc có ý kiến phản hồi lại các comment của họ.
-      Tiêu chí để được chấp nhận thì cũng khá là hên xui tùy vào cảm xúc của người review nhưng ít nhất thì cũng có một vai điểm cần chú ý khi viết paper kĩ thuật đó là:
-      Nên viết bằng latex
-      Các công thức phải chính xác
-      Hình vẽ phải dễ hiểu và rõ ràng."
+      user_id: 8,
+      post_id: 14,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Công ty mong muốn mọi người sắp xếp thời gian ăn sáng hợp lý để không bị ảnh hưởng đến công việc.
+      Tuy nhiên nếu trong điều kiện khó khăn quá không thu xếp được thời gian ăn sáng trước giờ làm thì các bạn hoàn toàn có thể ăn sáng trong giờ với việc ý thức hơn và không gây ảnh hưởng đến mọi người xung quanh."
+    )
+
+    Answer.create!(
+      user_id: 8,
+      post_id: 15,
+      content: "Cảm ơn bạn đã đóng góp ý kiến!
+      Mỗi chi nhánh đã có group mail riêng. Các bộ phận thường xuyên gửi thông báo sẽ lưu ý gửi đúng group mail của các chi nhánh."
     )
 
     Answer.create!(
       user_id: 3,
-      post_id: 6,
+      post_id: 16,
       content: "Manual test thì POSTMAN cũng tốt. Nhưng có cái tốt hơn POSTMAN 69 lần là INSOMNIA bạn nhé :)
       https://insomnia.rest/
 
@@ -457,58 +571,9 @@ namespace :db do
 
     Answer.create!(
       user_id: 3,
-      post_id: 7,
+      post_id: 17,
       content: "Bạn có thể đọc và tham khảo từ những bài viết này nhé:
       https://developers.google.com/web/fundamentals/design-and-ui/responsive"
-    )
-
-    Answer.create!(
-      user_id: 2,
-      post_id: 8,
-      content: "có kiến thức nền căn bản đã đc học ở trường em nhé, ngoài ra nhiệt tình hòa nhập và quẩy cùng đc với mng nữa là ok"
-    )
-
-    Answer.create!(
-      user_id: 3,
-      post_id: 9,
-      content: "Phiến diện nhưng ko hẳn đã sai. Bạn đưa ra vài ví dụ thực tế (về code) bạn đã gặp và cách bạn góp ý xem nào"
-    )
-
-    Answer.create!(
-      user_id: 5,
-      post_id: 10,
-      content: "Cảm ơn bạn đã đóng góp ý kiến!
-      Back Office đang kiểm tra tình hình hỏng hóc của loa nghiệm trọng đến đâu để tính phương án sửa chữa triệt để hoặc thay thế mới"
-    )
-
-    Answer.create!(
-      user_id: 5,
-      post_id: 11,
-      content: "Cảm ơn bạn đã đóng góp ý kiến!
-      IC team sẽ xem xét các hoạt động để kết hợp tổ chức cùng các tiệc quý của công ty."
-    )
-
-    Answer.create!(
-      user_id: 5,
-      post_id: 12,
-      content: "Cảm ơn bạn đã đóng góp ý kiến!
-      Công ty sẽ bổ sung đồ khuấy đặt tại FreeSpace của văn phòng Buzz.
-      Công ty sẽ chuẩn bị 2 cốc đặt tại đây, 1 cốc đựng đồ khuấy sạch,
-      1 cốc có nước để khi các bạn khuấy xong sẽ đặt đồ khuấy sử dụng rồi vào đó."
-    )
-
-    Answer.create!(
-      user_id: 5,
-      post_id: 13,
-      content: "Cảm ơn bạn đã đóng góp ý kiến!
-      Cầu thang bộ của các tòa nhà cao tầng được thiết kế để đảm bảo an ninh,
-      nhân viên có thể đi ra được nhưng người ngoài sẽ không vào bên trong được.
-      Hiện nay văn phòng Đà Nẵng có 1 cửa cầu thang bộ để nhân viên đi ra ngoài,
-      tuy nhiên, cửa cầu thang bộ này lại nằm ngay trong văn phòng Công ty, như vậy nếu mở cửa,
-      người lạ cũng có thể vào mà không cần quẹt thẻ, điều này ảnh hưởng rất lớn đến Security.
-      Công ty cũng đã cân nhắc đến việc lắp máy quẹt thẻ tại cửa cầu thang bộ, tuy nhiên đây là diện tích của tòa nhà,
-      Công ty không thể can thiệp. Để đảm bảo an ninh, hiện tại Công ty không thể mở cửa cầu thang bộ được.
-      Các bạn hãy cố gắng đi sớm hơn để tránh tắc thang máy nhé."
     )
 
   end
