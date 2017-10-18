@@ -1,5 +1,5 @@
 <div class="main-content-area">
-  <section class="page-title">
+  <section class="page-title profile-title">
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-sm-7 co-xs-12 text-left">
@@ -30,14 +30,6 @@
                   <div class="profile-name">
                     <h3><%= t "users.user_profile" %></h3>
                     <i><%= current_user.name %> - <%= current_user.position %></i>
-                    <ul class="social-btns">
-                      <li><a href="#" title=""><i class="fa fa-facebook"></i></a>
-                      </li>
-                      <li><a href="#" title=""><i class="fa fa-google-plus"></i></a>
-                      </li>
-                      <li><a href="#" title=""><i class="fa fa-twitter"></i></a>
-                      </li>
-                    </ul>
                   </div>
                 </div>
               </div>
@@ -48,12 +40,6 @@
                   <li><%= count_clips current_user %><i><%= t "users.clips_post" %></i>
                   </li>
                   <li><%= count_posts current_user %><i><%= t "users.posts" %></i>
-                  </li>
-                </ul>
-                <ul class="profile-connect">
-                  <li><a title="" href="javascript:void(0)"><%= t "users.follow" %></a>
-                  </li>
-                  <li><a title="" href="javascript:void(0)"><%= t "users.hire" %></a>
                   </li>
                 </ul>
               </div>
