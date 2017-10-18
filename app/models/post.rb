@@ -30,6 +30,8 @@ class Post < ApplicationRecord
 
   delegate :name, to: :topic, prefix: true
 
+  delegate :name, to: :work_space, prefix: true
+
   scope :get_post_by_topic, -> topic_id {where topic_id: topic_id}
 
   scope :newest, -> {order created_at: :desc}

@@ -9,7 +9,13 @@
           </a>
         </div>
         <div class="col-md-7 col-sm-8  col-xs-12">
-          <h3><%= link_to post.title, post_path(post.id) %></h3>
+          <% if check_workspace_feedback post %>
+            <h3><%= link_to post.title, post_path(post.id) %> -
+              <span class="work_space_name"><%= post.work_space_name %></span>
+            </h3>
+          <% else %>
+            <h3><%= link_to post.title, post_path(post.id) %></h3>
+          <% end %>
           <div class="listing-meta">
             <span>
               <i class="fa fa-clock-o" aria-hidden="true"></i>
