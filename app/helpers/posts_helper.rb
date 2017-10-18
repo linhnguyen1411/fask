@@ -107,4 +107,8 @@ module PostsHelper
       raw '<span class="glyphicon glyphicon-pushpin icon-clip"></span>'
     end
   end
+
+  def check_workspace_feedback post
+    return post.topic_id == 2
+  end
 end
