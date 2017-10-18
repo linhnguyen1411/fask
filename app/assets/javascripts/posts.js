@@ -265,7 +265,7 @@ function delete_comment() {
     var id = $(this).data('id');
     swal({
       title: I18n.t('warning'),
-      text: I18n.t('comments.destroy.are_you_sure'),
+      text: I18n.t('posts.destroy.are_you_sure'),
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#DD6B55',
