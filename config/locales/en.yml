@@ -414,6 +414,7 @@ en:
   following_user_create_post: "Receive notification when the following user create a post"
   receive_notification: "On FAsk"
   receive_email: "Via Email"
+  user_guild: "You can tag another user in your anwer by click icon "
   edit_user:
     update_settings_success: "Update settings successful"
     update_settings_fail: "Update settings failed"
