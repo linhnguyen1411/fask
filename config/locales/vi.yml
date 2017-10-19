@@ -268,10 +268,10 @@ vi:
         other: "%{count} lỗi khi lưu %{resource}:"
   views:
     pagination:
-      first: "&laquo; Trang đầu tiên"
-      last: "Trang cuối cùng &raquo;"
-      previous: "&lsaquo; Trang trước"
-      next: "Trang kế tiếp &rsaquo;"
+      first: "&laquo; Đầu tiên"
+      last: "Cuối cùng &raquo;"
+      previous: "&lsaquo; Trước"
+      next: "Kế tiếp &rsaquo;"
       truncate: "..."
   profile:
     title: "Chỉnh sửa thông tin cá nhân"
@@ -411,6 +411,7 @@ vi:
   following_user_create_post: "Nhận thông báo khi người bạn đang theo dõi tạo một bài đăng"
   receive_notification: "Trên FAsk"
   receive_email: "Qua Email"
+  user_guild: "Bạn có thể gắn thẻ tên người khác bằng cách chọn vào hình "
   edit_user:
     update_settings_success: "Cập nhật cài đặt thành công"
     update_settings_fail: "Cập nhật cài đặt thất bại"
