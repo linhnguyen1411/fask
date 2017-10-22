@@ -2,7 +2,7 @@ class AnswersController < ApplicationController
   before_action :authenticate_user
   before_action :check_post, only: :create
   before_action :load_answer, only: [:update, :edit, :destroy]
-  before_action :check_onwer_answer, only: [:update, :edit, :destroy]
+  before_action :check_onwer_answer, only: [:update, :destroy]
 
   def create
     answer = current_user.answers.new answer_params
@@ -15,8 +15,8 @@ class AnswersController < ApplicationController
   end
 
   def edit
+    success = false
     if params[:edit_content].nil?
-      success = false
       if @answer.post.user == current_user
         if @answer.best_answer == false && @answer.update_attributes(best_answer: true)
           success = true

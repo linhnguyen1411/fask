@@ -423,3 +423,9 @@ en:
   update_your_answer: "Update Your Answer"
   post_your_answer: "Post Your Answer"
   auth_fail: "Auth failure"
+  social_share_button:
+    share_to: "Chia sẻ qua %{name}"
+    facebook: "Facebook"
+    google_plus: "Google +"
+    twitter: "Twitter"
+  view_more_comment: "View more comments..."

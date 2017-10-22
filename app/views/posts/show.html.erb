@@ -20,7 +20,7 @@
   </section>
   <section class="section-padding-80 white question-details">
     <div class="container">
-      <div class="row">
+      <div class="row" id=content-post>
         <div class="col-md-8 col-sm-12 col-xs-12">
           <div class="row">
             <div class="col-md-1">
@@ -99,12 +99,18 @@
           </div>
           <div class="clearfix"></div>
           <div class="form-new-commment">
-            <div class="comment-list" id="comment-list-post-<%= @post.id %>">
-              <%= render partial: "posts/comment", collection: @post.comments, as: :comment %>
+            <div id="next-page" class="next-page">
+              <%= render "view_more", post: @post, next_page: @post_extension.next_page,
+                view_more_time: @post_extension.view_more_time  %>
             </div>
-            <div class="btn-new-comment">
-              <%= link_to t(".new_comment"), "javascript:", class: "add-new-comment",
-                is_login: user_signed_in? %>
+            <div class="comment-list" id="comment-list-post-<%= @post.id %>">
+              <%= render partial: "posts/comment", collection: @post_extension.comments_of_post, as: :comment %>
+            </div>
+            <div class="row bottom-comments">
+              <div class="btn-new-comment col-md-6 col-xs-12">
+                <%= link_to t(".new_comment"), "javascript:", class: "add-new-comment",
+                  is_login: user_signed_in? %>
+              </div>
             </div>
             <% if user_signed_in? %>
               <div class="comment-new">
