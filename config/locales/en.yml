@@ -9,8 +9,9 @@ en:
       user:
         email: Email
         password: Password
-        password_confirmation: Password confirmation
+        password_confirmation: Confirm password
         remember_me: Remember me
+        name: Username
     models:
       user: User
   layouts:
@@ -21,24 +22,24 @@ en:
       mobile_app: "Mobile App"
       login: "Login"
       signup: "Signup"
-      profile: "Profile"
+      profile: "Personal information"
       logout: "Logout"
-      q_a: "Q-A knowledge"
+      q_a: "Knowledge Q&A"
       feedback: "Feedback"
       confession: "Confession"
-      post_question: "Post question"
-      announcement: "Announcement"
-      timeline: "Time Line"
-      question: "Question"
+      post_question: "Submit question"
+      announcement: "Notification"
+      timeline: "Activity log"
+      question: "Your question"
       search_panel:
         placeholder: "Search..."
     footer:
-      detail: "Framgia Viet Nam is a company 100% Japan funded specializing in design, development applications such as mobile phone software, games, social and website applications."
+      detail: "Framgia Vietnam is a 100% Japanese owned company that specializes in building applications on phones, games, social applications and Web-based applications."
       copyright: "Copyright 2017 Framgia, Inc. All rights reserved."
       address: "13F Keangnam Landmark 72 Tower, Plot E6, Pham Hung Road, Nam Tu Liem, Ha Noi, Viet Nam"
       phone: "84-4-3795-5417"
       email: "hr_team@framgia.com"
-      reader: "Using document"
+      reader: "Documentation"
       home: "Home"
       company_name: "Framgia Vietnam"
       site_links: "Site Links"
@@ -47,11 +48,11 @@ en:
       search: "Search"
       recent_question: "Recent question"
       view: "View"
-      answer: "Answer"
+      answer: "Reply"
       vote: "Vote"
-      top_user: "Top User"
-      all_user: "All User"
-      recent_comments: "Recent Comments"
+      top_user: "Top members"
+      all_user: "All members"
+      recent_comments: "New reply"
       recently_answered: "Recently answered"
       top_views: "Top views"
       top_votes: "Top votes"
@@ -67,7 +68,7 @@ en:
       step_3: "Find Your Solution"
       search_panel:
         title: "HAVE A QUESTION?"
-        content: "If you have any knowledge-question/company-feedback/funny-confesstion you can ask below or enter what you are looking for!"
+        content: "If you have questions about teachnical stuffs, suggestions for company, or want to share your feelings and thoughts in confession, you can search here!"
         placeholder: "Type your search terms here"
         button: "Search"
       question_not_exist: "Question not exist."
@@ -133,9 +134,9 @@ en:
       title: "Post Your QA-Knowledge/Feedback/Confession"
       toppic: "Choose toppic"
       location: "Location"
-      qa_info: "You have technical questions, please log in and ask questions here. The team members are always enthusiastic support for you."
-      feedback_info: "You have suggestions for building a company or company policy questions that you would like answered. Please feedback here. You can post as an individual or hide your identity."
-      confession_info: "You have the heart of love to disclose but not confident enough. Let f-ask do that for you. F-ask does not store any of your information at confession."
+      qa_info: "You have questions about technical things, please login and enter the questions here. All the members are always willing to support you."
+      feedback_info: "You have suggestions to build a company or a question about the company policy you would like to be answered for. Please let us know here.You can post it under your personal or anonymous identity."
+      confession_info: "You have feeling, but you are not confident enough to share it. Let f-ask help you to do that. F-ask does not save any of your information at confesstion."
       form:
         title: "Title"
         content: "Content"
@@ -247,10 +248,10 @@ en:
     mailer:
       reset_password_instructions:
         hello: "Hello"
-        introduction: "Someone has requested a link to change your password. You can do this through the link below."
+        introduction: "You have requested a password change. You can follow the instructions below."
         btn_change_password: "Change my password"
-        helper: "<p>If you didn't request this, please ignore this email.</p>
-         <p>Your password won't change until you access the link above and create a new one.</p>"
+        helper: "<p> If you did not request a password change, please ignore this email.</p>
+         <p>Your password will remain unchanged until you access the link above and create a new one.</p>"
   topics:
     show:
       recent_questions: "Recent Questions"
@@ -312,14 +313,14 @@ en:
   cancel: "Cancel"
   edit: "Edit"
   delete: "Delete"
-  clip: "Clip"
-  unclip: "Unclip"
+  clip: "Pin"
+  unclip: "Unpin"
   reactions:
     create:
       success: "Success"
       error: "Error"
   users:
-    user_profile: "User Profile"
+    user_profile: "Personal information"
     follower: "Follower"
     clips_post: "Clips Post"
     posts: "Posts"
@@ -328,8 +329,8 @@ en:
     index:
       breadcrumb: "List Users"
       home: "Home"
-      not_found: "Not found this user"
-      follow_error: "Handle follow fail. Please try again!"
+      not_found: "This user was not found"
+      follow_error: "Follow-up failed, please try again!"
     user:
       follow: "Follow"
       following: "Following"
@@ -338,7 +339,7 @@ en:
       question: "Question"
       answer: "Answer"
     show:
-      detail: "Show Detail User"
+      detail: "User details"
       home: "Home"
       user_list: "User List"
       question: "Question"
@@ -349,10 +350,10 @@ en:
     comment:
       on: "On"
   clips:
-    create_success: "Clip post success."
-    create_error: "Clip post error."
-    destroy_success: "Unclip post success."
-    destroy_error: "Unclip post error."
+    create_success: "Successfully pin the post."
+    create_error: "Failed to pin the post"
+    destroy_success: "Successfully unpin the post."
+    destroy_error: "Failed to unpin the post"
   noti:
     of_you: " of you."
     send: " post"
@@ -362,15 +363,15 @@ en:
     clip: " clip"
     tag: " tag"
     you: " you"
-    create_post: "Have posted a new post"
-    in_topic: " in topic "
-    tag_post: "Have tagged you in a post"
-    tag_answer: "Have tagged you in a answer of post"
-    answer_post: "Have replied to your post"
-    comment_post: "Have commented on your post"
-    comment_answer: "Have commented on your answer"
-    in_post: " in post"
-    clip_post: "Have clipped your post"
+    create_post: "A new article is posted"
+    in_topic: " In the topic "
+    tag_post: "Mentioned you in a post"
+    tag_answer: "Mentioned you in message replies"
+    answer_post: "Replied to your post"
+    comment_post: "Commented on your post"
+    comment_answer: "Commented on your answer"
+    in_post: " In the post"
+    clip_post: "Pinned your posts"
     have: "Have"
     your: " your"
     your_post: " your post"
@@ -382,10 +383,10 @@ en:
     upvote: " upvoted"
     downvote: " downvoted"
     heart: " loved"
-    follow_user: "Have followed you"
+    follow_user: "Has followed you"
   notifications:
     index:
-      title: "Notifications"
+      title: "Announcement"
       home: "Home"
     seen_all: "Seen it all"
     view_all: "View all"
@@ -399,25 +400,25 @@ en:
       post: "Posts"
       follwer: "Follwer"
   setting_notification: "Notification settings"
-  choose_default_language: "Choose default language"
-  choose_language: "Choose language"
-  receive_all_notification: "Receive all notification"
-  left_new_comments_on_your_posts: "Receive notification when someone left new comments on your posts"
-  left_new_comments_on_your_answers:  "Receive notification when someone left new comments on your answers"
-  your_posts_are_replied: "Receive notification when someone your posts are replied"
-  upvote_downvote_your_posts: "Receive notification when someone upvote/downvote your posts"
-  like_your_comments: "Receive notification when someone like your comments"
-  like_love_corect_your_answers:  "Receive notification when someone like/love/corect your answers"
-  clipped_your_posts: "Receive notification when someone clipped your posts"
-  someone_tagged_you_in_their_posts: "Receive notification when someone tagged you in their posts"
-  someone_followed_you: "Receive notification when someone followed you"
-  following_user_create_post: "Receive notification when the following user create a post"
+  choose_default_language: "Choose your default language"
+  choose_language: "Select language"
+  receive_all_notification: "Get all notifications"
+  left_new_comments_on_your_posts: "Receive notifications when comments are posted about your posts"
+  left_new_comments_on_your_answers:  "Receive notification when there are comments on your answer"
+  your_posts_are_replied: ""Get notified when your post is replied"
+  upvote_downvote_your_posts: "Get notified when your post has an upvote / downvote"
+  like_your_comments: "Get notified when your comment is liked"
+  like_love_corect_your_answers:  "Get notified when your answer is liked / loved"
+  clipped_your_posts: "Get notified when someone pinned your post"
+  someone_tagged_you_in_their_posts: "Get notified when you are tagged in a post"
+  someone_followed_you: "Get notified when you have someone follow"
+  following_user_create_post: "Get notified when the person you are following creates a post"
   receive_notification: "On FAsk"
   receive_email: "Via Email"
-  user_guild: "You can tag another user in your anwer by click icon "
+  user_guild: "You can tag someone else's name by selecting the"
   edit_user:
-    update_settings_success: "Update settings successful"
-    update_settings_fail: "Update settings failed"
+    update_settings_success: "Successfully updated settings"
+    update_settings_fail: "Failed to pdate settings"
     update: "Update"
   setting: "Setting"
   update_your_answer: "Update Your Answer"
