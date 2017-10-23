@@ -38,7 +38,7 @@
                   {class: "questions-category form-control", id: "select-location"} %>
               </div>
               <div class="form-group">
-                <label><%= t ".form.title" %></label>
+                <label><%= t ".form.title" %><span class="red-title"> *</span></label>
                 <%= f.text_field :title, maxlength: Settings.post.max_title,
                   minlength: Settings.post.min_title, required: true, class: "form-control" %>
               </div>
@@ -48,7 +48,7 @@
                   data: {role: "tagsinput"} %>
               </div>
               <div class="form-group">
-                <label><%= t ".form.content" %></label>
+                <label><%= t ".form.content" %><span class="red-title"> *</span></label>
                 <%= f.text_area :content, minlength: Settings.post.min_title,
                   required: true, class: "form-control froalaEditor" %>
               </div>

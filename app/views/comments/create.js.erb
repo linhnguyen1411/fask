@@ -57,7 +57,7 @@ $('.btn-vote').click(function(){
 $('.btn-edit-comment').unbind();
 $('.btn-edit-comment').click(function(){
   $('#comment-content').attr('data-id', $(this).data('id'));
-  $('#comment-content').val($(this).closest('.item-body').find('.content').html());
+  $('#comment-content').val($(this).closest('.item-body').find('.content').text());
 });
 
 $('.btn-accept-edit-comment').unbind();
