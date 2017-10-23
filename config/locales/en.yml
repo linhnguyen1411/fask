@@ -81,11 +81,12 @@ en:
         available: "Available on the"
         android: "Google Store"
         ios: "iOS App Store"
+        comming_soon: "Comming soon"
       login:
         title: "Join Us On"
         facebook: "FACEBOOK"
         google: "GOOGLE PLUS"
-        framgia: "FRAMGIA ACCOUNT"
+        framgia: "WSM ACCOUNT"
     new:
       sign_in: "Sign In"
       breadcrumb: "Sign In To Your Account"
@@ -406,7 +407,7 @@ en:
   choose_language: "Select language"
   receive_all_notification: "Get all notifications"
   left_new_comments_on_your_posts: "Receive notifications when comments are posted about your posts"
-  left_new_comments_on_your_answers:  "Receive notification when there are comments on your answer"
+  left_new_comments_on_your_answers: "Receive notification when there are comments on your answer"
   your_posts_are_replied: "Get notified when your post is replied"
   upvote_downvote_your_posts: "Get notified when your post has an upvote / downvote"
   like_your_comments: "Get notified when your comment is liked"
