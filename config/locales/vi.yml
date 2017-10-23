@@ -52,6 +52,7 @@ vi:
       vote: "Đánh giá"
       top_user: "Top thành viên"
       all_user: "Tất cả thành viên"
+      recent_comments: "Bình luận mới"
       recently_answered: "Trả lời mới"
       top_views: "Xem nhiều"
       top_votes: "Đánh giá cao"
@@ -150,6 +151,7 @@ vi:
     login:
       email: "Email"
       password: "Mật khẩu"
+      login: "Đăng nhập"
     create:
       email_or_password_not_exist: "Email/Mật khẩu không đúng."
       create_success: "Tạo bài viết thành công"
@@ -191,11 +193,13 @@ vi:
   comments:
     not_found: "Không tìm thấy đối tượng này"
     index:
-      spam: "Spam"
       like_comment: "Thích bình luận lời này"
+      spam: "Spam"
     create:
       btn_comment: "Bình luận"
       content: "Nhập bình luận của bạn..."
+    destroy:
+      are_you_sure: "Bạn có chắc chắn xóa bình luận này"
   shared:
     error_messages:
       info: "Biểu mẫu này có"
@@ -281,6 +285,8 @@ vi:
     btn_update: "Cập nhật"
     btn_choose_avatar: "Chọn hình đại diện"
     btn_update_pass: "Cập nhật mật khẩu"
+    activities: "Activities"
+    btn_update_pass: "Update Password"
     update_password:
       success: "Cập nhật mật khẩu thành công"
       error: "Cập nhật mật khẩu thất bại"

@@ -1,5 +1,5 @@
 en:
-  fask: "FAsk"
+  fask: "F-Ask"
   language:
     vi: "Tiếng Việt"
     en: "English"
@@ -129,6 +129,7 @@ en:
       all_posts: "Your Posts"
       all_clips: "Your Clips "
       comment: "COMMENTS"
+      view: "VIEWS"
     new:
       title_name: "New post"
       title: "Post Your QA-Knowledge/Feedback/Confession"
@@ -147,10 +148,10 @@ en:
         tags: "Tags"
         add_a_tag: "Add an tag"
         search_user_not_found: "User not found..."
-      login:
-        email: "Email"
-        password: "Password"
-        login: "Login"
+    login:
+      email: "Email"
+      password: "Password"
+      login: "Login"
     create:
       email_or_password_not_exist: "Email/Password not exist."
       create_success: "Create post success"
@@ -198,7 +199,7 @@ en:
       btn_comment: "Comment"
       content: "Enter comment of you..."
     destroy:
-      are_you_sure: "You are sure to delete this comment?"
+      are_you_sure: "Are you sure delete this comment?"
   shared:
     error_messages:
       info: "This form has"
@@ -283,6 +284,7 @@ en:
     update_image: "Update Avatar"
     btn_update: "Update My Profile"
     btn_choose_avatar: "Choose avatar"
+    btn_update_pass: "Update Password"
     activities: "Activities"
     btn_update_pass: "Update Password"
     update_password:
