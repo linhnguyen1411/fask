@@ -16,7 +16,7 @@
         <%= raw load_button_edit_delete_comment(comment)  %>
       </p>
     </div>
-    <div class="content"><%= raw comment.content %></div>
+    <div class="content"><%= simple_format comment.content %></div>
     <div class="pad-ver pull-right">
       <%= load_btn_reactions comment, t("posts.answer.like_answer"), Settings.reaction_type.like %>
       <%= load_btn_reactions comment, t("posts.answer.spam"), Settings.reaction_type.dislike %>
