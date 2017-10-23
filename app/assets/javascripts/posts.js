@@ -193,7 +193,7 @@ function correct_answer() {
 function load_modal_edit_comment() {
   $('.btn-edit-comment').click(function(){
     $('#comment-content').attr('data-id', $(this).data('id'));
-    $('#comment-content').val($(this).closest('.item-body').find('.content').html());
+    $('#comment-content').val($(this).closest('.item-body').find('.content').text());
   });
 }
 

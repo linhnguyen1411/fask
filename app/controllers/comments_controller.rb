@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user
   before_action :load_comment, only: [:update, :destroy]
-
+  include ActionView::Helpers::TextHelper
   def create
     @object = find_object params[:comment][:object_type], params[:comment][:object_id]
     @comment = @object.comments.build comment_params
@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
     end
     respond_to do |format|
       format.json do
-        render json: {type: success, content: @comment.content}
+        render json: {type: success, content: simple_format(@comment.content)}
       end
     end
   end
