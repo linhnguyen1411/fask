@@ -81,11 +81,12 @@ vi:
         available: "Available on the"
         android: "Google Store"
         ios: "iOS App Store"
+        comming_soon: "Sắp ra mắt"
       login:
         title: "Join Us On"
         facebook: "FACEBOOK"
         google: "GOOGLE PLUS"
-        framgia: "FRAMGIA ACCOUNT"
+        framgia: "WSM ACCOUNT"
     new:
       sign_in: "Đăng Nhập"
       breadcrumb: "Đăng Nhập Vào Tài Khoản Của Bạn"
@@ -410,7 +411,7 @@ vi:
   your_posts_are_replied: "Nhận thông báo khi bài đăng của bạn được trả lời "
   upvote_downvote_your_posts: "Nhận thông báo khi bài đăng của bạn có upvote / downvote "
   like_your_comments: "Nhận thông báo khi bình luận của bạn được like"
-  like_love_corect_your_answers:  "Nhận thông báo khi câu trả lời của bạn được like / love "
+  like_love_corect_your_answers: "Nhận thông báo khi câu trả lời của bạn được like / love "
   clipped_your_posts: "Nhận thông báo khi ai đó ghim bài viết của bạn"
   someone_tagged_you_in_their_posts: "Nhận thông báo khi bạn được gắn thẻ trong một bài đăng"
   someone_followed_you: "Nhận thông báo khi bạn có ai đó theo dõi"

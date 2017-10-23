@@ -471,3 +471,31 @@ p {
 .bottom-comments {
   margin-left: 10%;
 }
+.not-link > ul > li > a, .not-link.app-grid {
+  cursor: default;
+}
+.vertical-center{
+  margin-top: 15px;
+}
+.best-answer{
+  float: right;
+}
+.best-answer > .ribbon.base {
+  position: relative;
+  top: 0px;
+  right: 0px;
+  padding: 0px;
+}
+.item-answer > .mar-btm > .item-time {
+  margin-left: 10px;
+}
+.center-three-col{
+  display: flex;
+  justify-content: center;
+}
+.social2.wsm-account >a{
+  padding: 57px 20px;
+}
+.search-area.container > center >p {
+  max-width: 700px;
+}

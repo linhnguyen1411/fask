@@ -17,7 +17,7 @@ class AnswersController < ApplicationController
   def edit
     success = false
     if params[:edit_content].nil?
-      if @answer.post.user == current_user
+      if @answer.post.user == current_user && @answer.user != current_user
         if @answer.best_answer == false && @answer.update_attributes(best_answer: true)
           success = true
         end

@@ -81,11 +81,12 @@ ja:
         available: "Available on the"
         android: "Google Store"
         ios: "iOS App Store"
+        comming_soon: "Comming soon"
       login:
         title: "Join Us On"
         facebook: "FACEBOOK"
         google: "GOOGLE PLUS"
-        framgia: "FRAMGIA ACCOUNT"
+        framgia: "WSM ACCOUNT"
     new:
       sign_in: "ログイン"
       breadcrumb: "あなたのアカウントにサインインする"
@@ -410,7 +411,7 @@ ja:
   your_posts_are_replied: "Receive notification when someone your posts are replied"
   upvote_downvote_your_posts: "Receive notification when someone upvote/downvote your posts"
   like_your_comments: "Receive notification when someone like your comments"
-  like_love_corect_your_answers:  "Receive notification when someone like/love/corect your answers"
+  like_love_corect_your_answers: "Receive notification when someone like/love/corect your answers"
   clipped_your_posts: "Receive notification when someone clipped your posts"
   someone_tagged_you_in_their_posts: "Receive notification when someone tagged you in their posts"
   someone_followed_you: "Receive notification when someone followed you"
