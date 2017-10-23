@@ -17,8 +17,12 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post_extension = Supports::PostSupport.new Post, nil, nil, nil, nil
+    @post_extension = Supports::PostSupport.new Post, nil, nil, nil, params[:comment_page], params[:view_more_time], @post
     @answer = Answer.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create

@@ -1,0 +1,5 @@
+<% unless next_page.zero? %>
+  <%= link_to t("view_more_comment"),
+    post_path(post, comment_page: next_page, view_more_time: view_more_time),
+    data: {turbolinks: false}, remote: true %>
+<% end %>

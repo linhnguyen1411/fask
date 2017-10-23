@@ -75,3 +75,8 @@ serialize_true: "1"
 serialize_false: "0"
 from_mail: "fask.info@gmail.com"
 scan_begin_index: 13
+show_view_more: 3
+paginate_comment: 3
+not_view_more: 0
+second_page: 2
+one_page: 1
