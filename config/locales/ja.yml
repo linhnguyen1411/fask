@@ -11,6 +11,7 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "ログインを記憶"
+        name: Username
     models:
       user: "ユーザ"
   layouts:
@@ -51,6 +52,7 @@ ja:
       vote: "投票する"
       top_user: "トップユーザー"
       all_user: "すべてのユーザー"
+      recent_comments: "New reply"
       recently_answered: "最近の答えた"
       top_views: "トップの観る"
       top_votes: "トップの投票する "
@@ -60,7 +62,6 @@ ja:
       tags: "タグ"
       comment: "コメント"
       how_it_works: "使い方"
-      step_3: "ソリューションを探す"
       title_step: "ログインし、あなたの質問を投稿しソリューションを探す"
       step_1: "ログイン"
       step_2: "あなたの質問を投稿する"
@@ -197,6 +198,8 @@ ja:
     create:
       btn_comment: "コメント"
       content: "あなたのコメントを入力..."
+    destroy:
+      are_you_sure: "Bạn có chắc chắn xóa bình luận này"
   shared:
     error_messages:
       info: "このフォームには"
@@ -281,6 +284,8 @@ ja:
     update_image: "アバターを更新"
     btn_update: "私のプロフィールを更新する"
     btn_choose_avatar: "アバターを選択"
+    btn_update_pass: "Cập nhật mật khẩu"
+    activities: "Activities"
     btn_update_pass: "パスワードの更新"
     update_password:
       success: "成功"
@@ -295,8 +300,13 @@ ja:
       post_not_exist: "見つからない"
       create_success: "成功"
       create_error: "エラー"
-      edit:
-        answer_not_exist: "答えは存在しない"
+      load_answer:
+      answer_not_exist: "答えは存在しない"
+    check_user:
+      wrong_user: "invalid user"
+    not_found: "Answer not found."
+    destroy:
+      are_you_sure: "Are you sure delete this answer?"
   login_to_continue: "この機能を使用するには、ログインしてください。"
   success: "成功"
   error: "エラー"
