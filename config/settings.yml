@@ -26,8 +26,8 @@ max_search_tags: 5
 plus_one: 1
 paginate_offset: 1
 paginate_default: 5
-paginate_tags: 20
-paginate_users: 6
+paginate_tags: 12
+paginate_users: 8
 paginate_posts: 10
 id_user_hiddent: 1
 hr_administrator: "Hr administrator"
@@ -53,6 +53,8 @@ relationships:
 limit_string:
   content: 200
   name: 50
+  user_name: 25
+  tag_name: 25
 activity:
   key:
     follow: "create"

@@ -3,14 +3,9 @@ class UsersController < ApplicationController
   before_action :authenticate_user
 
   def index
-    if user_signed_in?
-      @users = User.page(params[:page])
-        .get_users_not_contain_id([current_user.id, Settings.id_user_hiddent])
-        .per Settings.paginate_users
-    else
-      @users = User.page(params[:page]).get_users_not_contain_id(Settings.id_user_hiddent)
-        .per Settings.paginate_users
-    end
+    @users = User.page(params[:page])
+      .get_users_not_contain_id([current_user.id, Settings.id_user_hiddent])
+      .per Settings.paginate_users
   end
 
   def show
