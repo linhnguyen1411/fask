@@ -363,9 +363,9 @@
                     <tr>
                       <th class="col-md-3 choose_language"><%= t "choose_language" %></th>
                       <td class="col-md-3">
-                      <%= f.select :language, options_for_select([[t("vietnam"), "vi"],
-                        [t("english"), "en"], [t("japanese"), "ja"]],
-                        current_user.language), {}, class: "form-control" %>
+                      <%= f.select :language, options_for_select([[t("language.vi"), "vi"],
+                        [t("language.en"), "en"], [t("language.ja"), "ja"]],
+                        (current_user.language || "en")), {}, class: "form-control" %>
                       </td>
                       <td class="col-md-6"></td>
                     </tr>

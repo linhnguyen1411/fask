@@ -6,7 +6,7 @@
       <%= form_tag "/posts", method: :get, class: "search-form clearfix",
         id: "search-form" do %>
         <%= text_field_tag "query", params[:query], class: "form-control
-          search-term", placeholder: t(".search_panel.placeholder") %>
+          search-term search-input", placeholder: t(".search_panel.placeholder") %>
         <%= submit_tag t(".search_panel.button"), class: "search-btn" %>
       <% end %>
     </div>

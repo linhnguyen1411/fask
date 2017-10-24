@@ -7,6 +7,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       set_flash_message(:notice, :success, kind: auth.provider) if is_navigational_format?
       sign_in_and_redirect @user
+      I18n.locale = current_user.language
+      session[:locale] = I18n.locale
     else
       flash[:notice] = t "auth_fail"
       redirect_to root_path
