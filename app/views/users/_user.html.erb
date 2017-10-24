@@ -7,8 +7,8 @@
   <%= link_to (image_tag get_avatar_user(user), class: "img-circle avatar-user"),
     user_path(user.id) %>
   <p>
-    <%= link_to raw("<b>" + truncate(user.name, length: Settings.limit_string.name) + "</b>"),
-      user_path(user.id), class: "custom_text_link" %>
+    <%= link_to raw("<b>" + truncate(user.name, length: Settings.limit_string.user_name,
+      separator: /\s/) + "</b>"), user_path(user.id), class: "custom_text_link", title: user.name %>
     <div class="list-info">
       <span class="badge info-item" data-toggle="tooltip" title="<%= t ".question" %>">
         <span class="fa fa-pencil"> <%= user.posts.size %></span>
