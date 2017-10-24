@@ -1,4 +1,5 @@
 <% provide :button_text, t(".post_your_answer") %>
+<% provide :improve_text, "Improve"%>
 <div id="current-toppic" data-id="<%= @post.topic_id %>"></div>
 <div class="main-content-area">
   <section class="page-title">
@@ -72,13 +73,19 @@
                         <i class="fa fa-comment-o" aria-hidden="true"></i>
                         <%= count_comment @post %> <%= t "posts.index.comment" %>
                       </span>
+                      <% if @post.user_id == current_user.id %>  
+                        <span>
+                          <i class="fa fa-pencil" aria-hidden="true"></i>
+                          <%= link_to "#{count_version @post}" + t("version.suggested_changes"), 
+                          a_versions_path(post_id: @post.id) %>
+                        </span>
+                      <% end %>
                       <span class="float-right">
                         <%= raw load_button_functions_post(@post) %>
                         <%= link_to "javascript:void(0)", data:
                           { toggle: "collapse",target: "#share_btn"} do %>
                             <i class="fa fa-share-alt btn-share" aria-hidden="true"></i>
                           <% end %>
-
                       </span>
                     </div>
                   </div>
@@ -86,7 +93,17 @@
                     <div id="share_btn" class="collapse custom-share">
                       <%= social_share_button_tag(@post.title) %>
                     </div>
-                    <%= raw @post.content %>
+                    <span class="post-content">
+                      <%= raw @post.content %>
+                    </span>
+                    </br>
+                    <% if @post.user_id != current_user.id %>
+                      <%= link_to (t"version.improve_this_post"), "javascript:", class: "improve-post" %>
+                      <div id="improve-form" style="display: none;">
+                        <%= render "posts/improve_form", post: @post,
+                          option: {remote: false} %>
+                      </div>
+                    <% end %>
                     <div class="tagcloud">
                       <% @post.tags.each do |tag| %>
                         <%= link_to tag.name, tag %>
@@ -199,3 +216,4 @@
     </div>
   </div>
 </div>
+

@@ -165,6 +165,7 @@ en:
       detail: "Question detail"
       home: "Home"
       post_your_answer: "Post your answer"
+      post_your_improvement: "Post your improvement"
       answer_placeholder: "I Have The Other Answer!"
       hot_question: "Hot Questions"
       recent_comments: "Recent Comments"
@@ -312,6 +313,9 @@ en:
   success: "Success"
   error: "Error"
   warning: "Warning"
+  info: "Info"
+  agree: "You certainly agree?"
+  cancel_version: "Make sure you cancel!"
   ok: "Ok"
   cancel: "Cancel"
   edit: "Edit"
@@ -387,6 +391,7 @@ en:
     downvote: " downvoted"
     heart: " loved"
     follow_user: "Has followed you"
+    suggested_changes: "Had suggested changes on your post"
   notifications:
     index:
       title: "Announcement"
@@ -433,3 +438,9 @@ en:
     google_plus: "Google +"
     twitter: "Twitter"
   view_more_comment: "View more comments..."
+  version:
+    approve: "Approve"
+    suggested_changes: " suggested changes"
+    no_change: "No change"
+    improve_this_post: "Improve this post"
+    status: "Status"

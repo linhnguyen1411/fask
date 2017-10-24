@@ -15,6 +15,10 @@ module PostsHelper
     post.reactions.upvote.size - post.reactions.downvote.size
   end
 
+  def count_version post
+    post.a_versions.get_version_not_reject.size
+  end
+
   def add_class_active_to_show_page type_input, type_sort, is_first_tab = false
     !type_input && is_first_tab || type_input && type_input == type_sort ? "active" : ""
   end

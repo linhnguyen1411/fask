@@ -101,6 +101,10 @@ class Activity < PublicActivity::Activity
         self.trackable.post.user.notification_settings[:clip_post] == Settings.serialize_true)
         create_notification self.trackable.post.user_id
       end
+    when AVersion.name
+      if (self.trackable.user.notification_settings.empty?)
+        create_notification self.trackable.a_versionable.user_id
+      end
     when Relationship.name
       if (self.recipient.notification_settings.empty? ||
         self.recipient.notification_settings[:clip_post] == Settings.serialize_true)

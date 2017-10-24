@@ -1,0 +1,81 @@
+<div class="main-content-area">
+  <section class="page-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-7 co-xs-12 text-left">
+          <h1><%= t ".detail" %></h1>
+        </div>
+        <div class="col-md-6 col-sm-5 co-xs-12 text-right">
+          <div class="bread">
+            <ol class="breadcrumb">
+              <li><%= link_to t(".home"), root_path %></li>
+              <li class="active"><%= t ".detail" %></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+   <section class="section-padding-80 white question-details">
+    <div class="container">
+      <div class="row">
+      	<h1 style="color: black">Your Question : <%= @post.title%></h1>
+      	<div class="media-block card-box ">
+          <div class="media-body post-content">
+          	<%= raw @post.content%>
+          </div>
+        </div>
+        <h1 style="color: black">Your Suggeted changes :</h1>
+	      <%@version.each do |v| %>
+	      	<div class="media-block card-box a-version-<%= v.id %>">
+	          <div class="media-body">
+	          	<div class="media-left">
+                <a href="#" class="a-version-avatar">
+                  <%= image_tag v.user.avatar %>
+                </a>
+              </div>	
+              <div class="mar-btm">
+                <h4>
+                	<%=link_to v.user.name , user_path(v.user.id), class: "btn-link text-semibold media-heading box-inline" %>
+                </h4>
+                <p class="text-muted text-sm"><i class="fa fa-clock-o fa-lg"></i><%= v.created_at%></p>
+                  <span class= "more"><%= raw v.content %></span>
+              </div>
+	          	</br>
+	          	<%if v.status == "accept" %>
+                <p class="a-version-status-<%= v.id%> version-accept"><%= t "version.status" %>: 
+                  <%= v.status %></p>
+              <% else %>
+                <p class="a-version-status-<%= v.id %>"><%= t "version.status" %>: <%= v.status %></p>
+                <span class="btn-version-accept">
+              <% end %>
+                  <%= raw load_approve_reject_a_version_button(v) %>
+	          </div>
+	        </div>
+	      <% end %>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="modal fade" id="modal-edit-comment">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><%= t ".edit_comment" %></h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <%= text_area_tag "comment-content", "", placeholder: t("comments.create.content"),
+            minlength: Settings.post.min_title, required: true, class: "form-control resize-none" %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-xs btn-default" data-dismiss="modal"><%= t "cancel" %></button>
+        <button type="button" class="btn btn-xs btn-primary
+          btn-accept-edit-comment" data-dismiss="modal">
+          <%= t "ok" %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
