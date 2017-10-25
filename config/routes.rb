@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :clips, only: [:create, :destroy]
   resources :notifications, only: [:index, :update]
   resources :user_settings, only: [:edit, :update]
+  resources :a_versions
 
   namespace :dashboard do
     resources :posts
