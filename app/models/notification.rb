@@ -57,6 +57,13 @@ class Notification < ApplicationRecord
     when Clip.name
       post = activity.trackable.post
       @message = I18n.t("noti.clip_post") + " \"#{post.title}\""
+    when AVersion.name
+      post = activity.trackable.a_versionable
+      if post.user_id == activity.owner_id && activity.trackable.status != Settings.version.improve
+        @message = " " + activity.trackable.status + I18n.t("version.your_improvement")
+      else
+        @message = I18n.t("noti.suggested_changes") + " \"#{post.title}\""
+      end
     when Relationship.name
       user = activity.recipient
       @message = I18n.t("noti.follow_user")

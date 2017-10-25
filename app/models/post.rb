@@ -14,6 +14,7 @@ class Post < ApplicationRecord
   has_many :posts_tags, dependent: :destroy
   has_many :tags, through: :posts_tags
   has_many :activities, as: :trackable, dependent: :destroy
+  has_many :a_versions, as: :a_versionable, dependent: :destroy
 
   belongs_to :user
   belongs_to :work_space, optional: true

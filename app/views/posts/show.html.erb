@@ -1,4 +1,5 @@
 <% provide :button_text, t(".post_your_answer") %>
+<% provide :improve_text, t("version.improve_btn") %>
 <div id="current-toppic" data-id="<%= @post.topic_id %>"></div>
 <div class="main-content-area">
   <section class="page-title">
@@ -28,14 +29,16 @@
                 <% if current_user.present? %>
                   <div class="btn-action">
                     <%= link_to "javascript:", class: "btn-vote",
-                      data: {type: Settings.reaction_type.up, model: Post.name, id: @post.id} do %>
+                      data: {type: Settings.reaction_type.up, model: Post.name,
+                      id: @post.id} do %>
                       <i class="fa fa-angle-up" aria-hidden="true"></i>
                     <% end %>
                   </div>
                   <div class="point-vote"><%= count_vote @post %></div>
                   <div class="btn-action">
                     <%= link_to "javascript:", class: "btn-vote",
-                      data: {type: Settings.reaction_type.down, model: Post.name, id: @post.id} do %>
+                      data: {type: Settings.reaction_type.down, model: Post.name,
+                      id: @post.id} do %>
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
                     <% end %>
                   </div>
@@ -72,13 +75,19 @@
                         <i class="fa fa-comment-o" aria-hidden="true"></i>
                         <%= count_comment @post %> <%= t "posts.index.comment" %>
                       </span>
+                      <% if @post.user_id == current_user.id %>
+                        <span>
+                          <i class="fa fa-pencil" aria-hidden="true"></i>
+                          <%= link_to "#{count_version @post}" + t("version.suggested_changes"),
+                            a_versions_path(post_id: @post.id) %>
+                        </span>
+                      <% end %>
                       <span class="float-right">
                         <%= raw load_button_functions_post(@post) %>
                         <%= link_to "javascript:void(0)", data:
                           { toggle: "collapse",target: "#share_btn"} do %>
                             <i class="fa fa-share-alt btn-share" aria-hidden="true"></i>
                           <% end %>
-
                       </span>
                     </div>
                   </div>
@@ -86,7 +95,16 @@
                     <div id="share_btn" class="collapse custom-share">
                       <%= social_share_button_tag(@post.title) %>
                     </div>
-                    <%= raw @post.content %>
+                    <span class="post-content">
+                      <%= content_post @post %>
+                    </span>
+                    </br>
+                    <% if @post.user_id != current_user.id %>
+                      <%= link_to (t"version.improve_this_post"), "javascript:", class: "improve-post" %>
+                      <div id="improve-form" style="display: none;">
+                        <%= render "posts/improve_form", post: @post, option: {remote: false} %>
+                      </div>
+                    <% end %>
                     <div class="tagcloud">
                       <% @post.tags.each do |tag| %>
                         <%= link_to tag.name, tag %>
@@ -104,7 +122,8 @@
                 view_more_time: @post_extension.view_more_time  %>
             </div>
             <div class="comment-list" id="comment-list-post-<%= @post.id %>">
-              <%= render partial: "posts/comment", collection: @post_extension.comments_of_post, as: :comment %>
+              <%= render partial: "posts/comment", collection:
+                @post_extension.comments_of_post, as: :comment %>
             </div>
             <div class="row bottom-comments">
               <div class="btn-new-comment col-md-6 col-xs-12">
@@ -190,7 +209,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-xs btn-default" data-dismiss="modal"><%= t "cancel" %></button>
+        <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">
+          <%= t "cancel" %></button>
         <button type="button" class="btn btn-xs btn-primary
           btn-accept-edit-comment" data-dismiss="modal">
           <%= t "ok" %>
