@@ -12,7 +12,7 @@
     <%= render "layouts/header" %>
     <div class="main-content-area">
       <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
+        <div class="alert alert-<%= key %> fade in message-alert"><%= value %></div>
       <% end %>
       <%= yield %>
     </div>
