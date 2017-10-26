@@ -261,6 +261,8 @@ ja:
       popular_response: "人気のある質問"
       recently_answered: "最近返された"
       no_answer: "無回答"
+      location: "ロケーション"
+      all_workspace: "すべて"
     view_all:
       view_all_question: "すべての質問を表示"
     post:
@@ -458,3 +460,4 @@ ja:
     your_post: "Your post"
     show_more: "Show more"
     show_less: "Show less"
+  not_found_topic: "Topic not found"

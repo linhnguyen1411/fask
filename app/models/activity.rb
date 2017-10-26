@@ -27,7 +27,7 @@ class Activity < PublicActivity::Activity
         end
       end
       if(self.trackable.topic_id == Settings.topic.feedback_number)
-        User.hr_administrator.each do |user|
+        User.notify_feedback_for_position.each do |user|
           if ((!notified_users.include? user) &&
             (user.notification_settings.empty? || user.notification_settings[:create_post] == Settings.serialize_true))
             create_notification user.id

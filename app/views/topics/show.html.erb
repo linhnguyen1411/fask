@@ -9,7 +9,7 @@
           <div class="panel panel-primary">
             <div class="panel-heading">
               <!-- Tabs -->
-              <ul class="nav panel-tabs">
+              <ul class="nav panel-tabs panel-tabs-<%= @topic.id %>">
                 <li class="<%= add_class_active_to_show_page params[:type],
                   Settings.topic.type_sort.recently, true %>">
                   <a data-toggle="tab" href="#tab1">
@@ -38,6 +38,15 @@
                     <span class="hidden-xs"><%= t ".no_answer" %></span>
                   </a>
                 </li>
+                <% if @topic.id == Settings.topic.feedback_number %>
+                  <li class="<%= add_class_active_to_show_page params[:type],
+                    Settings.topic.location %>">
+                    <a data-toggle="tab" href="#tab5">
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      <span class="hidden-xs"><%= t ".location" %></span>
+                    </a>
+                  </li>
+                <% end %>
               </ul>
             </div>
           </div>
@@ -50,7 +59,7 @@
                   posts: @support.recent_posts[:posts],
                   type: Settings.topic.type_sort.recently %>
                 <% if @support.recent_posts[:count_posts] > Settings.paginate_default %>
-                  <%= render "topics/view_all", type: Settings.topic.type_sort.recently %>
+                  <%= render "topics/view_all", type: Settings.topic.type_sort.recently, work_space_id: nil %>
                 <% end %>
               </div>
 
@@ -61,7 +70,7 @@
                   posts: @support.popular_posts[:posts],
                   type: Settings.topic.type_sort.popular %>
                 <% if @support.popular_posts[:count_posts] > Settings.paginate_default %>
-                  <%= render "topics/view_all", type: Settings.topic.type_sort.popular %>
+                  <%= render "topics/view_all", type: Settings.topic.type_sort.popular, work_space_id: nil %>
                 <% end %>
               </div>
 
@@ -72,7 +81,7 @@
                   posts: @support.recently_answer_of_post[:posts],
                   type: Settings.topic.type_sort.recently_answer %>
                 <% if @support.recently_answer_of_post[:count_posts] > Settings.paginate_default  %>
-                  <%= render "topics/view_all", type: Settings.topic.type_sort.recently_answer %>
+                  <%= render "topics/view_all", type: Settings.topic.type_sort.recently_answer, work_space_id: nil %>
                 <% end %>
               </div>
 
@@ -83,8 +92,28 @@
                   posts: @support.posts_no_answer[:posts],
                   type: Settings.topic.type_sort.no_answer %>
                 <% if @support.posts_no_answer[:count_posts] > Settings.paginate_default %>
-                  <%= render "topics/view_all", type: Settings.topic.type_sort.no_answer %>
+                  <%= render "topics/view_all", type: Settings.topic.type_sort.no_answer, work_space_id: nil %>
                 <% end %>
+              </div>
+              <div id="tab5" class="tab-pane <%= add_class_active_to_show_page params[:type],
+                Settings.topic.location %>">
+                <div class="form-group select-location col-md-2 col-sm-2 col-xs-12">
+                  <%= select_tag :work_space_id,
+                    options_for_select(load_select_box_location.unshift(["All", nil]),
+                      (@support.work_space)),
+                    {onchange: "filter_by_work_space(this.options[this.selectedIndex].value);",
+                      class: "questions-category form-control"} %>
+                </div>
+                <div id="filter-content">
+                  <%= render "topics/post",
+                    posts: @support.post_of_work_space[:posts],
+                    type: Settings.topic.location %>
+                </div>
+                <div id="view-all-post">
+                  <% if @support.post_of_work_space[:count_posts] > Settings.paginate_default %>
+                    <%= render "topics/view_all", type: Settings.topic.location, work_space_id: nil %>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>

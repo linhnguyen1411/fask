@@ -10,6 +10,12 @@ comment:
     post: "post"
     answer: "answer"
 topic:
+  da_dang_location: 1
+  ha_noi_location: 2
+  hcmc_location: 3
+  tk_location: 4
+  handico_location: 5
+  location: "location"
   q_a_number: 1
   feedback_number: 2
   confesstion_number: 3
@@ -31,6 +37,8 @@ paginate_users: 8
 paginate_posts: 10
 id_user_hiddent: 1
 hr_administrator: "Hr administrator"
+recruiter: "Recruiter"
+event_officer: "Event Officer"
 content_max_length: 500
 limit_top: 3
 limit_tag: 10

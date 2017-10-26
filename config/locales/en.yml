@@ -261,6 +261,8 @@ en:
       popular_response: "Popular Questions"
       recently_answered: "Recently Answered"
       no_answer: "No Answer"
+      location: "Location"
+      all_workspace: "All"
     view_all:
       view_all_question: "View All Question"
     post:
@@ -458,3 +460,4 @@ en:
     your_post: "Your post"
     show_more: "Show more"
     show_less: "Show less"
+  not_found_topic: "Topic not found"

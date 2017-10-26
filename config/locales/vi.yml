@@ -261,6 +261,8 @@ vi:
       popular_response: "Câu hỏi phổ biến"
       recently_answered: "Trả lời gần đây"
       no_answer: "Chưa trả lời"
+      location: "Chi nhánh"
+      all_workspace: "Tất cả"
     view_all:
       view_all_question: "Xem tất cả câu hỏi"
     post:
@@ -458,3 +460,4 @@ vi:
     your_post: "Bài viết của bạn"
     show_more: "Xem thêm"
     show_less: "Rút gọn"
+  not_found_topic: "không tìm thấy topic"

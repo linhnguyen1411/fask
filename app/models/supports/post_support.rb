@@ -1,7 +1,8 @@
 class Supports::PostSupport
   attr_reader :post
 
-  def initialize class_name, topic_id, type_input, all, page, view_more_time = nil, post = nil
+  def initialize(class_name, topic_id, type_input, all, page, view_more_time = nil,
+    post = nil, work_space_id = nil)
     @class_name = class_name
     @topic_id = topic_id
     @type_input = type_input
@@ -9,6 +10,7 @@ class Supports::PostSupport
     @page = page
     @view_more_time = view_more_time
     @post = post
+    @work_space_id = work_space_id
   end
 
   def recent_posts
@@ -62,6 +64,23 @@ class Supports::PostSupport
     else
       Settings.not_view_more
     end
+  end
+
+  def post_of_work_space
+    posts = if @all && @type_input == Settings.topic.location
+      @class_name.get_post_by_topic(@topic_id).post_of_work_space(@work_space_id)
+        .page(@page).per Settings.paginate_posts
+    else
+      @class_name.get_post_by_topic(@topic_id).post_of_work_space(@work_space_id)
+        .limit Settings.paginate_default
+    end
+    count_posts = @class_name.get_post_by_topic(@topic_id)
+      .post_of_work_space(@work_space_id).count
+    {posts: posts, count_posts: count_posts}
+  end
+
+  def work_space
+    @work_space_id
   end
 
   private
