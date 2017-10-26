@@ -6,6 +6,15 @@ module ApplicationHelper
 
   def show_activities activity
     case activity.trackable_type
+    when AVersion.name
+      if activity.trackable.status != Settings.version.waiting
+        title = t("version.you_have") + activity.trackable.status + t("version.request")
+      else
+        title = t("version.change_request")
+      end
+      icon = '<i class="fa fa-pencil" aria-hidden="true"></i>'
+      post = activity.trackable.a_versionable
+      content = activity.trackable.content
     when Post.name
       title = t("activities.you") + t("activities.posted")
       icon = '<i class="fa fa-pencil" aria-hidden="true"></i>'
@@ -147,6 +156,14 @@ module ApplicationHelper
       end
     else
       return true
+    end
+  end
+
+  def link_notification noti
+    if noti.activity.trackable_type == "AVersion"
+      "a_versions?post_id=#{noti.load_message.last}"
+    else
+      post_path(noti.load_message.last, noti_id: noti.id)
     end
   end
 end
