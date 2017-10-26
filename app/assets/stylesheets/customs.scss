@@ -509,3 +509,30 @@ p {
 .icon-addon.addon-lg.search-header > input, .search-area input.search-term.search-input {
   border-radius: 1px;
 }
+.message-alert {
+  position: fixed;
+  top: 40px;
+  right: 10px;
+  z-index: 1111;
+}
+.top-bar {
+  position: fixed;
+  top: 0px;
+  z-index: 1111;
+  width: 100%;
+}
+.navbar-default {
+  margin-top: 45px;
+}
+.question-tabs .panel-tabs.panel-tabs-2 > li {
+  width: 20%;
+}
+.select-location{
+  width: 150px;
+  position: relative;
+  top: -50px;
+}
+.alert.alert-notice {
+  background-color: #ffffaa;
+  color: #ffcc00;
+}
