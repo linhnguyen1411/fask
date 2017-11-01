@@ -1,7 +1,7 @@
 class AVersionsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_posts, only: :create
-  before_action :check_user, only: :index
+  before_action :check_user, only: [:index, :update]
   before_action :load_accept_version, only: :update
 
   def index
@@ -23,21 +23,29 @@ class AVersionsController < ApplicationController
   end
 
   def update
-    version = AVersion.find_by id: params[:id]
-    success = false
-    if params[:status] == Settings.version.accept
-      if version.update_attributes status: :accept
-        @accept_version.update_attributes status: :improve if @accept_version.present?
-        success = true
-      end
-    else params[:status] == Settings.version.reject
-      if version.update_attributes status: :reject
-        success = true
-      end
-    end
-    respond_to do |format|
-      format.json do
-        render json: {type: success}
+    ActiveRecord::Base.transaction do
+      @version = AVersion.find_by id: params[:id]
+      @success = false
+      if params[:status] == Settings.version.accept
+        if @version.update_attributes status: :accept
+          @accept_version.update_attributes status: :improve if @accept_version.present?
+          @success = true
+        end
+        @status = params[:status]
+        @version_of_post = AVersion.get_version_post_not_reject(@post.id, @post.class.name)
+         .page(params[:page]).per Settings.paginate_default
+        respond_to do |format|
+          format.js
+        end
+      else params[:status] == Settings.version.reject
+        if @version.update_attributes status: :reject
+          @success = true
+        end
+        respond_to do |format|
+          format.json do
+            render json: {type: @success}
+          end
+        end
       end
     end
   end

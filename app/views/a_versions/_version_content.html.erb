@@ -1,0 +1,15 @@
+<% if @version_of_post.present? %>
+  <%= render @version_of_post %>
+<% else %>
+<div class="media-block card-box">
+  <div class="media-body">
+    <span class="nothing-message" style="color: green!"><em>
+      <%= t "version.no_suggested" %>
+    </em></span>
+  </div>
+</div>
+<% end %>
+<div class="text-center clearfix">
+  <%= paginate @version_of_post %>
+</div>
+

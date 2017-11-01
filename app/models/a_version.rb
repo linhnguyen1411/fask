@@ -19,6 +19,10 @@ class AVersion < ApplicationRecord
 
   delegate :name, :position, :avatar, to: :user, prefix: true
 
+  def get_content
+    read_attribute(:content).html_safe
+  end
+
   private
 
   def create_activity

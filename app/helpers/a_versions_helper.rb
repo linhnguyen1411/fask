@@ -3,7 +3,7 @@ module AVersionsHelper
   def load_approve_reject_a_version_button version
     if version.status == Settings.version.accept
       (link_to "javascript:", class: "btn-reject-a-version",
-        data: {id: version.id, status: :reject, cstatus: version.status} do
+        data: {id: version.id, status: :reject, cstatus: version.status, post_id: @post.id} do
           raw '<i class="fa fa-times" aria-hidden="true"></i>' + I18n.t("version.reject")
         end)
     else
@@ -13,7 +13,7 @@ module AVersionsHelper
         raw '<i class="fa fa-check" aria-hidden="true"></i> ' + I18n.t("version.accept")
         end) +
       (link_to "javascript:", class: "btn-reject-a-version", data:
-        {id: version.id, status: :reject, cstatus: version.status } do
+        {id: version.id, status: :reject, cstatus: version.status, post_id: @post.id } do
           raw '<i class="fa fa-times" aria-hidden="true"></i> ' + I18n.t("version.reject")
         end)
     end

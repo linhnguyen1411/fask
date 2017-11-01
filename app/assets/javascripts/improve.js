@@ -25,35 +25,8 @@ $(document).ready(function(){
   reject_a_version();
   approve_a_version();
 });
-$(document).ready(function() {
-  var showChar = 300;
-  var ellipsestext = "...";
-  var moretext = "Show more >>";
-  var lesstext = "Show less";
-  $('.more').each(function() {
-    var content = $(this).text();
-    if(content.length > showChar) {
-      var c = content.substr(0, showChar);
-      var h = content.substr(showChar, content.length - showChar);
-      var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
-      $(this).html(html);
-    }
-  });
-  $('.morelink').click(function(){
-    if($(this).hasClass('less')) {
-      $(this).removeClass('less');
-      $(this).html(moretext);
-    } else {
-      $(this).addClass('less');
-      $(this).html(lesstext);
-    }
-    $(this).parent().prev().toggle();
-    $(this).prev().toggle();
-    return false;
-  });
-});
 function approve_a_version() {
-  $('.btn-approve-a-version').click(function(){
+  $('#a-version-body').on('click', '.btn-approve-a-version', function(){
     var id = $(this).data('id');
     var status = $(this).data('status');
     var post_id = $(this).data('post-id');
@@ -67,32 +40,14 @@ function approve_a_version() {
       confirmButtonColor: '#DD6B55',
       confirmButtonText: I18n.t('ok'),
       cancelButtonText: I18n.t('cancel'),
-      closeOnConfirm: false
+      closeOnConfirm: true
     },
     function(){
       $.ajax({
         url: '/a_versions/' + id,
         type: 'PUT',
-        dataType: 'json',
-        data: {status: status, post_id: post_id,type: type},
-        success: function (data) {
-          if (data.type) {
-            sweetAlert(I18n.t('reactions.create.success'), '', 'success');
-            $('.a-version-status-'+id).html(I18n.t('version.status')+': '+
-              '<span class="version-status-accept">'+ status +'</span>');
-            $('.version-accept').html(I18n.t('version.status')+': '+
-              '<span class="version-status-improve">'+ I18n.t('version.improve')+ '</span>');
-            $('.post-content').html(content);
-            $('#accept-'+id).fadeOut();
-            $('.pick-'+id).append('<span class="tick"><i class="fa fa-check" aria-hidden="true"></i></span>');
-            $('.tick-accept').fadeOut();
-          }
-          else if(data.not_login)
-            window.location.replace('/users/sign_in');
-          else
-            sweetAlert(I18n.t('reactions.create.error'), '', 'error');
-        },
-        error: function () {}
+        dataType: 'script',
+        data: {status: status, post_id: post_id, type: type}
       });
     });
   });
@@ -102,6 +57,7 @@ function reject_a_version() {
     var id = $(this).data('id');
     var status = $(this).data('status');
     var cstatus = $(this).data('cstatus');
+    var post_id = $(this).data('post-id');
     if(cstatus == "accept"){
       text = I18n.t('version.reject_approved');
     }
@@ -123,7 +79,7 @@ function reject_a_version() {
         url: '/a_versions/' + id,
         type: 'PUT',
         dataType: 'json',
-        data: { status: status },
+        data: { status: status, post_id: post_id},
         success: function (data) {
           if (data.type) {
             if (cstatus == "accept"){
@@ -144,6 +100,5 @@ function reject_a_version() {
         error: function () {}
       });
     });
-
   });
 }

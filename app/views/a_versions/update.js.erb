@@ -1,0 +1,12 @@
+<% if @status == "accept" %>
+  <% if @success %>
+    sweetAlert(I18n.t('reactions.create.success'), '', 'success');
+    $('#a-version-body').html('<%= j render "version_content" %>');
+    $('.post-content').html('<%= j raw @version.content %>');
+  <% elsif current_user.not_login %>
+    window.location.replace('/users/sign_in');
+  <% else %>
+    sweetAlert(I18n.t('reactions.create.error'), '', 'error');
+  <% end %>
+<% else %>
+<% end %>

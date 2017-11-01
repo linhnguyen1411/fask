@@ -16,7 +16,7 @@ module PostsHelper
   end
 
   def count_version post
-    post.a_versions.get_version_not_reject.size
+    post.a_versions.get_version_post_not_reject(post.id, post.class.name).size
   end
 
   def add_class_active_to_show_page type_input, type_sort, is_first_tab = false

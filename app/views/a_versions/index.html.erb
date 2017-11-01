@@ -27,59 +27,9 @@
           </div>
         </div>
         <h1><%= t "version.your_suggested" %> :</h1>
-        <% if @version_of_post.present? %>
-          <% @version_of_post.each do |v| %>
-            <div class="listing-grid a-version-<%= v.id %>">
-              <div class="row">
-                <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs pick-<%= v.id %>">
-                  <%= link_to user_path v.user do %>
-                    <%= image_tag v.user_avatar.url, title: v.user_name %>
-                  <% end %>
-                  <% if v.status == Settings.version.accept %>
-                    <span class="tick tick-accept"><i class="fa fa-check" aria-hidden="true"></i></span>
-                  <% end %>
-                </div>
-                <div class="col-md-7 col-sm-8  col-xs-12">
-                  <h3><%= v.user_name %></h3>
-                  <div class="listing-meta">
-                    <span><i class="fa fa-clock-o" aria-hidden="true"></i><%= v.created_at %>
-                    </span>
-                    <% if v.status == Settings.version.accept %>
-                      <span class="a-version-status-<%= v.id %> version-accept"
-                        value="<%= v.status %>"><%= t "version.status" %>:
-                        <span class="accept-status version-status-accept " ><%= v.status %></span></span>
-                    <% elsif v.status == Settings.version.waiting  %>
-                      <span class="a-version-status-<%= v.id %>">
-                        <%= t "version.status" %>: <span class="version-status-waiting">
-                          <%= v.status %></span></span>
-                    <% else %>
-                      <span class="a-version-status-<%= v.id %>">
-                        <%= t "version.status" %>: <span class="version-status-improve">
-                          <%= v.status %></span></span>
-                    <% end %>
-                  </div>
-                </div>
-                <div class="col-md-10 col-sm-10  col-xs-12">
-                  <span class= "more"><%= raw v.content %></span>
-                  <div class="pull-right tagcloud">
-                    <%= raw load_approve_reject_a_version_button(v) %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% else %>
-        <div class="media-block card-box">
-          <div class="media-body">
-            <span class="nothing-message" style="color: green!"><em>
-              <%= t "version.no_suggested" %>
-            </em></span>
-          </div>
-        </div>
-        <% end %>
-        <div class="text-center clearfix">
-          <%= paginate @version_of_post %>
-        </div>
+        <span id="a-version-body">
+          <%= render "version_content"%>
+        </span>
       </div>
     </div>
   </section>
