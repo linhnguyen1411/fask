@@ -221,6 +221,7 @@ p {
   max-height: 70px;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: #000000;
 }
 .listing-grid p {
   overflow: hidden;
@@ -562,4 +563,13 @@ p {
 }
 .nothing-message{
   color: #0212ff;
+}
+.post-content{
+  color: #000000;
+}
+.content{
+  color: #000000;
+}
+.more{
+  color: #000000;
 }

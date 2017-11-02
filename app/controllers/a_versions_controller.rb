@@ -42,7 +42,7 @@ class AVersionsController < ApplicationController
         end
         respond_to do |format|
           format.json do
-            render json: {type: @success}
+            render json: {type: @success, default_content: @post.content}
           end
         end
       end

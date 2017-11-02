@@ -161,7 +161,7 @@ module ApplicationHelper
 
   def link_notification noti
     if noti.activity.trackable_type == "AVersion"
-      "a_versions?post_id=#{noti.load_message.last}"
+      "/a_versions?post_id=#{noti.load_message.last}&noti_id=#{noti.id}"
     else
       post_path(noti.load_message.last, noti_id: noti.id)
     end

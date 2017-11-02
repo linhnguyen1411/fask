@@ -20,9 +20,42 @@ $(document).ready(function(){
       }
     });
   });
+  read_more();
   reject_a_version();
   approve_a_version();
 });
+
+function read_more(){
+  var showChar = 300;
+  var ellipsestext = '...';
+  var moretext = I18n.t('version.show_more');
+  var lesstext = I18n.t('version.show_less');
+  $('.more').each(function() {
+    var content = $(this).text();
+    if(content.length > showChar) {
+      var c = content.substr(0, showChar);
+      var h = content.substr(showChar, content.length - showChar);
+      var html = c + '<span class="moreellipses">' + ellipsestext +
+        '&nbsp;</span><span class="morecontent"><span>' + h +
+        '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+      $(this).html(html);
+    }
+  });
+  $('.morelink').click(function(){
+    if($(this).hasClass('less')) {
+      $(this).removeClass('less');
+      $(this).html(moretext);
+    }
+    else {
+      $(this).addClass('less');
+      $(this).html(lesstext);
+    }
+    $(this).parent().prev().toggle();
+    $(this).prev().toggle();
+    return false;
+  });
+}
+
 function approve_a_version() {
   $('#a-version-body').on('click', '.btn-approve-a-version', function(){
     var id = $(this).data('id');
@@ -51,11 +84,10 @@ function approve_a_version() {
   });
 }
 function reject_a_version() {
-  $('.btn-reject-a-version').click(function(){
+  $('#a-version-body').on('click', '.btn-reject-a-version', function(){
     var id = $(this).data('id');
     var status = $(this).data('status');
     var current_status = $(this).data('current-status');
-    alert(current_status);
     var post_id = $(this).data('post-id');
     if(current_status === 'accept')
       text = I18n.t('version.reject_approved');
@@ -79,10 +111,10 @@ function reject_a_version() {
         data: { status: status, post_id: post_id },
         success: function (data) {
           if (data.type) {
-            if (cstatus === 'accept'){
+            if (current_status === 'accept'){
               sweetAlert(I18n.t('reactions.create.success'), '', 'success');
               $('.a-version-'+ id ).fadeOut();
-              $('.post-content').html($('#content-post-hidden').val());
+              $('.post-content').html(data.default_content);
             }
             else{
               sweetAlert(I18n.t('reactions.create.success'), '', 'success');
