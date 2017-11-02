@@ -1,0 +1,60 @@
+<div class="main-content-area">
+  <section class="page-title">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-7 co-xs-12 text-left">
+          <h1><%= t ".detail" %></h1>
+        </div>
+        <div class="col-md-6 col-sm-5 co-xs-12 text-right">
+          <div class="bread">
+            <ol class="breadcrumb">
+              <li><%= link_to t(".home"), root_path %></li>
+              <li class="active"><%= t ".detail" %></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+   <section class="section-padding-80 white question-details page-title">
+    <div class="container">
+      <div class="row">
+        <h1><%= t "version.your_post" %> : <%= @post.title %></h1>
+        <div class="media-block card-box ">
+          <div class="media-body post-content">
+            <%= hidden_field_tag "content-post-hidden", raw(@post.content) %>
+            <%= content_post @post %>
+          </div>
+        </div>
+        <h1><%= t "version.your_suggested" %> :</h1>
+        <span id="a-version-body">
+          <%= render "version_content"%>
+        </span>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="modal fade" id="modal-edit-comment">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><%= t ".edit_comment" %></h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <%= text_area_tag "comment-content", "",
+            placeholder: t("comments.create.content"), minlength: Settings.post.min_title,
+            required: true, class: "form-control resize-none" %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-xs btn-default"
+          data-dismiss="modal"><%= t "cancel" %></button>
+        <button type="button" class="btn btn-xs btn-primary
+          btn-accept-edit-comment" data-dismiss="modal">
+          <%= t "ok" %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :topices_users, dependent: :destroy
   has_many :topics, through: :topices_users
   has_many :notifications, dependent: :destroy
+  has_many :a_versions
 
   has_many :active_relationships, class_name: Relationship.name,
     foreign_key: :follower_id, dependent: :destroy

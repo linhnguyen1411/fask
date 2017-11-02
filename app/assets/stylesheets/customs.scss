@@ -536,3 +536,30 @@ p {
   background-color: #ffffaa;
   color: #ffcc00;
 }
+.morecontent span {
+  display: none;
+}
+.morelink {
+  display: block;
+}
+.nothing-message {
+  color: #0020f8;
+}
+.version-status-accept {
+  color: #ffffff!important;
+  background-color: #23ff34;
+  border-radius: 4px;
+}
+.version-status-waiting {
+  color: #ffffff!important;
+  background-color: #1bbbff;
+  border-radius: 4px;
+}
+.version-status-improve {
+  color: #ffffff!important;
+  background-color: #fd9985;
+  border-radius: 4px;
+}
+.nothing-message{
+  color: #0212ff;
+}

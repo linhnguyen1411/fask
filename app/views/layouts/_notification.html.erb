@@ -1,5 +1,5 @@
 <li class="<%= noti.not_seen? ? "status-no-seen" : "" %>">
-  <%= link_to post_path(noti.load_message.last, noti_id: noti.id), class: "notification-item" do %>
+    <%= link_to link_notification(noti), class: "notification-item" do %>
     <div class="col-md-2 text-center">
       <%= image_tag noti.activity.owner.avatar.url, class: "user-avatar" %>
     </div>

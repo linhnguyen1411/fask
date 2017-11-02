@@ -82,3 +82,9 @@ paginate_comment: 3
 not_view_more: 0
 second_page: 2
 one_page: 1
+version_reject: 2
+version:
+  accept: "accept"
+  improve: "improve"
+  reject: "reject"
+  waiting: "waiting"
