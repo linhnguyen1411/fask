@@ -75,7 +75,7 @@
                         <i class="fa fa-comment-o" aria-hidden="true"></i>
                         <%= count_comment @post %> <%= t "posts.index.comment" %>
                       </span>
-                      <% if @post.user_id == current_user.id %>
+                      <% if @post.user_id == current_user.id  && @post.topic_id == Settings.post_topic_qa %>
                         <span>
                           <i class="fa fa-pencil" aria-hidden="true"></i>
                           <%= link_to "#{count_version @post}" + t("version.suggested_changes"),
@@ -99,7 +99,7 @@
                       <%= content_post @post %>
                     </span>
                     </br>
-                    <% if @post.user_id != current_user.id %>
+                    <% if @post.user_id != current_user.id && @post.topic_id == Settings.post_topic_qa %>
                       <%= link_to (t"version.improve_this_post"), "javascript:", class: "improve-post" %>
                       <div id="improve-form" style="display: none;">
                         <%= render "posts/improve_form", post: @post, option: {remote: false} %>
