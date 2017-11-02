@@ -83,6 +83,7 @@ not_view_more: 0
 second_page: 2
 one_page: 1
 version_reject: 2
+post_topic_qa: 1
 version:
   accept: "accept"
   improve: "improve"
