@@ -35,11 +35,29 @@
               </div>
               <div class="col-md-6 col-xs-12 col-sm-6 no-padding">
                 <ul class="profile-count">
-                  <li><%= count_follow current_user %><i><%= t "users.follower" %></i>
+                  <li>
+                    <%= link_to relationships_path(relationship: "follower") do %>
+                      <%= count_follow current_user %>
+                    <% end %>
+                    <i><%= t "users.follower", count: count_follow(current_user) %></i>
                   </li>
-                  <li><%= count_clips current_user %><i><%= t "users.clips_post" %></i>
+                  <li>
+                    <%= link_to relationships_path(relationship: "following") do %>
+                      <%= count_following current_user %>
+                    <% end %>
+                    <i><%= t "users.following" %></i>
                   </li>
-                  <li><%= count_posts current_user %><i><%= t "users.posts" %></i>
+                  <li>
+                    <%= link_to dashboard_posts_path(active_clip_tab: true) do %>
+                      <%= count_clips current_user %>
+                    <% end %>
+                    <i><%= t "users.clips_post", count: count_clips(current_user) %></i>
+                  </li>
+                  <li>
+                    <%= link_to dashboard_posts_path do %>
+                      <%= count_posts current_user %>
+                    <% end %>
+                    <i><%= t "users.posts", count: count_posts(current_user) %></i>
                   </li>
                 </ul>
               </div>

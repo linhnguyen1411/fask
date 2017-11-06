@@ -97,7 +97,7 @@
               </div>
               <div id="tab5" class="tab-pane <%= add_class_active_to_show_page params[:type],
                 Settings.topic.location %>">
-                <div class="form-group select-location col-md-2 col-sm-2 col-xs-12">
+                <div class="form-group select-location custom-height col-md-2 col-sm-2 col-xs-12">
                   <%= select_tag :work_space_id,
                     options_for_select(load_select_box_location.unshift(["All", nil]),
                       (@support.work_space)),

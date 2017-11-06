@@ -1,15 +1,15 @@
 <% if @posts.present? || @clips_posts.present? %>
   <section class="section-padding-40 white">
     <div class="container">
-      <ul class="nav nav-tabs clips-tab" >
-        <li class="active"><a data-toggle="tab" href="#allposts">
+      <ul class="nav nav-tabs list-tab" >
+        <li class="<%= "active" unless @active_clip_tab %>"><a data-toggle="tab" href="#allposts">
           <%= t "posts.index.all_posts" %></a></li>
-        <li><a data-toggle="tab" href="#clips">
+        <li class="<%= "active" if @active_clip_tab %>"><a data-toggle="tab" href="#clips">
           <%= t "posts.index.all_clips" %></a></li>
       </ul>
     </div>
     <div class="tab-content">
-      <div id="allposts" class="tab-pane fade in active">
+      <div id="allposts" class="tab-pane fade <%= "in active" unless @active_clip_tab %>">
         <% @posts.each do |post| %>
           <div class="container">
             <div class="listing-grid">
@@ -71,7 +71,7 @@
           <%= paginate @posts %>
         </div>
       </div>
-      <div id="clips" class="tab-pane fade">
+      <div id="clips" class="tab-pane fade <%= "in active" if @active_clip_tab %>">
         <% @clips_posts.each do |post| %>
             <div class="container">
               <div class="listing-grid">

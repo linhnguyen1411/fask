@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user
 
   def index
+    @title = t "profile.followers.title"
     @users = User.page(params[:page])
       .get_users_not_contain_id([current_user.id, Settings.id_user_hiddent])
       .per Settings.paginate_users
@@ -31,6 +32,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def load_user
     @user = User.find_by id: params[:id]
     return if @user

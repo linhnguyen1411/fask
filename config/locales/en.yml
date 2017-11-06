@@ -296,6 +296,12 @@ en:
       error: "Update password error"
       current_password_wrong: "Current password wrong"
       confirm_password_wrong: "Confirm new password wrong"
+    following:
+      title: "Following list"
+    followers:
+      title: "Follwer list"
+    index:
+      title: "User list"
   answers:
     update:
       update_error: "Update failed"
@@ -330,11 +336,20 @@ en:
       error: "Error"
   users:
     user_profile: "Personal information"
-    follower: "Follower"
-    clips_post: "Clips Post"
-    posts: "Posts"
+    follower:
+      one: "Follower"
+      other: "Followers"
+    following: "Following"
+    clips_post:
+      one: "Clipped Post"
+      other: "Clipped Posts"
+    posts:
+      one: "Post"
+      other: "Posts"
     follow: "Follow"
     hire: "Hire me"
+    show_follow:
+      home: "Home"
     index:
       breadcrumb: "List Users"
       home: "Home"

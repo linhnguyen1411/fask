@@ -580,3 +580,7 @@ p {
   right: 0px !important;
   z-index: 1111;
 }
+.select-location.custom-height > select{
+  height: 38px;
+  padding: 0px 12px;
+}

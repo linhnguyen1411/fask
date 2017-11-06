@@ -11,6 +11,10 @@ module UsersHelper
     user.followers.size
   end
 
+  def count_following user
+    user.following.size
+  end
+
   def count_posts user
     user.posts.size
   end

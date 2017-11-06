@@ -296,6 +296,12 @@ ja:
       error: "エラー"
       current_password_wrong: "現在のパスワードの誤り"
       confirm_password_wrong: "新しいパスワードを間違って確認する"
+    following:
+      title: "Danh sách đang theo dõi"
+    followers:
+      title: "Danh sách người theo dõi"
+    index:
+      title: "ユーザーリスト"
   answers:
     update:
       update_error: "Update failed"
@@ -330,11 +336,20 @@ ja:
       error: "エラー"
   users:
     user_profile: "プロフィール"
-    follower: "フォロワー"
-    clips_post: "クリップ"
-    posts: "ポスト"
+    follower:
+      one: フォロワー
+      other: フォロワー
+    following: "以下"
+    clips_post:
+      one: "クリップ"
+      other: "クリップ"
+    posts:
+      one: "ポスト"
+      other: "ポスト"
     follow: "フォローする"
     hire: "私を雇う"
+    show_follow:
+      home: "ホーム"
     index:
       breadcrumb: "ユーザーを一覧表示する"
       home: "ホーム"

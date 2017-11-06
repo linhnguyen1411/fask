@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   resources :notifications, only: [:index, :update]
   resources :user_settings, only: [:edit, :update]
   resources :a_versions
-
+  resources :relationships, only: :index
   namespace :dashboard do
     resources :posts
   end
