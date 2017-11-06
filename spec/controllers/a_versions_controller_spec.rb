@@ -49,6 +49,13 @@ RSpec.describe AVersionsController, type: :controller do
        a_versionable_id: post_x.id, a_versionable_type: post_x.class.name
     end
 
+    it "update version content" do
+      put :update,xhr: true, params: {id: a_versions.id,
+        a_version: {content: "abcdefgh abcdefgh"},post_id: post_x.id}
+      a_versions.reload
+      expect(a_versions.content).to eq("abcdefgh abcdefgh")
+    end
+
     it "update version with action accept" do
       put :update, params: {id: a_versions.id ,status: "accept",
         type: post_x.class.name, post_id: post_x.id}, xhr: true
@@ -61,6 +68,23 @@ RSpec.describe AVersionsController, type: :controller do
         type: post_x.class.name, post_id: post_x.id}, xhr: true
       a_versions.reload
       expect(a_versions.status).to eq("reject")
+    end
+  end
+
+  describe "DELETE #destroy" do
+    let!(:a_versions) do
+      FactoryGirl.create :a_version, user_id: user.id, status: :waiting,
+       a_versionable_id: post_x.id, a_versionable_type: post_x.class.name
+    end
+    it "delete a version if exist" do
+      aversion_count = AVersion.count
+      delete :destroy, params: {id: a_versions.id }, xhr: true
+      expect(AVersion.count).to eq(aversion_count - 1)
+    end
+    it "delete a version if not exist" do
+      aversion_count = AVersion.count
+      delete :destroy, params: {id: 1000 }, xhr: true
+      expect(AVersion.count).to eq(aversion_count)
     end
   end
 end

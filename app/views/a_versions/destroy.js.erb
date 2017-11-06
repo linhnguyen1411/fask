@@ -1,0 +1,6 @@
+<% if @status %>
+  sweetAlert(I18n.t('posts.destroy.success'), '', 'info');
+<% else %>
+  sweetAlert(I18n.t('version.not_found'), '', 'error');
+<% end %>
+$('.improvement-<%= @version_id %>').fadeOut();

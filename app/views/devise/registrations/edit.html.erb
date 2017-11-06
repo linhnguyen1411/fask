@@ -48,13 +48,19 @@
                     <i><%= t "users.following" %></i>
                   </li>
                   <li>
-                    <%= link_to dashboard_posts_path(active_clip_tab: true) do %>
+                    <%= link_to dashboard_posts_path(active_tab: Settings.improvements) do %>
+                      <%= count_posts current_user %>
+                    <% end %>
+                    <i><%= t "users.improvement", count: count_improvements(current_user) %></i>
+                  </li>
+                  <li>
+                    <%= link_to dashboard_posts_path(active_tab: Settings.clips_posts) do %>
                       <%= count_clips current_user %>
                     <% end %>
                     <i><%= t "users.clips_post", count: count_clips(current_user) %></i>
                   </li>
                   <li>
-                    <%= link_to dashboard_posts_path do %>
+                    <%= link_to dashboard_posts_path(active_tab: Settings.posts) do %>
                       <%= count_posts current_user %>
                     <% end %>
                     <i><%= t "users.posts", count: count_posts(current_user) %></i>

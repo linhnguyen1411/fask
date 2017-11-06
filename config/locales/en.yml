@@ -129,6 +129,7 @@ en:
       not_found: "Not found"
       all_posts: "Your Posts"
       all_clips: "Your Clips "
+      improvements: "Improvements Post"
       comment: "COMMENTS"
       view: "VIEWS"
     new:
@@ -336,6 +337,9 @@ en:
       error: "Error"
   users:
     user_profile: "Personal information"
+    improvement:
+      one: "Improvement"
+      other: "Improvements"
     follower:
       one: "Follower"
       other: "Followers"
@@ -475,4 +479,5 @@ en:
     your_post: "Your post"
     show_more: "Show more"
     show_less: "Show less"
+    not_found: "Your improvement not found"
   not_found_topic: "Topic not found"

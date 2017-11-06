@@ -22,4 +22,8 @@ module UsersHelper
   def count_clips user
     user.clips.size
   end
+
+  def count_improvements user
+    user.a_versions.size
+  end
 end
