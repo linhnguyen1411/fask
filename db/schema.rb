@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171020061457) do
+ActiveRecord::Schema.define(version: 20171107021554) do
 
   create_table "a_versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -202,6 +202,7 @@ ActiveRecord::Schema.define(version: 20171020061457) do
     t.string   "email_settings"
     t.string   "language"
     t.boolean  "is_create_by_wsm",       default: false
+    t.integer  "work_space_id"
     t.index ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
