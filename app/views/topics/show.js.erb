@@ -1,0 +1,10 @@
+$('#filter-content').html(
+  '<%= j(render("topics/post", posts: @support.post_of_work_space[:posts],type: Settings.topic.locatio)) %>'
+);
+<% if @support.post_of_work_space[:count_posts] > Settings.paginate_default %>
+  $('#view-all-post').html(
+    '<%= j(render("topics/view_all", type: Settings.topic.location, work_space_id: @support.work_space)) %>'
+  ).show();
+<% else %>
+  $('#view-all-post').hide();
+<% end %>

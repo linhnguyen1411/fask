@@ -43,6 +43,8 @@ class Post < ApplicationRecord
     joins(:answers).group("answers.post_id").order "answers.created_at desc"
   end
 
+  scope :post_of_work_space, -> work_space_id { where work_space_id: work_space_id if work_space_id.present?}
+
   scope :no_answer, -> {includes(:answers).where(answers: {id: nil})}
 
   scope :recently_comment, -> do

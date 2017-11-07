@@ -529,7 +529,6 @@ p {
   width: 20%;
 }
 .select-location{
-  width: 150px;
   position: relative;
   top: -50px;
 }
@@ -572,4 +571,12 @@ p {
 }
 .more{
   color: #000000;
+  position: relative;
+  top: -50px;
+}
+.notifyjs-corner {
+  position: fixed;
+  top: 40px !important;
+  right: 0px !important;
+  z-index: 1111;
 }

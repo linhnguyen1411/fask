@@ -1,8 +1,12 @@
 <% if !params[:all] || params[:type] != type %>
   <div class="text-center clearfix">
-    <%= link_to t(".view_all_question"),
-      topic_path(params[:id], all: true, type: type),
-      class: "btn btn-primary btn-lg"
-    %>
+    <% if work_space_id.present? %>
+      <%= link_to t(".view_all_question"),
+        topic_path(params[:id], {all: true, type: type, work_space_id: work_space_id}),
+        class: "btn btn-primary btn-lg" %>
+    <% else %>
+      <%= link_to t(".view_all_question"),
+        topic_path(params[:id], {all: true, type: type}), class: "btn btn-primary btn-lg" %>
+    <% end %>
   </div>
 <% end %>

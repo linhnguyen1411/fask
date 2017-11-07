@@ -11,7 +11,7 @@ $(document).ready(function(){
         connected: function() {},
         disconnected: function() {},
         received: function(data) {
-          $.notify(data.mess, "success");
+          $.notify(data.mess);
           add_noti(data);
           noti(data);
         },
@@ -47,7 +47,7 @@ function add_noti(data) {
   var html = '<li><a href="' + data.url + '" class="notification-item status-no-seen" data-original-title="" '
     +'title=""><div class="col-md-2 text-center"><img class="user-avatar" src="'
     + data.img + '" alt="No avatar"></div><div class="col-md-10"><div class="row pd-top-10"><span class="user-name">'
-    + data.name + '</span><span class="time">' + data.time + '</span></div><span class=" row content">'
+    + data.name + '</span><span class="time">' + data.time + '</span></div><span class="row content">'
     + data.mess +'</span></div></a></li>';
   if(list_noti.length < 5) {
     noti.html(html + noti.html());
