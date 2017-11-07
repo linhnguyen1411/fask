@@ -296,6 +296,12 @@ vi:
       error: "Cập nhật mật khẩu thất bại"
       current_password_wrong: "Mật khẩu hiện tại không đúng"
       confirm_password_wrong: "Mật khẩu xác nhận không đúng"
+    following:
+      title: "Danh sách đang theo dõi"
+    followers:
+      title: "Danh sách người theo dõi"
+    index:
+      title: "Danh sách người dùng"
   answers:
     update:
       update_error: "Cập nhập không thành công"
@@ -330,11 +336,20 @@ vi:
       error: "Thất bại"
   users:
     user_profile: "Thông tin cá nhân"
-    follower: "Người theo dõi"
-    clips_post: "Bài đã ghim"
-    posts: "Bài đã viết"
+    follower:
+      one: Người theo dõi
+      other: Người theo dõi
+    following: "Đang theo dõi"
+    clips_post:
+      one: "Bài đã ghim"
+      other: "Bài đã ghim"
+    posts:
+      one: "Bài đã viết"
+      other: "Bài đã viết"
     follow: "Theo dõi"
     hire: "Thuê tôi"
+    show_follow:
+      home: "Trang chủ"
     index:
       breadcrumb: "Danh sách người dùng"
       home: "Trang chủ"
