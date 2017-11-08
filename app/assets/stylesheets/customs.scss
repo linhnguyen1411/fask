@@ -589,3 +589,18 @@ p {
   height: 38px;
   padding: 0px 12px;
 }
+.top-nav.nav-left > li{
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0 15px !important;
+}
+.fr-emoticon.fr-deletable.fr-emoticon-img{
+  width: 22px;
+  background-repeat: no-repeat !important;
+  display: inline-block;
+}
+.border-table > table > tbody > tr >td{
+  border: 1px solid #ddd;
+}
+.border-table > table > thead > tr > th{
+  background: #e6e6e6;
+}

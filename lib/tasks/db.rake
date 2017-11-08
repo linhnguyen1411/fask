@@ -11,7 +11,7 @@ namespace :db do
       name: "Admin",
       email: "fask.info@gmail.com",
       password: "Aa@123",
-      password_confirmation: "Aa@123",
+      password_confirmation: "Aa@123"
     )
   end
 
@@ -23,7 +23,8 @@ namespace :db do
       code: Faker::Code.asin,
       password: "Aa@123",
       password_confirmation: "Aa@123",
-      work_space_id: WorkSpace.first.id
+      work_space_id: WorkSpace.first.id,
+      avatar: File.open(File.join(Rails.root,"app/assets/images/anonymous.png"))
     )
 
     User.create!(

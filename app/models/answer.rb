@@ -8,7 +8,6 @@ class Answer < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :reactions, as: :reactiontable, dependent: :destroy
   has_many :activities, as: :trackable, dependent: :destroy
-  has_many :improves, as: :improvable, dependent: :destroy
 
   belongs_to :post
   belongs_to :user
