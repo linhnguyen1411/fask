@@ -14,7 +14,8 @@ class AVersion < ApplicationRecord
       id, type, Settings.version_reject.to_i
   end
   scope :get_version_accept, ->{where status: 1}
-
+  scope :get_all_post_version_of_user, -> user_id, type {where user_id: user_id, a_versionable_type: type}
+  scope :newest, -> {order created_at: :desc}
   validates :content, presence: true
 
   delegate :name, :position, :avatar, to: :user, prefix: true
@@ -26,7 +27,9 @@ class AVersion < ApplicationRecord
   end
 
   def update_activity
-    self.activities.create owner: self.a_versionable.user if
-      self.status != Settings.version.improve
+    if self.status_changed?
+      self.activities.create owner: self.a_versionable.user if
+        self.status != Settings.version.improve
+    end
   end
 end

@@ -92,9 +92,15 @@ second_page: 2
 one_page: 1
 version_reject: 2
 post_topic_qa: 1
+a_version_reject: "reject"
 version:
+  rreject: "reject"
   accept: "accept"
   improve: "improve"
-  reject: "reject"
   waiting: "waiting"
 following: "following"
+update: "update"
+edit: "edit"
+posts: "posts"
+improvements: "improvements"
+clips_posts: "clips_posts"

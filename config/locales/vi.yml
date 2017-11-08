@@ -129,6 +129,7 @@ vi:
       not_found: "Không tìm thấy"
       all_posts: "Bài viết"
       all_clips: "Bài đã ghim"
+      improvements: "Bản chỉnh sửa bài viết"
       comment: "LƯỢT BÌNH LUẬN"
       view: "LƯỢT XEM"
     new:
@@ -336,6 +337,9 @@ vi:
       error: "Thất bại"
   users:
     user_profile: "Thông tin cá nhân"
+    improvement:
+      one: "Cải thiện"
+      other: "Cải thiện"
     follower:
       one: Người theo dõi
       other: Người theo dõi
@@ -475,4 +479,5 @@ vi:
     your_post: "Bài viết của bạn"
     show_more: "Xem thêm"
     show_less: "Rút gọn"
+    not_found: "Bản cải thiện này không được tìm thấy"
   not_found_topic: "không tìm thấy topic"

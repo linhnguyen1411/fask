@@ -129,6 +129,7 @@ ja:
       not_found: "見つかりません"
       all_posts: "投稿"
       all_clips: "固定"
+      improvements: "Improvements Post"
       view: "観る"
       comment: "コメント"
     new:
@@ -336,6 +337,9 @@ ja:
       error: "エラー"
   users:
     user_profile: "プロフィール"
+    improvement:
+      one: "Improvement"
+      other: "Improvements"
     follower:
       one: フォロワー
       other: フォロワー
@@ -475,4 +479,5 @@ ja:
     your_post: "Your post"
     show_more: "Show more"
     show_less: "Show less"
+    not_found: "Your improvement not found"
   not_found_topic: "Topic not found"

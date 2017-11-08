@@ -20,6 +20,10 @@ $(document).ready(function(){
       }
     });
   });
+  $('.edit-improvement').click(function(){
+    var id = $(this).attr('id');
+    $('#edit-form-'+id).slideToggle();
+  });
   read_more();
   reject_a_version();
   approve_a_version();
