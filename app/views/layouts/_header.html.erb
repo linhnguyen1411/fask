@@ -1,7 +1,7 @@
 <div class="top-bar">
   <div class="container">
     <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-4">
+      <div class="col-lg-5 col-md-5 col-sm-6 col-xs-5">
         <ul class="top-nav nav-left">
           <li><%= link_to t(".home"), root_path %></li>
           <li class="hidden-xs"><%= link_to t(".more_tools"), "http://wsm.framgia.vn/all-tools",
@@ -10,7 +10,7 @@
           </li>
         </ul>
       </div>
-      <div class="col-lg-8 col-md-8 col-sm-6 col-xs-8">
+      <div class="col-lg-7 col-md-7 col-sm-6 col-xs-7">
         <ul class="top-nav nav-right">
           <%= hidden_field_tag "user-loged-in", user_signed_in? ? current_user.id : false %>
           <% if user_signed_in? %>
