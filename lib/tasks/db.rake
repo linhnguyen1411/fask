@@ -1,9 +1,9 @@
 namespace :db do
   desc "TODO"
-  task make_data: [:create_admin, :create_users, :create_tags, :create_work_spaces,
+  task make_data: [:create_work_spaces, :create_admin, :create_users, :create_tags,
     :create_topics, :create_posts, :create_answers,
     :create_relationships, :create_clips,
-    :create_topices_users, :create_users_work_spaces] do
+    :create_topices_users] do
   end
 
   task create_admin: :environment do
@@ -11,7 +11,7 @@ namespace :db do
       name: "Admin",
       email: "fask.info@gmail.com",
       password: "Aa@123",
-      password_confirmation: "Aa@123"
+      password_confirmation: "Aa@123",
     )
   end
 
@@ -22,7 +22,8 @@ namespace :db do
       position: "Member",
       code: Faker::Code.asin,
       password: "Aa@123",
-      password_confirmation: "Aa@123"
+      password_confirmation: "Aa@123",
+      work_space_id: WorkSpace.first.id
     )
 
     User.create!(
@@ -31,7 +32,8 @@ namespace :db do
       position: "Section Manager",
       code: Faker::Code.asin,
       password: "Aa@123",
-      password_confirmation: "Aa@123"
+      password_confirmation: "Aa@123",
+      work_space_id: WorkSpace.first.id
     )
 
     User.create!(
@@ -40,7 +42,8 @@ namespace :db do
       position: "Trainer",
       code: Faker::Code.asin,
       password: "Aa@123",
-      password_confirmation: "Aa@123"
+      password_confirmation: "Aa@123",
+      work_space_id: WorkSpace.first.id
     )
 
     User.create!(
@@ -49,7 +52,8 @@ namespace :db do
       position: "Member",
       code: Faker::Code.asin,
       password: "Aa@123",
-      password_confirmation: "Aa@123"
+      password_confirmation: "Aa@123",
+      work_space_id: WorkSpace.first.id
     )
 
     User.create!(
@@ -58,7 +62,8 @@ namespace :db do
       position: "Hr administrator",
       code: Faker::Code.asin,
       password: "Aa@123",
-      password_confirmation: "Aa@123"
+      password_confirmation: "Aa@123",
+      work_space_id: WorkSpace.first.id
     )
 
     User.create!(
@@ -67,7 +72,8 @@ namespace :db do
       position: "Hr administrator",
       code: Faker::Code.asin,
       password: "Aa@123",
-      password_confirmation: "Aa@123"
+      password_confirmation: "Aa@123",
+      work_space_id: WorkSpace.first.id
     )
 
     User.create!(
@@ -76,7 +82,8 @@ namespace :db do
       position: "Group Leader (Non-Tech)",
       code: Faker::Code.asin,
       password: "Aa@123",
-      password_confirmation: "Aa@123"
+      password_confirmation: "Aa@123",
+      work_space_id: WorkSpace.first.id
     )
 
     User.create!(
@@ -85,7 +92,8 @@ namespace :db do
       position: "Event Officer",
       code: Faker::Code.asin,
       password: "Aa@123",
-      password_confirmation: "Aa@123"
+      password_confirmation: "Aa@123",
+      work_space_id: WorkSpace.first.id
     )
 
   end
@@ -130,13 +138,13 @@ namespace :db do
 
   task create_work_spaces: :environment do
     WorkSpace.create!(
-      name: "Đà Nẵng Office",
+      name: "Da Nang Office",
       area: "Da Nang City",
       description: "Framgia Da Nang"
     )
 
     WorkSpace.create!(
-      name: "Hà Nội Office",
+      name: "Hanoi Office",
       area: "Ho Chi Minh City",
       description: "Framgia Ho Chi Minh"
     )
@@ -148,7 +156,7 @@ namespace :db do
     )
 
     WorkSpace.create!(
-      name: "TKC Office",
+      name: "Tran Khat Chan",
       area: "Ha Noi capital",
       description: "Framgia Ha Noi"
     )
@@ -580,7 +588,7 @@ namespace :db do
 
   task create_relationships: :environment do
     20.times do
-      followerId = User.order("RAND()").first.id;
+      followerId = User.order("RAND()").where.not(id: 1).first.id;
       Relationship.create!(
         follower_id: followerId,
         following_id: User.order("RAND()").where.not(id: followerId).first.id
@@ -606,13 +614,6 @@ namespace :db do
     TopicesUser.create!(
       user_id: 3,
       topic_id: 1
-    )
-  end
-
-  task create_users_work_spaces: :environment do
-    UsersWorkSpace.create!(
-      user_id: 4,
-      work_space_id: 2,
     )
   end
 end

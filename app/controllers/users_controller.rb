@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user
 
   def index
-    @title = t "profile.followers.title"
+    @title = t "profile.index.title"
     @users = User.page(params[:page])
       .get_users_not_contain_id([current_user.id, Settings.id_user_hiddent])
       .per Settings.paginate_users

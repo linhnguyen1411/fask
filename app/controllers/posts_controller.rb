@@ -13,7 +13,16 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    @post = case request.referer
+    when topic_url(Settings.topic.q_a_number)
+      Post.new topic_id: Settings.topic.q_a_number
+    when topic_url(Settings.topic.feedback_number)
+      Post.new topic_id: Settings.topic.feedback_number, work_space_id: current_user.work_space_id
+    when topic_url(Settings.topic.confesstion_number)
+      Post.new topic_id: Settings.topic.confesstion_number
+    else
+      Post.new
+    end
   end
 
   def show
