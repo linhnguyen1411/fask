@@ -445,6 +445,7 @@ ja:
   receive_notification: "On FAsk"
   receive_email: "Via Email"
   user_guild: "You can tag another user in your anwer by click icon "
+  user_guild_code_tag: "You can add your code into your post by click icon "
   edit_user:
     update_settings_success: "Update settings successful"
     update_settings_fail: "Update settings failed"

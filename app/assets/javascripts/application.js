@@ -20,14 +20,15 @@
 //= require i18n/translations
 //= require sweetalert/dist/sweetalert.min.js
 //= require social-share-button
+//= require shCore
 
 $(document).ready(function(){
+  SyntaxHighlighter.all();
   Notification.requestPermission();
   $('a').tooltip();
   $('a').each(function(){
     if($(this).html() == "Unlicensed copy of the Froala Editor. Use it legally by purchasing a license.")
       $(this).parent('div').html('').css('background-color', 'white');
     $('.fr-placeholder').css('margin-top', '0');
-    $('.fr-placeholder').html(I18n.t ("user_guild")+ ' <i class= "fa fa-address-book"></i>');
   });
 });
