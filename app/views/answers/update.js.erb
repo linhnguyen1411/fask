@@ -2,6 +2,4 @@
 $('#content-<%= @answer.id %>').html('<%= raw @answer.content %>');
 $('#answer-form').html(
   '<%= j(render("posts/answer_form", answer: @new_answer, post: @answer.post, option: {remote: false})) %>');
-$('html,body').animate({
-  scrollTop:  $('#answer-<%= @answer.id %>').offset().top
-}, 700);
+

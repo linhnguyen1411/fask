@@ -126,11 +126,6 @@ function btn_tag_users_event() {
     });
   });
 }
-$(document).ready(function() {
-  $('pre code').each(function(i, block) {
-    hljs.highlightBlock(block);
-  });
-});
 
 $.FroalaEditor.DefineIcon('syntaxhighlight', {NAME: 'terminal'})
 $.FroalaEditor.RegisterCommand('codePanel',{
