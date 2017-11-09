@@ -445,6 +445,7 @@ en:
   receive_notification: "On FAsk"
   receive_email: "Via Email"
   user_guild: "You can tag another user in your anwer by click icon "
+  user_guild_code_tag: "You can add your code into your post by click icon "
   edit_user:
     update_settings_success: "Successfully updated settings"
     update_settings_fail: "Failed to pdate settings"
@@ -454,7 +455,7 @@ en:
   post_your_answer: "Post Your Answer"
   auth_fail: "Auth failure"
   social_share_button:
-    share_to: "Chia sẻ qua %{name}"
+    share_to: "Share to %{name}"
     facebook: "Facebook"
     google_plus: "Google +"
     twitter: "Twitter"

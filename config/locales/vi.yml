@@ -445,6 +445,7 @@ vi:
   receive_notification: "Trên FAsk"
   receive_email: "Qua Email"
   user_guild: "Bạn có thể gắn thẻ tên người khác bằng cách chọn vào hình "
+  user_guild_code_tag: "Bạn có thể thêm đoạn code vào bài viết bằng cách chọn vào hình "
   edit_user:
     update_settings_success: "Cập nhật cài đặt thành công"
     update_settings_fail: "Cập nhật cài đặt thất bại"

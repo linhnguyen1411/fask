@@ -126,18 +126,61 @@ function btn_tag_users_event() {
     });
   });
 }
+$(document).ready(function() {
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+
+$.FroalaEditor.DefineIcon('syntaxhighlight', {NAME: 'terminal'})
+$.FroalaEditor.RegisterCommand('codePanel',{
+  title: 'code quote',
+  icon: '<i class="fa fa-file-code-o" aria-hidden="true"></i>',
+  undo: true,
+  focus: false,
+  callback: function () {
+    this.codePanel.apply();
+  }
+});
+
+(function ($) {
+  $.FroalaEditor.PLUGINS.codePanel = function (editor) {
+    function apply(){
+      var i;
+      var blocks = editor.selection.blocks();
+      var text='<pre class="brush: ruby">';
+      for (i = 0; i < blocks.length; i++) {
+        text+=blocks[i].innerHTML+'<br><br>';
+      }
+      text+='</pre>';
+      text = editor.clean.html(text)
+      editor.html.insert(text);
+      editor.html.unwrap();
+      editor.selection.restore();
+    }
+    // Methods visible outside the plugin.
+    return {
+      apply: apply
+    }
+  }
+
+})(jQuery);
 
 $(document).ready(function(){
   $('.froalaEditor').froalaEditor({
-    height: 400,
+    placeholderText: I18n.t ("user_guild")+ ' <i class= "fa fa-address-book"></i></br>'
+      + I18n.t ("user_guild_code_tag") + '<i class="fa fa-file-code-o" aria-hidden="true"></i>',
+    height: 300,
     toolbarButtons: ['fullscreen', 'bold', 'italic', 'underline', 'strikeThrough',
     'subscript', 'superscript', 'fontFamily', 'fontSize', '|', 'color', 'emoticons',
     'inlineStyle', 'paragraphStyle', '|', 'paragraphFormat', 'align', 'formatOL',
     'formatUL', 'outdent', 'indent', '-', 'insertLink', 'insertImage', 'insertVideo',
     'insertFile', 'insertTable', '|', 'quote', 'insertHR', 'undo', 'redo', 'clearFormatting',
-    'selectAll', 'html', 'tagUsers'],
+    'selectAll', 'html', 'tagUsers', 'codePanel'],
     imageUploadURL: '/upload_image',
-    imageUploadParams: {id: 'my_editor'}
+    imageUploadParams: {id: 'my_editor'},
+    tabSpaces: 2,
+    codeMirror: true,
   });
   btn_tag_users_event();
 });
