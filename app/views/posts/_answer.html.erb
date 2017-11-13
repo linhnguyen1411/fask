@@ -29,11 +29,13 @@
         <% end %>
       </div>
     </div>
-    <div class="content border-table" id="content-<%= answer.id %>">
+    <div class="content border-table">
       <div id="share-cmt-<%= answer.id %>" class="collapse custom-share-cmt">
         <% share = "Answer:"+ @post.title %>
         <%= social_share_button_tag(share) %>
       </div>
+    </div>
+    <div class="content border-table" id="content-<%= answer.id %>">
       <%= raw answer.content %>
     </div>
     <div class="pad-ver pull-left">
