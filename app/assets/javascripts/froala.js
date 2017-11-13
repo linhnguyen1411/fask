@@ -148,7 +148,7 @@ $.FroalaEditor.RegisterCommand('codePanel',{
     function apply(){
       var i;
       var blocks = editor.selection.blocks();
-      var text='<pre class="brush: ruby">';
+      var text='<pre>';
       for (i = 0; i < blocks.length; i++) {
         text+=blocks[i].innerHTML+'<br><br>';
       }
