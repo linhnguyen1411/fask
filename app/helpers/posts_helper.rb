@@ -11,6 +11,22 @@ module PostsHelper
     post.comments.size
   end
 
+  def count_likes_answer answer
+    answer.reactions.like.size
+  end
+
+  def count_loves_answer answer
+    answer.reactions.heart.size
+  end
+
+  def count_like_and_love_answer answer
+    count_likes_answer(answer) + count_loves_answer(answer)
+  end
+
+  def check_user_reaction_answer answer, user
+    answer.reactions.get_reaction_not_dislike(3).map(&:user_id).include? user.id
+  end
+
   def count_vote post
     post.reactions.upvote.size - post.reactions.downvote.size
   end

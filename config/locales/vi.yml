@@ -332,6 +332,10 @@ vi:
   clip: "Ghim bài"
   unclip: "Bỏ ghim bài"
   reactions:
+    all_reactions: "Các lượt thích"
+    you_and: "Bạn và "
+    another_people: "người khác "
+    you_like: "Bạn đã thích bài viết này "
     create:
       success: "Thành công"
       error: "Thất bại"
