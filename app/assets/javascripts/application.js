@@ -13,11 +13,11 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require_tree .
-//= require bootstrap-sprockets
 //= require i18n
 //= require i18n.js
 //= require i18n/translations
+//= require_tree .
+//= require bootstrap-sprockets
 //= require sweetalert/dist/sweetalert.min.js
 //= require social-share-button
 //= require shCore
