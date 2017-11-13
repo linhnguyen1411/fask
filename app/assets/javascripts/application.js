@@ -20,10 +20,8 @@
 //= require bootstrap-sprockets
 //= require sweetalert/dist/sweetalert.min.js
 //= require social-share-button
-//= require shCore
 
 $(document).ready(function(){
-  SyntaxHighlighter.all();
   Notification.requestPermission();
   $('a').tooltip();
   $('a').each(function(){
