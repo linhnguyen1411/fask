@@ -76,20 +76,18 @@ class User < ApplicationRecord
     end
 
     def get_work_space_of_wsm_account_for_user user, work_spaces, workspace_default
-      work_space_of_wsm_account = workspace_default.present? ? workspace_default : work_spaces.first
-      work_space = WorkSpace.find_by name: work_space_of_wsm_account.name
+      work_space_name_of_wsm_account = workspace_default.present? ? workspace_default : work_spaces.first.name
+      work_space = WorkSpace.find_by name: work_space_name_of_wsm_account
       if work_space.present?
          work_space.id
       else
-        create_work_space work_space_of_wsm_account
+        create_work_space work_space_name_of_wsm_account
       end
     end
 
-    def create_work_space work_space_of_wsm_account
+    def create_work_space work_space_name_of_wsm_account
       work_space = WorkSpace.new(
-        name: work_space_of_wsm_account.name,
-        area: work_space_of_wsm_account.address,
-        description: work_space_of_wsm_account.description
+        name: work_space_name_of_wsm_account
       )
       work_space.save ? work_space.id : WorkSpace.first.id
     end
