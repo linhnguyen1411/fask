@@ -13,6 +13,9 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require ckeditor/init
+//= require ckeditor/plugins/widget/plugin
+//= require ckeditor/plugins/codesnippet/plugin
 //= require i18n
 //= require i18n.js
 //= require i18n/translations
@@ -24,6 +27,9 @@
 
 $(document).ready(function(){
   Notification.requestPermission();
+  $('.img-responsive').viewer({
+    navbar: false
+  });
   $('a').tooltip();
   $('a').each(function(){
     if($(this).html() == "Unlicensed copy of the Froala Editor. Use it legally by purchasing a license.")
@@ -31,3 +37,4 @@ $(document).ready(function(){
     $('.fr-placeholder').css('margin-top', '0');
   });
 });
+CKEDITOR.config.customConfig = '/assets/ckeditor/config.js';

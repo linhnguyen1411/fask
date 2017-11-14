@@ -1,7 +1,6 @@
 class Post < ApplicationRecord
   paginates_per Settings.paginate_default
 
-  STANDARDIZE_REGEX = /<a class=\"tag-user-item\" href=\"\/users\/\d{1,}\"><i class=\"fa fa-address-book-o\"><\/i><\/a>|<a href=\"\/users\/\d{1,}\" class=\"tag-user-item\"><\/a>/
   acts_as_paranoid
 
   searchkick
@@ -21,7 +20,6 @@ class Post < ApplicationRecord
   belongs_to :topic
 
   after_create :create_activity
-  before_save :standardize_content
 
   validates :title, presence: true,
     length: {maximum: Settings.post.max_title, minimum: Settings.post.min_title}
@@ -61,10 +59,5 @@ class Post < ApplicationRecord
 
   def create_activity
     self.activities.create owner: self.user
-  end
-
-  def standardize_content
-    content.remove! "<p><br></p>"
-    content.remove! STANDARDIZE_REGEX
   end
 end

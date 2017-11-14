@@ -34,6 +34,7 @@ gem "kaminari"
 gem "faker"
 gem "cloudinary"
 gem "social-share-button"
+gem "ckeditor"
 
 group :development, :test do
   gem "byebug"

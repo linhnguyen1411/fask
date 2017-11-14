@@ -52,4 +52,5 @@ config/environments/*.local.yml
 coverage
 /public/javascripts/*
 /public/assets/*
+/public/ckeditor/*
 npm-debug.log
