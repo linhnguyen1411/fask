@@ -95,8 +95,7 @@ function reaction_vote_post() {
       window.location.href = '/users/sign_in';
     });
   });
-
-  $('.btn-vote').click(function(){
+  $(document).on('click','.btn-vote',function(){
     var type = $(this).data('type');
     var model = $(this).data('model');
     var id = $(this).data('id');
@@ -114,6 +113,7 @@ function reaction_vote_post() {
           item_id: id
         },
         success: function (data) {
+          var reactions = data.reaction_type;
           if(data.type) {
             if(model === 'Post') {
               $('.point-vote').html('').toggle(200);
@@ -124,6 +124,19 @@ function reaction_vote_post() {
               $(lct).closest('div').find('.count-like').html('' + data[0] + '');
               $(lct).closest('div').find('.count-dislike').html('' + data[1] + '');
               $(lct).closest('div').find('.count-heart').html('' + data[2] + '');
+              if (reactions === "dislike"){
+                if(data[0] + data[2] == 0 )
+                  $('.link-reaction').html('');
+                else
+                  $('.link-reaction').html(data[0] + data[2] + ' ' + I18n.t('reactions.another_people'));
+              }
+              else{
+                if (data[0] + data[2] == 1) {
+                  $('.link-reaction').html(I18n.t('reactions.you_like'));
+                }
+                else
+                  $('.link-reaction').html(I18n.t('reactions.you_and') + (data[0] + data[2] - 1) + ' ' + I18n.t('reactions.another_people'));
+              }
             }
           }
           else if(data.not_login)

@@ -26,6 +26,12 @@ class PostsController < ApplicationController
   end
 
   def show
+    if params[:answer_id]
+      @get_answer = Answer.find_by id: params[:answer_id]
+      if @get_answer.blank?
+        @success = false
+      end
+    end
     @post_extension = Supports::PostSupport.new Post, nil, nil, nil, params[:comment_page], params[:view_more_time], @post
     @answer = Answer.new
     respond_to do |format|

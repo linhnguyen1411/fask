@@ -332,6 +332,10 @@ en:
   clip: "Pin"
   unclip: "Unpin"
   reactions:
+    all_reactions: "All reactions"
+    you_and: "You and "
+    another_people: "another people"
+    you_like: "You had been liked this"
     create:
       success: "Success"
       error: "Error"

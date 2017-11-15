@@ -605,3 +605,33 @@ p {
 .border-table > table > thead > tr > th{
   background: #e6e6e6;
 }
+#modal-show-reactions{
+  padding-top: 10%;
+}
+.reactions-list-item{
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.reactions-list-item img{
+  border-radius: 50%;
+  width: 10%;
+}
+.list-user-reactions{
+  padding-top: 10px;
+}
+.name-user-reactions{
+  padding-left: 10px;
+}
+.reactions-tab{
+  margin-top: 5px!important;
+}
+.reactions-custom-modal{
+  width: 70%;
+  margin-left: 20%;
+}
+.tagcloud{
+  padding-top: 5px;
+}
+.link-reaction{
+  color: red!important;
+  padding-right: 5px;
+}

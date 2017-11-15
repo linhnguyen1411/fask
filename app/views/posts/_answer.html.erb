@@ -38,13 +38,25 @@
     <div class="content border-table" id="content-<%= answer.id %>">
       <%= raw answer.content %>
     </div>
-    <div class="pad-ver pull-left">
-    </div>
     <div class="pad-ver pull-right">
       <%= load_btn_reactions answer, t(".like_answer"), Settings.reaction_type.like %>
       <%= load_btn_reactions answer, t(".spam"), Settings.reaction_type.dislike %>
       <%= load_btn_reactions answer, t(".love"), Settings.reaction_type.heart %>
       <%= load_btn_correct_answer answer, @post %>
+    </div>
+    <div class="pad-ver pull-right">
+      <% if count_like_and_love_answer(answer) > Settings.zero_reaction %>
+        <%= link_to post_path(answer_id: answer.id), remote: :true, class: "link-reaction-#{answer.id} link-reaction" do %>
+          <% if check_user_reaction_answer(answer, current_user) && count_like_and_love_answer(answer) >= Settings.two_reaction  %>
+            <%= t "reactions.you_and" %> <%= count_like_and_love_answer(answer) - Settings.one_reaction %>
+            <%= t "reactions.another_people" %>
+          <% elsif check_user_reaction_answer(answer, current_user) && count_like_and_love_answer(answer) == Settings.one_reaction %>
+            <%= t "reactions.you_like" %>
+          <% else %>
+            <%= count_like_and_love_answer(answer) %> <%= t "reactions.another_people" %>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <div class="one-line"></div>
