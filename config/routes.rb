@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   resources :topics
   resources :tag_users, only: :index
   resources :answers, except: [:index, :new, :show]
-  resources :reactions, only: :create
+  resources :reactions, only: [:create, :index]
   resources :comments, only: [:create, :update, :destroy]
   resources :activities, only: :index
   resources :users, only: [:index, :show, :update]

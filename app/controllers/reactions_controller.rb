@@ -1,6 +1,15 @@
 class ReactionsController < ApplicationController
   before_action :authenticate_user
-  before_action :load_item, only: :create
+  before_action :load_item, only: [:create, :index]
+
+  def index
+    if @item.blank?
+      @success = false
+     end
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def create
     @reaction = Reaction.find_or_initialize_by reactiontable_type: @item.class.name,

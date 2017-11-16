@@ -6,23 +6,23 @@
       </div>
       <div class="modal-body">
         <ul class="nav nav-tabs" id="tabContent">
-          <% if count_likes_answer(answer) > Settings.zero_reaction %>
+          <% if count_likes(item) > Settings.zero_reaction %>
             <li class="active"><a href="#likes" data-toggle="tab">
-              <i class="fa fa-thumbs-o-up red"aria-hidden="true"></i> <%=count_likes_answer answer %></a></li>
+              <i class="fa fa-thumbs-o-up red"aria-hidden="true"></i> <%=count_likes item %></a></li>
           <% end %>
-          <% if count_loves_answer(answer) > Settings.zero_reaction %>
-            <% if count_likes_answer(answer) == Settings.zero_reaction %>
+          <% if count_loves(item) > Settings.zero_reaction %>
+            <% if count_likes(item) == Settings.zero_reaction %>
               <li class="active">
             <% else %>
               <li>
             <% end %>
                 <a href="#loves" data-toggle="tab"><i class="fa fa-heart-o"
-                aria-hidden="true"></i> <%=count_loves_answer answer %></a></li>
+                aria-hidden="true"></i> <%=count_loves item %></a></li>
           <% end %>
         </ul>
         <div class="tab-content reactions-tab">
           <div class="tab-pane active" id="likes">
-            <% answer.reactions.like.each do |like|%>
+            <% item.reactions.like.each do |like|%>
               <div class="row list-user-reactions">
                 <div class="col-md-8 reactions-list-item">
                   <%= image_tag like.user_avatar.url %>
@@ -44,12 +44,12 @@
               </div>
             <% end %>
           </div>
-          <% if count_likes_answer(answer) == Settings.zero_reaction %>
+          <% if count_likes(item) == Settings.zero_reaction %>
             <div class="tab-pane active" id="loves">
           <% else %>
             <div class="tab-pane" id="loves">
           <% end %>
-            <% answer.reactions.heart.each do |like|%>
+            <% item.reactions.heart.each do |like|%>
               <div class="row list-user-reactions">
                 <div class="col-md-8 reactions-list-item">
                   <%= image_tag like.user_avatar.url %>

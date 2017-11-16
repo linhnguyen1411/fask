@@ -11,20 +11,20 @@ module PostsHelper
     post.comments.size
   end
 
-  def count_likes_answer answer
-    answer.reactions.like.size
+  def count_likes item
+    item.reactions.like.size
   end
 
-  def count_loves_answer answer
-    answer.reactions.heart.size
+  def count_loves item
+    item.reactions.heart.size
   end
 
-  def count_like_and_love_answer answer
-    count_likes_answer(answer) + count_loves_answer(answer)
+  def count_like_and_love item
+    count_likes(item) + count_loves(item)
   end
 
-  def check_user_reaction_answer answer, user
-    answer.reactions.get_reaction_not_dislike(3).map(&:user_id).include? user.id
+  def check_user_reaction item, user
+    item.reactions.get_reaction_not_dislike(3).map(&:user_id).include? user.id
   end
 
   def count_vote post
@@ -139,5 +139,23 @@ module PostsHelper
   def content_post post
     check_a_version_for_post(post) ?
       raw(check_a_version_for_post(post).content) : raw(post.content)
+  end
+
+  def load_link_reaction item
+    if count_like_and_love(item) > Settings.zero_reaction
+      (link_to reactions_path(item_id: item.id, model: item.class.name), remote: :true, class: "link-reaction-#{item.id} link-reaction" do
+        if check_user_reaction(item, current_user) && count_like_and_love(item) >= Settings.two_reaction
+          t("reactions.you_and") + (count_like_and_love(item) - Settings.one_reaction).to_s +
+          t("reactions.another_people")
+        elsif check_user_reaction(item, current_user) && count_like_and_love(item) == Settings.one_reaction
+          t("reactions.you_like")
+        else
+          count_like_and_love(item).to_s + t("reactions.another_people")
+        end
+      end)
+    else
+      (link_to reactions_path(item_id: item.id, model: item.class.name), remote: :true, class: "link-reaction-#{item.id} link-reaction" do
+      end)
+    end
   end
 end
