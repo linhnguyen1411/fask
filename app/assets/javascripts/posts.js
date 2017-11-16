@@ -121,21 +121,22 @@ function reaction_vote_post() {
             }
             else {
               var data = data.data;
-              $(lct).closest('div').find('.count-like').html('' + data[0] + '');
-              $(lct).closest('div').find('.count-dislike').html('' + data[1] + '');
-              $(lct).closest('div').find('.count-heart').html('' + data[2] + '');
+              $(lct).closest('.reactions-form').find('.count-like').html('' + data[0] + '');
+              $(lct).closest('.reactions-form').find('.count-dislike').html('' + data[1] + '');
+              $(lct).closest('.reactions-form').find('.count-heart').html('' + data[2] + '');
+              var target_link = $(lct).closest('.reactions-form').find('.link-reaction');
               if (reactions === "dislike"){
                 if(data[0] + data[2] == 0 )
-                  $('.link-reaction').html('');
+                  target_link.html('');
                 else
-                  $('.link-reaction').html(data[0] + data[2] + ' ' + I18n.t('reactions.another_people'));
+                  target_link.html(data[0] + data[2] + ' ' + I18n.t('reactions.another_people'));
               }
               else{
                 if (data[0] + data[2] == 1) {
-                  $('.link-reaction').html(I18n.t('reactions.you_like'));
+                  target_link.html(I18n.t('reactions.you_like'));
                 }
                 else
-                  $('.link-reaction').html(I18n.t('reactions.you_and') + (data[0] + data[2] - 1) + ' ' + I18n.t('reactions.another_people'));
+                  target_link.html(I18n.t('reactions.you_and') + (data[0] + data[2] - 1) + ' ' + I18n.t('reactions.another_people'));
               }
             }
           }

@@ -1,0 +1,18 @@
+<% if @success == false %>
+  swal({
+    title: I18n.t('warning'),
+    text: I18n.t('login_to_continue'),
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#DD6B55',
+    confirmButtonText: I18n.t('ok'),
+    cancelButtonText: I18n.t('cancel'),
+    closeOnConfirm: false
+  },
+  function(){
+    window.location.replace('/users/sign_in');
+  });
+<% else %>
+  $('.like-modal').html('<%= j render "posts/reaction", item: @item %>');
+  $('#modal-show-reactions').modal();
+<% end %>

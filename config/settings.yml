@@ -107,3 +107,6 @@ clips_posts: "clips_posts"
 zero_reaction: 0
 one_reaction: 1
 two_reaction: 2
+reactions:
+  comment: "Comment"
+  answer: "Answer"
