@@ -20,6 +20,7 @@
 //= require bootstrap-sprockets
 //= require sweetalert/dist/sweetalert.min.js
 //= require social-share-button
+//= require viewer.min.js
 
 $(document).ready(function(){
   Notification.requestPermission();
