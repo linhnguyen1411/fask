@@ -12,7 +12,7 @@
 .viewer-fullscreen::before,
 .viewer-fullscreen-exit::before,
 .viewer-close::before {
-  background: image-url(icons);
+  background: image-url('icons');
   background-repeat: no-repeat;
   color: transparent;
   display: block;
