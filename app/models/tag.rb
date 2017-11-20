@@ -3,6 +3,8 @@ class Tag < ApplicationRecord
   has_many :posts_tags, dependent: :destroy
   has_many :posts, through: :posts_tags
 
+  searchkick
+
   scope :by_used_count, ->{order(used_count: :desc).limit Settings.max_search_tags}
 
   scope :top_tags, -> do

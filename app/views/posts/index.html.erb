@@ -1,3 +1,4 @@
+<div class="search-params" data-query="<%= params[:query] %>  "></div>
 <div class="main-content-area">
   <!-- =-=-=-=-=-=-= Latest Questions  =-=-=-=-=-=-= -->
   <section class="white question-tabs padding-bottom-30" id="latest-post">
@@ -18,7 +19,7 @@
                         </a>
                       </div>
                       <div class="col-md-7 col-sm-8  col-xs-12">
-                        <h3><%= link_to post.title, post %></h3>
+                        <h3><span class="search-highlight"><%= link_to post.title, post %><span></h3>
                         <div class="listing-meta">
                           <span>
                             <i class="fa fa-clock-o" aria-hidden="true"></i>
@@ -32,7 +33,7 @@
                       </div>
                       <div class="col-md-10 col-sm-10  col-xs-12">
                         <div class="content-post">
-                          <%= raw post.content %>
+                          <span class="search-highlight" ><%= raw post.content %></span>
                         </div>
                         <div class="pull-right tagcloud">
                           <% post.tags.each do |tag| %>

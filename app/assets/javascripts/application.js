@@ -24,10 +24,12 @@
 //= require sweetalert/dist/sweetalert.min.js
 //= require social-share-button
 //= require viewer.min.js
+//= require jquery.mark.min.js
+//= require highlight-search
 
 $(document).ready(function(){
   Notification.requestPermission();
-  $('.img-responsive').viewer({
+  $('.zoom-img').viewer({
     navbar: false
   });
   $('a').tooltip();
