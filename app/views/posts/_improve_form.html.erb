@@ -2,7 +2,7 @@
 <%= form_for(AVersion.new, option) do |f| %>
   <%= f.hidden_field :post_id, value: post.id %>
   <div class="form-group improve-content">
-    <h2><%= t ".post_your_improvement" %></h2>
+    <h2><%= t "posts.show.post_your_improvement" %></h2>
     <%= f.text_area :content, minlength: Settings.post.min_title,
       required: true, class: "form-control ckeditor", id: "ckeditor" %>
   </div>

@@ -30,7 +30,7 @@ CKEDITOR.on( 'dialogDefinition', function( ev )
     var infoTab = dialogDefinition.getContents( 'info' );
     var advTab = dialogDefinition.getContents( 'advanced' );
     var stylesheetClassesField = advTab.get( 'txtGenClass' );
-    stylesheetClassesField['default'] = 'img-responsive';
+    stylesheetClassesField['default'] = 'zoom-img';
   }
 });
 CKEDITOR.dialog.add("smiley", function (f) {

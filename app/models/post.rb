@@ -60,4 +60,12 @@ class Post < ApplicationRecord
   def create_activity
     self.activities.create owner: self.user
   end
+
+  def search_data
+    attributes.merge(
+      tag_name: tags.map(&:name),
+      title: title,
+      content: content,
+      )
+  end
 end

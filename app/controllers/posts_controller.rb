@@ -5,11 +5,12 @@ class PostsController < ApplicationController
   before_action :plus_count_view, only: :show
 
   def index
-   if params[:query].present?
-     @posts = Post.search params[:query], page: params[:page], per_page: Settings.paginate_default
-   else
-     @posts = Post.page(params[:page]).per Settings.paginate_default
-   end
+    if params[:query].present?
+      @posts = Post.search params[:query], operator: "or",
+        page: params[:page], per_page: Settings.paginate_default
+    else
+      @posts = Post.page(params[:page]).per Settings.paginate_default
+    end
   end
 
   def new
