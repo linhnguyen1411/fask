@@ -42,6 +42,7 @@ event_officer: "Event Officer"
 content_max_length: 500
 limit_top: 3
 limit_tag: 10
+limit_suggest_tag: 5
 limit_notification: 5
 pictures:
   accepted_files: "image/jpeg, image/gif, image/png"

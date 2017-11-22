@@ -2,7 +2,7 @@ CKEDITOR.editorConfig = function (config) {
   config.contentsCss = '/assets/customs.css';
   config.codeSnippet_theme = 'pojoaque';
   config.allowedContent = true;
-  config.extraPlugins = 'codesnippet,tagusers';
+  config.extraPlugins = 'codesnippet,tagusers,confighelper';
   config.toolbar = [
     { name: 'basicstyles', items : [ 'Bold', 'Italic', 'Underline', 'Strike' ] },
     { name: 'colors', items : [ 'Subscript', 'Superscript' , 'RemoveFormat', 'TextColor', 'BGColor' ] },
@@ -16,11 +16,10 @@ CKEDITOR.editorConfig = function (config) {
   ];
   config.height = 350;
   config.filebrowserUploadUrl = '/ckeditor/pictures';
+  config.placeholder = I18n.t ("user_guild")+ '</br>'
+      + I18n.t ("user_guild_code_tag") + '<span class="cke_code_icon " aria-hidden="true"></span>';
 }
 CKEDITOR.dtd.$removeEmpty['span'] = false;
-CKEDITOR.dtd.$removeEmpty['p'] = true;
-CKEDITOR.dtd.$removeEmpty['br'] = true;
-
 CKEDITOR.on( 'dialogDefinition', function( ev )
 {
   var dialogName = ev.data.name;

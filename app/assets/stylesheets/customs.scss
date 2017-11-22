@@ -670,3 +670,30 @@ mark{
 .pull-right.tagcloud .search-highlight{
   float: left;
 }
+.list-top-tags .tag-item span.tag-name{
+  border: none;
+  margin: 0;
+  padding: 0 5px;
+  border-radius: 0px;
+  background: none;
+  color: black;
+}
+.list-top-tags.in-create-post {
+  max-height: 35px;
+  overflow: hidden;
+}
+.tagsinput-height > .tagsinput {
+  min-height: 50px !important;
+  height: 50px !important;
+  padding: 6px 5px 0 5px;
+}
+.tagsinput-height > .tagsinput span.tag {
+  padding: 4px;
+}
+.cke_code_icon {
+  background: RED;
+  width: 18px;
+  display: inline-block;
+  height: 18px;
+  background: image-url('codesnippet');
+}
