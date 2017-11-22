@@ -635,3 +635,31 @@ p {
   color: red!important;
   padding-right: 5px;
 }
+.cke_combopanel { width: 200px !important}
+.cke_panel_list .cke_panel_listItem  a:hover {
+  background-color: #ddd !important;
+  border: #028c0f solid 1px;
+  border-top-right-radius: 15px;
+  color: #028c0f !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
+  margin-left: 10px !important;
+  border: none;
+  text-shadow: 0.5px 0.5px 3px;
+}
+.cke_panel_listItem a:focus {
+  background-color: #fff !important;
+  outline: none !important;
+  color: #000 !important;
+  margin-left: 0px !important;
+  text-shadow: none !important;
+}
+.tagUsers-search.cke_search{
+  width: 157px !important;
+}
+#cke_80_option{
+  border-bottom: 1px solid #000;
+}
+.listing-grid img.smiley{
+  max-width: 23px;
+}

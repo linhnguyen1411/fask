@@ -50,32 +50,7 @@
               <div class="form-group">
                 <label><%= t ".form.content" %><span class="red-title"> *</span></label>
                 <%= f.text_area :content, minlength: Settings.post.min_title,
-                  required: true, class: "form-control froalaEditor" %>
-              </div>
-              <div class="panel-info-user">
-                <label>
-                  <i class="fa fa-user-secret" aria-hidden="true"></i>
-                  <%= t ".form.with_anonymous" %>
-                  <%= check_box_tag :anonymous %>
-                </label>
-                <div class="row form-login">
-                  <label class="col-md-12">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <%= t ".form.with_member" %>
-                  </label>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label><%= t ".login.email" %></label>
-                      <%= email_field_tag "user_email", "", required: true, class: "form-control" %>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label><%= t ".login.password" %></label>
-                      <%= password_field_tag "user_password", "", required: true, class: "form-control" %>
-                    </div>
-                  </div>
-                </div>
+                  required: true, class: "form-control ckeditor", id: "ckeditor"%>
               </div>
               <%= f.submit t(".form.btn_post"), id: "create-post",
                 class: "btn btn-primary pull-right" %>

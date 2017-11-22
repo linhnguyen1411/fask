@@ -47,7 +47,7 @@
               <div class="form-group">
                 <label><%= t ".form.content" %></label>
                 <%= f.text_area :content, minlength: Settings.post.min_title,
-                  required: true, class: "form-control froalaEditor" %>
+                  required: true, class: "form-control ckeditor", id: "ckeditor" %>
               </div>
               <%= f.submit t(".btn_edit"), class: "btn btn-primary pull-right" %>
             </div>
