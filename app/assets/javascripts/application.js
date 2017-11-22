@@ -29,8 +29,8 @@
 
 $(document).ready(function(){
   Notification.requestPermission();
-  $('.zoom-img').viewer({
-    navbar: false
+  $('.zoom-img').each(function(){
+    $(this).viewer();
   });
   $('a').tooltip();
   $('a').each(function(){
