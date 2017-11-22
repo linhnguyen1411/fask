@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :check_user, only: :create
   before_action :load_post, except: [:new, :index, :create]
   before_action :plus_count_view, only: :show
-
+  before_action :load_popular_tags, only: [:new, :edit]
   def index
     if params[:query].present?
       @posts = Post.search params[:query], operator: "or",
@@ -152,5 +152,9 @@ class PostsController < ApplicationController
 
   def plus_count_view
     @post.update_attributes count_view: @post.count_view + 1
+  end
+
+  def load_popular_tags
+    @popular_tags = Tag.top_tags.limit Settings.limit_suggest_tag
   end
 end

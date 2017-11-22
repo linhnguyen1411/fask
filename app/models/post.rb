@@ -18,7 +18,7 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :work_space, optional: true
   belongs_to :topic
-
+  before_save :standardize_content
   after_create :create_activity
 
   validates :title, presence: true,
@@ -67,5 +67,9 @@ class Post < ApplicationRecord
       title: title,
       content: content,
       )
+  end
+
+  def standardize_content
+    content.remove!('<p>&nbsp;</p>');
   end
 end

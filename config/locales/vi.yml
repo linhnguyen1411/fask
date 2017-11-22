@@ -150,6 +150,7 @@ vi:
         tags: "Gắn thẻ"
         add_a_tag: "Thêm tag"
         search_user_not_found: "Không tìm thấy user nào..."
+        popular_tags: "Top các tags"
     login:
       email: "Email"
       password: "Mật khẩu"
@@ -448,7 +449,7 @@ vi:
   following_user_create_post: "Nhận thông báo khi người bạn đang theo dõi tạo một bài đăng"
   receive_notification: "Trên FAsk"
   receive_email: "Qua Email"
-  user_guild: "Bạn có thể gắn thẻ tên người khác bằng cách chọn vào hình "
+  user_guild: "Bạn có thể gắn thẻ tên người khác bằng cách chọn vào Tag Users "
   user_guild_code_tag: "Bạn có thể thêm đoạn code vào bài viết bằng cách chọn vào hình "
   edit_user:
     update_settings_success: "Cập nhật cài đặt thành công"
@@ -486,3 +487,4 @@ vi:
     show_less: "Rút gọn"
     not_found: "Bản cải thiện này không được tìm thấy"
   not_found_topic: "không tìm thấy topic"
+  existed_tag: "Thẻ đã tồn tại"

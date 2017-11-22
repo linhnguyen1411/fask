@@ -39,4 +39,4 @@ $(document).ready(function(){
     $('.fr-placeholder').css('margin-top', '0');
   });
 });
-CKEDITOR.config.customConfig = '/assets/ckeditor/config.js';
+CKEDITOR.config.customConfig = '/assets/ckeditor/ckeditor_config.js';

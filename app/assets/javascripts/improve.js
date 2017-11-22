@@ -3,7 +3,16 @@ $(document).ready(function(){
   $('.improve-post').click(function(){
     $('#improve-form').slideToggle();
     $('.fr-placeholder').html("");
-    $('.improve-content .fr-element.fr-view').html($('.post-content').html());
+    $('#ckeditor-improve-form').html($('.post-content').html());
+    var ck = $('.ckeditor');
+    $.each(ck, function(i) {
+      if (ck[i].id == 'ckeditor-improve-form'){
+        var editor = CKEDITOR.instances['ckeditor-improve-form'];
+        if (editor) { editor.destroy(true); }
+        CKEDITOR.replace(ck[i]);
+      }
+    });
+
     $('.improve-btn').click(function(e){
       e.preventDefault();
       if($('.post-content').html() == $('.improve-content .fr-element.fr-view').html())

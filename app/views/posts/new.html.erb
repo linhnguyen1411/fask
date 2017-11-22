@@ -42,15 +42,22 @@
                 <%= f.text_field :title, maxlength: Settings.post.max_title,
                   minlength: Settings.post.min_title, required: true, class: "form-control" %>
               </div>
-              <div class="form-group">
+              <div class="form-group tagsinput-height">
                 <label><%= t ".form.tags" %></label>
                 <%= text_field_tag :tags, "", class: "form-control",
                   data: {role: "tagsinput"} %>
               </div>
               <div class="form-group">
+                <div class="list-top-tags in-create-post">
+                  <label><%= t ".form.popular_tags" %>&#58;</label>
+                  <%= render partial: "posts/tags", collection: @popular_tags, as: :tag %>
+                </div>
+              </div>
+
+              <div class="form-group">
                 <label><%= t ".form.content" %><span class="red-title"> *</span></label>
                 <%= f.text_area :content, minlength: Settings.post.min_title,
-                  required: true, class: "form-control ckeditor", id: "ckeditor"%>
+                  required: true, class: "form-control ckeditor"%>
               </div>
               <%= f.submit t(".form.btn_post"), id: "create-post",
                 class: "btn btn-primary pull-right" %>

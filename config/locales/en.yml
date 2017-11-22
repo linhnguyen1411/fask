@@ -150,6 +150,7 @@ en:
         tags: "Tags"
         add_a_tag: "Add an tag"
         search_user_not_found: "User not found..."
+        popular_tags: "Popular tags"
     login:
       email: "Email"
       password: "Password"
@@ -448,7 +449,7 @@ en:
   following_user_create_post: "Get notified when the person you are following creates a post"
   receive_notification: "On FAsk"
   receive_email: "Via Email"
-  user_guild: "You can tag another user in your anwer by click icon "
+  user_guild: "You can tag another user in your anwer by click Tag Users "
   user_guild_code_tag: "You can add your code into your post by click icon "
   edit_user:
     update_settings_success: "Successfully updated settings"
@@ -486,3 +487,4 @@ en:
     show_less: "Show less"
     not_found: "Your improvement not found"
   not_found_topic: "Topic not found"
+  existed_tag: "Existed tag"
