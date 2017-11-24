@@ -399,6 +399,7 @@ en:
     create_post: "A new article is posted"
     in_topic: " In the topic "
     tag_post: "Mentioned you in a post"
+    tag_comment: "Mentioned you in a comment"
     tag_answer: "Mentioned you in message replies"
     answer_post: "Replied to your post"
     comment_post: "Commented on your post"

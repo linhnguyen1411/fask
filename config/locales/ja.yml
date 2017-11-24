@@ -399,6 +399,7 @@ ja:
     create_post: "新しい記事を掲載しています"
     in_topic: " トピックで "
     tag_post: "あなたは記事に記載されています"
+    tag_comment: "Mentioned you in a comment"
     tag_answer: "記事のテキストの説明を思い出させます"
     answer_post: "投稿に返信しました"
     comment_post: "あなたの投稿にコメントしました"

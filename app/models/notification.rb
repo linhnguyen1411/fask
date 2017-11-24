@@ -31,10 +31,18 @@ class Notification < ApplicationRecord
     when Comment.name
       if activity.trackable.commentable.class.name == Post.name
         post = activity.trackable.commentable
-        @message = I18n.t("noti.comment_post") + " \"#{post.title}\""
+        if self.is_tag_user?
+          @message = I18n.t("noti.tag_comment") + " \"#{post.title}\""
+        else
+          @message = I18n.t("noti.comment_post") + " \"#{post.title}\""
+        end
       else
         post = activity.trackable.commentable.post
-        @message = I18n.t("noti.comment_answer") + I18n.t("noti.in_post") + " \"#{post.title}\""
+        if self.is_tag_user?
+          @message = I18n.t("noti.tag_comment") + " \"#{post.title}\""
+        else
+          @message = I18n.t("noti.comment_answer") + I18n.t("noti.in_post") + " \"#{post.title}\""
+        end
       end
     when Reaction.name
       object = activity.trackable.reactiontable

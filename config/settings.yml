@@ -111,3 +111,13 @@ two_reaction: 2
 reactions:
   comment: "Comment"
   answer: "Answer"
+notification_setting:
+  tag_post: "tag_post"
+  create_post: "create_post"
+  llc_answer: "llc_answer"
+  like_comment: "like_comment"
+  up_down_vote_post: "up_down_vote_post"
+  clip_post: "clip_post"
+  reply_post: "reply_post"
+  comment_post: "comment_post"
+  comment_answer: "comment_answer"
