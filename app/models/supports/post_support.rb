@@ -14,25 +14,25 @@ class Supports::PostSupport
   end
 
   def recent_posts
-    posts = get_post_by_topic @topic_id, @type_input, Settings.topic.type_sort.recently, @all, @page
+    posts = get_post_by_topic @topic_id, @type_input, Settings.topic.type_sort.recently, @all, @page, @work_space_id
     count_posts = count_posts @topic_id, Settings.topic.type_sort.recently
     {posts: posts, count_posts: count_posts}
   end
 
   def popular_posts
-    posts = get_post_by_topic @topic_id, @type_input, Settings.topic.type_sort.popular, @all, @page
+    posts = get_post_by_topic @topic_id, @type_input, Settings.topic.type_sort.popular, @all, @page, @work_space_id
     count_posts = count_posts @topic_id, Settings.topic.type_sort.popular
     {posts: posts, count_posts: count_posts}
   end
 
   def recently_answer_of_post
-    posts = get_post_by_topic @topic_id, @type_input, Settings.topic.type_sort.recently_answer, @all, @page
+    posts = get_post_by_topic @topic_id, @type_input, Settings.topic.type_sort.recently_answer, @all, @page, @work_space_id
     count_posts = count_posts @topic_id, Settings.topic.type_sort.recently_answer
     {posts: posts, count_posts: count_posts}
   end
 
   def posts_no_answer
-    posts = get_post_by_topic @topic_id, @type_input, Settings.topic.type_sort.no_answer, @all, @page
+    posts = get_post_by_topic @topic_id, @type_input, Settings.topic.type_sort.no_answer, @all, @page, @work_space_id
     count_posts = count_posts @topic_id, Settings.topic.type_sort.no_answer
     {posts: posts, count_posts: count_posts}
   end
@@ -66,29 +66,48 @@ class Supports::PostSupport
     end
   end
 
-  def post_of_work_space
-    posts = if @all && @type_input == Settings.topic.location
-      @class_name.get_post_by_topic(@topic_id).post_of_work_space(@work_space_id)
+  def post_of_work_space type
+    posts = if @all
+      @class_name.send(type).get_post_by_topic(@topic_id).post_of_work_space(@work_space_id)
         .page(@page).per Settings.paginate_posts
     else
-      @class_name.get_post_by_topic(@topic_id).post_of_work_space(@work_space_id)
+      @class_name.send(type).get_post_by_topic(@topic_id).post_of_work_space(@work_space_id)
         .limit Settings.paginate_default
     end
-    count_posts = @class_name.get_post_by_topic(@topic_id)
-      .post_of_work_space(@work_space_id).count
+    count_posts = if type == Settings.topic.type_sort.no_answer
+     @class_name.send(type).get_post_by_topic(@topic_id)
+      .post_of_work_space(@work_space_id).size
+    else
+      @class_name.get_post_by_topic(@topic_id)
+      .post_of_work_space(@work_space_id).size
+    end
     {posts: posts, count_posts: count_posts}
   end
 
-  def work_space
-    @work_space_id
+  def get_work_space
+    if @work_space_id.present?
+      WorkSpace.get_work_space(@work_space_id).first
+    else
+      I18n.t("all_location")
+    end
   end
 
   private
-  def get_post_by_topic topic_id, type_input, type, all, page
-    if all && type_input == type
-      @class_name.send(type).get_post_by_topic(topic_id).page(page).per Settings.paginate_posts
+  def get_post_by_topic topic_id, type_input, type, all, page, work_space_id
+    if work_space_id.present?
+      if all && type_input == type
+        @class_name.send(type).get_post_by_topic(topic_id).post_of_work_space(work_space_id)
+          .page(page).per Settings.paginate_posts
+      else
+        @class_name.send(type).get_post_by_topic(topic_id).post_of_work_space(work_space_id)
+          .limit Settings.paginate_default
+      end
     else
-      @class_name.send(type).get_post_by_topic(topic_id).limit Settings.paginate_default
+      if all && type_input == type
+        @class_name.send(type).get_post_by_topic(topic_id).page(page).per Settings.paginate_posts
+      else
+        @class_name.send(type).get_post_by_topic(topic_id).limit Settings.paginate_default
+      end
     end
   end
 

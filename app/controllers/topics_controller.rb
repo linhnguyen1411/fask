@@ -4,6 +4,8 @@ class TopicsController < ApplicationController
 
   def show
     @support = Supports::PostSupport.new Post, params[:id], params[:type], params[:all], params[:page], nil, nil, params[:work_space_id]
+    @topUsers = User.top_users.limit Settings.limit_top
+    @tags = Tag.top_tags.limit Settings.limit_tag
     respond_to do |format|
       format.js
       format.html
