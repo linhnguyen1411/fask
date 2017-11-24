@@ -16,6 +16,7 @@
 //= require ckeditor/init
 //= require ckeditor/plugins/widget/plugin
 //= require ckeditor/plugins/codesnippet/plugin
+//= require jquery.atwho
 //= require i18n
 //= require i18n.js
 //= require i18n/translations

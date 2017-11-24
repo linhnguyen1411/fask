@@ -48,10 +48,16 @@ if(!jQuery.expr[':'].icontains){
   };
  }
 window.comboSearch= function(element) {
+  var spaceKey = 32;
   var anchorID = $(element).closest('a').attr("id");
   var liDom = $(element).closest('li');
   liDom.empty().append('<div id="' + anchorID + '" style="padding: 6px 7px !important; border-bottom: 1px solid #000;">' +
     '<span class="fa fa-search"></span><input class="tagUsers-search cke_search"/></div>');
+  liDom.find('input').on("keydown", function(event) {
+    if (event.keyCode == spaceKey) {
+      event.stopPropagation();
+    }
+  });
   liDom.find('input').off("keyup").on("keyup", function() {
     var data = this.value;
     var jo = liDom.siblings('li');

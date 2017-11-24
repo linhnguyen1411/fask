@@ -60,6 +60,8 @@
         is_login: user_signed_in? %>
     </div>
     <% if user_signed_in? %>
+      <div class="editable" contenteditable="true"
+        placeholder="<%= t("comments.create.content") %>"></div>
       <div class="comment-new">
         <%= render "comments/create",
           comment: answer.comments.new,
