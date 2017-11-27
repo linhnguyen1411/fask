@@ -59,6 +59,15 @@
                 <%= f.text_area :content, minlength: Settings.post.min_title,
                   required: true, class: "form-control ckeditor"%>
               </div>
+              <div class="form-group funkyradio panel-info-user">
+                <div class="funkyradio-gender">
+                  <%= check_box_tag :anonymous %>
+                  <i class="fa fa-user-secret"></i>
+                  <label for="anonymous">
+                    <%= t ".form.with_anonymous" %>
+                  </label>
+                </div>
+              </div>
               <%= f.submit t(".form.btn_post"), id: "create-post",
                 class: "btn btn-primary pull-right" %>
             </div>

@@ -731,3 +731,64 @@ mark{
 .location-dropdown:hover .location-dropbtn {
   background-color: #3e8e41;
 }
+.funkyradio label{
+  border: 1px solid #e7e7e7;
+  padding-right: 20px;
+}
+.funkyradio input[type="radio"]:empty, .funkyradio input[type="checkbox"]:empty{
+  display: none;
+}
+.funkyradio input[type="radio"]:empty ~ label,
+.funkyradio input[type="checkbox"]:empty ~ label{
+  height: 50px;
+  position: relative;
+  line-height: 48px;
+  left: -18px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.funkyradio input[type="checkbox"]:empty ~ label{
+  text-indent: 100px !important;
+  font-size: 20px;
+}
+.funkyradio input[type="radio"]:empty ~ label:before,
+.funkyradio input[type="checkbox"]:empty ~ label:before {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 50px;
+  background: #D1D3D4;
+}
+
+.funkyradio input[type="radio"]:checked ~ label:before,
+.funkyradio input[type="checkbox"]:checked ~ label:before{
+  content: '\2714';
+  transition: all 0.5s ease-in-out;
+}
+.funkyradio input[type="checkbox"]:checked ~ label:before{
+  text-indent: 18px !important;
+}
+.funkyradio-gender input[type="radio"]:checked ~ label:before,
+.funkyradio-gender input[type="radio"]:checked ~ label:before,
+.funkyradio-gender input[type="checkbox"]:checked ~ label:before,
+.funkyradio-gender input[type="checkbox"]:checked ~ label:before{
+  color: #fff;
+  background-color: #be161e;
+}
+.funkyradio-gender i{
+  position: relative;
+  left: 70px !important;
+  color: #be161e;
+  font-size: 20px;
+}
+.funkyradio-gender {
+  float: left;
+  padding-left:0px!important;
+  padding-right: 0px!important;
+}
