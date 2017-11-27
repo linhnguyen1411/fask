@@ -158,4 +158,12 @@ module PostsHelper
       end)
     end
   end
+
+  def load_workspace_id support
+    if support.get_work_space.try(:id).present?
+      support.get_work_space.id
+    else
+      nil
+    end
+  end
 end

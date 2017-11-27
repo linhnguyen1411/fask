@@ -46,6 +46,15 @@ namespace :db do
       password_confirmation: "Aa@123",
       work_space_id: WorkSpace.first.id
     )
+    User.create!(
+      name: "Nguyen Phan Hoang Linh",
+      email: "nguyen.phan.hoang.linh@framgia.com",
+      position: "Member",
+      code: Faker::Code.asin,
+      password: "123123",
+      password_confirmation: "123123",
+      work_space_id: WorkSpace.first.id
+    )
 
     User.create!(
       name: "Pham Thanh Luan",

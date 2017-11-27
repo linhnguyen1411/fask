@@ -1,10 +1,43 @@
-$('#filter-content').html(
-  '<%= j(render("topics/post", posts: @support.post_of_work_space[:posts],type: Settings.topic.locatio)) %>'
+$('.location-dropbtn').html('<%= @support.get_work_space.name %>');
+
+$('.newest').html(
+  '<%= j(render("topics/post", posts: @support.post_of_work_space(Settings.topic.type_sort.recently)[:posts], type: Settings.topic.type_sort.recently)) %>'
 );
-<% if @support.post_of_work_space[:count_posts] > Settings.paginate_default %>
-  $('#view-all-post').html(
-    '<%= j(render("topics/view_all", type: Settings.topic.location, work_space_id: @support.work_space)) %>'
+$('.popular').html(
+  '<%= j(render("topics/post", posts: @support.post_of_work_space(Settings.topic.type_sort.popular)[:posts], type: Settings.topic.type_sort.popular)) %>'
+);
+$('.answer').html(
+  '<%= j(render("topics/post", posts: @support.post_of_work_space(Settings.topic.type_sort.recently_answer)[:posts], type: Settings.topic.type_sort.recently_answer)) %>'
+);
+$('.no_answer').html(
+  '<%= j(render("topics/post", posts: @support.post_of_work_space(Settings.topic.type_sort.no_answer)[:posts], type: Settings.topic.type_sort.no_answer)) %>'
+);
+<% if @support.post_of_work_space(Settings.topic.type_sort.recently)[:count_posts] > Settings.paginate_default %>
+  $('.newest-pagination').html(
+    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.recently, work_space_id: @support.get_work_space.id)) %>'
   ).show();
 <% else %>
-  $('#view-all-post').hide();
+  $('.newest-pagination').hide();
+<% end %>
+<% if @support.post_of_work_space(Settings.topic.type_sort.popular)[:count_posts] > Settings.paginate_default %>
+  $('.popular-pagination').html(
+    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.popular, work_space_id: @support.get_work_space.id)) %>'
+  ).show();
+<% else %>
+  $('.popular-pagination').hide();
+<% end %>
+<% if @support.post_of_work_space(Settings.topic.type_sort.recently_answer)[:count_posts] > Settings.paginate_default %>
+  $('.answer-pagination').html(
+    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.recently_answer, work_space_id: @support.get_work_space.id)) %>'
+  ).show();
+<% else %>
+  $('.answer-pagination').hide();
+<% end %>
+
+<% if @support.post_of_work_space(Settings.topic.type_sort.no_answer)[:count_posts] > Settings.paginate_default %>
+  $('.no-answer-pagination').html(
+    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.no_answer, work_space_id: @support.get_work_space.id)) %>'
+  ).show();
+<% else %>
+  $('.no-answer-pagination').hide();
 <% end %>
