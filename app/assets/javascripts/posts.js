@@ -157,6 +157,7 @@ function add_new_comment() {
   $('.add-new-comment').click(function(){
     if ($(this).attr('is_login') === 'true') {
       $(this).css('display','none');
+      $(this).closest('.form-new-commment').find('.editable').show('500');
       $(this).closest('.form-new-commment').find('.comment-new').show('500');
     }
     else {
@@ -206,15 +207,15 @@ function correct_answer() {
 
 function load_modal_edit_comment() {
   $('.btn-edit-comment').click(function(){
-    $('#comment-content').attr('data-id', $(this).data('id'));
-    $('#comment-content').val($(this).closest('.item-body').find('.content').text());
+    $('#edit-comment-editable').attr('data-id', $(this).data('id'));
+    $('#edit-comment-editable').html($(this).closest('.item-body').find('.content').html());
   });
 }
 
 function appcept_edit_comment() {
   $('.btn-accept-edit-comment').click(function(){
-    var content = $('#comment-content').val();
-    var id = $('#comment-content').attr('data-id');
+    var content = $('#edit-comment-editable').html();
+    var id = $('#edit-comment-editable').attr('data-id');
     $.ajax({
       url: '/comments/' + id,
       type: 'PATCH',

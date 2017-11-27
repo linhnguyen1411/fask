@@ -35,6 +35,7 @@ gem "faker"
 gem "cloudinary"
 gem "social-share-button"
 gem "ckeditor"
+gem "jquery-atwho-rails"
 
 group :development, :test do
   gem "byebug"

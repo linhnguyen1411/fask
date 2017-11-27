@@ -4,6 +4,7 @@ $('<%= j render partial: "posts/comment", collection: [@comment], as: :comment %
   .hide().appendTo(item).show('500');
 
 $(item).closest('.form-new-commment').find('.comment-new').hide();
+$(item).closest('.form-new-commment').find('.editable').empty().hide();
 $(item).closest('.form-new-commment').find('.add-new-comment').show();
 $(item).closest('.form-new-commment').find('.comment-new')
   .html('<%= j render "comments/create", comment: @object.comments.new,
@@ -14,14 +15,14 @@ $('.btn-vote').unbind();
 
 $('.btn-edit-comment').unbind();
 $('.btn-edit-comment').click(function(){
-  $('#comment-content').attr('data-id', $(this).data('id'));
-  $('#comment-content').val($(this).closest('.item-body').find('.content').text());
+  $('#edit-comment-editable').attr('data-id', $(this).data('id'));
+  $('#edit-comment-editable').html($(this).closest('.item-body').find('.content').html());
 });
 
 $('.btn-accept-edit-comment').unbind();
 $('.btn-accept-edit-comment').click(function(){
-  var content = $('#comment-content').val();
-  var id = $('#comment-content').attr('data-id');
+  var content = $('#edit-comment-editable').html();
+  var id = $('#edit-comment-editable').attr('data-id');
   $.ajax({
     url: '/comments/' + id,
     type: 'PATCH',

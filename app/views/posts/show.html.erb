@@ -132,6 +132,8 @@
               </div>
             </div>
             <% if user_signed_in? %>
+              <div class="editable" contenteditable="true"
+                placeholder="<%= t("comments.create.content") %>"></div>
               <div class="comment-new">
                 <%= render "comments/create",
                   comment: @post.comments.new,
@@ -202,10 +204,8 @@
         <h4 class="modal-title"><%= t ".edit_comment" %></h4>
       </div>
       <div class="modal-body">
-        <div>
-          <%= text_area_tag "comment-content", "", placeholder: t("comments.create.content"),
-            minlength: Settings.post.min_title, required: true, class: "form-control resize-none" %>
-        </div>
+        <div class="editable show-editable" id="edit-comment-editable" contenteditable="true"
+          placeholder="<%= t("comments.create.content") %>"></div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">
