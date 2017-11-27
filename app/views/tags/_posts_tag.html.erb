@@ -12,6 +12,10 @@
           <h3><%= link_to post.title, post_path(post.id) %></a></h3>
           <div class="listing-meta">
             <span>
+              <i class="fa fa-foursquare" aria-hidden="true"></i>
+              <strong><%= link_to post.topic_name, topic_path(post.topic) %></strong>
+            </span>
+            <span>
               <i class="fa fa-clock-o" aria-hidden="true"></i>
               <%= time_ago_in_words post.created_at %>
             </span>
