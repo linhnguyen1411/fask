@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  seen_all()
+  seen_all();
   var hash = window.location.hash;
   $('html, body').animate({ scrollTop: $(hash).offset().top -80 },1500);
   $(hash).css('border', '2px solid red');
