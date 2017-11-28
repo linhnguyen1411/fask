@@ -11,108 +11,81 @@ class Activity < PublicActivity::Activity
   def add_notification
     case self.trackable.class.name
     when Post.name
-      user_path_array = self.trackable.content.scan GET_USER_PATH
-      notified_users = []
-      unless user_path_array.empty?
-        user_path_array.uniq.each do |user_path|
-          user = User.load_user(user_path.slice(Settings.scan_begin_index, user_path.length)).first
-          if user.nil?
-            next
-          elsif (user.notification_settings.empty? ||
-            user.notification_settings[:tag_post] == Settings.serialize_true)
-            notified_users << user
-            is_tag_user = true
-            create_notification user.id, is_tag_user
-          end
-        end
-      end
-      if(self.trackable.topic_id == Settings.topic.feedback_number)
-        User.notify_feedback_for_position.each do |user|
-          if ((!notified_users.include? user) &&
-            (user.notification_settings.empty? || user.notification_settings[:create_post] == Settings.serialize_true))
-            create_notification user.id
-          end
-        end
+      notified_users = add_notification_for_tagged_users Settings.notification_setting.tag_post
+      will_notify_users = if self.trackable.topic_id == Settings.topic.feedback_number
+        User.notify_feedback_for_position
       else
-        User.all.each do |user|
-          if ((!notified_users.include? user) &&
-            (user.notification_settings.empty? ||
-            user.notification_settings[:create_post] == Settings.serialize_true))
-            create_notification user.id
-          end
-        end
+        User.all
+      end
+      will_notify_users.each do |user|
+        check_condition_notify notified_users, user, Settings.notification_setting.create_post
       end
     when Answer.name
-      user_path_array = self.trackable.content.scan GET_USER_PATH
-      notified_users = []
-      unless user_path_array.empty?
-        user_path_array.uniq.each do |user_path|
-          user = User.load_user(user_path.slice(Settings.scan_begin_index, user_path.length)).first
-          if user.nil?
-            next
-          elsif (user.notification_settings.empty? ||
-            user.notification_settings[:tag_post] == Settings.serialize_true)
-            notified_users << user
-            is_tag_user = true
-            create_notification user.id, is_tag_user
-          end
-        end
-      end
-      if ((!notified_users.include? self.trackable.post.user) &&
-        (self.trackable.post.user.notification_settings.empty? ||
-        self.trackable.post.user.notification_settings[:reply_post] == Settings.serialize_true))
-        create_notification self.trackable.post.user_id
-      end
+      notified_users = add_notification_for_tagged_users Settings.notification_setting.tag_post
+      check_condition_notify notified_users, self.trackable.post.user, Settings.notification_setting.reply_post
     when Comment.name
-      commentable = self.trackable.commentable
-      case commentable.class.name
-      when Post.name
-        if (commentable.user.notification_settings.empty? ||
-          commentable.user.notification_settings[:comment_post] == Settings.serialize_true)
-          create_notification commentable.user_id
+      previous_tagged_users = User.previous_tagged_users_in_comment(self.trackable).to_a
+      notified_users = add_notification_for_tagged_users Settings.notification_setting.tag_post, previous_tagged_users
+      notification_setting = case self.trackable.commentable.class.name
+        when Post.name then Settings.notification_setting.comment_post
+        when Answer.name then Settings.notification_setting.comment_answer
         end
-      when Answer.name
-        if (commentable.user.notification_settings.empty? ||
-          commentable.user.notification_settings[:comment_answer] == Settings.serialize_true)
-          create_notification commentable.user_id
-        end
-      end
+      check_condition_notify notified_users, self.trackable.commentable.user, notification_setting
     when Reaction.name
-      reactiontable = self.trackable.reactiontable
-      case reactiontable.class.name
-      when Answer.name
-        if (reactiontable.user.notification_settings.empty? ||
-          reactiontable.user.notification_settings[:llc_answer] == Settings.serialize_true)
-          create_notification reactiontable.user_id
+      notification_setting = case self.trackable.reactiontable.class.name
+        when Answer.name then Settings.notification_setting.llc_answer
+        when Comment.name then Settings.notification_setting.like_comment
+        when Post.name then Settings.notification_setting.up_down_vote_post
         end
-      when Comment.name
-        if (reactiontable.user.notification_settings.empty? ||
-          reactiontable.user.notification_settings[:like_comment] == Settings.serialize_true)
-          create_notification reactiontable.user_id
-        end
-      when Post.name
-        if (reactiontable.user.notification_settings.empty? ||
-          reactiontable.user.notification_settings[:up_down_vote_post] == Settings.serialize_true)
-          create_notification reactiontable.user_id
-        end
+      if check_notification_setting self.trackable.reactiontable.user, notification_setting
+        create_notification self.trackable.reactiontable.user_id
       end
     when Clip.name
-      if (self.trackable.post.user.notification_settings.empty? ||
-        self.trackable.post.user.notification_settings[:clip_post] == Settings.serialize_true)
+      if check_notification_setting self.trackable.post.user, Settings.notification_setting.clip_post
         create_notification self.trackable.post.user_id
       end
     when AVersion.name
       create_notification self.trackable.a_versionable.user_id
       create_notification self.trackable.user_id
     when Relationship.name
-      if (self.recipient.notification_settings.empty? ||
-        self.recipient.notification_settings[:clip_post] == Settings.serialize_true)
-        create_notification self.recipient.id
-      end
+      create_notification self.recipient.id
     end
   end
 
   def create_notification user_id, is_tag_user = false
     self.notifications.create(user_id: user_id, is_tag_user: is_tag_user) if self.owner_id != user_id
+  end
+
+  def add_notification_for_tagged_users notification_setting, notified_users = []
+    user_path_array = self.trackable.content.scan GET_USER_PATH
+    unless user_path_array.empty?
+      user_path_array.uniq.each do |user_path|
+        user = User.load_user user_path.slice(Settings.scan_begin_index, user_path.length)
+        if user.nil?
+          next
+        elsif ((!notified_users.include? user) &&
+          (user.notification_settings.empty? ||
+          user.notification_settings[notification_setting] == Settings.serialize_true))
+          notified_users << user
+          is_tag_user = true
+          create_notification user.id, is_tag_user
+        end
+      end
+    end
+    notified_users
+  end
+
+  def check_notification_setting user, setting
+    user.notification_settings.empty? || user.notification_settings[setting] == Settings.serialize_true
+  end
+
+  def check_notified_user notified_users, user
+    notified_users.include? user
+  end
+
+  def check_condition_notify notified_users, user, setting
+    if !check_notified_user(notified_users, user) && check_notification_setting(user, setting)
+      create_notification user.id
+    end
   end
 end

@@ -56,7 +56,13 @@ class User < ApplicationRecord
   scope :check_follow, -> current_user, user_id do
     current_user.active_relationships.where(following_id: user_id).count
   end
-  scope :load_user, -> user_id {where id: user_id}
+
+  scope :previous_tagged_users_in_comment, -> comment do
+    joins(notifications: :activity).where(
+      "trackable_id = (?) and trackable_type = (?) and is_tag_user = true",
+      comment.id, comment.class
+    )
+  end
 
   class << self
     def from_omniauth auth
@@ -90,6 +96,10 @@ class User < ApplicationRecord
         name: work_space_name_of_wsm_account
       )
       work_space.save ? work_space.id : WorkSpace.first.id
+    end
+
+    def load_user user_id
+      User.find_by id: user_id
     end
   end
 end

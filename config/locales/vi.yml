@@ -399,6 +399,7 @@ vi:
     create_post: "Đã đăng một bài viết mới"
     in_topic: " trong chủ đề  "
     tag_post: "Đã nhắc đến bạn trong một bài viết"
+    tag_comment: "Đã nhắc đến bạn trong một bình luận"
     tag_answer: "Đã nhắc đến bạn trong câu trả lời của bài viết"
     answer_post: "Đã trả lời bài viết của bạn"
     comment_post: "Đã bình luận về bài viết của bạn"
