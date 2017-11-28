@@ -1,11 +1,13 @@
 $(document).ready(function(){
   seen_all();
   var hash = window.location.hash;
-  $('html, body').animate({ scrollTop: $(hash).offset().top -80 },1500);
-  $(hash).css('border', '2px solid red');
-  setTimeout(function(){
-    $(hash).css('border', '');
-    }, 3000);
+  if (hash != "" && hash != 'undefiend'){
+    $('html, body').animate({ scrollTop: $(hash).offset().top -80 },1500);
+    $(hash).css('border', '2px solid red');
+    setTimeout(function(){
+      $(hash).css('border', '');
+      }, 3000);
+  }
   var loged = $('#user-loged-in').val();
   if(loged != false) {
     (function() {
