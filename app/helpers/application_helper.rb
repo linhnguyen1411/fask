@@ -162,6 +162,8 @@ module ApplicationHelper
   def link_notification noti
     if noti.activity.trackable_type == "AVersion"
       "/a_versions?post_id=#{noti.load_message.last}&noti_id=#{noti.id}"
+    elsif noti.activity.trackable_type == "Comment" || noti.activity.trackable_type == "Answer"
+      post_path(noti.load_message.last, noti_id: noti.id, anchor: "#{noti.activity.trackable_type.downcase}-#{noti.activity.trackable_id}")
     else
       post_path(noti.load_message.last, noti_id: noti.id)
     end
