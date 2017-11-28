@@ -1,5 +1,6 @@
 <div class="notification-item <%= notification.not_seen? ? "status-no-seen" : "" %>">
-  <%= link_to post_path(notification.load_message.last, noti_id: notification.id), class: "notiication" do %>
+  <%= link_to post_path(notification.load_message.last, noti_id: notification.id,
+  anchor: "#{notification.activity.trackable_type.downcase}-item-#{notification.activity.trackable_id}"), class: "notiication" do %>
     <div class="col-md-2 col-sm-2 col-xs-12">
       <%= image_tag notification.activity.owner.avatar.url, class: "user-avatar" %>
     </div>

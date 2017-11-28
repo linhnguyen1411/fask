@@ -18,6 +18,12 @@ class NotificationBroadcastJob < ApplicationJob
         url: ("/a_versions?post_id=#{notification.activity.trackable.a_versionable.id}&noti_id=#{notification.id}"),
         img: notification.activity.owner.avatar.present? ? notification.activity.owner.avatar.url : "/assets/no_avatar.png",
         name: notification.activity.owner.name, time: time_ago_in_words(notification.created_at)
+    elsif notification.activity.trackable.class.name == Comment.name || notification.activity.trackable.class.name == Answer.name
+      ActionCable.server.broadcast "notification_channel_#{notification.user_id}",
+        mess: "#{notification.load_message.first}",
+        url: ("/posts/" + notification.load_message.last.to_s + "?noti_id=#{notification.id}" + "#"+ "#{notification.activity.trackable_type.downcase}-" + notification.activity.trackable_id.to_s),
+        img: notification.activity.owner.avatar.present? ? notification.activity.owner.avatar.url : "/assets/no_avatar.png",
+        name: notification.activity.owner.name, time: time_ago_in_words(notification.created_at)
     else
       ActionCable.server.broadcast "notification_channel_#{notification.user_id}",
         mess: "#{notification.load_message.first}",
