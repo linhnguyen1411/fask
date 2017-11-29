@@ -145,12 +145,12 @@ module PostsHelper
     if count_like_and_love(item) > Settings.zero_reaction
       (link_to reactions_path(item_id: item.id, model: item.class.name), remote: :true, class: "link-reaction-#{item.id} link-reaction" do
         if check_user_reaction(item, current_user) && count_like_and_love(item) >= Settings.two_reaction
-          t("reactions.you_and") + (count_like_and_love(item) - Settings.one_reaction).to_s +
+          t("reactions.you_and") + (count_like_and_love(item) - Settings.one_reaction).to_s + " " +
           t("reactions.another_people")
         elsif check_user_reaction(item, current_user) && count_like_and_love(item) == Settings.one_reaction
           t("reactions.you_like")
         else
-          count_like_and_love(item).to_s + t("reactions.another_people")
+          count_like_and_love(item).to_s + " " + t("reactions.another_people")
         end
       end)
     else
