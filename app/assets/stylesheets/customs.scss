@@ -1,7 +1,5 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "froala_editor.min.css";
-@import "froala_style.min.css";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
@@ -216,7 +214,7 @@ p {
   margin-bottom: 0 !important;
 }
 .content-post{
-  max-height: 70px;
+  max-height: 73px;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #000000;
