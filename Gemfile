@@ -15,7 +15,6 @@ gem "uglifier", ">= 1.3.0"
 gem "font-awesome-sass"
 gem "rubocop", require: false
 gem "config"
-gem "wysiwyg-rails"
 gem "i18n-js"
 gem "paranoia", "~> 2.2.0.pre"
 gem "ransack"

@@ -820,3 +820,16 @@ mark{
 .editable.show-editable{
   display: block;
 }
+.show-more{
+  height: 250px !important;
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
+}
+.show-more-link{
+  position: relative;
+  top: -50px;
+}
+.reject-accept{
+  top: -30px;
+}
