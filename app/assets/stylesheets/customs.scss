@@ -44,8 +44,6 @@
 }
 
 .truncate-post {
-  max-height: 100px;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   display: inline-block;
