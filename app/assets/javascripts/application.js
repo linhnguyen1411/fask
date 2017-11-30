@@ -29,6 +29,7 @@
 //= require highlight-search
 
 $(document).ready(function(){
+  $('a').tooltip();
   Notification.requestPermission();
   $('.zoom-img').each(function(){
     $(this).viewer();
