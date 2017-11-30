@@ -4,7 +4,8 @@
     <div class="media">
       <div class="media-left">
         <div class="avatar avatar-md avatar-circle">
-          <%= image_tag user.avatar.url, class: "img-responsive center-block" %>
+          <%= image_tag user.avatar.url, class: "img-responsive center-block",
+            title: user.name %>
         </div>
       </div>
       <div class="media-body">

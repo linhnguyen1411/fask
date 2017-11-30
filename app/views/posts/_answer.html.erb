@@ -3,7 +3,8 @@
   <div class="media-left">
     <a data-toggle="tooltip" data-placement="bottom"
        data-original-title="<%= answer.user_name %>" href="#">
-      <%= image_tag get_avatar_user(answer.user), class: "img-sm" %>
+      <%= image_tag get_avatar_user(answer.user), class: "img-sm",
+        title: answer.user_name %>
     </a>
   </div>
   <div class="media-body item-answer">
