@@ -4,7 +4,7 @@
       <%= t(".following") %>
     </div>
   <% end %>
-  <%= link_to (image_tag get_avatar_user(user), class: "img-circle avatar-user"),
+  <%= link_to (image_tag get_avatar_user(user), class: "img-circle avatar-user", title: user.name),
     user_path(user.id) %>
   <p>
     <%= link_to raw("<b>" + truncate(user.name, length: Settings.limit_string.user_name,
