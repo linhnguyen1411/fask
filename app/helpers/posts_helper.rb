@@ -4,7 +4,7 @@ module PostsHelper
   end
 
   def load_select_box_location
-    WorkSpace.all.collect{|w| [w.name, w.id]}
+    WorkSpace.all.collect{|w| [w.name, w.id]}.unshift([t("all_location"), nil])
   end
 
   def count_comment post
