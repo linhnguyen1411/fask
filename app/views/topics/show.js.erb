@@ -1,4 +1,4 @@
-$('.location-dropbtn').html('<%= @support.get_work_space.name %>');
+$('.location-dropbtn').html('<%= @support.get_work_space.try(:name) ? @support.get_work_space.try(:name) : t("all_location") %>');
 
 $('.newest').html(
   '<%= j(render("topics/post", posts: @support.post_of_work_space(Settings.topic.type_sort.recently)[:posts], type: Settings.topic.type_sort.recently)) %>'
@@ -14,21 +14,21 @@ $('.no_answer').html(
 );
 <% if @support.post_of_work_space(Settings.topic.type_sort.recently)[:count_posts] > Settings.paginate_default %>
   $('.newest-pagination').html(
-    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.recently, work_space_id: @support.get_work_space.id)) %>'
+    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.recently, work_space_id: @support.get_work_space.try(:id))) %>'
   ).show();
 <% else %>
   $('.newest-pagination').hide();
 <% end %>
 <% if @support.post_of_work_space(Settings.topic.type_sort.popular)[:count_posts] > Settings.paginate_default %>
   $('.popular-pagination').html(
-    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.popular, work_space_id: @support.get_work_space.id)) %>'
+    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.popular, work_space_id: @support.get_work_space.try(:id))) %>'
   ).show();
 <% else %>
   $('.popular-pagination').hide();
 <% end %>
 <% if @support.post_of_work_space(Settings.topic.type_sort.recently_answer)[:count_posts] > Settings.paginate_default %>
   $('.answer-pagination').html(
-    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.recently_answer, work_space_id: @support.get_work_space.id)) %>'
+    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.recently_answer, work_space_id: @support.get_work_space.try(:id))) %>'
   ).show();
 <% else %>
   $('.answer-pagination').hide();
@@ -36,7 +36,7 @@ $('.no_answer').html(
 
 <% if @support.post_of_work_space(Settings.topic.type_sort.no_answer)[:count_posts] > Settings.paginate_default %>
   $('.no-answer-pagination').html(
-    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.no_answer, work_space_id: @support.get_work_space.id)) %>'
+    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.no_answer, work_space_id: @support.get_work_space.try(:id))) %>'
   ).show();
 <% else %>
   $('.no-answer-pagination').hide();
