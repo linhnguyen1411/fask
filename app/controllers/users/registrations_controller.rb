@@ -2,10 +2,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
 
   def update
-    if resource.update_attributes user_params
-      flash[:success] = t "profile.update_success"
-    else
+    if current_user.is_create_by_wsm
       flash[:danger] = t "profile.update_error"
+    else
+      if resource.update_attributes(user_params)
+        flash[:success] = t "profile.update_success"
+      else
+        flash[:danger] = t "profile.update_error"
+      end
     end
     redirect_to edit_user_registration_path
   end
@@ -17,6 +21,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def user_params
-    params.require(:user).permit :name, :avatar
+    if !current_user.is_create_by_wsm
+      params.require(:user).permit :name, :avatar
+    end
   end
 end
