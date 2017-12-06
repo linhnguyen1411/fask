@@ -11,7 +11,9 @@
         <div class="col-md-7 col-sm-8  col-xs-12">
           <% if check_workspace_feedback post %>
             <h3><%= link_to post.title, post_path(post.id) %> </br>
-              <span class="work_space_name workspace_<%= post.work_space_id %>"><%= post.work_space_name %></span>
+              <span class="work_space_name workspace_<%= post.work_space_id %>">
+                <%= link_to post.work_space_name, "javascript:", onclick:
+                  "filter_by_work_space(#{post.work_space_id});", class: "link-to-local" %></span>
             </h3>
           <% else %>
             <h3><%= link_to post.title, post_path(post.id) %></h3>
