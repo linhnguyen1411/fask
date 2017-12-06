@@ -832,18 +832,22 @@ mark{
 .label-location{
   font-size: 18px;
 }
-.workspace_1{
-  color: #1abe11;
+.workspace_1, .workspace_2, .workspace_3, .workspace_4, .workspace_5 {
+  background: #1abe11;
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 2px;
+  font-size: 15px;
 }
 .workspace_2{
-  color: #b00008;
+  background: #b00008;
 }
 .workspace_3{
-  color: #fffb0c;
+  background: #fffb0c;
 }
 .workspace_4{
-  color: #148fff;
+  background: #148fff;
 }
 .workspace_5{
-  color: #f100fc;
+  background: #f100fc;
 }
