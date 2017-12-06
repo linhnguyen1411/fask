@@ -5,6 +5,7 @@
     <div class="container">
       <div class="row">
         <% if @topic.id == Settings.topic.feedback_number %>
+          <span class="label-location"><%= t "choose_office" %> : </span>
           <div class="location-dropdown custom-height select-location">
             <button class="location-dropbtn">
               <%= @support.get_work_space.try(:id).present? ? @support.get_work_space.name : t("all_location") %>
