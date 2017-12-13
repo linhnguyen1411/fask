@@ -234,13 +234,13 @@ Layout/EmptyLinesAroundModuleBody:
     - no_empty_lines
 
 # Checks whether the source file has a utf-8 encoding comment or not
-Style/Encoding:
-  EnforcedStyle: when_needed
-  SupportedStyles:
-    - when_needed
-    - always
+# Style/Encoding:
+#   EnforcedStyle: when_needed
+#   SupportedStyles:
+#     - when_needed
+#     - always
 
-Style/FileName:
+Naming/FileName:
   Exclude:
     - '**/Rakefile'
     - '**/Gemfile'
@@ -338,7 +338,7 @@ Metrics/MethodLength:
   CountComments: false  # count full line comments?
   Max: 10
 
-Style/MethodName:
+Naming/MethodName:
   EnforcedStyle: snake_case
   SupportedStyles:
     - snake_case
@@ -367,7 +367,7 @@ Style/PercentLiteralDelimiters:
     '%W': ()
     '%x': ()
 
-Style/PredicateName:
+Naming/PredicateName:
   NamePrefixBlacklist:
     - get_
 
@@ -496,7 +496,7 @@ Style/TrivialAccessors:
     - to_s
     - to_sym
 
-Style/VariableName:
+Naming/VariableName:
   EnforcedStyle: snake_case
   SupportedStyles:
     - snake_case
