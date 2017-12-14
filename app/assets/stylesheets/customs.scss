@@ -577,7 +577,6 @@ p {
   z-index: 1111;
 }
 .select-location {
-  padding-top: 10px;
   margin-bottom: 0px !important;
 }
 .custom-height > select{
@@ -694,7 +693,7 @@ mark{
 .location-dropbtn {
   background-color: #be161e;
   color: white;
-  padding: 5px;
+  padding: 10px 5px;
   font-size: 16px;
   border: none;
   cursor: pointer;
@@ -853,4 +852,14 @@ mark{
 }
 .link-to-local{
   color: #ffffff!important;
+}
+
+.filter{
+  margin-top: 30px;
+}
+.filter .form-group input, .filter .form-group .input-group-addon{
+  width: auto !important
+}
+.filter .form-group input{
+  float: none;
 }

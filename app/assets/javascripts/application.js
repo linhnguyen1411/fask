@@ -27,6 +27,7 @@
 //= require viewer.min.js
 //= require jquery.mark.min.js
 //= require highlight-search
+//= require jquery.datetimepicker
 
 $(document).ready(function(){
   $('a').tooltip();
