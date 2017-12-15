@@ -61,7 +61,7 @@ class Post < ApplicationRecord
     elsif from_day.present?
       where(" posts.created_at >= (?)", from_day)
     elsif to_day.present?
-      where(" posts.created_at <= (?)", to_day)
+      where(" posts.created_at < (?)", to_day)
     end
   end
 

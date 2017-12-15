@@ -21,7 +21,7 @@ $(document).ready(function(){
       timepicker: false,
       onShow: function( ct ){
         this.setOptions({
-          maxDate: currentDate,
+          maxDate: jQuery('#to-day-picker').val() ? jQuery('#to-day-picker').val() : currentDate,
         })
       },
       onSelectDate:function(dp,$input){
@@ -48,7 +48,8 @@ $(document).ready(function(){
       timepicker: false,
       onShow: function( ct ){
         this.setOptions({
-          minDate: jQuery('#from-day-picker').val()?jQuery('#from-day-picker').val():false
+          minDate: jQuery('#from-day-picker').val()?jQuery('#from-day-picker').val():false,
+          maxDate: currentDate
         })
       },
       onSelectDate:function(dp,$input){

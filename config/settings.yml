@@ -121,3 +121,4 @@ notification_setting:
   reply_post: "reply_post"
   comment_post: "comment_post"
   comment_answer: "comment_answer"
+one_day: 1
