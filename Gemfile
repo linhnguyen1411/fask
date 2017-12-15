@@ -35,6 +35,7 @@ gem "cloudinary"
 gem "social-share-button"
 gem "ckeditor"
 gem "jquery-atwho-rails"
+gem "jquery-datetimepicker-rails"
 
 group :development, :test do
   gem "byebug"

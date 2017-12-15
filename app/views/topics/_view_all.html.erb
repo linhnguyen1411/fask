@@ -1,12 +1,14 @@
+<% filter_time = {} if local_assigns[:filter_time].nil? %>
 <% if !params[:all] || params[:type] != type %>
   <div class="text-center clearfix">
     <% if work_space_id.present? %>
       <%= link_to t(".view_all_question"),
-        topic_path(params[:id], {all: true, type: type, work_space_id: work_space_id}),
+        topic_path(params[:id], {all: true, type: type, work_space_id: work_space_id}.merge!(filter_time)),
         class: "btn btn-primary btn-lg" %>
     <% else %>
       <%= link_to t(".view_all_question"),
-        topic_path(params[:id], {all: true, type: type}), class: "btn btn-primary btn-lg" %>
+        topic_path(params[:id], {all: true, type: type}.merge!(filter_time)),
+        class: "btn btn-primary btn-lg" %>
     <% end %>
   </div>
 <% end %>

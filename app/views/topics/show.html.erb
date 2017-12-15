@@ -3,22 +3,40 @@
   <!-- =-=-=-=-=-=-= Latest Questions  =-=-=-=-=-=-= -->
   <section class="white question-tabs padding-bottom-80" id="latest-post">
     <div class="container">
-      <div class="row">
+      <div class="row filter">
         <% if @topic.id == Settings.topic.feedback_number %>
-          <i class="fa fa-map-marker label-location" aria-hidden="true">
-            <span><%= t "choose_office" %>: </span>
-          </i>
-          <div class="location-dropdown custom-height select-location">
-            <button class="location-dropbtn">
-              <%= @support.get_work_space.try(:id).present? ? @support.get_work_space.name : t("all_location") %>
-            </button>
-            <div class="location-dropdown-content">
-              <% load_select_box_location.each do |location| %>
-                <%= link_to location.first, "javascript:", onclick: "filter_by_work_space(#{location.last});" %>
-              <% end %>
+          <div class="form-group col-md-4">
+            <i class="fa fa-map-marker label-location" aria-hidden="true">
+              <span><%= t "choose_office" %>: </span>
+            </i>
+            <div class="location-dropdown custom-height select-location">
+              <button class="location-dropbtn" data-id="<%= get_id_of_work_space(@support) %>">
+                <%= @support.get_work_space.try(:id).present? ? @support.get_work_space.name : t("all_location") %>
+              </button>
+              <div class="location-dropdown-content">
+                <% load_select_box_location.each do |location| %>
+                  <%= link_to location.first, "javascript:", onclick: "filter_by_work_space(#{location.last});" %>
+                <% end %>
+              </div>
             </div>
           </div>
         <% end %>
+        <div class="form-group col-md-4"">
+          <div class="input-group date custom-width">
+            <i class="fa fa-calendar-o label-location" aria-hidden="true">
+              <span><%= t "from_day" %>:&nbsp; </span>
+            </i>
+            <%= text_field_tag :from_day, @support.filter_time[:from_day], placeholder: "dd/mm/yyyy", class: "form-control", id: "from-day-picker"%>
+          </div>
+        </div>
+        <div class="form-group col-md-4"">
+          <div class="input-group date custom-width">
+            <i class="fa fa-calendar label-location" aria-hidden="true">
+              <span><%= t "to_day" %>:&nbsp; </span>
+            </i>
+            <%= text_field_tag :to_day, @support.filter_time[:to_day], placeholder: "dd/mm/yyyy", class: "form-control", id: "to-day-picker"%>
+          </div>
+        </div>
       </div>
       <div class="row">
         <!-- Content Area Bar -->

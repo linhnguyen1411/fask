@@ -55,6 +55,16 @@ class Post < ApplicationRecord
 
   scope :list_posts_clip, ->post_ids{where(id: post_ids)}
 
+  scope :post_in_time, -> from_day, to_day do
+    if (from_day.present? && to_day.present?)
+      where(" posts.created_at BETWEEN (?) AND (?)", from_day, to_day)
+    elsif from_day.present?
+      where(" posts.created_at >= (?)", from_day)
+    elsif to_day.present?
+      where(" posts.created_at <= (?)", to_day)
+    end
+  end
+
   private
 
   def create_activity

@@ -491,3 +491,5 @@ ja:
   existed_tag: "Existed tag"
   all_location: "All location"
   choose_office: "Choose Office"
+  from_date: "From day"
+  to_date: "To day"
