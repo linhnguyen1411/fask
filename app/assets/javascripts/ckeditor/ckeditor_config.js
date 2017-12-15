@@ -31,6 +31,13 @@ CKEDITOR.on( 'dialogDefinition', function( ev )
     var stylesheetClassesField = advTab.get( 'txtGenClass' );
     stylesheetClassesField['default'] = 'zoom-img';
   }
+  if ( dialogName == 'link' )
+  {
+    var advTab = dialogDefinition.getContents( 'advanced' );
+    var cssField = advTab.get( 'advCSSClasses' );
+    cssField['default'] = 'custom-link';
+
+  }
 });
 CKEDITOR.dialog.add("smiley", function (f) {
   for (var e = f.config, a = f.lang.smiley, h = e.smiley_images, g = e.smiley_columns || 8, k, m = function (l) { var c = l.data.getTarget(), b = c.getName(); if ("a" == b) c = c.getChild(0); else if ("img" != b) return; var b = c.getAttribute("cke_src"), a = c.getAttribute("title"), c = f.document.createElement("img", { attributes: { src: b, "data-cke-saved-src": b, title: a, alt: a, width: c.$.width, height: c.$.height, "class": "smiley" } }); f.insertElement(c); k.hide(); l.data.preventDefault() }, q = CKEDITOR.tools.addFunction(function (a, c) {
