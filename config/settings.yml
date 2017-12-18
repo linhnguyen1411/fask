@@ -128,3 +128,5 @@ notification_setting:
   comment_post: "comment_post"
   comment_answer: "comment_answer"
 one_day: 1
+feedback: "Feedback"
+feedback_manager: ["Event Officer"]

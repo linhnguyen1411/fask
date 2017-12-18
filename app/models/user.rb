@@ -32,6 +32,9 @@ class User < ApplicationRecord
   scope :notify_feedback_for_position, -> do
     where position: [Settings.hr_administrator, Settings.recruiter, Settings.event_officer]
   end
+  scope :position_allowed_answer_feedback, -> do
+    where position: [Settings.event_officer]
+  end
 
   mount_uploader :avatar, UserAvatarUploader
 

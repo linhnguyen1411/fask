@@ -5,11 +5,13 @@ class AnswersController < ApplicationController
   before_action :check_onwer_answer, only: [:update, :destroy]
 
   def create
-    answer = current_user.answers.new answer_params
-    if answer.save
-      flash[:success] = t ".create_success"
-    else
-      flash[:danger] = t ".create_danger"
+    if User.position_allowed_answer_feedback.include?(current_user) || @post.topic_name != Settings.feedback
+      answer = current_user.answers.build answer_params
+      if answer.save
+        flash[:success] = t ".create_success"
+      else
+        flash[:danger] = t ".create_danger"
+      end
     end
     redirect_to post_path(@post.id)
   end
@@ -37,9 +39,6 @@ class AnswersController < ApplicationController
       respond_to do |format|
         format.js
       end
-    else
-      flash[:danger] = t ".update_error"
-      redirect_to @answer.post
     end
   end
 
@@ -70,7 +69,8 @@ class AnswersController < ApplicationController
   end
 
   def check_onwer_answer
-    return if @answer.user == current_user
+    return if @answer.user == current_user || ( @answer.post.topic_name == Settings.feedback &&
+      User.position_allowed_answer_feedback.include?(current_user))
     flash[:danger] = t ".wrong_user"
     redirect_to root_path
   end
