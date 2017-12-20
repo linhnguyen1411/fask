@@ -90,8 +90,13 @@ module PostsHelper
     end
   end
 
+  def check_answer_in_feedback_topic answer
+    answer.post.topic_name != Settings.feedback && current_user == answer.user ||
+      check_permited_user_feedback && answer.post.topic_name == Settings.feedback
+  end
+
   def load_button_edit_delete_answer answer
-    if current_user.present? && answer.user == current_user
+    if check_answer_in_feedback_topic answer
       "| " + (link_to edit_answer_path(answer,edit_content: true), remote: true, class: "btn-edit-answer" do
         raw '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ' + t("edit")
       end) + " | " +

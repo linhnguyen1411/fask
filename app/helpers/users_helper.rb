@@ -26,4 +26,8 @@ module UsersHelper
   def count_improvements user
     user.a_versions.size
   end
+
+  def check_permited_user_feedback
+    Settings.feedback_manager.include?(current_user.position)
+  end
 end

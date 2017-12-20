@@ -1,18 +1,20 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user
   before_action :load_comment, only: [:update, :destroy]
-  include ActionView::Helpers::TextHelper
+
   def create
-    @object = find_object params[:comment][:object_type], params[:comment][:object_id]
-    @comment = @object.comments.build comment_params
-    @comment.user_id = current_user.id
-    if @comment.save
-      respond_to do |format|
-        format.html do
-          redirect_to post_path @object
+    find_object params[:comment][:object_type], params[:comment][:object_id]
+    if @permit
+      @comment = @object.comments.build comment_params
+      @comment.user_id = current_user.id
+      if @comment.save
+        respond_to do |format|
+          format.html { redirect_to post_path @object }
+          format.js
         end
-        format.js
       end
+    else
+      redirect_to post_path @object
     end
   end
 
@@ -23,7 +25,7 @@ class CommentsController < ApplicationController
     end
     respond_to do |format|
       format.json do
-        render json: {type: success, content: simple_format(@comment.content)}
+        render json: {type: success, content: @comment.content}
       end
     end
   end
@@ -48,8 +50,10 @@ class CommentsController < ApplicationController
   def find_object object_type, object_id
     if object_type == Settings.comment.object_type.post
       @object = Post.find_by id: object_id
+      @permit = (@object.topic_id != Settings.topic.feedback_number)
     elsif object_type == Settings.comment.object_type.answer
       @object = Answer.find_by id: object_id
+      @permit = (@object.post.topic_id != Settings.topic.feedback_number)
     end
   end
 

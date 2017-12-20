@@ -116,33 +116,35 @@
             </div>
           </div>
           <div class="clearfix"></div>
-          <div class="form-new-commment">
-            <div id="next-page" class="next-page">
-              <%= render "view_more", post: @post, next_page: @post_extension.next_page,
-                view_more_time: @post_extension.view_more_time  %>
-            </div>
-            <div class="comment-list" id="comment-list-post-<%= @post.id %>">
-              <%= render partial: "posts/comment", collection:
-                @post_extension.comments_of_post, as: :comment %>
-            </div>
-            <div class="row bottom-comments">
-              <div class="btn-new-comment col-md-6 col-xs-12">
-                <%= link_to t(".new_comment"), "javascript:", class: "add-new-comment",
-                  is_login: user_signed_in? %>
+          <% if @post.topic_name != Settings.feedback %>
+            <div class="form-new-commment">
+              <div id="next-page" class="next-page">
+                <%= render "view_more", post: @post, next_page: @post_extension.next_page,
+                  view_more_time: @post_extension.view_more_time  %>
               </div>
-            </div>
-            <% if user_signed_in? %>
-              <div class="editable" contenteditable="true"
-                placeholder="<%= t("comments.create.content") %>"></div>
-              <div class="comment-new">
-                <%= render "comments/create",
-                  comment: @post.comments.new,
-                  object_id: @post.id,
-                  object_type: Settings.comment.object_type.post,
-                  button_name: t(".btn_comment") %>
+              <div class="comment-list" id="comment-list-post-<%= @post.id %>">
+                <%= render partial: "posts/comment",
+                  collection: @post_extension.comments_of_post, as: :comment %>
               </div>
-            <% end %>
-          </div>
+              <div class="row bottom-comments">
+                <div class="btn-new-comment col-md-6 col-xs-12">
+                  <%= link_to t(".new_comment"), "javascript:", class: "add-new-comment",
+                    is_login: user_signed_in? %>
+                </div>
+              </div>
+              <% if user_signed_in? %>
+                <div class="editable" contenteditable="true"
+                  placeholder="<%= t("comments.create.content") %>"></div>
+                <div class="comment-new">
+                  <%= render "comments/create",
+                    comment: @post.comments.build,
+                    object_id: @post.id,
+                    object_type: Settings.comment.object_type.post,
+                    button_name: t(".btn_comment") %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
           <div class="clearfix"></div>
           <div class="thread-reply">
             <h2><%= t ".thread_answers" %> </h2>
@@ -153,10 +155,12 @@
             <% end %>
             <div class="clearfix"></div>
           </div>
-          <div id="answer-form">
-            <%= render "posts/answer_form", answer: @answer, post: @post,
-              option: {remote: false} %>
-          </div>
+          <% if check_permited_user_feedback || @post.topic_name != Settings.feedback %>
+            <div id="answer-form">
+              <%= render "posts/answer_form", answer: @answer, post: @post,
+                option: {remote: false} %>
+            </div>
+          <% end %>
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12 clearfix">
           <div class="side-bar">
