@@ -1,3 +1,9 @@
+company:
+  max_name: 250
+  min_name: 1
+category:
+  max_name: 250
+  min_name: 3
 post:
   max_title: 250
   min_title: 6
