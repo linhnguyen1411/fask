@@ -1,16 +1,17 @@
 require "rails_helper"
 
 RSpec.describe FollowsController, type: :controller do
-  let!(:user_a){FactoryGirl.create :user}
-  let!(:user_b){FactoryGirl.create :user}
+  let(:company) { FactoryGirl.create :company }
+  let(:work_space) { FactoryGirl.create :work_space, company_id: company.id }
+  let(:user_a) { FactoryGirl.create :user, work_space_id: work_space.id }
+  let(:user_b) { FactoryGirl.create :user, work_space_id: work_space.id }
 
   describe "PUT #update" do
     context "when user not login" do
       before {put :update, params: {id: user_a.id}, xhr: true}
-
-      let(:response_body) {{type: Settings.error}}
       it {expect(subject.status).to eq 200}
-      it {expect(subject.response_body).to eq [response_body.to_json]}
+      it {expect(subject.response_body).to eq [""]}
+
     end
 
     context "when user login and follow other user" do
@@ -19,9 +20,9 @@ RSpec.describe FollowsController, type: :controller do
         put :update, params: {id: user_b.id}, xhr: true
       end
 
-      let(:response_body) {
-        {type: Settings.success, relationships: Settings.relationships.follow}
-      }
+      let(:response_body) do
+        {type: true, relationships: Settings.relationships.follow}
+      end
       it {expect(subject.status).to eq 200}
       it {expect(subject.response_body).to eq [response_body.to_json]}
     end
@@ -34,7 +35,7 @@ RSpec.describe FollowsController, type: :controller do
       end
 
       let(:response_body) {
-        {type: Settings.success, relationships: Settings.relationships.unfollow}
+        {type: true, relationships: Settings.relationships.unfollow}
       }
       it {expect(subject.status).to eq 200}
       it {expect(subject.response_body).to eq [response_body.to_json]}

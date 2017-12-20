@@ -1,8 +1,10 @@
 require "rails_helper"
 
 RSpec.describe ReactionsController, type: :controller do
-  let(:user){FactoryGirl.create :user}
-  let(:topic){FactoryGirl.create :topic}
+  let(:company) { FactoryGirl.create :company }
+  let(:work_space) { FactoryGirl.create :work_space, company_id: company.id }
+  let(:user){FactoryGirl.create :user, work_space: work_space}
+  let(:topic){FactoryGirl.create :knowledge_topic}
   let!(:post_x) do
     FactoryGirl.create :post, user_id: user.id, topic_id: topic.id
   end
@@ -44,7 +46,7 @@ RSpec.describe ReactionsController, type: :controller do
 
     context "when response not exists" do
       before {post :create, params: params_no_exists, xhr: true}
-      let(:response_body) {{type: Settings.error}}
+      let(:response_body) {{type: false}}
       it {expect(subject.status).to eq 200}
       it {expect(subject.response_body).to eq [response_body.to_json]}
     end
@@ -54,7 +56,7 @@ RSpec.describe ReactionsController, type: :controller do
         allow_any_instance_of(Reaction).to receive(:update_attributes).and_return false
         post :create, params: params_update_fail, xhr: true
       end
-      let(:response_body) {{type: Settings.error}}
+      let(:response_body) {{type: false}}
       it {expect(subject.status).to eq 200}
       it {expect(subject.response_body).to eq [response_body.to_json]}
     end
@@ -63,8 +65,9 @@ RSpec.describe ReactionsController, type: :controller do
       before {post :create, params: params_post_success, xhr: true}
       let(:response_body) {
         {
-          type: Settings.success,
-          data: post_x.reactions.upvote.size - post_x.reactions.downvote.size
+          type: true,
+          data: post_x.reactions.upvote.size - post_x.reactions.downvote.size,
+          reaction_type: Settings.reaction_type.down
         }
       }
       it {expect(subject.status).to eq 200}
@@ -75,12 +78,13 @@ RSpec.describe ReactionsController, type: :controller do
       before {post :create, params: params_answer_success, xhr: true}
       let(:response_body) {
         {
-          type: Settings.success,
+          type: true,
           data: [
             answer.reactions.like.size,
             answer.reactions.dislike.size,
             answer.reactions.heart.size
-          ]
+          ],
+          reaction_type: Settings.reaction_type.like
         }
       }
       it {expect(subject.status).to eq 200}
