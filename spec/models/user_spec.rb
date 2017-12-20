@@ -1,10 +1,11 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  let!(:user) {FactoryGirl.create :user}
-  let!(:user_a) {FactoryGirl.create :user}
-  let(:work_space) {FactoryGirl.create :work_space}
-  let(:topic) {FactoryGirl.create :topic}
+  let(:company) { FactoryGirl.create :company }
+  let(:work_space) { FactoryGirl.create :work_space, company_id: company.id }
+  let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
+  let(:topic){FactoryGirl.create :knowledge_topic}
+  let!(:user_a) {FactoryGirl.create :user, work_space_id: work_space.id }
   let!(:post) do
     FactoryGirl.create :post, work_space: work_space, user: user, topic: topic
   end
@@ -17,12 +18,11 @@ RSpec.describe User, type: :model do
     it{is_expected.to have_many :answers}
     it{is_expected.to have_many :notifications}
     it{is_expected.to have_many :topices_users}
-    it{is_expected.to have_many :users_work_spaces}
     it{is_expected.to have_many :active_relationships}
     it{is_expected.to have_many :passive_relationships}
     it{is_expected.to have_many :following}
     it{is_expected.to have_many :followers}
-    it{is_expected.to have_many :work_spaces}
+    it{is_expected.to belong_to :work_space}
     it{is_expected.to have_many :topics}
   end
 

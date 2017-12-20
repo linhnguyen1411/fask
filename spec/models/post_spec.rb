@@ -1,8 +1,10 @@
 require "rails_helper"
 
 RSpec.describe Post, type: :model do
-  let(:user){FactoryGirl.create :user}
-  let(:topic){FactoryGirl.create :topic}
+  let(:company) { FactoryGirl.create :company }
+  let(:work_space) { FactoryGirl.create :work_space, company_id: company.id }
+  let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
+  let(:topic){FactoryGirl.create :knowledge_topic}
 
   let!(:post_x) do
     FactoryGirl.create :post,

@@ -1,14 +1,14 @@
 require "rails_helper"
 
 RSpec.describe UsersController, type: :controller do
+  let(:company) { FactoryGirl.create :company }
+  let(:work_space) { FactoryGirl.create :work_space, company_id: company.id }
   describe "GET #index" do
-    let!(:users) {FactoryGirl.create_list :user, 2}
-
+    let!(:users) {FactoryGirl.create_list :user, 2, work_space_id: work_space.id}
     context "when user not login" do
       before {get :index}
 
-      it {expect(response).to be_success}
-      it {expect(assigns(:users)).to eq users}
+      it {expect(subject.status).to eq 302}
     end
 
     context "when user login" do
@@ -24,7 +24,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "GET #show" do
-    let(:user) {FactoryGirl.create :user}
+    let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
 
     context "when load user success" do
       before {get :show, params: {id: user}}
@@ -41,7 +41,7 @@ RSpec.describe UsersController, type: :controller do
 
 
   describe "PUT #update" do
-    let(:user) {FactoryGirl.create :user}
+    let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
     before {sign_in user}
 
     context "update successful when valid current password" do

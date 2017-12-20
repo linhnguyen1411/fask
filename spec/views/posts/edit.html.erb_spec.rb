@@ -1,8 +1,10 @@
 require "rails_helper"
 
 RSpec.describe "posts/edit.html.erb", type: :view do
-  let!(:user) {FactoryGirl.create :user}
-  let!(:topic) {FactoryGirl.create :topic}
+  let(:company) { FactoryGirl.create :company }
+  let(:work_space) { FactoryGirl.create :work_space, company_id: company.id }
+  let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
+  let(:topic){FactoryGirl.create :knowledge_topic}
   let!(:post) {FactoryGirl.create :post, user_id: user.id, topic_id: topic.id}
   let(:tags) {FactoryGirl.create_list :tag, 5}
   it "show edit page" do

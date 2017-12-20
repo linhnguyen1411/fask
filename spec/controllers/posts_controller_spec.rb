@@ -1,17 +1,17 @@
 require "rails_helper"
 
 RSpec.describe PostsController, type: :controller do
-  let!(:work_space){FactoryGirl.create :work_space}
-  let!(:user){FactoryGirl.create :user, work_space: work_space}
-  let!(:topic_qa){FactoryGirl.create :topic, id: 1, name: "Q-A Knowledge"}
-  let!(:topic_fb){FactoryGirl.create :topic, id: 2, name: "Feedback"}
-  let!(:topic_cf){FactoryGirl.create :topic, id: 3, name: "Confesstion"}
+  let(:company) { FactoryGirl.create :company }
+  let(:work_space) { FactoryGirl.create :work_space, company_id: company.id }
+  let(:user){FactoryGirl.create :user, work_space: work_space}
+  let(:topic_qa){FactoryGirl.create :knowledge_topic}
+  let(:topic_fb){FactoryGirl.create :feedback_topic}
+  let(:topic_cf){FactoryGirl.create :confesstion_topic}
   let!(:tag){FactoryGirl.create :tag}
 
   describe "GET index" do
-    let(:topic) {FactoryGirl.create :topic}
     let(:post) do
-      FactoryGirl.create :post, work_space: work_space, user: user, topic: topic
+      FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_qa
     end
 
     before do
@@ -126,9 +126,8 @@ RSpec.describe PostsController, type: :controller do
     end
 
     describe "GET #show" do
-      let(:topic) {FactoryGirl.create :topic}
       let(:post) do
-        FactoryGirl.create :post, work_space: work_space, user: user, topic: topic
+        FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_qa
       end
 
       before do
