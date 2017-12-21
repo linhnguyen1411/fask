@@ -4,6 +4,7 @@ function load_choose_toppic() {
   if(value === '1') {
     $('#select-location').closest('.form-group').hide('500');
     $('#select-category').closest('.form-group').hide('500');
+    $('#posts-tag').show('500');
     $('#topic-info').html( I18n.t('posts.new.qa_info'));
     if(check_user_login === 'true') {
       $('.panel-info-user').hide('500');
@@ -19,6 +20,7 @@ function load_choose_toppic() {
     }
   }
   else if (value === '2') {
+    $('#posts-tag').hide('500');
     $('#select-location').closest('.form-group').show('500');
     $('#select-category').closest('.form-group').show('500');
     $('#topic-info').html( I18n.t('posts.new.feedback_info'));
@@ -38,6 +40,7 @@ function load_choose_toppic() {
     }
   }
   else if (value === '3') {
+    $('#posts-tag').show('500');
     $('#topic-info').html(I18n.t('posts.new.confession_info'));
     $('#select-location').closest('.form-group').hide('500');
     $('#select-category').closest('.form-group').hide('500');

@@ -1,8 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AnswersController, type: :controller do
-  let(:company) { FactoryGirl.create :company }
-  let(:work_space) {FactoryGirl.create :work_space, company_id: company.id}
+  let(:work_space) {FactoryGirl.create :work_space}
   let(:user) {FactoryGirl.create :user, work_space_id: work_space.id}
   let(:user_a) {FactoryGirl.create :user, work_space_id: work_space.id}
   let(:topic) {FactoryGirl.create :knowledge_topic}
@@ -179,7 +178,7 @@ RSpec.describe AnswersController, type: :controller do
       before do
         patch :update, params: valid_params, xhr: true
       end
-      it {expect(subject.status).to eq 200}
+      it {expect(subject.status).to eq 302}
     end
 
     context "update answer of post in feedback topic with user not permitted and valid params" do
@@ -194,7 +193,7 @@ RSpec.describe AnswersController, type: :controller do
       before do
         patch :update, params: invalid_params, xhr: true
       end
-      it {expect(subject.status).to eq 200}
+      it {expect(subject.status).to eq 302}
     end
   end
 

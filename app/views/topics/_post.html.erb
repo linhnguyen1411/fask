@@ -58,6 +58,11 @@
               <%= link_to tag.name, tag %>
             <% end %>
           </div>
+          <% if post.topic_id == Settings.topic.feedback_number%>
+            <div class="pull-right tagcloud">
+               <%= link_to post.category.name, post.category if post.category.present? %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
