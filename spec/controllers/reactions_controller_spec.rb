@@ -1,8 +1,7 @@
 require "rails_helper"
 
 RSpec.describe ReactionsController, type: :controller do
-  let(:company) { FactoryGirl.create :company }
-  let(:work_space) { FactoryGirl.create :work_space, company_id: company.id }
+  let(:work_space) { FactoryGirl.create :work_space}
   let(:user){FactoryGirl.create :user, work_space: work_space}
   let(:topic){FactoryGirl.create :knowledge_topic}
   let!(:post_x) do

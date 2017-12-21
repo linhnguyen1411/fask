@@ -1,7 +1,6 @@
 require "rails_helper"
 RSpec.describe Activity, type: :model do
-  let(:company) { FactoryGirl.create :company }
-  let(:work_space) { FactoryGirl.create :work_space, company_id: company.id }
+  let(:work_space) { FactoryGirl.create :work_space}
   let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
   let!(:feedback_topic){FactoryGirl.create :feedback_topic}
   let!(:knowledge_topic){FactoryGirl.create :knowledge_topic}

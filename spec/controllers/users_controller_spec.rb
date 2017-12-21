@@ -1,8 +1,7 @@
 require "rails_helper"
 
 RSpec.describe UsersController, type: :controller do
-  let(:company) { FactoryGirl.create :company }
-  let(:work_space) { FactoryGirl.create :work_space, company_id: company.id }
+ let(:work_space) { FactoryGirl.create :work_space}
   describe "GET #index" do
     let!(:users) {FactoryGirl.create_list :user, 2, work_space_id: work_space.id}
     context "when user not login" do

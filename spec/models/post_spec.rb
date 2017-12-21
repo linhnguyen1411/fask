@@ -1,8 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Post, type: :model do
-  let(:company) { FactoryGirl.create :company }
-  let(:work_space) { FactoryGirl.create :work_space, company_id: company.id }
+  let(:work_space) { FactoryGirl.create :work_space}
   let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
   let(:topic){FactoryGirl.create :knowledge_topic}
 
@@ -55,6 +54,7 @@ RSpec.describe Post, type: :model do
     it{expect belong_to :user}
     it{is_expected.to belong_to :work_space}
     it{expect belong_to :topic}
+    it{expect belong_to :category}
   end
 
   context "validates" do

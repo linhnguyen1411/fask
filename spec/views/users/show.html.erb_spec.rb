@@ -1,8 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "users/show.html.erb", type: :view do
-  let(:company) { FactoryGirl.create :company }
-  let(:work_space) { FactoryGirl.create :work_space, company_id: company.id }
+  let(:work_space) { FactoryGirl.create :work_space}
   let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
   let(:topic){FactoryGirl.create :knowledge_topic}
   let!(:post) {FactoryGirl.create :post, user_id: user.id, topic_id: topic.id}

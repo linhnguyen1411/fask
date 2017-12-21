@@ -135,8 +135,9 @@ en:
     new:
       title_name: "New post"
       title: "Post Your QA-Knowledge/Feedback/Confession"
-      toppic: "Choose toppic"
+      toppic: "Choose topic"
       location: "Location"
+      category: "Category"
       qa_info: "You have questions about technical things, please login and enter the questions here. All the members are always willing to support you."
       feedback_info: "You have suggestions to build a company or a question about the company policy you would like to be answered for. Please let us know here.You can post it under your personal or anonymous identity."
       confession_info: "You have feeling, but you are not confident enough to share it. Let f-ask help you to do that. F-ask does not save any of your information at confesstion."

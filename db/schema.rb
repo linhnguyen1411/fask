@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220014420) do
+ActiveRecord::Schema.define(version: 20171220072903) do
 
   create_table "a_versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -75,10 +75,10 @@ ActiveRecord::Schema.define(version: 20171220014420) do
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.integer  "parent_id"
-    t.integer  "company_id"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["company_id"], name: "index_categories_on_company_id", using: :btree
+    t.index ["deleted_at"], name: "index_categories_on_deleted_at", using: :btree
   end
 
   create_table "ckeditor_assets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -116,12 +116,6 @@ ActiveRecord::Schema.define(version: 20171220014420) do
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
-  create_table "companies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "activity_id"
@@ -145,6 +139,8 @@ ActiveRecord::Schema.define(version: 20171220014420) do
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.integer  "count_view",                  default: 0
+    t.integer  "category_id"
+    t.index ["category_id"], name: "index_posts_on_category_id", using: :btree
     t.index ["deleted_at"], name: "index_posts_on_deleted_at", using: :btree
     t.index ["topic_id"], name: "index_posts_on_topic_id", using: :btree
     t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
@@ -252,19 +248,17 @@ ActiveRecord::Schema.define(version: 20171220014420) do
     t.datetime "deleted_at"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-    t.integer  "company_id"
-    t.index ["company_id"], name: "index_work_spaces_on_company_id", using: :btree
     t.index ["deleted_at"], name: "index_work_spaces_on_deleted_at", using: :btree
   end
 
   add_foreign_key "answers", "posts"
   add_foreign_key "answers", "users"
-  add_foreign_key "categories", "companies"
   add_foreign_key "clips", "posts"
   add_foreign_key "clips", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "notifications", "activities"
   add_foreign_key "notifications", "users"
+  add_foreign_key "posts", "categories"
   add_foreign_key "posts", "topics"
   add_foreign_key "posts", "users"
   add_foreign_key "posts", "work_spaces"
@@ -275,5 +269,4 @@ ActiveRecord::Schema.define(version: 20171220014420) do
   add_foreign_key "topices_users", "users"
   add_foreign_key "users_work_spaces", "users"
   add_foreign_key "users_work_spaces", "work_spaces"
-  add_foreign_key "work_spaces", "companies"
 end

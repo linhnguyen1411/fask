@@ -14,6 +14,7 @@ class PostsController < ApplicationController
   end
 
   def new
+    @categories = Category.all
     @post = case request.referer
     when topic_url(Settings.topic.q_a_number)
       Post.new topic_id: Settings.topic.q_a_number
@@ -58,12 +59,13 @@ class PostsController < ApplicationController
       @post.tags.destroy_all
       save_tags(@post) if params[:tags].present?
       if @post.update_attributes update_post_params
+
         flash[:success] = t ".success"
       else
         flash[:danger] = t ".error"
       end
     else
-      flash[:danger] = ".error"
+      flash[:danger] = t ".error"
     end
     redirect_to post_path(@post.id)
   end
@@ -86,7 +88,7 @@ class PostsController < ApplicationController
   end
 
   def feedback_params
-    params.require(:post).permit :topic_id, :title, :content, :work_space_id
+    params.require(:post).permit :topic_id, :title, :content, :work_space_id, :category_id
   end
 
   def confesstion_params
