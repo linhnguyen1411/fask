@@ -33,7 +33,13 @@ class Post < ApplicationRecord
 
   delegate :name, to: :work_space, prefix: true
 
-  scope :get_post_by_topic, -> topic_id {where topic_id: topic_id}
+  scope :get_post_by_topic, -> topic_id do
+    if topic_id == Settings.topic.feedback_number
+      eager_load(:category).where(topic_id: topic_id)
+    else
+      where(topic_id: topic_id)
+    end
+  end
 
   scope :newest, -> {order created_at: :desc}
 

@@ -29,6 +29,7 @@ class PostsController < ApplicationController
 
   def show
     @post_extension = Supports::PostSupport.new Post, nil, nil, nil, params[:comment_page], params[:view_more_time], @post
+    @category = @post.category
     @answer = Answer.new
     respond_to do |format|
       format.html
@@ -52,6 +53,7 @@ class PostsController < ApplicationController
 
   def edit
     @tags = @post.tags
+    @categories = Category.all
   end
 
   def update
@@ -96,7 +98,7 @@ class PostsController < ApplicationController
   end
 
   def update_post_params
-    params.require(:post).permit :title, :content
+    params.require(:post).permit :title, :content, :category_id
   end
 
   def check_user

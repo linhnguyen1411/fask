@@ -8,7 +8,7 @@ module PostsHelper
   end
 
   def load_select_box_category categories
-    categories.collect{|w| [w.name, w.id]}
+    categories.present? ? categories.collect{|w| [w.name, w.id]} : []
   end
 
   def get_id_of_work_space support
