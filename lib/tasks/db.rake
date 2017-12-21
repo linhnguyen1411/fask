@@ -1,9 +1,51 @@
 namespace :db do
   desc "TODO"
-  task make_data: [:create_work_spaces, :create_admin, :create_users, :create_tags,
-    :create_topics, :create_posts, :create_answers,
-    :create_relationships, :create_clips,
+  task make_data: [:create_work_spaces, :create_admin, :create_users,
+    :create_tags, :create_topics, :create_posts, :create_answers,
+    :create_relationships, :create_clips, :create_category,
     :create_topices_users] do
+  end
+
+  task create_category: :environment do
+    Category.create!(
+      name: "Thông tin và hướng dẫn"
+    )
+    Category.create!(
+      name: "Câu hỏi về công đoàn"
+    )
+    Category.create!(
+      name: "Free Space"
+    )
+    Category.create!(
+      name: "Văn minh công sở"
+    )
+    Category.create!(
+      name: "Lương & quy định lương"
+    )
+    Category.create!(
+      name: "WSM"
+    )
+    Category.create!(
+      name: "Khám bệnh & Bảo hiểm"
+    )
+    Category.create!(
+      name: "Thuế"
+    )
+    Category.create!(
+      name: "Chính sách thâm niên"
+    )
+    Category.create!(
+      name: "Tool sử dụng trong công việc"
+    )
+    Category.create!(
+      name: "Câu hỏi và đóng góp về sự kiện nội bộ"
+    )
+    Category.create!(
+      name: "Giới thiệu nhân sự"
+    )
+    Category.create!(
+      name: "Khác"
+    )
   end
 
   task create_admin: :environment do

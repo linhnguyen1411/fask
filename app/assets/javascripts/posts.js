@@ -3,6 +3,7 @@ function load_choose_toppic() {
   var check_user_login = $('#check_user_login').val();
   if(value === '1') {
     $('#select-location').closest('.form-group').hide('500');
+    $('#select-category').closest('.form-group').hide('500');
     $('#topic-info').html( I18n.t('posts.new.qa_info'));
     if(check_user_login === 'true') {
       $('.panel-info-user').hide('500');
@@ -19,6 +20,7 @@ function load_choose_toppic() {
   }
   else if (value === '2') {
     $('#select-location').closest('.form-group').show('500');
+    $('#select-category').closest('.form-group').show('500');
     $('#topic-info').html( I18n.t('posts.new.feedback_info'));
     if(check_user_login === 'true') {
       $('.panel-info-user').show('500');
@@ -38,6 +40,7 @@ function load_choose_toppic() {
   else if (value === '3') {
     $('#topic-info').html(I18n.t('posts.new.confession_info'));
     $('#select-location').closest('.form-group').hide('500');
+    $('#select-category').closest('.form-group').hide('500');
     $('.panel-info-user').hide('500');
     $('.form-login').find('#user_email').removeAttr('required');
     $('.form-login').find('#user_password').removeAttr('required');

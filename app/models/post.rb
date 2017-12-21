@@ -18,6 +18,8 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :work_space, optional: true
   belongs_to :topic
+  belongs_to :category, optional: true
+
   before_save :standardize_content
   after_create :create_activity
 

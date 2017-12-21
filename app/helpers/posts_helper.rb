@@ -7,6 +7,10 @@ module PostsHelper
     WorkSpace.all.collect{|w| [w.name, w.id]}.unshift([t("all_location"), nil])
   end
 
+  def load_select_box_category categories
+    categories.collect{|w| [w.name, w.id]}
+  end
+
   def get_id_of_work_space support
     return unless support.get_work_space.try(:id).present?
     support.get_work_space.id

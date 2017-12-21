@@ -28,14 +28,19 @@
             <hr>
             <div class="margin-top-40">
               <div class="form-group">
-                <label><%= t ".toppic" %></label>
+                <label><%= t ".toppic" %><span class="red-title"> *</span></label>
                 <%= f.select :topic_id, load_select_box_topic, {},
                   {class: "questions-category form-control", id: "select-toppic"} %>
               </div>
               <div class="form-group">
-                <label><%= t ".location" %></label>
+                <label><%= t ".location" %><span class="red-title"> *</span></label>
                 <%= f.select :work_space_id, load_select_box_location, {},
                   {class: "questions-category form-control", id: "select-location"} %>
+              </div>
+              <div class="form-group">
+                <label><%= t ".Category" %><span class="red-title"> *</span></label>
+                <%= f.select :category_id, load_select_box_category(@categories),
+                  {}, {class: "questions-category form-control", id: "select-category"} %>
               </div>
               <div class="form-group">
                 <label><%= t ".form.title" %><span class="red-title"> *</span></label>

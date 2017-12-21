@@ -135,8 +135,9 @@ vi:
     new:
       title_name: "Bài viết mới"
       title: "Gửi câu hỏi kỹ thuật, góp ý cho công ty hay gửi tâm tư tình cảm vào confession."
-      toppic: "Chọn topic"
+      toppic: "Chọn chủ đề"
       location: "Chi nhánh"
+      category: "Thể loại"
       qa_info: "Bạn có thắc mắc về kỹ thuật, vui lòng đăng nhập và đặt câu hỏi ở đây. Đội ngũ member luôn hộ trợ nhiệt tình cho bạn."
       feedback_info: "Bạn có đề xuất để xây dựng công ty hay câu hỏi về chính sách công ty mà bạn muốn được trả lời. Xin vui lòng phản hồi ở đây. Bạn có thể gửi bài dưới danh tính cá nhân hoặc ẩn danh."
       confession_info: "Bạn có tâm tư tình cảm muốn thổ lộ nhưng không đủ tự tin. Hãy để f-ask làm điều đó thay bạn. F-ask không lưu bất cứ thông tin gì của bạn tại confesstion."

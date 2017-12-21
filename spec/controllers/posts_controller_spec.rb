@@ -1,13 +1,15 @@
 require "rails_helper"
 
 RSpec.describe PostsController, type: :controller do
-  let(:company) { FactoryGirl.create :company }
-  let(:work_space) { FactoryGirl.create :work_space, company_id: company.id }
+  let(:work_space) { FactoryGirl.create :work_space}
   let(:user){FactoryGirl.create :user, work_space: work_space}
   let(:topic_qa){FactoryGirl.create :knowledge_topic}
   let(:topic_fb){FactoryGirl.create :feedback_topic}
   let(:topic_cf){FactoryGirl.create :confesstion_topic}
   let!(:tag){FactoryGirl.create :tag}
+  let(:the_post) do
+    FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_qa
+  end
 
   describe "GET index" do
     let(:post) do
@@ -44,6 +46,71 @@ RSpec.describe PostsController, type: :controller do
     it "renders the :new template" do
       get :new
       expect(response).to render_template :new
+    end
+  end
+
+  describe "#edit" do
+    before do
+      sign_in user
+      get :edit, params: {id: the_post}
+    end
+
+    it "renders the :edit template" do
+      expect(response).to render_template :edit
+    end
+
+    it "assigns @tags" do
+      tag_of_post = FactoryGirl.create :posts_tag, tag_id: tag.id, post_id: the_post.id
+      expect(assigns(:tags)).to eq [tag_of_post.tag]
+    end
+
+    it "assigns @post" do
+      expect(assigns(:post)).to eq the_post
+    end
+  end
+
+  describe "#update" do
+
+    context "update success" do
+      before do
+        sign_in user
+        post :update, params: {
+          id: the_post,
+          post: {title: 1234567, content: "1234567", topic_id: topic_qa.id}
+        }
+      end
+      it "assigns @post" do
+        expect(assigns(:post).content).to eq "1234567"
+      end
+    end
+    context "update with the wrong params" do
+      before do
+        sign_in user
+        post :update, params: {
+          id: the_post,
+          post: {title: "", content: "", topic_id: topic_qa.id}
+        }
+      end
+      it "assigns @post" do
+        expect(assigns(:post).errors.empty?).to eq false
+      end
+    end
+    context "update by another user" do
+      let(:another_user){FactoryGirl.create :user, work_space: work_space}
+      before do
+        sign_in another_user
+        post :update, params: {
+          id: the_post,
+          post: {title: 123456, content: "123456", topic_id: topic_qa.id}
+        }
+      end
+      it "assigns @post" do
+        expect(assigns(:post).content).to eq the_post.content
+      end
+
+      it "flash" do
+        expect(flash[:danger]).to eq I18n.t("posts.update.error")
+      end
     end
   end
 
@@ -148,6 +215,32 @@ RSpec.describe PostsController, type: :controller do
         it {expect(assigns :answer).to be_a Answer}
         it {expect(assigns(:post)).to eq nil}
       end
+    end
+  end
+
+
+  describe "#destroy" do
+    before {sign_in user}
+    context "destroy success" do
+      before {delete :destroy, params: {id: the_post}, xhr: true}
+
+      let(:response_body) do
+        {type: true}
+      end
+      it {expect(subject.status).to eq 200}
+      it {expect(subject.response_body).to eq [response_body.to_json]}
+    end
+
+    context "destroy fail" do
+      before do
+        allow_any_instance_of(Post).to receive(:destroy).and_return false
+        delete :destroy, params: {id: the_post}, xhr: true
+      end
+      let(:response_body) do
+        {type: false}
+      end
+      it {expect(subject.status).to eq 200}
+      it {expect(subject.response_body).to eq [response_body.to_json]}
     end
   end
 end
