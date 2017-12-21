@@ -23,6 +23,8 @@ class Post < ApplicationRecord
   before_save :standardize_content
   after_create :create_activity
 
+  enum status: {waiting: 0, accept: 1, reject: 2}
+
   validates :title, presence: true,
     length: {maximum: Settings.post.max_title, minimum: Settings.post.min_title}
   validates :content, presence: true
@@ -33,13 +35,11 @@ class Post < ApplicationRecord
 
   delegate :name, to: :work_space, prefix: true
 
-  scope :get_post_by_topic, -> topic_id do
-    if topic_id == Settings.topic.feedback_number
-      eager_load(:category).where(topic_id: topic_id)
-    else
-      where(topic_id: topic_id)
-    end
+  scope :post_by_topic, -> topic_id do
+    where(topic_id: topic_id).merge(post_includes_category topic_id )
   end
+
+  scope :post_includes_category, -> topic_id { eager_load(:category) if  topic_id == Settings.topic.feedback_number }
 
   scope :newest, -> {order created_at: :desc}
 
@@ -48,6 +48,8 @@ class Post < ApplicationRecord
   scope :recently_answer, -> do
     joins(:answers).group("answers.post_id").order "answers.created_at desc"
   end
+
+  scope :feedback_post_waiting, -> { where(topic_id: Settings.topic.feedback_number).waiting }
 
   scope :post_of_work_space, -> work_space_id { where work_space_id: work_space_id if work_space_id.present?}
 
@@ -71,6 +73,10 @@ class Post < ApplicationRecord
     elsif to_day.present?
       where(" posts.created_at < (?)", to_day)
     end
+  end
+
+  def check_owner_post current_user
+    self.user == current_user
   end
 
   private

@@ -1,0 +1,23 @@
+<% feedbacks.each do |fb| %>
+  <tr>
+    <th scope="row"><%= fb.id %></th>
+    <th scope="row"><%= fb.user_name %></th>
+    <th scope="row" class="feedback-title"><%= fb.title %>
+      <a href="javascript:" class="btn-show" data-toggle="collapse"
+        data-target="#content-feedback-<%= fb.id %>">
+        <i class="fa fa-eye" aria-hidden="true" title="Show content of feedback"></i></a>
+      <div class="collapse" id="content-feedback-<%=fb.id%>">
+        <div class="card card-body">
+          <%= raw fb.content %>
+        </div>
+      </div>
+    </th>
+    <th scope="row"><%= fb.work_space_name %></th>
+    <th scope="row"><%= fb.created_at.to_date %></th>
+    <th scope="row">
+      <%= select_tag :status, options_for_select(Post.statuses.map {|k, v| [k, v]},
+        Post.statuses[fb.status]), class: "feedback-status feedback-#{fb.id}
+          feedback-color-#{Post.statuses[fb.status]}", data: {post_id: fb.id} %>
+    </th>
+  </tr>
+<% end %>

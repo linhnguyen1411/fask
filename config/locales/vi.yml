@@ -125,6 +125,13 @@ vi:
     index:
       title: "Lịch sử hoạt động"
   posts:
+    status:
+      feedback_tab: "Phản hồi"
+      feedback_manager: "Quản lý các phản hồi"
+      reject_verify: "Bạn thực sự muốn từ chối?"
+      accept_success: "Đã chấp nhận"
+      reject_success: "Đã từ chối"
+      feedback_info: "Cảm ơn phản hồi của bạn. Bộ phận EO sẽ duyệt và trả lời vào thứ 5 tuần kế tiếp."
     index:
       not_found: "Không tìm thấy"
       all_posts: "Bài viết"
@@ -494,3 +501,15 @@ vi:
   choose_office: "Chọn văn phòng"
   from_date: "Từ ngày"
   to_date: "Đến ngày"
+  update_error: "Cập nhật thất bại, vui lòng thử lại!"
+  confirm_accept: "Bạn muốn chấp nhận?"
+  confirm_reject: "Bạn chắc chắn muốn từ chối?"
+  confirm_waiting: "Bạn muốn chuyển về trạng thái đợi?"
+  feedback:
+    id: "STT"
+    user_name: "Người dùng"
+    title: "Tiêu đề"
+    office: "Văn Phòng"
+    date: "Ngày tạo"
+    status: "Trạng thái"
+    error: "Trang bạn truy cập không tồn tại!"

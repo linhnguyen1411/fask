@@ -869,3 +869,40 @@ mark{
   padding: 0 4px;
   border-radius: 4px
 }
+.feedback{
+  padding-top: 50px;
+}
+.feedback-table{
+  border: 3px solid #ddd;
+}
+.feedback-header-table{
+  background-color: #be161e;
+  color: white;
+  border: 1px solid white;
+}
+.feedback-color-0 {
+  background-color: #52c7df;
+  color: white;
+}
+.feedback-color-1 {
+  background-color: #59e494;
+  color: white;
+}
+.feedback-color-2 {
+  background-color: #de732e;
+  color: white;
+}
+.feedback-status option[value="1"]{
+  background: #59e494!important;
+}
+.feedback-title{
+  max-width: 400px;
+}
+.show-content{
+  color: #777;
+}
+.btn-show{
+  background-color: #27e705;
+  color: white;
+  border-radius: 3px;
+}

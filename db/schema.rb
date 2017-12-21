@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171220072903) do
+ActiveRecord::Schema.define(version: 20171221020823) do
 
   create_table "a_versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 20171220072903) do
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.integer  "count_view",                  default: 0
+    t.integer  "status",                      default: 1
     t.integer  "category_id"
     t.index ["category_id"], name: "index_posts_on_category_id", using: :btree
     t.index ["deleted_at"], name: "index_posts_on_deleted_at", using: :btree
