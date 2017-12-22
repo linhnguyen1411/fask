@@ -3,9 +3,9 @@ class StaticPagesController < ApplicationController
     if user_signed_in?
       @home_page = true
       if params[:tag_id].nil?
-        @posts = Post.page(params[:page]).newest.accept.per Settings.paginate_default
+        @posts = Post.page(params[:page]).post_full_includes.newest.accept.per Settings.paginate_default
       else
-        @posts = Post.by_tags(params[:tag_id]).newest.accept.page(params[:page])
+        @posts = Post.by_tags(params[:tag_id]).post_full_includes.newest.accept.page(params[:page])
           .per Settings.paginate_default
       end
       @topUsers = User.top_users.limit Settings.limit_top

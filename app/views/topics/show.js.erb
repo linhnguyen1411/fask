@@ -1,47 +1,7 @@
-$('.location-dropbtn').html('<%= @support.get_work_space.try(:name) ? @support.get_work_space.try(:name) : t("all_location") %>');
-$('.location-dropbtn').attr('data-id', '<%= get_id_of_work_space(@support) %>');
-$('.newest').html(
-  '<%= j(render("topics/post", posts: @support.post_of_work_space(Settings.topic.type_sort.recently)[:posts], type: Settings.topic.type_sort.recently)) %>'
-);
-$('.popular').html(
-  '<%= j(render("topics/post", posts: @support.post_of_work_space(Settings.topic.type_sort.popular)[:posts], type: Settings.topic.type_sort.popular)) %>'
-);
-$('.answer').html(
-  '<%= j(render("topics/post", posts: @support.post_of_work_space(Settings.topic.type_sort.recently_answer)[:posts], type: Settings.topic.type_sort.recently_answer)) %>'
-);
-$('.no_answer').html(
-  '<%= j(render("topics/post", posts: @support.post_of_work_space(Settings.topic.type_sort.no_answer)[:posts], type: Settings.topic.type_sort.no_answer)) %>'
-);
-<% if @support.post_of_work_space(Settings.topic.type_sort.recently)[:count_posts] > Settings.paginate_default %>
-  $('.newest-pagination').html(
-    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.recently, \
-    filter_time: @support.filter_time, work_space_id: @support.get_work_space.try(:id))) %>'
-  ).show();
-<% else %>
-  $('.newest-pagination').hide();
-<% end %>
-<% if @support.post_of_work_space(Settings.topic.type_sort.popular)[:count_posts] > Settings.paginate_default %>
-  $('.popular-pagination').html(
-    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.popular, \
-    filter_time: @support.filter_time,work_space_id: @support.get_work_space.try(:id))) %>'
-  ).show();
-<% else %>
-  $('.popular-pagination').hide();
-<% end %>
-<% if @support.post_of_work_space(Settings.topic.type_sort.recently_answer)[:count_posts] > Settings.paginate_default %>
-  $('.answer-pagination').html(
-    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.recently_answer, \
-    filter_time: @support.filter_time, work_space_id: @support.get_work_space.try(:id))) %>'
-  ).show();
-<% else %>
-  $('.answer-pagination').hide();
-<% end %>
-
-<% if @support.post_of_work_space(Settings.topic.type_sort.no_answer)[:count_posts] > Settings.paginate_default %>
-  $('.no-answer-pagination').html(
-    '<%= j(render("topics/view_all", type: Settings.topic.type_sort.no_answer, \
-    filter_time: @support.filter_time, work_space_id: @support.get_work_space.try(:id))) %>'
-  ).show();
-<% else %>
-  $('.no-answer-pagination').hide();
-<% end %>
+$('.location-dropbtn').html('<%= work_space_name(@support.work_space) %>');
+$('.location-dropbtn').attr('data-id', '<%= work_space_id(@support.work_space) %>');
+$('.sort-by-dropbtn').html('<%= j (t("sort_type_list.#{@support.filter_type[:sort_type]}")) %>');
+$('.sort-by-dropbtn').attr('data-id', '<%= @support.filter_type[:sort_type] %>');
+$('.content-posts').html('<%= j(render partial: "topics/post",\
+  collection: @support.filter_posts) %>');
+$('.paginate-posts').html('<%=j(paginate @support.filter_posts, remote: true)  %>');

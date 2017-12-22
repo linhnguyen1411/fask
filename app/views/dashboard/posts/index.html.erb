@@ -29,7 +29,7 @@
                   <div class="listing-meta">
                     <span>
                       <i class="fa fa-clock-o" aria-hidden="true"></i>
-                      <%= time_ago_in_words post.created_at %>
+                      <%= load_time_created_at post %>
                     </span>
                     <span>
                       <i class="fa fa fa-eye" aria-hidden="true"></i>
@@ -37,7 +37,7 @@
                     </span>
                     <span>
                       <i class="fa fa-comment-o" aria-hidden="true"></i>
-                      <%= count_comment post %> <%= t "posts.index.comment" %>
+                      <%= post.count_comment %> <%= t "posts.index.comment" %>
                     </span>
                   </div>
                 </div>
@@ -46,7 +46,7 @@
                     <li class="active">
                       <a data-toggle="tooltip" data-placement="bottom"
                         data-original-title="Answers">
-                        <span><%= post.answers.size %></span>
+                        <span><%= post.count_answer %></span>
                       </a>
                     </li>
                     <li>
@@ -77,61 +77,61 @@
       </div>
       <div id="clips" class="tab-pane fade <%= "in active" if @supports.get_active_tab == Settings.clips_posts %>">
         <% @supports.get_clip_post_of_user.each do |post| %>
-            <div class="container">
-              <div class="listing-grid">
-                <div class="row">
-                  <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
-                    <a data-toggle="tooltip" data-placement="bottom"
-                      data-original-title="<%= post.user_name %>" href="#">
-                      <%= image_tag post.user_avatar.url, class: "img-responsive center-block" %>
-                    </a>
+          <div class="container">
+            <div class="listing-grid">
+              <div class="row">
+                <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
+                  <%= link_to "#", data: {toggle: :tooltip, placement: "bottom",
+                    original_title: "#{post.user_name}"} do %>
+                    <%= image_tag post.user_avatar.url, class: "img-responsive center-block" %>
+                  <% end %>
+                </div>
+                <div class="col-md-7 col-sm-8  col-xs-12">
+                  <h3><%= link_to post.title, post_path(post.id) %></h3>
+                  <div class="listing-meta">
+                    <span>
+                      <i class="fa fa-clock-o" aria-hidden="true"></i>
+                      <%= load_time_created_at post %>
+                    </span>
+                    <span>
+                      <i class="fa fa fa-eye" aria-hidden="true"></i>
+                      <%= post.count_view %> <%= t ".view" %>
+                    </span>
+                    <span>
+                      <i class="fa fa-comment-o" aria-hidden="true"></i>
+                      <%= post.count_comment %> <%= t "posts.index.comment" %>
+                    </span>
                   </div>
-                  <div class="col-md-7 col-sm-8  col-xs-12">
-                    <h3><%= link_to post.title, post_path(post.id) %></h3>
-                    <div class="listing-meta">
-                      <span>
-                        <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        <%= time_ago_in_words post.created_at %>
-                      </span>
-                      <span>
-                        <i class="fa fa fa-eye" aria-hidden="true"></i>
-                        <%= post.count_view %> <%= t ".view" %>
-                      </span>
-                      <span>
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <%= count_comment post %> <%= t "posts.index.comment" %>
-                      </span>
-                    </div>
+                </div>
+                <div class="col-md-3 col-sm-2 col-xs-12">
+                  <ul class="question-statistic">
+                    <li class="active">
+                      <a data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Answers">
+                        <span><%= post.count_answer %></span>
+                      </a>
+                    </li>
+                    <li>
+                      <a data-toggle="tooltip" data-placement="bottom"
+                        data-original-title="Votes">
+                        <span><%= count_vote post %></span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-10 col-sm-10 col-xs-12 truncate-post">
+                  <div class="content-post">
+                    <%= raw post.content %>
                   </div>
-                  <div class="col-md-3 col-sm-2 col-xs-12">
-                    <ul class="question-statistic">
-                      <li class="active">
-                        <a data-toggle="tooltip" data-placement="bottom"
-                          data-original-title="Answers">
-                          <span><%= post.answers.size %></span>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-toggle="tooltip" data-placement="bottom"
-                          data-original-title="Votes">
-                          <span><%= count_vote post %></span>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-md-10 col-sm-10 col-xs-12 truncate-post">
-                    <div class="content-post">
-                      <%= raw post.content %>
-                    </div>
-                    <div class="pull-right tagcloud">
-                      <% post.tags.each do |tag| %>
-                        <%= link_to tag.name, tag %>
-                      <% end %>
-                    </div>
+                  <div class="pull-right tagcloud">
+                    <% post.tags.each do |tag| %>
+                      <%= link_to tag.name, tag %>
+                    <% end %>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
         <% end %>
         <div class="text-center clearfix">
           <%= paginate @supports.get_clip_post_of_user, param_name: :page_clips_post, params: {active_tab: Settings.clips_posts} %>
@@ -153,7 +153,7 @@
                   <div class="listing-meta">
                     <span>
                       <i class="fa fa-clock-o" aria-hidden="true"></i>
-                      <%= time_ago_in_words improvement.a_versionable.created_at %>
+                      <%= load_time_created_at improvement.a_versionable %>
                     </span>
                     <span>
                       <%= t "version.status" %>:

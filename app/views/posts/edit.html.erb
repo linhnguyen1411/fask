@@ -26,17 +26,17 @@
             <div class="margin-top-40">
               <div class="form-group">
                 <label><%= t ".toppic" %><span class="red-title"> *</span></label>
-                <%= f.select :topic_id, load_select_box_topic, {}, {disabled: true,
+                <%= f.select :topic_id, load_select_box_topic(@support.topic_list), {}, {disabled: true,
                   class: "questions-category form-control", id: "select-toppic"} %>
               </div>
               <div class="form-group">
                 <label><%= t ".location" %><span class="red-title"> *</span></label>
-                <%= f.select :work_space_id, load_select_box_location, {}, {disabled: true,
+                <%= f.select :work_space_id, load_select_box_location(@support.work_space_list), {}, {disabled: true,
                   class: "questions-category form-control disabled", id: "select-location"} %>
               </div>
               <div class="form-group">
                 <label><%= t ".Category" %><span class="red-title"> *</span></label>
-                <%= f.select :category_id, load_select_box_category(@categories),
+                <%= f.select :category_id, load_select_box_category(@support.category_list),
                   {}, {class: "questions-category form-control", id: "select-category"} %>
               </div>
               <div class="form-group">

@@ -2,16 +2,15 @@ module Supports
   class Dashboard::PostSupport
     attr_reader :post
 
-    def initialize(user, page_post, page_clip_post, page_improvement_post, active_tab)
+    def initialize(user, post_params)
       @user = user
-      @page_post = page_post
-      @page_clip_post = page_clip_post
-      @page_improvement_post = page_improvement_post
-      @active_tab = active_tab
+      post_params.each do |post_param|
+        instance_variable_set "@#{post_param.first}", post_param.last
+      end
     end
 
     def get_post_of_user
-      @user.posts.newest.page(@page_post).per Settings.paginate_default
+      @user.posts.post_full_includes.newest.page(@page_post).per Settings.paginate_default
     end
 
     def get_clip_post_of_user

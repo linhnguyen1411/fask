@@ -75,7 +75,7 @@ RSpec.describe PostsController, type: :controller do
 
     it "assigns @tags" do
       tag_of_post = FactoryGirl.create :posts_tag, tag_id: tag.id, post_id: the_post.id
-      expect(assigns(:tags)).to eq [tag_of_post.tag]
+      expect(assigns(:support).tag_list).to eq [tag_of_post.tag]
     end
 
     it "assigns @post" do

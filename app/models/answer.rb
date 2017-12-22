@@ -14,6 +14,7 @@ class Answer < ApplicationRecord
   after_create :create_activity
   before_save :standardize_content
 
+  scope :answers_of_post, -> post_id { where(post_id: post_id).includes(:user, :comments, :reactions)}
   private
 
   def create_activity
