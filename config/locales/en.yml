@@ -132,6 +132,7 @@ en:
       accept_success: "Accepted"
       reject_success: "Rejected"
       feedback_info: "Thank for your feedback, it will be checked and respond to you in next thursday."
+      feedback_reject: "Sorry, Your feedback has been rejected!"
     index:
       not_found: "Not found"
       all_posts: "Your Posts"
@@ -188,6 +189,7 @@ en:
     update:
       success: "Update post success."
       error: "update post error."
+      uncorrect_user: "You don't have permited editing this post"
     destroy:
       success: "Delete post success."
       error: "Detele post error."
@@ -512,4 +514,4 @@ en:
     office: "Office"
     date: "Date"
     status: "Status"
-    error: "Trang bạn truy cập không tồn tại!"
+    error: "Your page try to connect not found!"

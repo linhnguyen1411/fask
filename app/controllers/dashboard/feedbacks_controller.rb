@@ -4,7 +4,7 @@ class Dashboard::FeedbacksController < ApplicationController
   before_action :load_post, only: :update
 
   def index
-    @feedbacks = Post.post_by_topic(Settings.topic.feedback_number).newest
+    @feedbacks = Post.feedback_post.newest
       .page(params[:page]).per Settings.paginate_posts
   end
 

@@ -49,7 +49,7 @@ class Post < ApplicationRecord
     joins(:answers).group("answers.post_id").order "answers.created_at desc"
   end
 
-  scope :feedback_post_waiting, -> { where(topic_id: Settings.topic.feedback_number).waiting }
+  scope :feedback_post, -> { where(topic_id: Settings.topic.feedback_number) }
 
   scope :post_of_work_space, -> work_space_id { where work_space_id: work_space_id if work_space_id.present?}
 
@@ -73,10 +73,6 @@ class Post < ApplicationRecord
     elsif to_day.present?
       where(" posts.created_at < (?)", to_day)
     end
-  end
-
-  def check_owner_post current_user
-    self.user == current_user
   end
 
   private

@@ -61,7 +61,10 @@
               <div class="listing-grid">
                 <div class="row" id="post-body">
                   <div class="col-md-12 col-sm-12 col-xs-12">
-                    <h3 id="post-tile"><%= @post.title %><%= load_icon_clip @post %></h3>
+                    <h3 id="post-tile"><%= @post.title %><%= load_icon_clip @post %>
+                      <span class="pull-right post-status"><%= @post.status %></span>
+                    </h3>
+                    <%= check_status_of_post @post %>
                     <div class="listing-meta">
                       <span>
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
@@ -84,10 +87,12 @@
                       <% end %>
                       <span class="float-right">
                         <%= raw load_button_functions_post(@post) %>
-                        <%= link_to "javascript:void(0)", data:
-                          { toggle: "collapse",target: "#share_btn"} do %>
-                            <i class="fa fa-share-alt btn-share" aria-hidden="true"></i>
-                          <% end %>
+                        <% if @post.topic_id != Settings.topic.feedback_number %>
+                          <%= link_to "javascript:void(0)", data:
+                            { toggle: "collapse",target: "#share_btn"} do %>
+                              <i class="fa fa-share-alt btn-share" aria-hidden="true"></i>
+                            <% end %>
+                        <% end %>
                       </span>
                     </div>
                   </div>

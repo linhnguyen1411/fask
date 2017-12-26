@@ -132,6 +132,7 @@ vi:
       accept_success: "Đã chấp nhận"
       reject_success: "Đã từ chối"
       feedback_info: "Cảm ơn ý kiến đóng góp của bạn. Câu hỏi của bạn sẽ được duyệt và trả lời vào thứ 5 tuần kế tiếp."
+      feedback_reject: "Xin lỗi, ý kiến đóng góp của bạn đã bị từ chối."
     index:
       not_found: "Không tìm thấy"
       all_posts: "Bài viết"
@@ -188,6 +189,7 @@ vi:
     update:
       success: "Cập nhật bài viết thành công."
       error: "Cập nhật bài viết thất bại."
+      uncorrect_user: "Bạn không có quyền sửa bài viết này"
     destroy:
       success: "Xóa bài viết thành công."
       error: "Xóa bài viết thất bại."

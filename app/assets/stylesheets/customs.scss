@@ -876,6 +876,13 @@ mark{
   border: 3px solid #ddd;
   color: black;
 }
+.feedback-status{
+  border-radius: 4px;
+}
+.feedback-status option{
+  background-color: #ffffff;
+  color: #000000;
+}
 .feedback-header-table{
   background-color: #be161e;
   color: white;
@@ -893,9 +900,6 @@ mark{
   background-color: #de732e;
   color: white;
 }
-.feedback-status option[value="1"]{
-  background: #59e494!important;
-}
 .feedback-title{
   max-width: 400px;
 }
@@ -909,4 +913,16 @@ mark{
   background-color: #27e705;
   color: white;
   border-radius: 3px;
+}
+.post-status{
+  font-size: 15px !important;
+  font-style: italic;
+  text-transform: uppercase;
+  color: white;
+  background-color: red;
+  border-radius: 4px;
+}
+.post-note{
+  color: red;
+  font-style: italic;
 }

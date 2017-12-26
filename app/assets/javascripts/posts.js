@@ -385,29 +385,6 @@ function update_status_feedback(){
   });
 }
 
-function feedback_post(){
-  $('.form-new-post').on('click','#create-post', function(e){
-    e.preventDefault();
-    if ($('#select-toppic').val() == 2 ) {
-      swal({
-      title: I18n.t('info'),
-      text: I18n.t('posts.status.feedback_info'),
-      type: 'info',
-      showCancelButton: true,
-      confirmButtonColor: swal_color,
-      confirmButtonText: I18n.t('ok'),
-      cancelButtonText: I18n.t('cancel'),
-      closeOnConfirm: true
-      },
-      function(){
-        $('.form-new-post').submit();
-      });
-    } else {
-      $('.form-new-post').submit();
-    }
-  })
-}
-
 $(document).ready(function(){
   delete_post();
   delete_comment();
@@ -421,7 +398,6 @@ $(document).ready(function(){
   move_panel_vote();
   reaction_vote_post();
   update_status_feedback();
-  feedback_post();
 
   $('#select-toppic').change(function(){
     load_choose_toppic();
