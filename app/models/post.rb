@@ -36,7 +36,7 @@ class Post < ApplicationRecord
   delegate :name, to: :work_space, prefix: true
 
   scope :post_by_topic, -> topic_id do
-    where(topic_id: topic_id).merge(post_includes_category topic_id )
+    where(topic_id: topic_id).merge(post_includes_category topic_id).accept
   end
 
   scope :post_includes_category, -> topic_id { eager_load(:category) if  topic_id == Settings.topic.feedback_number }

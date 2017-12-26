@@ -131,7 +131,7 @@ vi:
       reject_verify: "Bạn thực sự muốn từ chối?"
       accept_success: "Đã chấp nhận"
       reject_success: "Đã từ chối"
-      feedback_info: "Cảm ơn phản hồi của bạn. Bộ phận EO sẽ duyệt và trả lời vào thứ 5 tuần kế tiếp."
+      feedback_info: "Cảm ơn ý kiến đóng góp của bạn. Câu hỏi của bạn sẽ được duyệt và trả lời vào thứ 5 tuần kế tiếp."
     index:
       not_found: "Không tìm thấy"
       all_posts: "Bài viết"

@@ -136,7 +136,6 @@ class PostsController < ApplicationController
   def check_post_saved post
     save_tags(post) if params[:tags].present?
     if post.topic_name == Settings.feedback
-      flash[:info] = t "posts.status.feedback_info"
       redirect_to root_path
     else
       flash[:success] = t ".create_success"
