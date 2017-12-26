@@ -180,4 +180,21 @@ module PostsHelper
       nil
     end
   end
+  def load_approve_reject_feedback_button feedback
+    if feedback.status == Settings.version.accept
+      (link_to "javascript:", class: "btn-reject-feedback feedback-status-action",
+        data: {id: feedback.id, status: :reject, current_status: feedback.status} do
+          raw '<i class="fa fa-times" aria-hidden="true"></i>' + I18n.t("version.reject")
+        end)
+    else
+      (link_to "javascript:", data: {id: feedback.id, status: :accept},
+        class: "btn-accept-feedback feedback-status-action", id: "accept-#{feedback.id}" do
+        raw '<i class="fa fa-check" aria-hidden="true"></i> ' + I18n.t("version.accept")
+        end) +
+      (link_to "javascript:", class: "btn-reject-feedback feedback-status-action", data:
+        {id: feedback.id, status: :reject, current_status: feedback.status } do
+          raw '<i class="fa fa-times" aria-hidden="true"></i> ' + I18n.t("version.reject")
+        end)
+    end
+  end
 end

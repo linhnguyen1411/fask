@@ -57,7 +57,8 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.user == current_user
+    if @post.check_owner_post current_user || @post.topic_name == Settings.feedback &&
+      User.position_allowed_answer_feedback.include?(current_user)
       @post.tags.destroy_all
       save_tags(@post) if params[:tags].present?
       if @post.update_attributes update_post_params
@@ -69,7 +70,10 @@ class PostsController < ApplicationController
     else
       flash[:danger] = t ".error"
     end
-    redirect_to post_path(@post.id)
+    respond_to do |format|
+      format.html { redirect_to post_path(@post.id) }
+      format.js
+    end
   end
 
   def destroy
@@ -78,9 +82,7 @@ class PostsController < ApplicationController
       success = true
     end
     respond_to do |fomat|
-      fomat.json do
-        render json: {type: success}
-      end
+      fomat.json { render json: {type: success} }
     end
   end
 
@@ -90,7 +92,7 @@ class PostsController < ApplicationController
   end
 
   def feedback_params
-    params.require(:post).permit :topic_id, :title, :content, :work_space_id, :category_id
+    params.require(:post).permit :topic_id, :title, :content, :work_space_id, :category_id, :status
   end
 
   def confesstion_params
@@ -98,7 +100,7 @@ class PostsController < ApplicationController
   end
 
   def update_post_params
-    params.require(:post).permit :title, :content, :category_id
+    params.require(:post).permit :title, :content, :category_id, :status
   end
 
   def check_user
@@ -120,25 +122,39 @@ class PostsController < ApplicationController
   def create_post post_params
     post = Post.new post_params
     post.user_id = @user.id
+    if post.topic_name == Settings.feedback
+      post.status = Settings.post.status.waiting
+    end
     if post.save
-      save_tags(post) if params[:tags].present?
-      flash[:success] = t ".create_success"
-      redirect_to post_path(post.id)
+      check_post_saved post
     else
       flash[:danger] = t ".create_error"
       render :new
     end
   end
 
+  def check_post_saved post
+    save_tags(post) if params[:tags].present?
+    if post.topic_name == Settings.feedback
+      flash[:info] = t "posts.status.feedback_info"
+      redirect_to root_path
+    else
+      flash[:success] = t ".create_success"
+      redirect_to post_path(post.id)
+    end
+  end
+
   def save_tags post
-    params[:tags].split(",").each do |item|
-      tag = Tag.find_by name: item
-      if tag.present?
-        tag.update_attribute :used_count, tag.used_count + Settings.plus_one
-        save_post_tags post, tag
-      else
-        tag = Tag.create name: item
-        save_post_tags post, tag
+    Tag.transaction do
+      params[:tags].split(",").each do |item|
+        tag = Tag.find_by name: item
+        if tag.present?
+          tag.update_attribute :used_count, tag.used_count + Settings.plus_one
+          save_post_tags post, tag
+        else
+          tag = Tag.create name: item
+          save_post_tags post, tag
+        end
       end
     end
   end

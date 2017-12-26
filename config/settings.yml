@@ -5,6 +5,10 @@ category:
   max_name: 250
   min_name: 3
 post:
+  status:
+    waiting: 0
+    accept: 1
+    reject: 2
   max_title: 250
   min_title: 6
   min_content: 6
@@ -101,7 +105,7 @@ version_reject: 2
 post_topic_qa: 1
 a_version_reject: "reject"
 version:
-  rreject: "reject"
+  reject: "reject"
   accept: "accept"
   improve: "improve"
   waiting: "waiting"

@@ -1,0 +1,36 @@
+<section class="page-title profile-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-7 co-xs-12 text-left">
+        <h1><%= t "posts.status.feedback_manager" %></h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="white padding-bottom-80 feedback">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <table class="table feedback-table">
+        <thead class="feedback-header-table">
+          <tr>
+            <th scope="col"><%= t "feedback.id" %></th>
+            <th scope="col"><%= t "feedback.user_name" %></th>
+            <th scope="col"><%= t "feedback.title" %></th>
+            <th scope="col"><%= t "feedback.office" %></th>
+            <th scope="col"><%= t "feedback.date" %></th>
+            <th scope="col"><%= t "feedback.status" %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render "feedback", feedbacks: @feedbacks %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  <div class="text-center clearfix">
+    <%= paginate @feedbacks %>
+  </div>
+</section>

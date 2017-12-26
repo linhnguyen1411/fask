@@ -1,0 +1,9 @@
+<% if @success %>
+  <% if @post.status == Settings.version.accept %>
+    swal(I18n.t('posts.status.accept_success'),'','info');
+  <% elsif @post.status == Settings.a_version_reject %>
+    swal(I18n.t('posts.status.reject_success'),'','info');
+  <% end %>
+<% else %>
+  swal(I18n.t('update_error'),'','danger');
+<% end %>

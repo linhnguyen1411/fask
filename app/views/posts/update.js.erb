@@ -1,0 +1,6 @@
+<% if @post.status == Settings.version.accept %>
+  swal(I18n.t('posts.status.accept_success'),'','info');
+<% elsif @post.status == Settings.version.reject %>
+  swal(I18n.t('posts.status.reject_success'),'','info');
+<% end %>
+$('.feedback-<%= @post.id %>').fadeOut();

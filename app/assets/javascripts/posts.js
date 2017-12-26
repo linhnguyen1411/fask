@@ -1,3 +1,4 @@
+var swal_color = '#DD6B55';
 function load_choose_toppic() {
   var value = $('#select-toppic').val();
   var check_user_login = $('#check_user_login').val();
@@ -93,7 +94,7 @@ function reaction_vote_post() {
       type: 'error',
       showCancelButton: true,
       cancelButtonText: I18n.t('cancel'),
-      confirmButtonColor: '#DD6B55',
+      confirmButtonColor: swal_color,
       confirmButtonText: I18n.t('ok'),
       closeOnConfirm: false
     },
@@ -172,7 +173,7 @@ function add_new_comment() {
         text: I18n.t('login_to_continue'),
         type: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#DD6B55',
+        confirmButtonColor: swal_color,
         confirmButtonText: I18n.t('ok'),
         cancelButtonText: I18n.t('cancel'),
         closeOnConfirm: false
@@ -253,7 +254,7 @@ function delete_answer() {
       text: I18n.t('answers.destroy.are_you_sure'),
       type: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#DD6B55',
+      confirmButtonColor: swal_color,
       confirmButtonText: I18n.t('ok'),
       cancelButtonText: I18n.t('cancel'),
       closeOnConfirm: false
@@ -289,7 +290,7 @@ function delete_comment() {
       text: I18n.t('posts.destroy.are_you_sure'),
       type: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#DD6B55',
+      confirmButtonColor: swal_color,
       confirmButtonText: I18n.t('ok'),
       cancelButtonText: I18n.t('cancel'),
       closeOnConfirm: false
@@ -325,7 +326,7 @@ function delete_post() {
       text: I18n.t('posts.destroy.are_you_sure'),
       type: 'warning',
       showCancelButton: true,
-      confirmButtonColor: '#DD6B55',
+      confirmButtonColor: swal_color,
       confirmButtonText: I18n.t('ok'),
       cancelButtonText: I18n.t('cancel'),
       closeOnConfirm: false
@@ -352,6 +353,38 @@ function delete_post() {
   });
 }
 
+function update_status_feedback(){
+  $('.feedback-table').on('change','.feedback-status',function(){
+    var selected = $('.feedback-status option:selected')
+    var status = $("option:selected", this).html();
+    var post_id = $(this).data('post-id');
+    if (status === 'accept')
+      text = I18n.t('confirm_accept');
+    else if (status === 'reject')
+      text = I18n.t('confirm_reject');
+    else
+      text = I18n.t('confirm_waiting');
+    swal({
+      title: I18n.t('info'),
+      text: text,
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: swal_color,
+      confirmButtonText: I18n.t('ok'),
+      cancelButtonText: I18n.t('cancel'),
+      closeOnConfirm: true
+    },
+    function(){
+      $.ajax({
+        url: '/dashboard/feedbacks/' + post_id,
+        type: 'PATCH',
+        dataType: 'script',
+        data: {post: {status: status}},
+      });
+    });
+  });
+}
+
 $(document).ready(function(){
   delete_post();
   delete_comment();
@@ -364,6 +397,7 @@ $(document).ready(function(){
   load_tag_user_of_post();
   move_panel_vote();
   reaction_vote_post();
+  update_status_feedback();
 
   $('#select-toppic').change(function(){
     load_choose_toppic();

@@ -125,6 +125,13 @@ en:
     index:
       title: "Time Line"
   posts:
+    status:
+      feedback_tab: "Feedback"
+      feedback_manager: "Feedback Management"
+      reject_verify: "You sure!"
+      accept_success: "Accepted"
+      reject_success: "Rejected"
+      feedback_info: "Thank for your feedback, it will be approve by EO and respond to you in next thursday."
     index:
       not_found: "Not found"
       all_posts: "Your Posts"
@@ -494,3 +501,15 @@ en:
   choose_office: "Choose Office"
   from_date: "From date"
   to_date: "To date"
+  update_error: "Update fail, try again!"
+  confirm_accept: "You want accept?"
+  confirm_reject: "You want reject?"
+  confirm_waiting: "You want return waiting?"
+  feedback:
+    id: "Id"
+    user_name: "User Name"
+    title: "Title"
+    office: "Office"
+    date: "Date"
+    status: "Status"
+    error: "Trang bạn truy cập không tồn tại!"
