@@ -874,6 +874,7 @@ mark{
 }
 .feedback-table{
   border: 3px solid #ddd;
+  color: black;
 }
 .feedback-header-table{
   background-color: #be161e;
@@ -897,6 +898,9 @@ mark{
 }
 .feedback-title{
   max-width: 400px;
+}
+.title{
+  font-weight: bold;
 }
 .show-content{
   color: #777;

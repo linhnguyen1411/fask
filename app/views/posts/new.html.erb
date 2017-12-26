@@ -1,5 +1,5 @@
 <%= hidden_field_tag :check_user_login, current_user.present? %>
-<%= form_for @post do |f| %>
+<%= form_for @post, html: {class: "form-new-post"} do |f| %>
   <section class="page-title">
     <div class="container">
       <div class="row">
