@@ -74,17 +74,17 @@ class Supports::PostSupport
 
   def post_of_work_space type
     posts = if @all
-      @class_name.send(type).get_post_by_topic(@topic_id).post_of_work_space(@work_space_id).post_in_time(@from_day, @to_day)
+      @class_name.send(type).post_by_topic(@topic_id).post_of_work_space(@work_space_id).post_in_time(@from_day, @to_day)
         .page(@page).per Settings.paginate_posts
     else
-      @class_name.send(type).get_post_by_topic(@topic_id).post_of_work_space(@work_space_id).post_in_time(@from_day, @to_day)
+      @class_name.send(type).post_by_topic(@topic_id).post_of_work_space(@work_space_id).post_in_time(@from_day, @to_day)
         .limit Settings.paginate_default
     end
     count_posts = if type == Settings.topic.type_sort.no_answer
-     @class_name.send(type).get_post_by_topic(@topic_id)
+     @class_name.send(type).post_by_topic(@topic_id)
       .post_of_work_space(@work_space_id).post_in_time(@from_day, @to_day).size
     else
-      @class_name.get_post_by_topic(@topic_id)
+      @class_name.post_by_topic(@topic_id)
       .post_of_work_space(@work_space_id).post_in_time(@from_day, @to_day).size
     end
     {posts: posts, count_posts: count_posts}
@@ -106,22 +106,22 @@ class Supports::PostSupport
   def get_post_by_topic topic_id, type_input, type, all, page, work_space_id, from_day, to_day
     if work_space_id.present?
       if all && type_input == type
-        @class_name.send(type).get_post_by_topic(topic_id).post_of_work_space(work_space_id).post_in_time(from_day, to_day)
+        @class_name.send(type).post_by_topic(topic_id).post_of_work_space(work_space_id).post_in_time(from_day, to_day)
           .page(page).per Settings.paginate_posts
       else
-        @class_name.send(type).get_post_by_topic(topic_id).post_of_work_space(work_space_id)
+        @class_name.send(type).post_by_topic(topic_id).post_of_work_space(work_space_id)
           .limit Settings.paginate_default
       end
     else
       if all && type_input == type
-        @class_name.send(type).get_post_by_topic(topic_id).post_in_time(from_day, to_day).page(page).per Settings.paginate_posts
+        @class_name.send(type).post_by_topic(topic_id).post_in_time(from_day, to_day).page(page).per Settings.paginate_posts
       else
-        @class_name.send(type).get_post_by_topic(topic_id).post_in_time(from_day, to_day).limit Settings.paginate_default
+        @class_name.send(type).post_by_topic(topic_id).post_in_time(from_day, to_day).limit Settings.paginate_default
       end
     end
   end
 
   def count_posts topic_id, type
-    @class_name.send(type).get_post_by_topic(topic_id).to_ary.size
+    @class_name.send(type).post_by_topic(topic_id).to_ary.size
   end
 end
