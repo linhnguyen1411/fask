@@ -28,6 +28,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    check_user_owner_feedback
     @post_extension = Supports::PostSupport.new Post, nil, nil, nil, params[:comment_page], params[:view_more_time], @post
     @category = @post.category
     @answer = Answer.new
@@ -57,12 +58,11 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.check_owner_post current_user || @post.topic_name == Settings.feedback &&
+    if check_owner_post || @post.topic_id == Settings.topic.feedback_number &&
       User.position_allowed_answer_feedback.include?(current_user)
       @post.tags.destroy_all
       save_tags(@post) if params[:tags].present?
       if @post.update_attributes update_post_params
-
         flash[:success] = t ".success"
       else
         flash[:danger] = t ".error"
@@ -107,7 +107,7 @@ class PostsController < ApplicationController
     @post = Post.new feedback_params
     case
     when params[:post][:topic_id] == Settings.topic.confesstion
-       @user = User.first
+      @user = User.first
     when params[:post][:topic_id] == Settings.topic.feedback
       if params[:anonymous] == Settings.anonymous
         @user = User.first
@@ -136,7 +136,12 @@ class PostsController < ApplicationController
   def check_post_saved post
     save_tags(post) if params[:tags].present?
     if post.topic_name == Settings.feedback
-      redirect_to root_path
+      if post.user_id == Settings.anonymous_number
+        redirect_to root_path
+      else
+        redirect_to post_path(post.id)
+      end
+      flash[:success] = t "posts.status.feedback_info"
     else
       flash[:success] = t ".create_success"
       redirect_to post_path(post.id)
@@ -175,5 +180,17 @@ class PostsController < ApplicationController
 
   def load_popular_tags
     @popular_tags = Tag.top_tags.limit Settings.limit_suggest_tag
+  end
+
+  def check_user_owner_feedback
+    if @post.topic_id == Settings.topic.feedback_number && !@post.accept?
+      return if @post.user == current_user
+      flash[:danger] = t ".not_found"
+      redirect_to root_path
+    end
+  end
+
+  def check_owner_post
+    return true if @post.user == current_user
   end
 end

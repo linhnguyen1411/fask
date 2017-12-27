@@ -10,7 +10,9 @@ RSpec.describe PostsController, type: :controller do
   let(:the_post) do
     FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_qa
   end
-
+  let(:feedback_post) do
+    FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_fb, status: 0
+  end
   describe "GET index" do
     let(:post) do
       FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_qa
@@ -49,6 +51,18 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
+  describe "GET show" do
+    context "show feedback post for user created" do
+      let(:another_user){FactoryGirl.create :user, work_space: work_space}
+      before do
+        sign_in another_user
+        get :show, params: {id: feedback_post}
+      end
+      it "not show post not accepted for user who not write this post" do
+        expect(subject.status).to eq 302
+      end
+    end
+  end
   describe "#edit" do
     before do
       sign_in user
@@ -107,7 +121,6 @@ RSpec.describe PostsController, type: :controller do
       it "assigns @post" do
         expect(assigns(:post).content).to eq the_post.content
       end
-
       it "flash" do
         expect(flash[:danger]).to eq I18n.t("posts.update.error")
       end
@@ -217,7 +230,6 @@ RSpec.describe PostsController, type: :controller do
       end
     end
   end
-
 
   describe "#destroy" do
     before {sign_in user}

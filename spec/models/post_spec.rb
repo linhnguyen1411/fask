@@ -117,13 +117,13 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  context ".get_post_by_topic" do
+  context ".post_by_topic" do
     it "fail" do
-      expect(Post.get_post_by_topic(0).count).to eq 0
+      expect(Post.post_by_topic(0).count).to eq 0
     end
 
     it "success" do
-      expect(Post.get_post_by_topic(topic.id).count).to be > 0
+      expect(Post.post_by_topic(topic.id).count).to be > 0
     end
   end
 
@@ -170,6 +170,24 @@ RSpec.describe Post, type: :model do
 
     it "success" do
       expect(Post.recently_answer).to eq([post_z, post_y, post_x])
+    end
+  end
+
+  context ".post_in_time" do
+    it "fail" do
+      expect(Post.post_in_time("2016/02/01","2016/03/01")).not_to eq([post_x])
+    end
+
+    it "success" do
+      expect(Post.post_in_time("2016/02/01","2016/03/01")).to eq([post_y, post_z])
+    end
+
+    it "just from day" do
+      expect(Post.post_in_time("2016/02/01","")).to eq([post_y, post_z])
+    end
+
+    it "just end day" do
+      expect(Post.post_in_time("","2016/03/01")).to eq([post_x, post_y])
     end
   end
 end

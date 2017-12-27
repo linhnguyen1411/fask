@@ -112,10 +112,14 @@ module PostsHelper
 
   def load_button_functions_post post
     case
-    when current_user.present? && post.user == current_user
+    when current_user.present? && post.user == current_user && post.accept?
       (link_to edit_post_path(post.id) do
         raw '<i class="fa fa-pencil-square-o" aria-hidden="true"></i> ' + t("edit")
       end) + " | " +
+      (link_to "javascript:", id: "btn-delete-post", data: {id: post.id} do
+        raw '<i class="fa fa-trash-o" aria-hidden="true"></i> ' + t("delete")
+      end)
+    when current_user.present? && post.user == current_user && !post.accept?
       (link_to "javascript:", id: "btn-delete-post", data: {id: post.id} do
         raw '<i class="fa fa-trash-o" aria-hidden="true"></i> ' + t("delete")
       end)
@@ -195,6 +199,14 @@ module PostsHelper
         {id: feedback.id, status: :reject, current_status: feedback.status } do
           raw '<i class="fa fa-times" aria-hidden="true"></i> ' + I18n.t("version.reject")
         end)
+    end
+  end
+
+  def check_status_of_post post
+    if post.waiting?
+      raw('<span class="post-note">' +  t("posts.status.feedback_info") + '</span>')
+    elsif post.reject?
+      raw('<span class="post-note">' +  t("posts.status.feedback_reject") + '</span>')
     end
   end
 end
