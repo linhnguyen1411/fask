@@ -62,7 +62,9 @@
                 <div class="row" id="post-body">
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <h3 id="post-tile"><%= @post.title %><%= load_icon_clip @post %>
-                      <span class="pull-right post-status"><%= @post.status %></span>
+                      <% if @post.topic_id == Settings.topic.feedback_number %>
+                        <span class="pull-right post-status"><%= @post.status %></span>
+                      <% end %>
                     </h3>
                     <%= check_status_of_post @post %>
                     <div class="listing-meta">
