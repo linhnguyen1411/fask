@@ -6,6 +6,7 @@ class Notification < ApplicationRecord
 
   scope :by_date, -> {order created_at: :desc}
 
+  scope :includes_activity, -> { includes(:activity, :user) }
   enum status: {not_seen: 0, seen: 1}
 
   def load_message
@@ -13,11 +14,14 @@ class Notification < ApplicationRecord
     activity = self.activity
     case activity.trackable.class.name
     when Post.name
+      post = activity.trackable
       if self.is_tag_user?
-        post = activity.trackable
         @message = I18n.t("noti.tag_post") + " \"#{post.title}\""
+      elsif self.activity.parameters[:status_changed] == "accept"
+        @message = I18n.t("posts.status.feedback_info")
+      elsif self.activity.parameters[:status_changed] == "reject"
+        @message = I18n.t("posts.status.feedback_reject")
       else
-        post = activity.trackable
         @message = I18n.t("noti.create_post") + " \"#{post.title}\"" + I18n.t("noti.in_topic") + "#{post.topic.name}"
       end
     when Answer.name

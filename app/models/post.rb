@@ -22,6 +22,7 @@ class Post < ApplicationRecord
 
   before_save :standardize_content
   after_create :create_activity
+  after_update :update_activity
 
   enum status: {waiting: 0, accept: 1, reject: 2}
 
@@ -79,6 +80,14 @@ class Post < ApplicationRecord
 
   def create_activity
     self.activities.create owner: self.user
+  end
+
+  def update_activity
+    if self.status_changed?
+      if self.status != Settings.version.waiting && self.user_id != Settings.anonymous_number
+        self.activities.create owner: self.user, parameters: {status_changed: self.status}
+      end
+    end
   end
 
   def search_data

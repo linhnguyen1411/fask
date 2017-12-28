@@ -30,7 +30,7 @@ class User < ApplicationRecord
 
   scope :not_user_hiddent, -> {where.not id: Settings.id_user_hiddent}
   scope :notify_feedback_for_position, -> do
-    where position: [Settings.hr_administrator, Settings.recruiter, Settings.event_officer]
+    where position: [Settings.event_officer]
   end
   scope :position_allowed_answer_feedback, -> do
     where position: [Settings.event_officer]

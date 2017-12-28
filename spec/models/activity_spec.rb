@@ -15,13 +15,13 @@ RSpec.describe Activity, type: :model do
   let!(:user_recruiter){FactoryGirl.create :user, work_space_id: work_space.id, position: "Recruiter"}
   let!(:user_event_officer){FactoryGirl.create :user, work_space_id: work_space.id, position: "Event Officer"}
 
-  let!(:new_post){FactoryGirl.create :post, user_id: user_post.id, topic_id: feedback_topic.id, work_space_id: work_space.id}
+  let!(:new_post){FactoryGirl.create :post, user_id: user_post.id, topic_id: feedback_topic.id, work_space_id: work_space.id, status: 0}
   let!(:new_answer){FactoryGirl.create :answer, user_id: user_answer.id, post: new_post}
   let!(:new_comment){FactoryGirl.create :comment, user_id: user_comment.id, commentable: new_post}
 
   describe "When create post and turn on notification setting" do
     context "Send notification when create post without tag user" do
-      it "Only send noti for users are Hr administrator, Recruiter, Event Officer if is a feedback post" do
+      it "Only send noti for users are Event Officer if is a feedback post" do
         post = FactoryGirl.create :post, user_id: user_post.id, topic_id: feedback_topic.id,
           work_space_id: work_space.id
         notified_users = User.get_users_not_contain_id(user_post.id).notify_feedback_for_position.to_a
@@ -41,12 +41,11 @@ RSpec.describe Activity, type: :model do
     end
 
     context "Send notification when create post within tag user" do
-      it "A Feedback post - only send noti for tagged users and user are Hr administrator,
-        Recruiter, Event Officer" do
+      it "A Feedback post - only send noti for tagged users and user are Even Officer " do
         url_taged_user = "href=\"\/users\/" + tagged_user.id.to_s
         post = FactoryGirl.create :post, user_id: user_post.id, topic_id: feedback_topic.id,
           work_space_id: work_space.id, content: url_taged_user
-        notified_users = User.get_users_not_contain_id(user_post.id).notify_feedback_for_position.to_a << tagged_user
+        notified_users = User.notify_feedback_for_position
         post.activities.each do |activity|
           expect(activity.notifications.map(&:user)).to match_array notified_users
         end
@@ -69,6 +68,16 @@ RSpec.describe Activity, type: :model do
         notified_users = User.get_users_not_contain_id(user_post.id)
         post.activities.each do |activity|
           expect(activity.notifications.map(&:user)).to match_array notified_users
+        end
+      end
+
+      it "send noti when update feedback post" do
+        url_taged_user = "href=\"\/users\/" + tagged_user.id.to_s
+        post = FactoryGirl.create :post, user_id: user_post.id, topic_id: knowledge_topic.id,
+          work_space_id: work_space.id, content: url_taged_user
+        post.update_attributes status: 2
+        post.activities.last do
+          expect(activity.notifications.map(&:user)).to match_array [user_post]
         end
       end
     end
@@ -193,5 +202,8 @@ RSpec.describe Activity, type: :model do
         expect(activity.notifications.map(&:user)).to contain_exactly new_post.user
       end
     end
+  end
+
+  describe "When update feedback post and send notification to tagged user" do
   end
 end

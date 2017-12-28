@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
           notification.update_attributes status: :seen
         end
       end
-      @list_notifications = current_user.notifications.by_date
+      @list_notifications = current_user.notifications.includes_activity.by_date
     end
   end
 
