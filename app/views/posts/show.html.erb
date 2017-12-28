@@ -63,7 +63,8 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <h3 id="post-tile">
                       <%= @post.title %><%= load_icon_clip @post_extension.clip_list %>
-                      <% if check_feeback_topic @post.topic_id %>
+                      <% if check_feeback_topic(@post.topic_id) &&
+                        current_user.id == @post.user_id %>
                         <span class="pull-right post-status"><%= @post.status %></span>
                       <% end %>
                     </h3>
@@ -115,7 +116,9 @@
                     <% end %>
                     <% if check_feeback_topic @post.topic_id %>
                       <div class="pull-right tagcloud category">
-                        <span><%= @post.category_name %></span>
+                        <% if @post.category_name.present? %>
+                          <span><%= @post.category_name %></span>
+                        <% end %>
                       </div>
                     <% else %>
                       <div class="tagcloud pull-right">

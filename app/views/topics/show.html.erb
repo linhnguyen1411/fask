@@ -7,10 +7,10 @@
             <span><%= t "choose_office" %>: </span>
           </i>
           <div class="location-dropdown custom-height select-location">
-            <button class="location-dropbtn" data-id="<%= work_space_id(@support.work_space) %>">
+            <button class="location-dropbtn form-control" data-id="<%= work_space_id(@support.work_space) %>">
               <%= work_space_name(@support.work_space) %>
             </button>
-            <div class="location-dropdown-content">
+            <div class="location-dropdown-content ">
               <% load_select_box_location(@support.work_space_list).each do |location| %>
                 <%= link_to location.first, "javascript:", onclick: "filter_by_work_space(#{location.last});" %>
               <% end %>
@@ -23,7 +23,7 @@
           <span><%= t "sort_by" %>: </span>
         </i>
         <div class="sort-by-dropdown custom-height select-sort-by">
-          <button class="sort-by-dropbtn" data-id="<%= @support.filter_type[:sort_type] %>">
+          <button class="sort-by-dropbtn form-control" data-id="<%= @support.filter_type[:sort_type] %>">
             <%= t("sort_type_list.#{@support.filter_type[:sort_type]}") %>
           </button>
           <div class="sort-by-dropdown-content">
@@ -53,6 +53,7 @@
         </div>
       </div>
     </div>
+    <hr>
     <div class="row">
       <div class="col-md-8 col-sm-12 col-xs-12">
         <div class="content-posts">
