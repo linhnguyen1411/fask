@@ -1,4 +1,4 @@
-  <div class="media-block card-box ribbon-content answer-<%= answer.id %>"
+<div class="media-block card-box ribbon-content answer-<%= answer.id %>"
   id="answer-<%= answer.id %>">
   <div class="media-left">
     <a data-toggle="tooltip" data-placement="bottom"
@@ -14,8 +14,8 @@
       </h4>
       <p class="text-muted text-sm item-time">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <%= time_ago_in_words answer.created_at %>
-        <%= raw load_button_edit_delete_answer(answer) %>|
+        <%= load_time_created_at answer %>
+        <%= raw load_button_edit_delete_answer(answer, post.topic_id) %>|
         <%= link_to "javascript:void(0)", data:
           { toggle: "collapse",target: "#share-cmt-#{answer.id}"} do %>
             <i class="fa fa-share-alt" aria-hidden="true"></i>
@@ -31,7 +31,7 @@
     </div>
     <div class="content border-table">
       <div id="share-cmt-<%= answer.id %>" class="collapse custom-share-cmt">
-        <% share = "Answer:"+ @post.title %>
+        <% share = "Answer:"+ post.title %>
         <%= social_share_button_tag(share) %>
       </div>
     </div>
@@ -43,7 +43,7 @@
         <%= load_btn_reactions answer, t(".like_answer"), Settings.reaction_type.like %>
         <%= load_btn_reactions answer, t(".spam"), Settings.reaction_type.dislike %>
         <%= load_btn_reactions answer, t(".love"), Settings.reaction_type.heart %>
-        <%= load_btn_correct_answer answer, @post %>
+        <%= load_btn_correct_answer answer, post %>
       </div>
       <div class="pad-ver pull-right">
         <%= load_link_reaction answer %>
@@ -51,7 +51,7 @@
     </div>
   </div>
   <div class="one-line"></div>
-  <% if @post.topic_name != Settings.feedback %>
+  <% unless check_feeback_topic post.topic_id %>
     <div class="form-new-commment">
       <div class="comment-list" id="comment-list-answer-<%= answer.id %>">
         <%= render partial: "posts/comment", collection: answer.comments, as: :comment %>

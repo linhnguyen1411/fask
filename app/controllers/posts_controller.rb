@@ -14,7 +14,7 @@ class PostsController < ApplicationController
   end
 
   def new
-    @categories = Category.all
+    @support = Supports::PostSupport.new
     @post = case request.referer
     when topic_url(Settings.topic.q_a_number)
       Post.new topic_id: Settings.topic.q_a_number
@@ -29,8 +29,7 @@ class PostsController < ApplicationController
 
   def show
     check_user_owner_feedback
-    @post_extension = Supports::PostSupport.new Post, nil, nil, nil, params[:comment_page], params[:view_more_time], @post
-    @category = @post.category
+    @post_extension = Supports::PostSupport.new @post, show_post_params.to_h
     @answer = Answer.new
     respond_to do |format|
       format.html
@@ -53,8 +52,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @tags = @post.tags
-    @categories = Category.all
+    @support = Supports::PostSupport.new @post
   end
 
   def update
@@ -101,6 +99,10 @@ class PostsController < ApplicationController
 
   def update_post_params
     params.require(:post).permit :title, :content, :category_id, :status
+  end
+
+  def show_post_params
+    params.permit :comment_page, :view_more_time
   end
 
   def check_user

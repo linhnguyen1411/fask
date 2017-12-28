@@ -3,12 +3,9 @@ class TopicsController < ApplicationController
   before_action :load_topic
 
   def show
-    @support = Supports::PostSupport.new(Post, params[:id], params[:type],
-      params[:all], params[:page], nil, nil, params[:work_space_id],
-      convert_date(params[:from_day]), convert_date(params[:to_day], true)
-    )
-    @topUsers = User.top_users.limit Settings.limit_top
-    @tags = Tag.top_tags.limit Settings.limit_tag
+    params[:from_day] = convert_date(params[:from_day])
+    params[:to_day] = convert_date(params[:to_day])
+    @support = Supports::TopicSupport.new(topic_params.to_h)
     respond_to do |format|
       format.js
       format.html
@@ -26,12 +23,13 @@ class TopicsController < ApplicationController
 
   def convert_date date, is_end_day = false
     begin
-      if is_end_day
-        (date.to_date + Settings.one_day.days).strftime() if date.present?
-      else
-        date.to_date.strftime() if date.present?
-      end
+      date.to_date.strftime() if date.present?
     rescue ArgumentError
     end
+  end
+
+  def topic_params
+    params.permit :from_day, :to_day, :work_space_id, :id, :sort_type,
+      :category_id, :page
   end
 end

@@ -1,21 +1,33 @@
 <div class="side-bar">
   <div class="widget">
-    <h2><%= t ".popular_tags" %></h2>
+    <h2><%= t "static_pages.index.category_list" %></h2>
     <hr class="widget-separator no-margin">
-    <div class="list-top-tags">
-      <%= render partial: "static_pages/tags", collection: @tags, as: :tag %>
-    </div>
-    <div class="all_tags">
+    <% if check_feeback_topic topic.id %>
+      <div class="list-top-tags">
+        <div class="category">
+          <%= link_to topic, class: "tag-item", remote: true, data: {id: ""} do %>
+            <span><%= support.total_post %></span>
+            <%= t("all_posts") %>
+          <% end %>
+        </div>
+        <%= render partial: "categories/category", collection: support.category_list %>
+      </div>
+    <% else %>
+      <div class="list-top-tags">
+        <%= render partial: "static_pages/tags", collection: support.tag_list, as: :tag %>
+      </div>
+      <div class="all_tags">
       <%= link_to tags_path do %>
          <span class="glyphicon glyphicon-tags"></span>
         <%= t ".all_tags" %>
       <% end %>
     </div>
+    <% end %>
   </div>
   <div class="widget">
-    <h2><%= t ".top_users" %></h2>
+    <h2><%= t "static_pages.index.top_users" %></h2>
     <hr class="widget-separator no-margin">
-    <%= render partial: "static_pages/top_users", collection: @topUsers, as: :user %>
+    <%= render partial: "static_pages/top_users", collection: support.top_users, as: :user %>
     <div class="all_tags">
       <%= link_to users_path do %>
          <span class="fa fa-users"></span>

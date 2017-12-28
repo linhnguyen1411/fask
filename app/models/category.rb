@@ -7,4 +7,9 @@ class Category < ApplicationRecord
     length: {maximum: Settings.category.max_name, minimum: Settings.category.min_name}
 
   acts_as_paranoid
+
+  scope :include_count_post, ->  do
+    joins("LEFT JOIN posts ON posts.category_id = categories.id")
+      .group("categories.id").select("categories.*, count(posts.id) as count_post")
+  end
 end

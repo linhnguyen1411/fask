@@ -11,7 +11,7 @@ RSpec.describe TopicsController, type: :controller do
     end
 
     context "when load topic success" do
-      it {expect(assigns :support).to be_a Supports::PostSupport}
+      it {expect(assigns :support).to be_a Supports::TopicSupport}
     end
   end
 end

@@ -34,7 +34,7 @@
                       <i class="fa fa-angle-up" aria-hidden="true"></i>
                     <% end %>
                   </div>
-                  <div class="point-vote"><%= count_vote @post %></div>
+                  <div class="point-vote"><%= @post_extension.count_vote %></div>
                   <div class="btn-action">
                     <%= link_to "javascript:", class: "btn-vote",
                       data: {type: Settings.reaction_type.down, model: Post.name,
@@ -48,7 +48,7 @@
                       <i class="fa fa-angle-up" aria-hidden="true"></i>
                     <% end %>
                   </div>
-                  <div class="point-vote"><%= count_vote @post %></div>
+                  <div class="point-vote"><%= @post_extension.count_vote %></div>
                   <div class="btn-action">
                     <%= link_to "javascript:", class: "btn-loggin-continue" do %>
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
@@ -61,8 +61,9 @@
               <div class="listing-grid">
                 <div class="row" id="post-body">
                   <div class="col-md-12 col-sm-12 col-xs-12">
-                    <h3 id="post-tile"><%= @post.title %><%= load_icon_clip @post %>
-                      <% if @post.topic_id == Settings.topic.feedback_number %>
+                    <h3 id="post-tile">
+                      <%= @post.title %><%= load_icon_clip @post_extension.clip_list %>
+                      <% if check_feeback_topic @post.topic_id %>
                         <span class="pull-right post-status"><%= @post.status %></span>
                       <% end %>
                     </h3>
@@ -70,7 +71,7 @@
                     <div class="listing-meta">
                       <span>
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        <%= time_ago_in_words @post.created_at %>
+                        <%= load_time_created_at @post %>
                       </span>
                       <span>
                         <i class="fa fa fa-eye" aria-hidden="true"></i>
@@ -78,12 +79,12 @@
                       </span>
                       <span>
                         <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <%= count_comment @post %> <%= t "posts.index.comment" %>
+                        <%=  @post_extension.count_comment %> <%= t "posts.index.comment" %>
                       </span>
                       <% if @post.user_id == current_user.id  && @post.topic_id == Settings.post_topic_qa %>
                         <span>
                           <i class="fa fa-pencil" aria-hidden="true"></i>
-                          <%= link_to "#{count_version @post}" + t("version.suggested_changes"),
+                          <%= link_to "#{@post_extension.count_version}" + t("version.suggested_changes"),
                             a_versions_path(post_id: @post.id) %>
                         </span>
                       <% end %>
@@ -103,7 +104,7 @@
                       <%= social_share_button_tag(@post.title) %>
                     </div>
                     <span class="post-content">
-                      <%= content_post @post %>
+                      <%= content_post @post, @post_extension.check_a_version_for_post %>
                     </span>
                     </br>
                     <% if @post.user_id != current_user.id && @post.topic_id == Settings.post_topic_qa %>
@@ -112,14 +113,15 @@
                         <%= render "posts/improve_form", post: @post, option: {remote: false} %>
                       </div>
                     <% end %>
-                    <div class="tagcloud">
-                      <% @post.tags.each do |tag| %>
-                        <%= link_to tag.name, tag %>
-                      <% end %>
-                    </div>
-                    <% if @post.topic_id == Settings.topic.feedback_number %>
-                      <div class="pull-right tagcloud">
-                         <%= link_to @category.name, @category if @category.present? %>
+                    <% if check_feeback_topic @post.topic_id %>
+                      <div class="pull-right tagcloud category">
+                        <span><%= @post.category_name %></span>
+                      </div>
+                    <% else %>
+                      <div class="tagcloud pull-right">
+                        <% @post_extension.tag_list.each do |tag| %>
+                          <%= link_to tag.name, tag %>
+                        <% end %>
                       </div>
                     <% end %>
                   </div>
@@ -128,7 +130,7 @@
             </div>
           </div>
           <div class="clearfix"></div>
-          <% if @post.topic_name != Settings.feedback %>
+          <% unless check_feeback_topic @post.topic_id %>
             <div class="form-new-commment">
               <div id="next-page" class="next-page">
                 <%= render "view_more", post: @post, next_page: @post_extension.next_page,
@@ -160,14 +162,15 @@
           <div class="clearfix"></div>
           <div class="thread-reply">
             <h2><%= t ".thread_answers" %> </h2>
-            <% if @post.answers.present? %>
-              <%= render partial: "posts/answer", collection: @post.answers, as: :answer %>
+            <% if @post_extension.answers_of_post.present? %>
+              <%= render partial: "posts/answer", collection: @post_extension.answers_of_post,
+                locals: {post: @post} %>
             <% else %>
               <%= label_tag "", t(".post_not_answers"), class: "post-not-answers" %>
             <% end %>
             <div class="clearfix"></div>
           </div>
-          <% if check_permited_user_feedback || @post.topic_name != Settings.feedback %>
+          <% if check_permited_user_feedback || !check_feeback_topic(@post.topic_id) %>
             <div id="answer-form">
               <%= render "posts/answer_form", answer: @answer, post: @post,
                 option: {remote: false} %>
@@ -197,15 +200,6 @@
                 <%= render partial: "posts/extension_post",
                   collection: @post_extension.hot_post, as: :post,
                   locals: { type: Settings.post.extension.hot_question } %>
-              </div>
-            </div>
-            <div class="widget">
-              <div class="recent-comments">
-                <h2><%= t ".recent_comments" %></h2>
-                <hr class="widget-separator no-margin">
-                <%= render partial: "posts/extension_post",
-                  collection: @post_extension.recent_comment_of_post, as: :post,
-                  locals: { type: Settings.post.extension.recent_comment } %>
               </div>
             </div>
           </div>

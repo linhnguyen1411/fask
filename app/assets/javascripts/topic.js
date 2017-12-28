@@ -1,8 +1,33 @@
 function filter_by_work_space(work_space_id){
+  $('#to-day-picker').val('');
+  $('#from-day-picker').val('');
+  var sort_type = $('.sort-by-dropbtn').attr('data-id');
+  var category_id = $('.category a.active').attr('data-id');
   $.ajax({
     url: '/topics/2',
     method: 'GET',
-    data: {work_space_id: work_space_id}
+    data: {
+      work_space_id: work_space_id,
+      sort_type: sort_type,
+      category_id: category_id
+    }
+  });
+}
+
+function filter_by_sort_type(sort_type){
+  var topic =  $('#current-toppic').attr('data-id');
+  $('#to-day-picker').val('');
+  $('#from-day-picker').val('');
+  var work_space_id = $('.location-dropbtn').attr('data-id');
+  var category_id = $('.category a.active').attr('data-id');
+  $.ajax({
+    url: '/topics/' + topic,
+    method: 'GET',
+    data: {
+      work_space_id: work_space_id,
+      sort_type: sort_type,
+      category_id: category_id
+    }
   });
 }
 
@@ -29,13 +54,17 @@ $(document).ready(function(){
         var from_day = $input.val();
         var to_day = jQuery('#to-day-picker').val();
         var work_space_id = $('.location-dropbtn').attr('data-id');
+        var sort_type = $('.sort-by-dropbtn').attr('data-id');
+        var category_id = $('.category a.active').attr('data-id');
         $.ajax({
           url: '/topics/' + topic,
           method: 'GET',
           data: {
             from_day: from_day,
             to_day: to_day,
-            work_space_id: work_space_id
+            work_space_id: work_space_id,
+            sort_type: sort_type,
+            category_id: category_id
           }
         });
       }
@@ -57,16 +86,29 @@ $(document).ready(function(){
         var to_day = $input.val();
         var from_day = jQuery('#from-day-picker').val();
         var work_space_id = $('.location-dropbtn').attr('data-id');
+        var sort_type = $('.sort-by-dropbtn').attr('data-id');
+        var category_id = $('.category a.active').attr('data-id');
         $.ajax({
           url: '/topics/' + topic,
           method: 'GET',
           data: {
             from_day: from_day,
             to_day: to_day,
-            work_space_id: work_space_id
+            work_space_id: work_space_id,
+            sort_type: sort_type,
+            category_id: category_id
           }
         });
       }
     });
   });
 });
+$(document).on('click','.category a',function(){
+  $('.category a').removeClass('active')
+  $(this).addClass('active');
+  $('#to-day-picker').val('');
+  $('#from-day-picker').val('');
+})
+$(document).ready(function(){
+  $('.category a:first').addClass('active')
+})

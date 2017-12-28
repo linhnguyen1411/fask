@@ -136,3 +136,4 @@ notification_setting:
 one_day: 1
 feedback: "Feedback"
 feedback_manager: ["Event Officer"]
+sort_type_list: ["newest", "popular", "recently_answer", "no_answer"]

@@ -1,17 +1,17 @@
 <div class="listing-grid">
   <div class="row">
     <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
-      <a data-toggle="tooltip" data-placement="bottom"
-        data-original-title="<%= post.user_name %>" href="#">
+      <%= link_to "#", data: {toggle: :tooltip, placement: "bottom",
+        original_title: "#{post.user_name}"} do %>
         <%= image_tag post.user.avatar.url, class: "img-responsive center-block" %>
-      </a>
+      <% end %>
     </div>
     <div class="col-md-7 col-sm-8  col-xs-12">
       <h3><%= link_to post.title, post_path(post.id) %></h3>
       <div class="listing-meta">
         <span>
           <i class="fa fa-clock-o" aria-hidden="true"></i>
-          <%= time_ago_in_words post.created_at %>
+          <%= load_time_created_at post %>
         </span>
         <span>
           <i class="fa fa fa-eye" aria-hidden="true"></i>
@@ -19,14 +19,14 @@
         </span>
         <span>
           <i class="fa fa-comment-o" aria-hidden="true"></i>
-          <%= count_comment post %> <%= t "posts.index.comment" %>
+          <%= post.count_comment %> <%= t "posts.index.comment" %>
         </span>
       </div>
     </div>
     <div class="col-md-3 col-sm-2 col-xs-12">
       <ul class="question-statistic">
         <li class="active">
-          <span data-toggle="tooltip" title="Answers"><%= post.answers.size %></span>
+          <span data-toggle="tooltip" title="Answers"><%= post.count_answer %></span>
         </li>
         <li>
           <span data-toggle="tooltip" title="Votes"><%= count_vote post %></span>

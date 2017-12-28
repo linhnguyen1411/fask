@@ -12,7 +12,7 @@
       </h4>
       <p class="text-muted text-sm item-time">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <%= time_ago_in_words comment.created_at %>
+        <%= load_time_created_at comment %>
         <%= raw load_button_edit_delete_comment(comment) %>
       </p>
     </div>
@@ -25,6 +25,7 @@
       <div class="pad-ver pull-right">
         <%= load_link_reaction comment %>
       </div>
+
     </div>
   </div>
 </div>

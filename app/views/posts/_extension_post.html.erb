@@ -1,14 +1,6 @@
 <hr class="widget-separator no-margin">
 <ul class="recentcomments">
-  <% if type == Settings.post.extension.recent_comment %>
-    <li class="recentcomments">
-      <span class="comment-author-link">
-      <%= user_comment_recently_of_post post %></span> <%= t ".on" %>
-      <%= link_to post.title, post_path(post.id) %>
-    </li>
-  <% else %>
-    <li class="recentcomments">
-      <%= link_to post.title, post_path(post.id) %>
-    </li>
-  <% end %>
+  <li class="recentcomments">
+    <%= link_to post.title, post %>
+  </li>
 </ul>

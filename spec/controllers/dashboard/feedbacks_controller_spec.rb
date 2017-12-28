@@ -12,13 +12,17 @@ RSpec.describe Dashboard::FeedbacksController, type: :controller do
     FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_qa
   end
   let!(:post_x) do
-    FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_fb, status: 0
+    FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_fb,
+    status: 0, created_at: DateTime.new(2016,03,01)
+
   end
   let!(:post_y) do
-    FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_fb, status: 1
+    FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_fb,
+     status: 1, created_at: DateTime.new(2016,02,01)
   end
   let!(:post_z) do
-    FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_fb, status: 2
+    FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_fb,
+     status: 2, created_at: DateTime.new(2016,01,01)
   end
 
   describe "GET index" do

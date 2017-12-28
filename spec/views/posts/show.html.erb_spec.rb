@@ -9,7 +9,7 @@ RSpec.describe "posts/show.html.erb", type: :view do
   let!(:comment) {FactoryGirl.create :comment, user_id: user.id,
     commentable_id: post.id, commentable_type: Post.name}
   let!(:new_answer) {Answer.new}
-  let!(:post_extension) {Supports::PostSupport.new Post, topic.id, "newest", true, 1, nil, post}
+  let!(:post_extension) {Supports::PostSupport.new post, {comment_page: 1, view_more_time: Time.now}}
 
   it "show post page when user login" do
     assign :post, post

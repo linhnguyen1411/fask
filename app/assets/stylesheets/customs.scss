@@ -690,40 +690,40 @@ mark{
   height: 18px;
   background: image-url('codesnippet');
 }
-.location-dropbtn {
+.location-dropbtn, .sort-by-dropbtn {
   background-color: #be161e;
   color: white;
   padding: 10px 5px;
   font-size: 16px;
   border: none;
   cursor: pointer;
-  min-width: 150px;
+  min-width: 153px;
 }
-.location-dropdown {
+.location-dropdown, .sort-by-dropdown {
   position: relative;
   display: inline-block;
 }
-.location-dropdown-content {
+.location-dropdown-content, .sort-by-dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 150px;
+  min-width: 153px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
-.location-dropdown-content a {
+.location-dropdown-content a, .sort-by-dropdown-content a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
-.location-dropdown-content a:hover {
+.location-dropdown-content a:hover, .sort-by-dropdown-content a:hover {
   background-color: #f1f1f1
 }
-.location-dropdown:hover .location-dropdown-content {
+.location-dropdown:hover .location-dropdown-content, .sort-by-dropdown:hover .sort-by-dropdown-content {
   display: block;
 }
-.location-dropdown:hover .location-dropbtn {
+.location-dropdown:hover .location-dropbtn, .sort-by-dropdown:hover .sort-by-dropbtn {
   background-color: #3e8e41;
 }
 .funkyradio label{
@@ -858,7 +858,7 @@ mark{
   margin-top: 30px;
 }
 .filter .form-group input, .filter .form-group .input-group-addon{
-  width: auto !important
+  width: 153px !important
 }
 .filter .form-group input{
   float: none;
@@ -925,4 +925,37 @@ mark{
 .post-note{
   color: red;
   font-style: italic;
+}
+.choose-office.form-group{
+  padding-left: 0px;
+}
+.row.filter{
+  margin-bottom: 30px;
+}
+
+.custom-link{
+  color: #028c0f !important;
+  background: #d8d8d8;
+  padding: 0 4px;
+  border-radius: 4px;
+}
+.listing-grid .tagcloud.category span{
+  padding: 4px 10px;
+  border-radius: 0px 10px 10px 10px;
+  background: #FE642E;
+  color: #fff;
+}
+.list-top-tags .category .tag-item{
+  background: #FFCC99;
+  border-radius: 10px 10px 10px 0px;
+  text-transform: none;
+  color: #191919;
+}
+.category .tag-item.active {
+  background: #FE642E;
+  color: #fff;
+}
+.category .tag-item.active span {
+  background: #be161e;
+  color: #fff;
 }
