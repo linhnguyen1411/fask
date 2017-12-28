@@ -69,7 +69,7 @@
               </div>
               <div class="form-group funkyradio panel-info-user">
                 <div class="funkyradio-gender">
-                  <%= check_box_tag :anonymous %>
+                  <%= check_box_tag :anonymous, Settings.plus_one, checked: true %>
                   <i class="fa fa-user-secret"></i>
                   <label for="anonymous">
                     <%= t ".form.with_anonymous" %>

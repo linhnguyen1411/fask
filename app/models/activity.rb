@@ -11,11 +11,16 @@ class Activity < PublicActivity::Activity
   def add_notification
     case self.trackable.class.name
     when Post.name
-      notified_users = add_notification_for_tagged_users Settings.notification_setting.tag_post
-      will_notify_users = if self.trackable.topic_id == Settings.topic.feedback_number
+      notified_users = []
+      will_notify_users = if self.parameters[:status_changed].present?
+        [self.owner]
+      elsif self.trackable.topic_id == Settings.topic.feedback_number
         User.notify_feedback_for_position
       else
         User.all
+      end
+      if self.trackable.topic_id != Settings.topic.feedback_number || self.parameters[:status_changed] == Settings.version.accept
+        notified_users = add_notification_for_tagged_users Settings.notification_setting.tag_post
       end
       will_notify_users.each do |user|
         check_condition_notify notified_users, user, Settings.notification_setting.create_post
@@ -52,8 +57,8 @@ class Activity < PublicActivity::Activity
     end
   end
 
-  def create_notification user_id, is_tag_user = false
-    self.notifications.create(user_id: user_id, is_tag_user: is_tag_user) if self.owner_id != user_id
+  def create_notification user_id, is_feedback = false, is_tag_user = false
+    self.notifications.create(user_id: user_id, is_tag_user: is_tag_user) if self.owner_id != user_id || is_feedback
   end
 
   def add_notification_for_tagged_users notification_setting, notified_users = []
@@ -68,7 +73,8 @@ class Activity < PublicActivity::Activity
           user.notification_settings[notification_setting] == Settings.serialize_true))
           notified_users << user
           is_tag_user = true
-          create_notification user.id, is_tag_user
+          is_feedback = false
+          create_notification user.id, is_feedback, is_tag_user
         end
       end
     end
@@ -84,8 +90,12 @@ class Activity < PublicActivity::Activity
   end
 
   def check_condition_notify notified_users, user, setting
-    if !check_notified_user(notified_users, user) && check_notification_setting(user, setting)
-      create_notification user.id
+    if self.trackable_type == Settings.post.model_name && self.parameters[:status_changed].present?
+      is_feedback = true
+      create_notification user.id, is_feedback
+    elsif !check_notified_user(notified_users, user) && check_notification_setting(user, setting)
+      is_feedback = false
+      create_notification user.id, is_feedback
     end
   end
 end

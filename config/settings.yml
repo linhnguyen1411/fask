@@ -5,6 +5,7 @@ category:
   max_name: 250
   min_name: 3
 post:
+  model_name: "Post"
   status:
     waiting: 0
     accept: 1
