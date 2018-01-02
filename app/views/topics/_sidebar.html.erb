@@ -1,8 +1,8 @@
 <div class="side-bar">
   <div class="widget">
+    <% if check_feeback_topic topic.id %>
     <h2><%= t "static_pages.index.category_list" %></h2>
     <hr class="widget-separator no-margin">
-    <% if check_feeback_topic topic.id %>
       <div class="list-top-tags">
         <div class="category">
           <%= link_to topic, class: "tag-item", remote: true, data: {id: ""} do %>
@@ -13,6 +13,8 @@
         <%= render partial: "categories/category", collection: support.category_list %>
       </div>
     <% else %>
+    <h2><%= t "static_pages.index.popular_tags" %></h2>
+    <hr class="widget-separator no-margin">
       <div class="list-top-tags">
         <%= render partial: "static_pages/tags", collection: support.tag_list, as: :tag %>
       </div>

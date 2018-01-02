@@ -53,7 +53,10 @@ class Post < ApplicationRecord
     .merge(post_includes_work_space topic_id).accept.merge(post_full_includes)
   end
 
-  scope :feedback_post, -> { where(topic_id: Settings.topic.feedback_number) }
+  scope :feedback_post, -> do
+    where(topic_id: Settings.topic.feedback_number)
+      .merge(post_includes_category(Settings.topic.feedback_number))
+  end
 
   scope :post_of_work_space, -> work_space_id do
     where work_space_id: work_space_id if work_space_id.present?

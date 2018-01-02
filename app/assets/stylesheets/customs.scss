@@ -691,11 +691,11 @@ mark{
   background: image-url('codesnippet');
 }
 .location-dropbtn, .sort-by-dropbtn {
-  background-color: #be161e;
-  color: white;
+  background: none;
+  border: 1px solid #ccc;
+  color: #555;
   padding: 10px 5px;
   font-size: 16px;
-  border: none;
   cursor: pointer;
   min-width: 153px;
 }
@@ -917,9 +917,10 @@ mark{
 .post-status{
   font-size: 15px !important;
   font-style: italic;
-  text-transform: uppercase;
   color: white;
-  background-color: red;
+  padding: 2px 5px;
+  text-transform: capitalize;
+  background-color: green;
   border-radius: 4px;
 }
 .post-note{
@@ -928,9 +929,6 @@ mark{
 }
 .choose-office.form-group{
   padding-left: 0px;
-}
-.row.filter{
-  margin-bottom: 30px;
 }
 
 .custom-link{
@@ -946,7 +944,7 @@ mark{
   color: #fff;
 }
 .list-top-tags .category .tag-item{
-  background: #FFCC99;
+  background: none;
   border-radius: 10px 10px 10px 0px;
   text-transform: none;
   color: #191919;
@@ -958,4 +956,7 @@ mark{
 .category .tag-item.active span {
   background: #be161e;
   color: #fff;
+}
+.topic-post-content{
+  padding: 0px;
 }

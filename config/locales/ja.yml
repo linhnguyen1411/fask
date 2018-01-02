@@ -512,6 +512,7 @@ ja:
     date: "Date"
     status: "Status"
     error: "Your page try to connect not found!"
+    category: "Category"
   all_posts: "All posts"
   choose_office: "Office"
   from_day: "From"

@@ -512,6 +512,7 @@ vi:
     date: "Ngày tạo"
     status: "Trạng thái"
     error: "Trang bạn truy cập không tồn tại!"
+    category: "Thể loại"
   all_posts: "Tất cả bài viết"
   choose_office: "Văn phòng"
   from_day: "Từ"

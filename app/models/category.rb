@@ -9,7 +9,7 @@ class Category < ApplicationRecord
   acts_as_paranoid
 
   scope :include_count_post, ->  do
-    joins("LEFT JOIN posts ON posts.category_id = categories.id")
-      .group("categories.id").select("categories.*, count(posts.id) as count_post")
+    joins("LEFT JOIN posts ON posts.category_id = categories.id && posts.status = 1")
+      .group("categories.id").select("categories.*, count(posts.id) as count_post").order("count_post desc")
   end
 end
