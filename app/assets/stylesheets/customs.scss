@@ -218,6 +218,9 @@ p {
   overflow: hidden;
   text-overflow: ellipsis;
   color: #000000;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
 }
 .listing-grid p {
   overflow: hidden;
@@ -793,6 +796,7 @@ mark{
   padding: 5px;
   margin-bottom: 20px;
   display: none;
+  overflow-y: auto;
 }
 .editable:empty:before{
   content: attr(placeholder);
