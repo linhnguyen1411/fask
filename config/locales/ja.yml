@@ -180,6 +180,8 @@ ja:
       post_your_improvement: "Post your improvement"
       answer_placeholder: "私は他の答えがある"
       hot_question: "トップ質問"
+      related_question: "Related Questions"
+      have_not_related_question: "Haven't related questions"
       recent_comments: "最近のコメント"
       not_found: "この質問は見つかりませんでした"
       post_not_answers: "この質問に対する回答はありません"

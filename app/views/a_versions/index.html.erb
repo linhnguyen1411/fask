@@ -23,7 +23,7 @@
         <div class="media-block card-box ">
           <div class="media-body post-content">
             <%= hidden_field_tag "content-post-hidden", raw(@post.content) %>
-            <%= content_post @post %>
+            <%= content_post @post, @current_accept_aversion %>
           </div>
         </div>
         <h1><%= t "version.your_suggested" %> :</h1>

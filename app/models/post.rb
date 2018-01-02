@@ -78,17 +78,20 @@ class Post < ApplicationRecord
     joins(:posts_tags).where "posts_tags.tag_id = ?", tag_id
   end
 
-  scope :list_posts_clip, ->post_ids do
+  scope :list_posts_clip, -> post_ids do
     where(id: post_ids).merge(post_full_includes)
   end
 
-  scope :post_full_includes, ->do
+  scope :post_full_includes, -> do
     joins("LEFT JOIN comments ON comments.commentable_id = posts.id and comments.commentable_type = 'Post'")
     .joins("LEFT JOIN answers ON answers.post_id = posts.id").group("posts.id")
     .group("posts.id").includes(:user, :tags, :reactions)
     .select("posts.*, count(answers.id) as count_answer, count(comments.id) as count_comment")
   end
 
+  scope :not_contain_post, -> post_id do
+    where.not(id: post_id)
+  end
   private
 
   scope :posts_after, -> from_day do

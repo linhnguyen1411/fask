@@ -7,6 +7,7 @@ class AVersionsController < ApplicationController
   def index
     @version_of_post = AVersion.get_version_post_not_reject(@post.id, @post.class.name)
       .page(params[:page]).per Settings.paginate_default
+    @current_accept_aversion = @post.a_versions.get_version_accept.first
   end
 
   def create

@@ -180,6 +180,8 @@ vi:
       post_your_improvement: "Đăng bản chỉnh sửa của bạn"
       answer_placeholder: "Tôi có một phương án khác!"
       hot_question: "Câu hỏi hay"
+      related_question: "Câu hỏi liên quan"
+      have_not_related_question: "Không có câu hỏi liên quan"
       recent_comments: "Bình luận gần đây"
       not_found: "Không tìm thấy câu hỏi này"
       post_not_answers: "Chưa có câu trả lời nào cho câu hỏi này..."

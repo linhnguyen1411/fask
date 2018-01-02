@@ -72,4 +72,9 @@ class Supports::PostSupport
   def topic_list
     Topic.all
   end
+
+  def related_question
+    return if @post.category.nil?
+    @post.category.posts.not_contain_post(@post.id).newest.accept.limit Settings.paginate_default
+  end
 end

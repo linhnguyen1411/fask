@@ -5,7 +5,7 @@ RSpec.describe Supports::PostSupport, type: :model do
   let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
   let(:topic){FactoryGirl.create :knowledge_topic}
   let(:post) do
-    FactoryGirl.create :post, work_space: work_space, user: user, topic: topic
+    FactoryGirl.create :post, work_space: work_space, user: user, topic: topic, category_id: categories.first.id
   end
   let!(:answer) { FactoryGirl.create :answer, user_id: user.id, post_id: post.id}
   let!(:comment_before_time) do
@@ -24,12 +24,14 @@ RSpec.describe Supports::PostSupport, type: :model do
   let!(:clip) {FactoryGirl.create :clip, user_id: user.id, post_id: post.id}
   let(:tag) {FactoryGirl.create :tag}
   let!(:post_tag) {FactoryGirl.create :posts_tag, post_id: post.id, tag_id: tag.id}
-  let!(:categoryies) {FactoryGirl.create_list :category, 5}
+  let!(:categories) {FactoryGirl.create_list :category, 5}
   let!(:a_version) do
     FactoryGirl.create :a_version, user_id: user.id, status: :accept,
      a_versionable_id: post.id, a_versionable_type: post.class
   end
-
+  let(:related_post) do
+    FactoryGirl.create :post, work_space: work_space, user: user, topic: topic, category_id: categories.first.id
+  end
   subject {Supports::PostSupport.new post, {comment_page: 1, view_more_time: view_more_time}}
 
   describe "#hot_post" do
@@ -96,7 +98,7 @@ RSpec.describe Supports::PostSupport, type: :model do
   end
 
   describe "#category_list" do
-    it {expect(subject.category_list).to eq categoryies.to_a}
+    it {expect(subject.category_list).to eq categories.to_a}
   end
 
   describe "#work_space_list" do
@@ -105,5 +107,9 @@ RSpec.describe Supports::PostSupport, type: :model do
 
   describe "#topic_list" do
     it {expect(subject.topic_list).to eq [topic]}
+  end
+
+  describe "#related_question" do
+    it {expect(subject.related_question).to eq [related_post]}
   end
 end
