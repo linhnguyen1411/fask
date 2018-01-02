@@ -49,11 +49,11 @@ RSpec.describe Dashboard::FeedbacksController, type: :controller do
         get :index
       end
       it "fail" do
-        expect(assigns(:feedbacks)).not_to eq([the_post])
+        expect(assigns(:feedback_support).all_feedback_posts).not_to eq([the_post])
       end
 
       it "success" do
-        expect(assigns(:feedbacks)).to eq([post_x, post_y, post_z])
+        expect(assigns(:feedback_support).all_feedback_posts).to eq([post_x, post_y, post_z])
       end
     end
   end

@@ -517,6 +517,8 @@ en:
     category: "Category"
   all_posts: "All posts"
   choose_office: "Office"
+  choose_status: "Status"
+  choose_category: "Category"
   from_day: "From"
   to_day: "To"
   sort_by: "Sort"
@@ -526,3 +528,9 @@ en:
     recently_answer: "Recently Answered"
     no_answer: "No Answer"
   all_location: "All Location"
+  all_category: "All Category"
+  all_status: "All Status"
+  statuses:
+    accept: "Accept"
+    waiting: "Waiting"
+    reject: "Reject"

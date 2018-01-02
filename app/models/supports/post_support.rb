@@ -54,7 +54,7 @@ class Supports::PostSupport
   end
 
   def check_a_version_for_post
-    @post.a_versions.get_version_accept.first
+    @post.a_versions.accept.first
   end
 
   def tag_list
