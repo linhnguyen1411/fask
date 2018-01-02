@@ -194,6 +194,21 @@
               </div>
             </div>
             <div class="widget">
+              <% if check_feeback_topic @post.topic_id %>
+                <div class="recent-comments">
+                  <h2><%= t ".related_question" %></h2>
+                  <hr class="widget-separator no-margin">
+                  <% if @post_extension.related_question.present? %>
+                    <%= render partial: "posts/extension_post",
+                      collection: @post_extension.related_question, as: :post,
+                      locals: { type: Settings.post.extension.hot_question } %>
+                  <% else %>
+                    <center><%= t ".have_not_related_question" %></center>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="widget">
               <div class="recent-comments">
                 <h2><%= t ".hot_question" %></h2>
                 <hr class="widget-separator no-margin">

@@ -190,4 +190,8 @@ RSpec.describe Post, type: :model do
       expect(Post.post_in_time("","2016/03/01")).to eq([post_x, post_y, post_z])
     end
   end
+
+  context ".not_contain_post" do
+    it{ expect(Post.not_contain_post(post_x.id)).to eq([post_y, post_z]) }
+  end
 end

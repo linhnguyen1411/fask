@@ -180,6 +180,8 @@ en:
       post_your_improvement: "Post your improvement"
       answer_placeholder: "I Have The Other Answer!"
       hot_question: "Hot Questions"
+      related_question: "Related Questions"
+      have_not_related_question: "Haven't related questions"
       recent_comments: "Recent Comments"
       not_found: "Not found this question"
       post_not_answers: "There are no answers to this question..."
