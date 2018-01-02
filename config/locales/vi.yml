@@ -517,6 +517,8 @@ vi:
     category: "Thể loại"
   all_posts: "Tất cả bài viết"
   choose_office: "Văn phòng"
+  choose_status: "Trạng thái"
+  choose_category: "Danh mục"
   from_day: "Từ"
   to_day: "Đến"
   sort_by: "Sắp xếp"
@@ -526,3 +528,9 @@ vi:
     recently_answer: "Trả lời gần đây"
     no_answer: "Chưa trả lời"
   all_location: "Tất cả văn phòng"
+  all_category: "Tất cả danh mục"
+  all_status: "Tất cả trạng thái"
+  statuses:
+    accept: "Đồng ý"
+    waiting: "Chờ đợi"
+    reject: "Từ chối"

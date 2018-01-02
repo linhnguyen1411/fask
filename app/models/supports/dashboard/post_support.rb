@@ -26,5 +26,22 @@ module Supports
     def get_active_tab
       @active_tab
     end
+
+    def all_workspaces
+      WorkSpace.all
+    end
+
+    def all_categories
+      Category.all
+    end
+
+    def all_statuses
+      Post.statuses
+    end
+
+    def all_feedback_posts
+      Post.feedback_post.post_of_category(@category_id).post_of_work_space(@work_space_id)
+       .newest.by_status(@status).page(@page).per Settings.paginate_posts
+    end
   end
 end

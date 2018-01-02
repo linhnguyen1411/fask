@@ -4,8 +4,11 @@ class Dashboard::FeedbacksController < ApplicationController
   before_action :load_post, only: :update
 
   def index
-    @feedbacks = Post.feedback_post.newest
-      .page(params[:page]).per Settings.paginate_posts
+    @feedback_support = Supports::Dashboard::PostSupport.new(current_user, post_params.to_h)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def update
@@ -23,6 +26,10 @@ class Dashboard::FeedbacksController < ApplicationController
   private
   def feedback_params
     params.require(:post).permit :status
+  end
+
+  def post_params
+    params.permit :page, :category_id, :work_space_id, :status
   end
 
   def load_post

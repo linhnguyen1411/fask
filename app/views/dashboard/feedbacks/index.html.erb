@@ -9,29 +9,22 @@
 </section>
 
 <section class="white padding-bottom-80 feedback">
-  <div class="row">
+  <div class="row fm-fiter">
     <div class="col-md-1"></div>
     <div class="col-md-10">
-      <table class="table feedback-table">
-        <thead class="feedback-header-table">
-          <tr>
-            <th scope="col"><%= t "feedback.id" %></th>
-            <th scope="col"><%= t "feedback.user_name" %></th>
-            <th scope="col"><%= t "feedback.title" %></th>
-            <th scope="col"><%= t "feedback.category" %></th>
-            <th scope="col"><%= t "feedback.office" %></th>
-            <th scope="col"><%= t "feedback.date" %></th>
-            <th scope="col"><%= t "feedback.status" %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <%= render "feedback", feedbacks: @feedbacks %>
-        </tbody>
-      </table>
+      <h4>
+        <span class="feedback-filter">
+          <%= select_tag :work_space_id, options_for_select(@feedback_support.all_workspaces.map {|w|
+            [w.name, w.id]}.unshift([t("all_location"), nil])), class: "workspace-filter" %>
+          <%= select_tag :category_id, options_for_select(@feedback_support.all_categories.map {|c|
+            [c.name, c.id]}.unshift([t("all_category"), nil])), class: "category-filter" %>
+          <%= select_tag :status, options_for_select(@feedback_support.all_statuses.map {|k, v|
+            [t("statuses.#{k}"), v]}.unshift([t("all_status"), nil])), class: "status-filter" %>
+        </span>
+      </h4>
     </div>
-    <div class="col-md-1"></div>
   </div>
-  <div class="text-center clearfix">
-    <%= paginate @feedbacks %>
-  </div>
+  <span class="feedback_table_content">
+    <%= render "feedback_table", feedbacks: @feedback_support.all_feedback_posts %>
+  </span>
 </section>

@@ -385,6 +385,42 @@ function update_status_feedback(){
   });
 }
 
+function filter_feedback_manager(){
+  $('.feedback').on('change', '.category-filter',function(){
+    var category_id = $(this).val();
+    var work_space_id = $('.workspace-filter').val();
+    var status = $("option:selected", '.status-filter').val();
+    $.ajax({
+      url: '/dashboard/feedbacks',
+      type: 'GET',
+      dataType: 'script',
+      data: {category_id: category_id, work_space_id: work_space_id, status: status}
+    });
+  });
+  $('.feedback').on('change', '.workspace-filter',function(){
+    var category_id = $('.category-filter').val();
+    var work_space_id = $(this).val();
+    var status = $("option:selected", '.status-filter').val();
+    $.ajax({
+      url: '/dashboard/feedbacks',
+      type: 'GET',
+      dataType: 'script',
+      data: {category_id: category_id, work_space_id: work_space_id, status: status}
+    });
+  });
+  $('.feedback').on('change', '.status-filter',function(){
+    var work_space_id = $('.workspace-filter').val();
+    var category_id = $('.category-filter').val();
+    var status = $("option:selected", this).val();
+    $.ajax({
+      url: '/dashboard/feedbacks',
+      type: 'GET',
+      dataType: 'script',
+      data: {category_id: category_id, work_space_id: work_space_id, status: status}
+    });
+  });
+}
+
 $(document).ready(function(){
   delete_post();
   delete_comment();
@@ -398,6 +434,7 @@ $(document).ready(function(){
   move_panel_vote();
   reaction_vote_post();
   update_status_feedback();
+  filter_feedback_manager();
 
   $('#select-toppic').change(function(){
     load_choose_toppic();

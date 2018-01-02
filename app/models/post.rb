@@ -92,6 +92,11 @@ class Post < ApplicationRecord
   scope :not_contain_post, -> post_id do
     where.not(id: post_id)
   end
+
+  scope :by_status, -> status do
+    where(status: status) if status.present?
+  end
+
   private
 
   scope :posts_after, -> from_day do
