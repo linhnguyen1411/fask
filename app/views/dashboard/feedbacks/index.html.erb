@@ -9,22 +9,28 @@
 </section>
 
 <section class="white padding-bottom-80 feedback">
-  <div class="row fm-fiter">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
+  <div class="container">
+    <div class="row fm-fiter">
       <h4>
-        <span class="feedback-filter">
+        <span class="col-md-10 feedback-filter">
           <%= select_tag :work_space_id, options_for_select(@feedback_support.all_workspaces.map {|w|
-            [w.name, w.id]}.unshift([t("all_location"), nil])), class: "workspace-filter" %>
+            [w.name, w.id]}.unshift([t("all_location"), nil])),
+              class: "workspace-filter select-filter" %>
           <%= select_tag :category_id, options_for_select(@feedback_support.all_categories.map {|c|
-            [c.name, c.id]}.unshift([t("all_category"), nil])), class: "category-filter" %>
+            [c.name, c.id]}.unshift([t("all_category"), nil])),
+              class: "category-filter select-filter" %>
           <%= select_tag :status, options_for_select(@feedback_support.all_statuses.map {|k, v|
-            [t("statuses.#{k}"), v]}.unshift([t("all_status"), nil])), class: "status-filter" %>
+            [t("statuses.#{k}"), v]}.unshift([t("all_status"), nil])),
+              class: "status-filter select-filter" %>
+        </span>
+        <span class="col-md-2 pull right">
+          <%= link_to t("download"), "javascript:",
+            class: "download-xlsx" %>
         </span>
       </h4>
     </div>
+    <span class="feedback_table_content">
+      <%= render "feedback_table", feedbacks: @feedback_support.all_feedback_posts %>
+    </span>
   </div>
-  <span class="feedback_table_content">
-    <%= render "feedback_table", feedbacks: @feedback_support.all_feedback_posts %>
-  </span>
 </section>

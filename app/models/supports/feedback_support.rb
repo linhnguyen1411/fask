@@ -38,7 +38,12 @@ class Supports::FeedbackSupport
     end
 
     def all_feedback_posts
-      Post.feedback_post.post_of_category(@category_id).post_of_work_space(@work_space_id)
-       .newest.by_status(@status).page(@page).per Settings.paginate_posts
+      if @to_xlsx
+        Post.feedback_post.post_of_category(@category_id).post_of_work_space(@work_space_id)
+          .newest.by_status(@status)
+      else
+        Post.feedback_post.post_of_category(@category_id).post_of_work_space(@work_space_id)
+         .newest.by_status(@status).page(@page).per Settings.paginate_posts
+     end
     end
 end

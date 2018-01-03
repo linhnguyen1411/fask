@@ -354,7 +354,7 @@ function delete_post() {
 }
 
 function update_status_feedback(){
-  $('.feedback-table').on('change','.feedback-status',function(){
+  $('.feedback').on('change','.feedback-status',function(){
     var selected = $('.feedback-status option:selected')
     var status = $("option:selected", this).html();
     var post_id = $(this).data('post-id');

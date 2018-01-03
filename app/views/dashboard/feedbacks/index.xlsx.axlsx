@@ -1,0 +1,19 @@
+require "axlsx"
+
+wb = xlsx_package.workbook
+title = wb.styles.add_style(
+  bg_color: '95AFBA',
+  fg_colo: 'E2F89C',
+  sz: 15,
+  border: Axlsx::STYLE_THIN_BORDER,
+  alignment: {:horizontal => :center})
+wb.add_worksheet(name: "Feedback") do |sheet|
+  sheet.add_row [I18n.t("feedback_xlsx.id"), I18n.t("feedback_xlsx.name"),
+    I18n.t("feedback_xlsx.title"), I18n.t("feedback_xlsx.content"),
+      I18n.t("feedback_xlsx.category"), I18n.t("feedback_xlsx.status"),
+        I18n.t("feedback_xlsx.created")], style: title
+  @feedback_support.all_feedback_posts.each do |feedback|
+    sheet.add_row [feedback.id, feedback.user_name, feedback.title, strip_tags(feedback.content),
+      feedback.category_name, feedback.status, feedback.created_at]
+  end
+end
