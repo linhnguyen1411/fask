@@ -1,7 +1,5 @@
-module Supports
-  class Dashboard::PostSupport
-    attr_reader :post
-
+class Supports::FeedbackSupport
+  attr_reader :post
     def initialize(user, post_params)
       @user = user
       post_params.each do |post_param|
@@ -43,5 +41,4 @@ module Supports
       Post.feedback_post.post_of_category(@category_id).post_of_work_space(@work_space_id)
        .newest.by_status(@status).page(@page).per Settings.paginate_posts
     end
-  end
 end

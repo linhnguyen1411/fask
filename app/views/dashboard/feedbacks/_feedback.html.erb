@@ -17,7 +17,7 @@
     <td scope="row"><%= fb.created_at.to_date %></td>
     <td scope="row">
       <%= select_tag :status, options_for_select(Post.statuses.map {|k, v|
-        [t("statuses.#{k}"), v]}, Post.statuses[fb.status]),
+        [k, v]}, Post.statuses[fb.status]),
           class: "feedback-status feedback-#{fb.id} feedback-color-#{Post.statuses[fb.status]}",
             data: {post_id: fb.id} %>
     </td>

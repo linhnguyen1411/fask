@@ -2,7 +2,7 @@ class Dashboard::PostsController < ApplicationController
   before_action :authenticate_user
 
   def index
-    @supports = Supports::Dashboard::PostSupport.new(current_user, post_params.to_h)
+    @supports = Supports::FeedbackSupport.new(current_user, post_params.to_h)
   end
 
   private

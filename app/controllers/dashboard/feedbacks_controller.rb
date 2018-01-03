@@ -4,7 +4,7 @@ class Dashboard::FeedbacksController < ApplicationController
   before_action :load_post, only: :update
 
   def index
-    @feedback_support = Supports::Dashboard::PostSupport.new(current_user, post_params.to_h)
+    @feedback_support = Supports::FeedbackSupport.new(current_user, post_params.to_h)
     respond_to do |format|
       format.html
       format.js
