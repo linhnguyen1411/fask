@@ -1,0 +1,48 @@
+wb = xlsx_package.workbook
+title = wb.styles.add_style(
+  bg_color: "be161e",
+  fg_color: "ffffff",
+  sz: 15,
+  b: true,
+  border: Axlsx::STYLE_THIN_BORDER,
+  alignment: {horizontal: :center, vertical: :center}
+)
+
+border = wb.styles.add_style(border: Axlsx::STYLE_THIN_BORDER)
+
+position = wb.styles.add_style(
+  b: true,
+  border: Axlsx::STYLE_THIN_BORDER,
+  alignment: {horizontal: :center, vertical: :center}
+)
+
+wb.add_worksheet(name: I18n.t("contact_point.title")) do |sheet|
+  sheet.add_row([
+    I18n.t("contact_point.position"), I18n.t("contact_point.issue"),
+    I18n.t("contact_point.contact"), I18n.t("contact_point.contact"),
+    I18n.t("contact_point.contact")
+    ], height: 25)
+  sheet.add_row([
+    I18n.t("contact_point.position"), I18n.t("contact_point.position"),
+    I18n.t("contact_point.ha_noi"), I18n.t("contact_point.da_nang"),
+    I18n.t("contact_point.hcm")
+    ], height: 25)
+  group_by_position(@contact_points).each do |cp_group_position|
+    group_by_issue(cp_group_position.last).each_with_index do |cp_group_issue, index|
+      row = [cp_group_position.first]
+      row << strip_tags(cp_group_issue.first)
+      cp_group_issue.last.each do |contact_point|
+        row << contact_point.curators
+      end
+      sheet.add_row row, height: 50, style: border
+    end
+  end
+  width = [20, 50, 30, 30, 30]
+  sheet.column_widths *width
+  sheet.merge_cells "C1:E1"
+  sheet.merge_cells "B1:B2"
+  sheet.merge_cells "A1:A2"
+  sheet.merge_cells "A3:A24"
+  sheet.col_style(0, position)
+  sheet.row_style(0..1, title)
+end

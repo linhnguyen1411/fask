@@ -37,5 +37,5 @@ Rails.application.routes.draw do
     resources :posts
     resources :feedbacks, only: [:index, :update]
   end
-
+  resources :contact_points
 end

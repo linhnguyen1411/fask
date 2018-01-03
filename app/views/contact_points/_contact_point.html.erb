@@ -1,0 +1,15 @@
+<% group_by_position(contact_points).each do |cp_group_position| %>
+  <% group_by_issue(cp_group_position.last).each_with_index do |cp_group_issue, index|%>
+    <tr>
+      <% if index.zero? %>
+        <td scope="row" class="ver-middle position" rowspan="<%= group_by_issue(cp_group_position.last).length %>">
+          <%= cp_group_position.first %>
+        </td>
+      <% end %>
+      <td scope="row" class="issue"><%= raw cp_group_issue.first %></td>
+      <% cp_group_issue.last.each do |contact_point|%>
+        <td scope="row"><%= newline contact_point.curators %></td>
+      <% end %>
+    </tr>
+  <% end %>
+<% end %>

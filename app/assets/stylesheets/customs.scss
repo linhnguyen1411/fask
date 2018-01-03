@@ -976,3 +976,43 @@ mark{
 .feedback-filter select{
   margin-right: 30px;
 }
+.contact-point .ver-middle{
+  vertical-align: middle;
+}
+.contact-point tr th, .contact-point tr td{
+  border: 2px solid #ddd;
+}
+.contact-point .issue{
+  max-width: 400px;
+}
+.contact-point .position{
+  width: 10%;
+  font-weight: bold;
+  text-align: center;
+}
+.contact-point tr th{
+  text-align: center;
+  font-weight: bold;
+}
+.choose-file{
+  cursor: pointer;
+  color: #be161e;
+}
+.choose-file:hover{
+  color: RED;
+}
+.import-file form{
+  float: right;
+}
+.import-file a{
+  float: left;
+}
+.import-file .btn-import{
+  background: #be161e;
+  padding: 5px;
+  border: 2px solid #ddd;
+  color: #fff;
+}
+.btn-import:hover, .btn-import:focus{
+  background: RED;
+}

@@ -137,3 +137,12 @@ one_day: 1
 feedback: "Feedback"
 feedback_manager: ["Event Officer"]
 sort_type_list: ["newest", "popular", "recently_answer", "no_answer"]
+columns_of_contact_points: ["position", "issue", "curators", "work_space"]
+row_header: 2
+begin_col_work_space: 2
+decrease_one_index: 1
+begin_row_content: 3
+col_position: 0
+col_issue: 1
+col_curators: 2
+work_space_list: ["Hanoi Office", "DaNang Office", "HCMC Office"]
