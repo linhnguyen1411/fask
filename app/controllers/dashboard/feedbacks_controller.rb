@@ -8,6 +8,7 @@ class Dashboard::FeedbacksController < ApplicationController
     respond_to do |format|
       format.html
       format.js
+      format.xlsx { response.headers['Content-Disposition'] = 'attachment; filename="all_feedbacks.xlsx"' }
     end
   end
 
@@ -29,7 +30,7 @@ class Dashboard::FeedbacksController < ApplicationController
   end
 
   def post_params
-    params.permit :page, :category_id, :work_space_id, :status
+    params.permit :page, :category_id, :work_space_id, :status, :to_xlsx, :format
   end
 
   def load_post

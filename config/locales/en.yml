@@ -548,3 +548,13 @@ en:
     success: "Successful import"
     export: "Download as .xlsx"
     not_allowed: "User is not allowed"
+  download: "Download as .xlsx"
+  feedback_xlsx:
+    id: "No"
+    name: "Name"
+    title: "Title"
+    category: "Category"
+    workspace: "WorkSpace"
+    content: "Content"
+    status: "Status"
+    created: "Create at"

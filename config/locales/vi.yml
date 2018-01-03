@@ -548,3 +548,13 @@ vi:
     success: "Nhập thành công"
     export: "Tải xuống tệp tin .xlsx"
     not_allowed: "Người dùng không được phép"
+  download: "Tải về .xlsx"
+  feedback_xlsx:
+    id: "Số thứ tự"
+    name: "Người gửi"
+    title: "Tiêu đề"
+    category: "Thể loại"
+    workspace: "Văn phòng"
+    content: "Nội dung"
+    status: "Trạng thái"
+    created: "Ngày gửi"

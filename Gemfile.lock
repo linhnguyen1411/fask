@@ -208,7 +208,7 @@ GEM
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
-    hashie (3.5.7)
+    hashie (3.5.6)
     htmlentities (4.3.4)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -554,4 +554,4 @@ DEPENDENCIES
   zip-zip
 
 BUNDLED WITH
-   1.16.0
+   1.16.1
