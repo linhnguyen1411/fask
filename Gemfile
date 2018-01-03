@@ -36,7 +36,10 @@ gem "social-share-button"
 gem "ckeditor"
 gem "jquery-atwho-rails"
 gem "jquery-datetimepicker-rails"
-
+gem "zip-zip"
+gem "axlsx", "~> 2.0"
+gem "axlsx_rails"
+gem "roo"
 group :development, :test do
   gem "byebug"
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171221020823) do
+ActiveRecord::Schema.define(version: 20180102055528) do
 
   create_table "a_versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
@@ -116,6 +116,15 @@ ActiveRecord::Schema.define(version: 20171221020823) do
     t.index ["user_id"], name: "index_comments_on_user_id", using: :btree
   end
 
+  create_table "contact_points", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "issue",      limit: 65535
+    t.string   "position"
+    t.string   "work_space"
+    t.text     "curators",   limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "user_id"
     t.integer  "activity_id"
@@ -139,8 +148,8 @@ ActiveRecord::Schema.define(version: 20171221020823) do
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
     t.integer  "count_view",                  default: 0
-    t.integer  "status",                      default: 1
     t.integer  "category_id"
+    t.integer  "status",                      default: 1
     t.index ["category_id"], name: "index_posts_on_category_id", using: :btree
     t.index ["deleted_at"], name: "index_posts_on_deleted_at", using: :btree
     t.index ["topic_id"], name: "index_posts_on_topic_id", using: :btree
