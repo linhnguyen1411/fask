@@ -80,7 +80,7 @@ module PostsHelper
       (link_to "javascript:", id: "btn-delete-post", data: {id: post.id} do
         raw '<i class="fa fa-trash-o" aria-hidden="true"></i> ' + t("delete")
       end)
-    when current_user.present? && post.user == current_user && !post.waiting?
+    when current_user.present? && post.user == current_user && post.reject?
       (link_to "javascript:", id: "btn-delete-post", data: {id: post.id} do
         raw '<i class="fa fa-trash-o" aria-hidden="true"></i> ' + t("delete")
       end)
