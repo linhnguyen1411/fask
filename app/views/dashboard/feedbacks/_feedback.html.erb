@@ -1,5 +1,5 @@
 <% feedbacks.each do |fb| %>
-  <tr>
+  <tr id="feedback-<%= fb.id %>">
     <td scope="row"><%= fb.id %></td>
     <td scope="row"><%= fb.user_name %></td>
     <td scope="row" class="feedback-title"><span class="title"><%= fb.title %></span>
@@ -20,6 +20,11 @@
         [k, v]}, Post.statuses[fb.status]),
           class: "feedback-status feedback-#{fb.id} feedback-color-#{Post.statuses[fb.status]}",
             data: {post_id: fb.id} %>
+    </td>
+    <td scope="row">
+      <%= link_to "javascript:", class: "btn-delete-feedback", data: {id: fb.id} do %>
+        <%= raw '<i class="fa fa-trash-o" aria-hidden="true"></i> ' + t("delete") %>
+      <% end %>
     </td>
   </tr>
 <% end %>

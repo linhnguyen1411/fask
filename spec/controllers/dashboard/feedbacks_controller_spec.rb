@@ -97,4 +97,16 @@ RSpec.describe Dashboard::FeedbacksController, type: :controller do
       end
     end
   end
+
+  describe "Delete" do
+    context "Delete success" do
+      before do
+        sign_in user_eo
+        post :destroy, params: {id: post_x}, xhr: true
+      end
+      it "assigns @success" do
+        expect(assigns(:success)).to eq post_x
+      end
+    end
+  end
 end

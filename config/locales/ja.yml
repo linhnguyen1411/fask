@@ -134,6 +134,8 @@ ja:
       reject_success: "Rejected"
       feedback_info: "Thank for your feedback, it will be checked and respond to you in next thursday."
       feedback_reject: "Sorry, Your feedback has been rejected!"
+      delete_success: "Delete successful"
+      delete_error: "Delete fail"
     index:
       not_found: "見つかりません"
       all_posts: "投稿"
@@ -515,6 +517,7 @@ ja:
     status: "Status"
     error: "Your page try to connect not found!"
     category: "Category"
+    delete: "Delete"
   all_posts: "All posts"
   choose_office: "Office"
   choose_status: "Status"
