@@ -1039,3 +1039,24 @@ mark{
 .top-nav.nav-left .hidden-xs.last {
   border: none;
 }
+.category-name{
+  width: 50%;
+}
+.btn-edit-category{
+  color: #FF8000;
+}
+.btn-edit-category:hover, .btn-edit-category:focus{
+  color: #FE642E;
+}
+.icon-create-category{
+  font-size: 25px;
+}
+.text-create-category{
+  vertical-align: top;
+}
+.create-category{
+  vertical-align: unset;
+}
+modal-footer.category {
+  padding-right: 0px;
+}

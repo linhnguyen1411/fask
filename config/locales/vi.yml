@@ -561,3 +561,26 @@ vi:
     content: "Nội dung"
     status: "Trạng thái"
     created: "Ngày gửi"
+  category_management:
+    title: "Quản lý thể loại"
+    delete: "Xóa"
+    edit: "Sửa"
+    name: "Tên"
+    id: "Id"
+    destroy:
+      are_you_sure: "Bạn có chắc chắn xóa thể loại này?"
+    not_found: "Thể loại không tồn tại"
+    edit_category: "Sửa thể loại"
+    placeholder: "Nhập thể loại của bạn..."
+    not_allowed: "Người dùng không được phép"
+    create_category: "Tạo một thể loại mới"
+  flash:
+    destroy:
+      success: "Xóa thành công"
+      error: "Xóa thất bại"
+    update:
+      success: "Cập nhật thành công"
+      error: "Cập nhật thất bại"
+    create:
+      success: "Tạo thành công"
+      error: "Tạo thất bại"

@@ -1,7 +1,16 @@
-$('.content-posts').html('<%= j(render partial: "topics/post",\
-  collection: @posts) %>');
-$('.paginate-posts').html('<%=j(paginate @posts, remote: true)  %>');
-$('.location-dropbtn').html('<%= t("all_location") %>');
-$('.location-dropbtn').attr('data-id', '');
-$('.sort-by-dropbtn').html('<%= j (t("sort_type_list.#{Settings.topic.type_sort.recently}")) %>');
-$('.sort-by-dropbtn').attr('data-id', '<%= Settings.topic.type_sort.recently %>');
+<% if @category %>
+  $('.content-posts').html('<%= j(render partial: "topics/post", collection: @posts) %>');
+  $('.paginate-posts').html('<%=j(paginate @posts, remote: true)  %>');
+  $('.location-dropbtn').html('<%= t("all_location") %>');
+  $('.location-dropbtn').attr('data-id', '');
+  $('.sort-by-dropbtn').html('<%= j (t("sort_type_list.#{Settings.topic.type_sort.recently}")) %>');
+  $('.sort-by-dropbtn').attr('data-id', '<%= Settings.topic.type_sort.recently %>');
+<% else %>
+  swal({
+    position: 'top-end',
+    type: 'warning',
+    title: I18n.t('category_management.not_found'),
+    showConfirmButton: false,
+    timer: 1500
+  })
+<% end %>

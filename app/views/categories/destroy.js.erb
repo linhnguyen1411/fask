@@ -1,0 +1,19 @@
+<% if @success %>
+  $('#category-content').html('<%= j(render "category_table", categories: @categories) %>')
+  $('.paginate-categories').html('<%= j(paginate @categories, remote: true, params: {controller: "categories", action: "index"} ) %>')
+  swal({
+    position: 'top-end',
+    type: 'success',
+    title: I18n.t('flash.destroy.success'),
+    showConfirmButton: false,
+    timer: 500
+  })
+<% else %>
+  swal({
+    position: 'top-end',
+    type: 'warning',
+    title: I18n.t('flash.destroy.error'),
+    showConfirmButton: false,
+    timer: 1500
+  })
+<% end %>

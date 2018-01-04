@@ -1,0 +1,20 @@
+<% if @success %>
+  $('#modal-edit-category').modal('hide');
+  $('#category-content').html('<%= j(render "category_table", categories: @categories) %>')
+  $('.paginate-categories').html('<%= j(paginate @categories, remote: true, params: {controller: "categories", action: "index"} ) %>')
+  swal({
+    position: 'top-end',
+    type: 'success',
+    title: I18n.t('flash.create.success'),
+    showConfirmButton: false,
+    timer: 500
+  })
+<% else %>
+  swal({
+    position: 'top-end',
+    type: 'warning',
+    title: I18n.t('flash.create.error'),
+    showConfirmButton: false,
+    timer: 1500
+  })
+<% end %>
