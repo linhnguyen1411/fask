@@ -134,6 +134,8 @@ vi:
       reject_success: "Đã từ chối"
       feedback_info: "Cảm ơn ý kiến đóng góp của bạn. Câu hỏi của bạn sẽ được duyệt và trả lời vào thứ 5 tuần kế tiếp."
       feedback_reject: "Xin lỗi, ý kiến đóng góp của bạn đã bị từ chối."
+      delete_success: "Xóa thành công"
+      delete_error: "Xóa thất bại"
     index:
       not_found: "Không tìm thấy"
       all_posts: "Bài viết"
@@ -515,6 +517,7 @@ vi:
     status: "Trạng thái"
     error: "Trang bạn truy cập không tồn tại!"
     category: "Thể loại"
+    delete: "Xóa"
   all_posts: "Tất cả bài viết"
   choose_office: "Văn phòng"
   choose_status: "Trạng thái"

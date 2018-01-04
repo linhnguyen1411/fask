@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   resources :categories
   namespace :dashboard do
     resources :posts
-    resources :feedbacks, only: [:index, :update]
+    resources :feedbacks, only: [:index, :update, :destroy]
   end
   resources :contact_points
 end

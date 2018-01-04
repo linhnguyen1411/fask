@@ -1,7 +1,7 @@
 class Dashboard::FeedbacksController < ApplicationController
   before_action :authenticate_user!
   before_action :check_event_officer_user
-  before_action :load_post, only: :update
+  before_action :load_post, only: [:update, :destroy]
 
   def index
     @feedback_support = Supports::FeedbackSupport.new(current_user, post_params.to_h)
@@ -24,6 +24,10 @@ class Dashboard::FeedbacksController < ApplicationController
     end
   end
 
+  def destroy
+    @success =  @post.destroy
+  end
+
   private
   def feedback_params
     params.require(:post).permit :status
@@ -36,8 +40,10 @@ class Dashboard::FeedbacksController < ApplicationController
   def load_post
     @post = Post.find_by id: params[:id]
     return if @post
-    flash[:danger] = t ".not_found"
-    redirect_to root_path
+    respond_to do |format|
+      format.html{ redirect_to root_path }
+      format.js{render}
+    end
   end
 
   def check_event_officer_user
