@@ -27,7 +27,7 @@ class NotificationBroadcastJob < ApplicationJob
     elsif notification.activity.trackable.try(:topic_id) == Settings.topic.feedback_number && notification.activity.trackable.waiting?
       ActionCable.server.broadcast "notification_channel_#{notification.user_id}",
         mess: "#{notification.load_message.first}",
-        url: "/dashboard/feedbacks",
+        url: "/dashboard/feedbacks?noti_id=#{notification.id}",
         img: notification.activity.owner.avatar.present? ? notification.activity.owner.avatar.url : "/assets/no_avatar.png",
         name: notification.activity.owner.name, time: time_ago_in_words(notification.created_at)
     else
