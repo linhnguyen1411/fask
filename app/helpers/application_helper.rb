@@ -165,7 +165,7 @@ module ApplicationHelper
     elsif noti.activity.trackable_type == "Comment" || noti.activity.trackable_type == "Answer"
       post_path(noti.load_message.last, noti_id: noti.id, anchor: "#{noti.activity.trackable_type.downcase}-#{noti.activity.trackable_id}")
     elsif noti.activity.trackable_type == "Post" && noti.activity.trackable.try(:topic_id) == Settings.topic.feedback_number
-      dashboard_feedbacks_path
+      dashboard_feedbacks_path(noti_id: noti.id)
     else
       post_path(noti.load_message.last, noti_id: noti.id)
     end
