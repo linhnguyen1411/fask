@@ -535,7 +535,7 @@ en:
     waiting: "Waiting"
     reject: "Reject"
   contact_point:
-    title: "Contact Points"
+    title: "List of Contact Points"
     position: "Position"
     contact: "Contact"
     issue: "Issue"

@@ -1,4 +1,13 @@
 <div class="side-bar">
+  <% if check_feeback_topic topic.id %>
+    <div class="widget">
+      <h2 class="contact-point">
+        <%= link_to contact_points_path do %>
+          <i class="fa fa-address-card-o" aria-hidden="true"> <%= t("contact_point.title") %></i>
+        <% end %>
+      </h2>
+    </div>
+  <% end %>
   <div class="widget">
     <% if check_feeback_topic topic.id %>
     <h2><%= t "static_pages.index.category_list" %></h2>
@@ -26,15 +35,17 @@
     </div>
     <% end %>
   </div>
-  <div class="widget">
-    <h2><%= t "static_pages.index.top_users" %></h2>
-    <hr class="widget-separator no-margin">
-    <%= render partial: "static_pages/top_users", collection: support.top_users, as: :user %>
-    <div class="all_tags">
-      <%= link_to users_path do %>
-         <span class="fa fa-users"></span>
-        <%= t ".all_user" %>
-      <% end %>
+  <% if !check_feeback_topic topic.id %>
+    <div class="widget">
+      <h2><%= t "static_pages.index.top_users" %></h2>
+      <hr class="widget-separator no-margin">
+      <%= render partial: "static_pages/top_users", collection: support.top_users, as: :user %>
+      <div class="all_tags">
+        <%= link_to users_path do %>
+           <span class="fa fa-users"></span>
+          <%= t ".all_user" %>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
