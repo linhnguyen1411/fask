@@ -1,0 +1,16 @@
+<table class="table feedback-table">
+  <thead class="feedback-header-table">
+    <tr>
+      <th scope="col"><%= t "category_management.id" %></th>
+      <th scope="col"><%= t "category_management.name" %></th>
+      <th scope="col"><%= t "category_management.edit" %></th>
+      <th scope="col"><%= t "category_management.delete" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render "category_row", categories: categories %>
+  </tbody>
+</table>
+<div class="text-center clearfix paginate-categories">
+  <%= paginate categories, remote: true %>
+</div>

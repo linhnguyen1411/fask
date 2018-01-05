@@ -1,9 +1,6 @@
 namespace :db do
   desc "TODO"
-  task make_data: [:create_work_spaces, :create_admin, :create_users,
-    :create_tags, :create_topics, :create_posts, :create_answers,
-    :create_relationships, :create_clips,
-    :create_topices_users] do
+  task make_data: [:create_category] do
   end
 
   task create_category: :environment do

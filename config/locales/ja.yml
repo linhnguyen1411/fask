@@ -561,3 +561,26 @@ ja:
     content: "Content"
     status: "Status"
     created: "Create at"
+  category_management:
+    title: "Category Management"
+    delete: "Delete"
+    edit: "Edit"
+    name: "Name"
+    id: "Id"
+    destroy:
+      are_you_sure: "You are sure to delete this category?"
+    not_found: "Category not exist"
+    edit_category: "Edit category"
+    placeholder: "Enter category of you..."
+    not_allowed: "User not allowed"
+    create_category: "Create a new category"
+  flash:
+    destroy:
+      success: "Delete successful"
+      error: "Delete failure"
+    update:
+      success: "Update successful"
+      error: "Update failure"
+    create:
+      success: "Create successful"
+      error: "Create failure"
