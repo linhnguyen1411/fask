@@ -89,7 +89,7 @@ RSpec.describe Supports::TopicSupport, type: :model do
 
   describe "#category_list" do
     it do
-      expect(subject.category_list).to eq categories
+      expect(subject.category_list).to eq Category.include_count_post
     end
   end
 

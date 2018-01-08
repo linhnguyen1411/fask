@@ -3,6 +3,7 @@ class AVersionsController < ApplicationController
   before_action :load_posts, only: :create
   before_action :check_user_owner, only: [:index, :update]
   before_action :load_accept_version, only: :update
+  before_action :see_notification, only: :index
 
   def index
     @version_of_post = AVersion.get_version_post_not_reject(@post.id, @post.class.name)

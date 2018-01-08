@@ -2,6 +2,7 @@ class Dashboard::FeedbacksController < ApplicationController
   before_action :authenticate_user!
   before_action :check_event_officer_user
   before_action :load_post, only: [:update, :destroy]
+  before_action :see_notification, only: :index
 
   def index
     @feedback_support = Supports::FeedbackSupport.new(current_user, post_params.to_h)

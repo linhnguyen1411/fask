@@ -26,18 +26,19 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def see_notification
+    if user_signed_in? && params[:noti_id].present?
+      notification = Notification.find_by id: params[:noti_id]
+      if notification.present? && notification.user_id == current_user.id && notification.not_seen?
+        notification.update_attributes status: :seen
+      end
+    end
+  end
+
   private
 
   def load_notification
-    if user_signed_in?
-      if params[:noti_id].present?
-        notification = Notification.find_by id: params[:noti_id]
-        if notification.present? && notification.user_id == current_user.id && notification.not_seen?
-          notification.update_attributes status: :seen
-        end
-      end
-      @list_notifications = current_user.notifications.includes_activity.by_date
-    end
+    @list_notifications = current_user.notifications.includes_activity.by_date if user_signed_in?
   end
 
   def set_locale

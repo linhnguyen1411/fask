@@ -129,6 +129,7 @@ vi:
     status:
       feedback_tab: "Phản hồi"
       feedback_manager: "Quản lý các phản hồi"
+      management: "Quản lý"
       reject_verify: "Bạn thực sự muốn từ chối?"
       accept_success: "Đã chấp nhận"
       reject_success: "Đã từ chối"

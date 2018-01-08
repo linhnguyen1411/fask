@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   before_action :load_post, except: [:new, :index, :create]
   before_action :plus_count_view, only: :show
   before_action :load_popular_tags, only: [:new, :edit]
+  before_action :see_notification, only: :show
+
   def index
     if params[:query].present?
       @posts = Post.search params[:query], operator: "or",
