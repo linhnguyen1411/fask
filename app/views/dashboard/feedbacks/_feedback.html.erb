@@ -12,7 +12,10 @@
         </div>
       </div>
     </td>
-    <td scope="row"><%= fb.category_name %></td>
+    <td scope="row">
+      <%= select_tag :category_id, options_for_select(@feedback_support.all_categories.map {|c|
+        [c.name, c.id]}, fb.category_id), class: "category-change", data: {post_id: fb.id} %>
+    </td>
     <td scope="row"><%= fb.work_space_name %></td>
     <td scope="row"><%= fb.created_at.to_date %></td>
     <td scope="row">

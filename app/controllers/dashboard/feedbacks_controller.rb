@@ -14,6 +14,11 @@ class Dashboard::FeedbacksController < ApplicationController
   end
 
   def update
+    if params[:status].present?
+      @type = Settings.feedback_update_type.status
+    else
+      @type = Settings.feedback_update_type.category
+    end
     @post.update_attributes feedback_params
     if @post.save
       @success = true
@@ -31,7 +36,7 @@ class Dashboard::FeedbacksController < ApplicationController
 
   private
   def feedback_params
-    params.require(:post).permit :status
+    params.require(:post).permit :status, :category_id
   end
 
   def post_params
