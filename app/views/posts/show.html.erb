@@ -78,10 +78,12 @@
                         <i class="fa fa fa-eye" aria-hidden="true"></i>
                         <%= @post.count_view %> <%= t "posts.index.view" %>
                       </span>
-                      <span>
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <%=  @post_extension.count_comment %> <%= t "posts.index.comment" %>
-                      </span>
+                      <% if !check_feeback_topic @post.topic_id %>
+                        <span>
+                          <i class="fa fa-comment-o" aria-hidden="true"></i>
+                          <%=  @post_extension.count_comment %> <%= t "posts.index.comment" %>
+                        </span>
+                      <% end %>
                       <% if @post.user_id == current_user.id  && @post.topic_id == Settings.post_topic_qa %>
                         <span>
                           <i class="fa fa-pencil" aria-hidden="true"></i>
