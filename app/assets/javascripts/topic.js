@@ -1,36 +1,3 @@
-function filter_by_work_space(work_space_id){
-  $('#to-day-picker').val('');
-  $('#from-day-picker').val('');
-  var sort_type = $('.sort-by-dropbtn').attr('data-id');
-  var category_id = $('.category a.active').attr('data-id');
-  $.ajax({
-    url: '/topics/2',
-    method: 'GET',
-    data: {
-      work_space_id: work_space_id,
-      sort_type: sort_type,
-      category_id: category_id
-    }
-  });
-}
-
-function filter_by_sort_type(sort_type){
-  var topic =  $('#current-toppic').attr('data-id');
-  $('#to-day-picker').val('');
-  $('#from-day-picker').val('');
-  var work_space_id = $('.location-dropbtn').attr('data-id');
-  var category_id = $('.category a.active').attr('data-id');
-  $.ajax({
-    url: '/topics/' + topic,
-    method: 'GET',
-    data: {
-      work_space_id: work_space_id,
-      sort_type: sort_type,
-      category_id: category_id
-    }
-  });
-}
-
 $(document).ready(function(){
   jQuery(function(){
     var dateObj = new Date();
@@ -67,6 +34,8 @@ $(document).ready(function(){
             category_id: category_id
           }
         });
+        var params = {sort_type: sort_type, work_space_id: work_space_id, category_id: category_id, from_day: from_day, to_day: to_day};
+        history.pushState(null, document.title, get_url(topic, params));
       }
     });
     jQuery('#to-day-picker').datetimepicker({
@@ -99,16 +68,102 @@ $(document).ready(function(){
             category_id: category_id
           }
         });
+        var params = {sort_type: sort_type, work_space_id: work_space_id, category_id: category_id, from_day: from_day, to_day: to_day};
+        history.pushState(null, document.title, get_url(topic, params));
       }
     });
   });
 });
-$(document).on('click','.category a',function(){
-  $('.category a').removeClass('active')
-  $(this).addClass('active');
-  $('#to-day-picker').val('');
-  $('#from-day-picker').val('');
-})
+
+function get_url(topic, params){
+  var url = '/topics/'+ topic + '/?sort_type=' + params.sort_type;
+  if (!(params.work_space_id == null || params.work_space_id === '')){
+    url = url + '&work_space_id='+ params.work_space_id;
+  }
+  if (!(params.category_id == null || params.category_id === '')){
+    url = url + '&category_id=' + params.category_id;
+  }
+  if (!(params.from_day == null || params.from_day === '')){
+    url = url + '&from_day=' + params.from_day;
+  }
+  if (!(params.to_day == null || params.to_day === '')){
+    url = url + '&to_day=' + params.to_day;
+  }
+  return url;
+}
 $(document).ready(function(){
-  $('.category a:first').addClass('active')
+  filter_by_sort_type();
+  filter_by_work_space();
+  filter_by_category();
+  var category_id = $('.current-category').attr('data-id');
+  if (category_id === ''){
+    $('.category a:first').addClass('active');
+  }else{
+    $('.category-' + category_id + ' a').addClass('active');
+  }
+  $(function() {
+    $('.paginate-posts').on('click', 'a', function(e) {
+      history.pushState(null, document.title, this.href);
+    });
+    $(window).bind('popstate', function() {
+      $.getScript(location.href);
+    });
+  });
 })
+
+function filter_by_sort_type(){
+  $(document).on('click','.choose-sort-type',function(){
+    var topic =  $('#current-toppic').attr('data-id');
+    $('#to-day-picker').val('');
+    $('#from-day-picker').val('');
+    var sort_type = $(this).attr('data-id');
+    var work_space_id = $('.location-dropbtn').attr('data-id');
+    var category_id = $('.category a.active').attr('data-id');
+    $.ajax({
+      url: '/topics/' + topic,
+      method: 'GET',
+      data: {
+        work_space_id: work_space_id,
+        sort_type: sort_type,
+        category_id: category_id
+      }
+    });
+    var params = {sort_type: sort_type, work_space_id: work_space_id, category_id: category_id};
+    history.pushState(null, document.title, get_url(topic, params));
+  })
+}
+
+function filter_by_work_space(){
+  $(document).on('click','.choose-work-space',function(){
+    $('#from-day-picker').val('');
+    var work_space_id = $(this).attr('data-id');
+    var sort_type = $('.sort-by-dropbtn').attr('data-id');
+    var category_id = $('.category a.active').attr('data-id');
+    $.ajax({
+      url: '/topics/2',
+      method: 'GET',
+      data: {
+        work_space_id: work_space_id,
+        sort_type: sort_type,
+        category_id: category_id
+      }
+    });
+    var params = {sort_type: sort_type, work_space_id: work_space_id, category_id: category_id};
+    history.pushState(null, document.title, get_url(2, params));
+  })
+}
+
+function filter_by_category(){
+  $(document).on('click','.category a',function(){
+    $('.category a').removeClass('active')
+    $(this).addClass('active');
+    $('#to-day-picker').val('');
+    $('#from-day-picker').val('');
+    var url = '/topics/2/';
+    var category_id = $(this).attr('data-id');
+    if (category_id != null){
+      url = url + '?category_id=' + category_id;
+    }
+    history.pushState(null, document.title, url);
+  })
+}

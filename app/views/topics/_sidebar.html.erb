@@ -12,9 +12,9 @@
     <% if check_feeback_topic topic.id %>
     <h2><%= t "static_pages.index.category_list" %></h2>
     <hr class="widget-separator no-margin">
-      <div class="list-top-tags">
+      <div class="list-top-tags current-category", data-id="<%= support.filter_type[:category_id] %>">
         <div class="category">
-          <%= link_to topic, class: "tag-item", remote: true, data: {id: ""} do %>
+          <%= link_to topic, class: "tag-item", remote: true do %>
             <span><%= support.total_post %></span>
             <%= t("all_posts") %>
           <% end %>
