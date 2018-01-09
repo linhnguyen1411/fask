@@ -129,6 +129,7 @@ en:
     status:
       feedback_tab: "Feedback"
       feedback_manager: "Feedback Management"
+      management: "Management"
       reject_verify: "You sure!"
       accept_success: "Accepted"
       reject_success: "Rejected"

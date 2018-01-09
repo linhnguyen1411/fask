@@ -160,14 +160,19 @@ module ApplicationHelper
   end
 
   def link_notification noti
-    if noti.activity.trackable_type == "AVersion"
+    case  noti.activity.trackable_type
+    when Relationship.name
+      user_path noti.load_message.last, noti_id: noti.id
+    when AVersion.name
       "/a_versions?post_id=#{noti.load_message.last}&noti_id=#{noti.id}"
-    elsif noti.activity.trackable_type == "Comment" || noti.activity.trackable_type == "Answer"
-      post_path(noti.load_message.last, noti_id: noti.id, anchor: "#{noti.activity.trackable_type.downcase}-#{noti.activity.trackable_id}")
-    elsif noti.activity.trackable_type == "Post" && noti.activity.trackable.try(:topic_id) == Settings.topic.feedback_number
-      dashboard_feedbacks_path(noti_id: noti.id)
+    when Comment.name, Answer.name
+      post_path noti.load_message.last, noti_id: noti.id, anchor: "#{noti.activity.trackable_type.downcase}-#{noti.activity.trackable_id}"
     else
-      post_path(noti.load_message.last, noti_id: noti.id)
+      if noti.activity.trackable.try(:topic_id) == Settings.topic.feedback_number && noti.activity.trackable.waiting?
+        dashboard_feedbacks_path noti_id: noti.id
+      else
+        post_path noti.load_message.last, noti_id: noti.id
+      end
     end
   end
 end

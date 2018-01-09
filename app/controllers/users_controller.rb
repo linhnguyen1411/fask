@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :load_user, only: [:show, :update]
   before_action :authenticate_user
+  before_action :see_notification, only: :show
 
   def index
     @title = t "profile.index.title"
