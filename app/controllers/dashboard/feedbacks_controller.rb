@@ -14,7 +14,7 @@ class Dashboard::FeedbacksController < ApplicationController
   end
 
   def update
-    if params[:status].present?
+    if feedback_params[:status].present?
       @type = Settings.feedback_update_type.status
     else
       @type = Settings.feedback_update_type.category
