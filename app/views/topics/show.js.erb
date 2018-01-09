@@ -1,3 +1,5 @@
+$('#to-day-picker').val('<%= change_format_date @support.filter_type[:to_day] %>');
+$('#from-day-picker').val('<%= change_format_date @support.filter_type[:from_day] %>');
 $('.location-dropbtn').html('<%= work_space_name(@support.work_space) %>');
 $('.location-dropbtn').attr('data-id', '<%= work_space_id(@support.work_space) %>');
 $('.sort-by-dropbtn').html('<%= j (t("sort_type_list.#{@support.filter_type[:sort_type]}")) %>');

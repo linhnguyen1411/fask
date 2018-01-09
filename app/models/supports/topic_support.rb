@@ -17,7 +17,7 @@ class Supports::TopicSupport
   end
 
   def filter_type
-    {from_day: @from_day, to_day: @to_day, sort_type: @sort_type}
+    {from_day: @from_day, to_day: @to_day, sort_type: @sort_type, category_id: @category_id}
   end
 
   def top_users

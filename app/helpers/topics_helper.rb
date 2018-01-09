@@ -25,4 +25,8 @@ module TopicsHelper
     count_downvote = reactions["downvote"].present? ? reactions["downvote"].length : 0
     count_upvote - count_downvote
   end
+
+  def change_format_date date
+    date.strftime("%m/%d/%Y") if date.present?
+  end
 end

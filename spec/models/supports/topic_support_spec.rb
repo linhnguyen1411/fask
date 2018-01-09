@@ -67,7 +67,7 @@ RSpec.describe Supports::TopicSupport, type: :model do
 
   describe "#filter_type" do
     let(:filter_type) do
-      {from_day: Date.yesterday, to_day: Date.tomorrow, sort_type: "popular"}
+      {from_day: Date.yesterday, to_day: Date.tomorrow, sort_type: "popular", category_id: categories.first.id}
     end
     it do
       expect(subject.filter_type).to eq filter_type
@@ -89,7 +89,7 @@ RSpec.describe Supports::TopicSupport, type: :model do
 
   describe "#category_list" do
     it do
-      expect(subject.category_list).to eq categories
+      expect(subject.category_list).to eq Category.include_count_post
     end
   end
 

@@ -10,9 +10,9 @@
             <button class="location-dropbtn form-control" data-id="<%= work_space_id(@support.work_space) %>">
               <%= work_space_name(@support.work_space) %>
             </button>
-            <div class="location-dropdown-content ">
+            <div class="location-dropdown-content">
               <% load_select_box_location(@support.work_space_list).each do |location| %>
-                <%= link_to location.first, "javascript:", onclick: "filter_by_work_space(#{location.last});" %>
+                <%= link_to location.first, "javascript:", data: {id: location.last}, class: "choose-work-space" %>
               <% end %>
             </div>
           </div>
@@ -29,7 +29,7 @@
           <div class="sort-by-dropdown-content">
             <% @support.sort_type_list.each do |sort_type| %>
               <%= link_to t("sort_type_list.#{sort_type}"), "javascript:",
-                onclick: "filter_by_sort_type('#{sort_type}');" %>
+                data: {id: sort_type}, class: "choose-sort-type" %>
             <% end %>
           </div>
         </div>

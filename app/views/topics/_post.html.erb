@@ -9,11 +9,11 @@
     <div class="col-md-10 col-sm-10 col-xs-10 topic-post-content">
       <div class="col-md-9 col-sm-8  col-xs-12">
         <% if check_feeback_topic post.topic_id %>
-          <h3><%= link_to post.title, post_path(post.id) %> </br>
-            <span class="work_space_name workspace_<%= post.work_space_id %>">
-              <%= link_to post.work_space_name, "javascript:", onclick:
-                "filter_by_work_space(#{post.work_space_id});", class: "link-to-local" %></span>
-          </h3>
+          <h3><%= link_to post.title, post_path(post.id) %></h3>
+          <span class="work_space_name workspace_<%= post.work_space_id %>">
+            <%= link_to post.work_space_name, "javascript:", data: {id: post.work_space_id},
+              class: "link-to-local choose-work-space" %>
+          </span>
         <% else %>
           <h3><%= link_to post.title, post %></h3>
         <% end %>

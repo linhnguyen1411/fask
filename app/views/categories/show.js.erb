@@ -1,6 +1,7 @@
 <% if @category %>
   $('.content-posts').html('<%= j(render partial: "topics/post", collection: @posts) %>');
-  $('.paginate-posts').html('<%=j(paginate @posts, remote: true)  %>');
+  $('.paginate-posts').html('<%=j(paginate @posts, remote: true, \
+    params: {controller: "topics", action: "show", id: Settings.topic.feedback_number, category_id: @category.id})  %>');
   $('.location-dropbtn').html('<%= t("all_location") %>');
   $('.location-dropbtn').attr('data-id', '');
   $('.sort-by-dropbtn').html('<%= j (t("sort_type_list.#{Settings.topic.type_sort.recently}")) %>');
