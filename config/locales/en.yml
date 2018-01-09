@@ -585,3 +585,6 @@ en:
     create:
       success: "Create successful"
       error: "Create failure"
+  feedback_update:
+    category_success: "Category of post was updated"
+    info: "Would you like to change this feedback category?"

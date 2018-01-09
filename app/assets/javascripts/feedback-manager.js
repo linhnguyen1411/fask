@@ -4,6 +4,7 @@ $(document).ready(function(){
   accept_feedback_post();
   reject_feedback_post();
   delete_feedback_post();
+  event_officer_change_category_feedback();
 });
 function accept_feedback_post(){
   $('.feedback-table').on('click', '.btn-accept-feedback', function(){
@@ -71,6 +72,30 @@ function delete_feedback_post() {
         url: '/dashboard/feedbacks/' + id,
         type: 'DELETE',
         dataType: 'script'
+      });
+    });
+  });
+}
+function event_officer_change_category_feedback(){
+  $('.feedback-table').on('change', '.category-change', function(){
+    var category_id = $(this).val();
+    var post_id = $(this).data('post-id');
+    swal({
+      title: I18n.t('warning'),
+      text: I18n.t('feedback_update.info'),
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: swal_color,
+      confirmButtonText: I18n.t('ok'),
+      cancelButtonText: I18n.t('cancel'),
+      closeOnConfirm: true
+    },
+    function(){
+      $.ajax({
+        url: '/dashboard/feedbacks/' + post_id,
+        type: 'PUT',
+        dataType: 'script',
+        data: {post: {category_id: category_id}}
       });
     });
   });
