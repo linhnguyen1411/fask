@@ -4,20 +4,19 @@ CKEDITOR.editorConfig = function (config) {
   config.allowedContent = true;
   config.extraPlugins = 'codesnippet,tagusers,confighelper';
   config.toolbar = [
-    { name: 'basicstyles', items : [ 'Bold', 'Italic', 'Underline', 'Strike' ] },
-    { name: 'colors', items : [ 'Subscript', 'Superscript' , 'RemoveFormat', 'TextColor', 'BGColor' ] },
-    { name: 'styles', items : [ 'Styles', 'Format', 'Font', 'FontSize' ] },
-    { name: 'paragraph', items : [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight',
-      'JustifyBlock', '-', 'NumberedList', 'BulletedList', 'Outdent', 'Indent' ] },
-    { name: 'editing', items : [ 'Undo', 'Redo', 'Find', 'Replace', 'SpellChecker', 'Scayt' ] },
-    { name: 'insert', items : [ 'Image', 'Table', 'Smiley', 'SpecialChar', 'Link'] },
-    { name: 'document', items : [ 'CodeSnippet', 'Source'] },
-    { name: 'user', items : [ 'TagUsers'] }
+    {name: 'toolbar', items :[
+      'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript',
+      'RemoveFormat', 'TextColor', 'BGColor', 'Styles', 'Format', 'Font',
+      'FontSize', 'JustifyLeft', 'JustifyCenter', 'JustifyRight',
+      'JustifyBlock', '-', 'NumberedList', 'BulletedList', 'Outdent', 'Indent',
+      'Undo', 'Redo', 'Find', 'Replace', 'SpellChecker', 'Scayt', 'Image',
+      'Table', 'Smiley', 'SpecialChar', 'Link', 'CodeSnippet', 'Source', 'TagUsers']
+    }
   ];
   config.height = 350;
   config.filebrowserUploadUrl = '/ckeditor/pictures';
   config.placeholder = I18n.t ("user_guild")+ '</br>'
-      + I18n.t ("user_guild_code_tag") + '<span class="cke_code_icon " aria-hidden="true"></span>';
+    + I18n.t ("user_guild_code_tag") + '<span class="cke_code_icon " aria-hidden="true"></span>';
 }
 CKEDITOR.dtd.$removeEmpty['span'] = false;
 CKEDITOR.on( 'dialogDefinition', function( ev )
