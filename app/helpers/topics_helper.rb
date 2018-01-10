@@ -27,6 +27,6 @@ module TopicsHelper
   end
 
   def change_format_date date
-    date.strftime("%m/%d/%Y") if date.present?
+    date.to_date.strftime("%d/%m/%Y") if date.present?
   end
 end

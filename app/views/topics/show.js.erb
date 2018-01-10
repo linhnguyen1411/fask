@@ -6,4 +6,4 @@ $('.sort-by-dropbtn').html('<%= j (t("sort_type_list.#{@support.filter_type[:sor
 $('.sort-by-dropbtn').attr('data-id', '<%= @support.filter_type[:sort_type] %>');
 $('.content-posts').html('<%= j(render partial: "topics/post",\
   collection: @support.filter_posts) %>');
-$('.paginate-posts').html('<%=j(paginate @support.filter_posts, remote: true)  %>');
+$('.paginate-posts').html('<%= j (paginate @support.filter_posts, remote: true)  %>');

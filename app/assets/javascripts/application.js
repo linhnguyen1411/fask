@@ -30,12 +30,12 @@
 //= require jquery.datetimepicker
 
 $(document).ready(function(){
-  $(document).on('mouseenter','a', function(){
+  $(document).on('mouseenter','a[data-toggle="tooltip"]', function(){
     $('a').tooltip();
-    Notification.requestPermission();
-    $('.zoom-img').each(function(){
-      $(this).viewer();
-    });
-  })
+  });
+  Notification.requestPermission();
+  $('.zoom-img').each(function(){
+    $(this).viewer();
+  });
 });
 CKEDITOR.config.customConfig = '/assets/ckeditor/ckeditor_config.js';

@@ -1,6 +1,7 @@
 class TopicsController < ApplicationController
   before_action :authenticate_user
   before_action :load_topic
+  before_action :clear_cache
 
   def show
     params[:from_day] = convert_date(params[:from_day])
@@ -31,5 +32,11 @@ class TopicsController < ApplicationController
   def topic_params
     params.permit :from_day, :to_day, :work_space_id, :id, :sort_type,
       :category_id, :page
+  end
+
+  def clear_cache
+    if request.xhr?
+      response.headers['Vary'] = 'Accept'
+    end
   end
 end
