@@ -30,8 +30,12 @@
 //= require jquery.datetimepicker
 
 $(document).ready(function(){
-  $(document).on('mouseenter','a[data-toggle="tooltip"]', function(){
-    $('a').tooltip();
+  $(document).on('mouseover','a[data-toggle="tooltip"]', function(){
+    $(this).tooltip({
+      content: function() {
+        return $(this).attr('title');
+      }
+    }).triggerHandler('mouseover');
   });
   Notification.requestPermission();
   $('.zoom-img').each(function(){

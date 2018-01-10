@@ -20,7 +20,7 @@ $(document).ready(function(){
     startWithSpace: true,
     searchKey: 'name',
     insertTpl: ('<a class="tag-user-item" href="/users/${id}"><span class="fa fa-address-book-o"></span>&nbsp;${name}</a>'),
-    displayTpl: ('<li><a class="tag-user-item" href="/users/${id}"><span class="fa fa-address-book-o"></span>&nbsp;${name}</a></li>')
+    displayTpl: ('<li><a class="tag-user-item" href="/users/${id}"><span class="fa fa-address-book-o"></span>${name}</a></li>')
   });
   $(document).on('click', '.comment-form', (function() {
     $(this).find('.txta-tag-users').val($(this).closest('.form-new-commment').find('.editable').html());

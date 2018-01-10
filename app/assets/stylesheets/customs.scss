@@ -839,7 +839,7 @@ mark{
   font-size: 18px;
 }
 .workspace_1, .workspace_2, .workspace_3, .workspace_4, .workspace_5 {
-  background: #1abe11;
+  background: #FFBF00;
   color: #ffffff;
   border-radius: 10px;
   padding: 2px;
@@ -1071,4 +1071,8 @@ mark{
 }
 .count{
   color: #be161e !important;
+}
+.category-change option{
+  background: #fff;
+  color: #000;
 }
