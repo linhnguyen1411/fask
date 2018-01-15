@@ -132,6 +132,7 @@ notification_setting:
   clip_post: "clip_post"
   reply_post: "reply_post"
   comment_post: "comment_post"
+  comment_post_number: "1"
   comment_answer: "comment_answer"
 one_day: 1
 feedback: "Feedback"
@@ -150,3 +151,4 @@ paginate_categories: 10
 feedback_update_type:
   status: "status"
   category: "category"
+time_send_mail: 5

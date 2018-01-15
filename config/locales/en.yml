@@ -35,7 +35,7 @@ en:
         placeholder: "Search..."
     footer:
       detail: "Framgia Vietnam is a 100% Japanese owned company that specializes in building applications on phones, games, social applications and Web-based applications."
-      copyright: "Copyright 2017 Framgia, Inc. All rights reserved."
+      copyright: "© 2018 By Framgia - Human Development Division - Education Section - All rights reserved."
       address: "13F Keangnam Landmark 72 Tower, Plot E6, Pham Hung Road, Nam Tu Liem, Ha Noi, Viet Nam"
       phone: "84-4-3795-5417"
       email: "hr_team@framgia.com"
@@ -588,3 +588,11 @@ en:
   feedback_update:
     category_success: "Category of post was updated"
     info: "Would you like to change this feedback category?"
+  mail_noti:
+    hi: "Hi"
+    has_been_commented: " has been commented on your post"
+    commented: "commented on the post"
+    of_you: "of you"
+    change_setting: "To change email setting, please login"
+    setting: "and go to Setting menu"
+    non_repply: "this is an automated email please don't reply"

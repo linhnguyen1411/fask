@@ -35,7 +35,7 @@ ja:
         placeholder: "サーチ..."
     footer:
       detail: "会社情報 ベトナムのFramgiaは日本では100％を投資されています. 電話アプリケーション、 ゲーム、ソーシャルアプリケーションやWebベースのアプリケーションを構築に特化."
-      copyright: "Copyright 2016 Framgia, Inc. All rights reserved."
+      copyright: "© 2018 By Framgia - Human Development Division - Education Section - All rights reserved."
       address: "13フロアのKeangnam, E6の小包, Pham Hung 砂糖,Tu Liem Nam, Ha Noi, Viet Nam"
       phone: "84-4-3795-5417"
       email: "hr_team@framgia.com"
@@ -588,3 +588,11 @@ ja:
   feedback_update:
     category_success: "Category of post was updated"
     info: "Would you like to change this feedback category?"
+  mail_noti:
+    hi: "Hi"
+    has_been_commented: " has been commented on your post"
+    commented: "commented on the post"
+    of_you: "of you"
+    change_setting: "To change email setting, please login"
+    setting: "and go to Setting menu"
+    non_repply: "this is an automated email please don't reply"

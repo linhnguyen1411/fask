@@ -35,7 +35,7 @@ vi:
         placeholder: "Tìm kiếm..."
     footer:
       detail: "Framgia Việt Nam là công ty 100% vốn đầu tư Nhật Bản, chuyên xây dựng những ứng dụng trên điện thoại, game, các ứng dụng xã hội và các ứng dụng trên nền Web."
-      copyright: "Copyright 2017 Framgia, Inc. All rights reserved."
+      copyright: "© 2018 Bởi Framgia - Human Development Division - Education Section - All rights reserved."
       address: "Tầng 13 tòa nhà Keangnam Landmark, Lô E6, Đường Phạm Hùng, Từ Liêm Nam, Hà Nội, Việt Nam"
       phone: "84-4-3795-5417"
       email: "hr_team@framgia.com"
@@ -588,3 +588,11 @@ vi:
   feedback_update:
     category_success: "Danh mục bài viết thay đổi thành công"
     info: "Bạn có muốn thay đổi danh mục cho bài viết này?"
+  mail_noti:
+    hi: "Chào bạn"
+    has_been_commented: " đã bình luận bài viết của bạn"
+    commented: "đã bình luận ở bài viết"
+    of_you: "của bạn"
+    change_setting: "Để thay đổi thiết lập email, hãy đăng nhập vào"
+    setting: "và đi đến mục lục Cài Đặt"
+    non_repply: "Đây là thư tự động, vui lòng không trả lời thư này!"
