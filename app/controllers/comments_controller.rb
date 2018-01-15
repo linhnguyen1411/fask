@@ -12,6 +12,8 @@ class CommentsController < ApplicationController
           format.html { redirect_to post_path @object }
           format.js
         end
+        SendEmailNotificationJob.set(wait: Settings.time_send_mail.seconds)
+          .perform_later(@object.user, current_user, @object) if email_setting
       end
     else
       redirect_to post_path @object
@@ -62,5 +64,10 @@ class CommentsController < ApplicationController
     return if @comment
     flash[:danger] = t ".not_found"
     redirect_to root_path
+  end
+
+  def email_setting
+    @object.class.name == Settings.post.model_name && current_user != @object.user &&
+      @object.user.email_settings[:comment_post] == Settings.notification_setting.comment_post_number
   end
 end

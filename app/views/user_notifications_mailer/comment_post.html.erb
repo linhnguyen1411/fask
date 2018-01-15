@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body style="background-color: #97ffec; font-family: 'Helvetica Neue', Helvetica,
+    Arial, sans-serif !important;">
+    <div style="display: inline-block; width: 100%; padding-left: 25%; padding-top: 5%;">
+      <div style="background-color: white; max-width: 550px; border-radius: 15px;border: 1px solid;">
+        <div style="border-bottom: 1px dotted; min-height: 50px;">
+          <img src="http://ask.framgia.vn/assets/logo-79885d646e0e5279ad64fb0a71d94d0a278ff7ad28d44839b1814abfad9396fa.png" style="width: 200px; text-align: center;padding: 10px;padding-left: 30%">
+        </div>
+        <h1 style="text-align: center;"><%= t "mail_noti.hi" %>, <%= @owner_user.name %></h1>
+        <div style="margin-left: 10px">
+          <p style="text-transform: lowercase;">
+            <span style="font-style: italic; text-transform: uppercase!important;"><%= @comment_user.name %></span>
+              <%= t "mail_noti.commented" %> <strong>
+                <%= link_to @post.title, post_url(@post), target: "_blank" %></strong>
+                  <%= t "mail_noti.of_you" %><br>
+          </p>
+          <p style="background-color: #ace7e9; text-align: center; width: 300px; margin-left: 20%;">
+            <%= t "mail_noti.change_setting" %><%= link_to "Fask", root_url %>
+              <%= t "mail_noti.setting" %>
+          </p>
+          <p style="color: red">* <%= t "mail_noti.non_repply" %></p>
+        </div>
+      </div>
+      <div style="max-width: 550px;border: 1px solid;
+        margin-top: 10px; background-color: #be161e; max-height: 50px; text-align: center;">
+        <h2 style="color: white;"><a href="https://framgia.com/">Framgia Inc</a></h2>
+      </div>
+      <div style="min-height: 150px;"></div>
+    </div>
+  </body>
+</html>
