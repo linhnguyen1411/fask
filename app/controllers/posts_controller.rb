@@ -17,12 +17,12 @@ class PostsController < ApplicationController
 
   def new
     @support = Supports::PostSupport.new
-    @post = case request.referer
-    when topic_url(Settings.topic.q_a_number)
+    @post = case params[:topic_id]
+    when Settings.topic.q_a
       Post.new topic_id: Settings.topic.q_a_number
-    when topic_url(Settings.topic.feedback_number)
+    when Settings.topic.feedback
       Post.new topic_id: Settings.topic.feedback_number, work_space_id: current_user.work_space_id
-    when topic_url(Settings.topic.confesstion_number)
+    when Settings.topic.confesstion
       Post.new topic_id: Settings.topic.confesstion_number
     else
       Post.new

@@ -148,6 +148,7 @@ en:
       title_name: "New post"
       title: "Post Your QA-Knowledge/Feedback/Confession"
       toppic: "Choose topic"
+      account: "Choose account"
       location: "Location"
       category: "Category"
       qa_info: "You have questions about technical things, please login and enter the questions here. All the members are always willing to support you."
@@ -596,3 +597,4 @@ en:
     change_setting: "To change email setting, please login"
     setting: "and go to Setting menu"
     non_repply: "this is an automated email please don't reply"
+  anonymous: "Anonymous"

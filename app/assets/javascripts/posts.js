@@ -7,6 +7,7 @@ function load_choose_toppic() {
     $('#select-category').closest('.form-group').hide('500');
     $('#posts-tag').show('500');
     $('#topic-info').html( I18n.t('posts.new.qa_info'));
+    $('#anonymous').hide('500');
     if(check_user_login === 'true') {
       $('.panel-info-user').hide('500');
       $('.form-login').find('#user_email').removeAttr('required');
@@ -14,7 +15,7 @@ function load_choose_toppic() {
     }
     else {
       $('.panel-info-user').show('500');
-      $('#anonymous').closest('label').hide('500');
+      $('#anonymous').hide('500');
       $('.form-login').show('500');
       $('.form-login').find('#user_email').attr('required', true);
       $('.form-login').find('#user_password').attr('required', true);
@@ -30,11 +31,11 @@ function load_choose_toppic() {
       $('.form-login').hide('500');
       $('.form-login').find('#user_email').removeAttr('required');
       $('.form-login').find('#user_password').removeAttr('required');
-      $('#anonymous').closest('label').show('500');
+      $('#anonymous').show('500');
     }
     else {
       $('.panel-info-user').show('500');
-      $('#anonymous').closest('label').show('500');
+      $('#anonymous').show('500');
       $('.form-login').show('500');
       $('.form-login').find('#user_email').attr('required', true);
       $('.form-login').find('#user_password').attr('required', true);
@@ -44,6 +45,7 @@ function load_choose_toppic() {
     $('#posts-tag').show('500');
     $('#topic-info').html(I18n.t('posts.new.confession_info'));
     $('#select-location').closest('.form-group').hide('500');
+    $('#anonymous').hide('500');
     $('#select-category').closest('.form-group').hide('500');
     $('.panel-info-user').hide('500');
     $('.form-login').find('#user_email').removeAttr('required');
@@ -438,9 +440,5 @@ $(document).ready(function(){
 
   $('#select-toppic').change(function(){
     load_choose_toppic();
-  });
-
-  $('#anonymous').change(function(){
-    load_form_login_when_post(this);
   });
 });
