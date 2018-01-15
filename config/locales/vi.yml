@@ -148,6 +148,7 @@ vi:
       title_name: "Bài viết mới"
       title: "Gửi câu hỏi kỹ thuật, góp ý cho công ty hay gửi tâm tư tình cảm vào confession."
       toppic: "Chọn chủ đề"
+      account: "Chọn tài khoản"
       location: "Chi nhánh"
       category: "Thể loại"
       qa_info: "Bạn có thắc mắc về kỹ thuật, vui lòng đăng nhập và đặt câu hỏi ở đây. Đội ngũ member luôn hộ trợ nhiệt tình cho bạn."
@@ -596,3 +597,4 @@ vi:
     change_setting: "Để thay đổi thiết lập email, hãy đăng nhập vào"
     setting: "và đi đến mục lục Cài Đặt"
     non_repply: "Đây là thư tự động, vui lòng không trả lời thư này!"
+  anonymous: "Ẩn danh"

@@ -1,6 +1,14 @@
 module PostsHelper
+  def load_select_box_account
+    [[current_user.name, current_user.id], [I18n.t("anonymous"), Settings.anonymous_number]]
+  end
+
   def load_select_box_topic topic_list
     topic_list.collect{|t| [t.name, t.id]}
+  end
+
+  def load_select_box_work_space work_space_list
+    work_space_list.collect{|w| [w.name, w.id]}
   end
 
   def check_user_reaction item, user

@@ -148,6 +148,7 @@ ja:
       title_name: "新しい投稿"
       title: "Post Your QA-Knowledge/Feedback/Confession"
       toppic: "トピックを選択"
+      account: "Choose account"
       location: "ロケーション"
       category: "Category"
       qa_info: "You have technical questions, please log in and ask questions here. The team members are always enthusiastic support for you."
@@ -596,3 +597,4 @@ ja:
     change_setting: "To change email setting, please login"
     setting: "and go to Setting menu"
     non_repply: "this is an automated email please don't reply"
+  anonymous: "Anonymous"
