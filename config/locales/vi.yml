@@ -604,3 +604,5 @@ vi:
   user_name: "Tên đăng nhập: "
   password: "Mật khẩu: "
   anonymous_edit_user: "Bạn không có quyền truy cập vào trang này"
+  authorization_error: "Bạn không có quyền truy cập vào trang này. Bạn có muốn chuyển đổi người dùng không?"
+  not_authorized: "Bạn không được phép truy cập vào trang này"

@@ -151,6 +151,9 @@ function reaction_vote_post() {
           }
           else if(data.not_login)
             window.location.replace('/users/sign_in');
+          else if(data.not_authorized){
+            notify_not_authorized();
+          }
           else
             sweetAlert(I18n.t('reactions.create.error'), '', 'error');
         },
@@ -204,6 +207,9 @@ function correct_answer() {
         }
         else if(data.not_login)
           window.location.replace('/users/sign_in');
+        else if(data.not_authorized){
+          notify_not_authorized();
+        }
         else
           sweetAlert(I18n.t('reactions.create.error'), '', 'error');
       },
@@ -240,6 +246,9 @@ function appcept_edit_comment() {
         }
         else if(data.not_login)
           window.location.replace('/users/sign_in');
+        else if(data.not_authorized){
+          notify_not_authorized();
+        }
         else
           sweetAlert(I18n.t('reactions.create.error'), '', 'error');
       },
@@ -275,6 +284,9 @@ function delete_answer() {
           }
           else if(data.not_login)
             window.location.replace('/users/sign_in');
+          else if(data.not_authorized){
+            notify_not_authorized();
+          }
           else
             sweetAlert(I18n.t('reactions.create.error'), '', 'error');
         },
@@ -311,6 +323,9 @@ function delete_comment() {
           }
           else if(data.not_login)
             window.location.replace('/users/sign_in');
+          else if(data.not_authorized){
+            notify_not_authorized();
+          }
           else
             sweetAlert(I18n.t('reactions.create.error'), '', 'error');
         },
@@ -346,6 +361,9 @@ function delete_post() {
           }
           else if(data.not_login)
             window.location.replace('/users/sign_in');
+          else if(data.not_authorized){
+            notify_not_authorized();
+          }
           else
             sweetAlert(I18n.t('reactions.create.error'), '', 'error');
         },

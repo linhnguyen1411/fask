@@ -1,5 +1,6 @@
 class ClipsController < ApplicationController
   before_action :authenticate_user
+  authorize_resource
 
   def create
     success = false

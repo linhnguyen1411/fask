@@ -41,13 +41,13 @@
 
           <div class="tab-content">
             <div id="question" class="tab-pane fade in active">
-              <%= render partial: "post", collection: @user.posts, as: :post %>
+              <%= render partial: "post", collection: @user_support.posts_of_user, as: :post %>
             </div>
             <div id="answer" class="tab-pane fade">
-              <%= render partial: "answer", collection: @user.answers, as: :answer %>
+              <%= render partial: "answer", collection: @user_support.answers_of_user, as: :answer %>
             </div>
             <div id="comment" class="tab-pane fade">
-              <%= render partial: "comment", collection: @user.comments, as: :comment %>
+              <%= render partial: "comment", collection: @user_support.comments_of_user, as: :comment %>
             </div>
           </div>
         </div>

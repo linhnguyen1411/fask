@@ -1,5 +1,6 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user
+  authorize_resource
 
   def index
     @notifications = current_user.notifications.by_date.page(params[:page]).per Settings.paginate_default

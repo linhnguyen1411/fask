@@ -24,6 +24,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe "GET #show" do
     let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
+    before {sign_in user}
 
     context "when load user success" do
       before {get :show, params: {id: user}}

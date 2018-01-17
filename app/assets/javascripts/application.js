@@ -20,6 +20,7 @@
 //= require i18n
 //= require i18n.js
 //= require i18n/translations
+//= require notify_not_authorized
 //= require_tree .
 //= require bootstrap-sprockets
 //= require sweetalert/dist/sweetalert.min.js
@@ -28,7 +29,6 @@
 //= require jquery.mark.min.js
 //= require highlight-search
 //= require jquery.datetimepicker
-
 $(document).ready(function(){
   $(document).on('mouseover','a[data-toggle="tooltip"]', function(){
     $(this).tooltip({

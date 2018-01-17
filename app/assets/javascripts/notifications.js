@@ -82,6 +82,9 @@ function seen_all() {
           $('.status-no-seen').removeClass('status-no-seen');
           $('.number').text("0");
         }
+        else if(data.not_authorized){
+          notify_not_authorized();
+        }
         else if(data.not_login)
           window.location.replace('/users/sign_in');
         else

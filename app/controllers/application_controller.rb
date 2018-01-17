@@ -8,6 +8,14 @@ class ApplicationController < ActionController::Base
   before_action :load_notification
   before_action :set_locale
 
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.json {render json: {type: false, not_authorized: true}}
+      format.html {redirect_to root_url, notice: exception.message}
+      format.js {render template: "shared/authorization_error.js.erb"}
+    end
+  end
+
   def after_sign_in_path_for resource
     session[:before_login_url] || root_path
   end
@@ -38,7 +46,9 @@ class ApplicationController < ActionController::Base
   private
 
   def load_notification
-    @list_notifications = current_user.notifications.includes_activity.by_date if user_signed_in?
+    if user_signed_in? && @current_user.try(:id) != Settings.anonymous_number
+      @list_notifications = current_user.notifications.includes_activity.by_date
+    end
   end
 
   def set_locale

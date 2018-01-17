@@ -177,6 +177,6 @@ module ApplicationHelper
   end
 
   def check_user_anonymous
-    return true if current_user.id == Settings.anonymous_number
+    current_user.try(:id) == Settings.anonymous_number
   end
 end

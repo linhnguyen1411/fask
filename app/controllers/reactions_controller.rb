@@ -1,5 +1,6 @@
 class ReactionsController < ApplicationController
   before_action :authenticate_user
+  authorize_resource
   before_action :load_item, only: [:create, :index]
 
   def index

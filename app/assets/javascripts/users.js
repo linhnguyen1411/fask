@@ -44,6 +44,9 @@ function handle_follow_user(id, route) {
       }
       else if(data.not_login)
         window.location.replace('/users/sign_in');
+      else if(data.not_authorized){
+        notify_not_authorized();
+      }
       else
         sweetAlert(I18n.t('users.index.follow_error'), '', 'error');
     },
@@ -73,6 +76,9 @@ function update_password() {
             sweetAlert(I18n.t('success'), data.mess, 'success');
           else if(data.not_login)
             window.location.replace('/users/sign_in');
+          else if(data.not_authorized){
+            notify_not_authorized();
+          }
           else
             sweetAlert(I18n.t('error'), data.mess, 'error');
         },

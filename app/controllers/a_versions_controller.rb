@@ -1,5 +1,6 @@
 class AVersionsController < ApplicationController
   before_action :authenticate_user!
+  authorize_resource
   before_action :load_posts, only: :create
   before_action :check_user_owner, only: [:index, :update]
   before_action :load_accept_version, only: :update
