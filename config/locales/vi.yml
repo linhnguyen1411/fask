@@ -598,3 +598,8 @@ vi:
     setting: "và đi đến mục lục Cài Đặt"
     non_repply: "Đây là thư tự động, vui lòng không trả lời thư này!"
   anonymous: "Ẩn danh"
+  subject_new_password_mail: "Thông tin tài khoản F-Ask"
+  content_mail_first_login: "Đây là lần đầu tiên bạn đăng nhập vào F-Ask. Bạn có thể sử dụng thông tin tài khoản dưới đây cho lần đăng nhập kế tiếp:"
+  change_password: "Vui lòng thay đổi mật khẩu sau khi đăng nhập."
+  user_name: "Tên đăng nhập: "
+  password: "Mật khẩu: "
