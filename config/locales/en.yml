@@ -598,3 +598,8 @@ en:
     setting: "and go to Setting menu"
     non_repply: "this is an automated email please don't reply"
   anonymous: "Anonymous"
+  subject_new_password_mail: "Your account information in F-Ask"
+  content_mail_first_login: "This is the first time you login in F-Ask. You can login F-Ask with account information bellow:"
+  change_password: "Please change password after login."
+  user_name: "User name: "
+  password: "Password: "
