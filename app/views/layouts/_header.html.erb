@@ -14,28 +14,30 @@
         <ul class="top-nav nav-right">
           <%= hidden_field_tag "user-loged-in", user_signed_in? ? current_user.id : false %>
           <% if user_signed_in? %>
-            <li class="dropdown notification">
-              <%= link_to "#", class: "dropdown-toggle",
-                data: {hover: "dropdown", tooggle: "dropdown", animations: "fadeInUp"} do %>
-                <span class="fa fa-bell notification-icon" aria-hidden="true"></span>
-                <span class="notification-count"><span class="number"><%= cout_noti %></span></span>
-              <% end %>
-              <ul class="dropdown-menu">
-                <div class="list-notifications">
-                  <%= render partial: "layouts/notification", collection: @list_notifications, as: :noti %>
-                </div>
-                <div class="notification-function">
-                  <%= link_to "javascript:", class: "notification-function-seen-all" do %>
-                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                    <%= t "notifications.seen_all" %>
-                  <% end %>
-                  <%= link_to notifications_path, class: "notification-function-view-all" do %>
-                    <i class="fa fa-list" aria-hidden="true"></i>
-                    <%= t "notifications.view_all" %>
-                  <% end %>
-                </div>
-              </ul>
-            </li>
+            <% if !check_user_anonymous %>
+              <li class="dropdown notification">
+                <%= link_to "#", class: "dropdown-toggle",
+                  data: {hover: "dropdown", tooggle: "dropdown", animations: "fadeInUp"} do %>
+                  <span class="fa fa-bell notification-icon" aria-hidden="true"></span>
+                  <span class="notification-count"><span class="number"><%= cout_noti %></span></span>
+                <% end %>
+                <ul class="dropdown-menu">
+                  <div class="list-notifications">
+                    <%= render partial: "layouts/notification", collection: @list_notifications, as: :noti %>
+                  </div>
+                  <div class="notification-function">
+                    <%= link_to "javascript:", class: "notification-function-seen-all" do %>
+                      <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                      <%= t "notifications.seen_all" %>
+                    <% end %>
+                    <%= link_to notifications_path, class: "notification-function-view-all" do %>
+                      <i class="fa fa-list" aria-hidden="true"></i>
+                      <%= t "notifications.view_all" %>
+                    <% end %>
+                  </div>
+                </ul>
+              </li>
+            <% end %>
             <li class="dropdown">
               <%= link_to "#", class: "dropdown-toggle",
                 data: {hover: "dropdown", tooggle: "dropdown", animations: "fadeInUp"} do %>
@@ -46,32 +48,34 @@
                 </span>
               <% end %>
               <ul class="dropdown-menu">
-                <li>
-                  <%= link_to activities_path do %>
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                    <%= t ".timeline" %>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to edit_user_registration_path do %>
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    <%= t ".profile" %>
-                  <% end %>
-                </li>
-                <% if check_permited_user_feedback %>
+                <% if !check_user_anonymous %>
                   <li>
-                    <%= link_to dashboard_feedbacks_path  do %>
+                    <%= link_to activities_path do %>
+                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                      <%= t ".timeline" %>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to edit_user_registration_path do %>
                       <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                      <%= t "posts.status.management" %>
+                      <%= t ".profile" %>
+                    <% end %>
+                  </li>
+                  <% if check_permited_user_feedback %>
+                    <li>
+                      <%= link_to dashboard_feedbacks_path  do %>
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        <%= t "posts.status.management" %>
+                      <% end %>
+                    </li>
+                  <% end %>
+                  <li>
+                    <%= link_to edit_user_setting_path(current_user) do %>
+                      <i class="fa fa-cog" aria-hidden="true"></i>
+                      <%= t "setting" %>
                     <% end %>
                   </li>
                 <% end %>
-                <li>
-                  <%= link_to edit_user_setting_path(current_user) do %>
-                    <i class="fa fa-cog" aria-hidden="true"></i>
-                    <%= t "setting" %>
-                  <% end %>
-                </li>
                 <li>
                   <%= link_to destroy_user_session_path, method: :delete do %>
                     <i class="fa fa-sign-out" aria-hidden="true"></i>

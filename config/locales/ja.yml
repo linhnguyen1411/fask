@@ -603,3 +603,4 @@ ja:
   change_password: "Please change password after login."
   user_name: "User name: "
   password: "Password: "
+  anonymous_edit_user: "You don't have permission visit this page"
