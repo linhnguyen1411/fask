@@ -188,7 +188,7 @@ class PostsController < ApplicationController
 
   def check_user_owner_feedback
     if @post.topic_id == Settings.topic.feedback_number && !@post.accept?
-      return if @post.user == current_user
+      return if @post.user == current_user && current_user.id != Settings.anonymous_number
       flash[:danger] = t ".not_found"
       redirect_to root_path
     end

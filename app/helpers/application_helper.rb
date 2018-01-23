@@ -175,4 +175,8 @@ module ApplicationHelper
       end
     end
   end
+
+  def check_user_anonymous
+    return true if current_user.id == Settings.anonymous_number
+  end
 end

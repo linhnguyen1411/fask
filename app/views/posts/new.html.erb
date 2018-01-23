@@ -29,14 +29,17 @@
             <div class="margin-top-40">
               <div class="form-group">
                 <label><%= t ".toppic" %><span class="red-title"> *</span></label>
-                <%= f.select :topic_id, load_select_box_topic(@support.topic_list), {},
-                  {class: "questions-category form-control", id: "select-toppic"} %>
+                <%= f.select :topic_id, options_for_select(load_select_box_topic(@support.topic_list),
+                disabled: Settings.topic.q_a), {}, {class: "questions-category form-control",
+                  id: "select-toppic"} %>
               </div>
-              <div class="form-group" id="anonymous">
-                <label><%= t ".account" %><span class="red-title"> *</span></label>
-                <%= select_tag :anonymous, options_for_select(load_select_box_account, Settings.anonymous_number),
-                  class: "questions-category form-control" %>
-              </div>
+              <% if !check_user_anonymous %>
+                <div class="form-group" id="anonymous">
+                  <label><%= t ".account" %><span class="red-title"> *</span></label>
+                  <%= select_tag :anonymous, options_for_select(load_select_box_account, Settings.anonymous_number),
+                    class: "questions-category form-control" %>
+                </div>
+              <% end %>
               <div class="form-group">
                 <label><%= t ".location" %><span class="red-title"> *</span></label>
                 <%= f.select :work_space_id, load_select_box_work_space(@support.work_space_list), {},

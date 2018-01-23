@@ -603,3 +603,4 @@ vi:
   change_password: "Vui lòng thay đổi mật khẩu sau khi đăng nhập."
   user_name: "Tên đăng nhập: "
   password: "Mật khẩu: "
+  anonymous_edit_user: "Bạn không có quyền truy cập vào trang này"

@@ -145,13 +145,15 @@
                 <%= render partial: "posts/comment",
                   collection: @post_extension.comments_of_post, as: :comment %>
               </div>
-              <div class="row bottom-comments">
-                <div class="btn-new-comment col-md-6 col-xs-12">
-                  <%= link_to t(".new_comment"), "javascript:", class: "add-new-comment",
-                    is_login: user_signed_in? %>
+              <% if !check_user_anonymous %>
+                <div class="row bottom-comments">
+                  <div class="btn-new-comment col-md-6 col-xs-12">
+                    <%= link_to t(".new_comment"), "javascript:", class: "add-new-comment",
+                      is_login: user_signed_in? %>
+                  </div>
                 </div>
-              </div>
-              <% if user_signed_in? %>
+              <% end %>
+              <% if user_signed_in? && !check_user_anonymous %>
                 <div class="editable" contenteditable="true"
                   placeholder="<%= t("comments.create.content") %>"></div>
                 <div class="comment-new">
@@ -175,7 +177,7 @@
             <% end %>
             <div class="clearfix"></div>
           </div>
-          <% if check_permited_user_feedback || !check_feeback_topic(@post.topic_id) %>
+          <% if check_permited_user_feedback || !check_feeback_topic(@post.topic_id) && !check_user_anonymous %>
             <div id="answer-form">
               <%= render "posts/answer_form", answer: @answer, post: @post,
                 option: {remote: false} %>
