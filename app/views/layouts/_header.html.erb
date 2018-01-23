@@ -152,17 +152,22 @@
         <% end %>
       <% end %>
     </div>
-    <div class="navbar-collapse collapse col-md-7">
+    <div class="navbar-collapse collapse col-md-7 pull-right">
       <ul class="nav navbar-nav navbar-right">
-        <li class="hidden-sm"><%= link_to t(".q_a"), topic_path(Settings.topic.q_a), id: "link-topic-qa" %></li>
-        <li><%= link_to t(".feedback"), topic_path(Settings.topic.feedback), id: "link-topic-fb" %></li>
-        <li><%= link_to t(".confession"), topic_path(Settings.topic.confesstion), id: "link-topic-cf" %></li>
+          <li class="hidden-sm"><%= link_to t(".q_a"), topic_path(Settings.topic.q_a),
+            id: "link-topic-qa" %></li>
+          <li><%= link_to t(".feedback"), topic_path(Settings.topic.feedback),
+            id: "link-topic-fb" %></li>
+          <!-- <li><%= link_to t(".confession"), topic_path(Settings.topic.confesstion),
+            id: "link-topic-cf" %></li> -->
         <li>
           <div class="btn-nav">
-            <%= link_to t(".post_question"), new_post_path(topic_id: @topic), class: "btn btn-primary btn-small navbar-btn" %>
+            <%= link_to t(".post_question"), new_post_path(topic_id: @topic),
+              class: "btn btn-primary btn-small navbar-btn" %>
           </div>
         </li>
       </ul>
     </div>
   </div>
 </div>
+<span class="anonymous_number" data-id = "<%= current_user.id %>"></span>

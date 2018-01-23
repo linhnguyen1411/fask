@@ -125,13 +125,13 @@ module PostsHelper
       content = '<span class="count-heart">' + "#{count_loves reactions}" + '</span><i class="fa fa-heartbeat"></i>'
     end
     if current_user.present?
-      link_to "javascript:", class: "btn btn-sm btn-default btn-vote",
+      link_to "javascript:", class: "btn btn-sm btn-default btn-vote anonymous",
         data: {toggle: "tooltip", placement: "bottom", "original-title": title,
         model: item.class.name, type: type, id: item.id } do
         raw content
       end
     else
-      link_to "javascript:", class: "btn btn-sm btn-default btn-loggin-continue",
+      link_to "javascript:", class: "btn btn-sm btn-default btn-loggin-continue anonymous",
         data: {toggle: "tooltip", placement: "bottom", "original-title": title} do
         raw content
       end
@@ -161,7 +161,7 @@ module PostsHelper
   def load_btn_correct_answer answer, post
     if current_user.present? && !answer.best_answer && current_user.id == post.user_id && answer.user != current_user
       return link_to t(".correct_answer"), "javascript:",
-        class: "btn btn-sm btn-default btn-hover-primary correct-answer", data: {id: answer.id}
+        class: "btn btn-sm btn-default btn-hover-primary correct-answer anonymous", data: {id: answer.id}
     end
   end
 

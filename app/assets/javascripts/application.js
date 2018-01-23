@@ -41,5 +41,10 @@ $(document).ready(function(){
   $('.zoom-img').each(function(){
     $(this).viewer();
   });
+  $(document).on('mouseover','.anonymous', function(){
+    if($('.anonymous_number').data('id') == 1){
+      $(this).attr('disabled','disabled').click(function(){return false});
+    }
+  });
 });
 CKEDITOR.config.customConfig = '/assets/ckeditor/ckeditor_config.js';

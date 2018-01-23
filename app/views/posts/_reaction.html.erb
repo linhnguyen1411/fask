@@ -6,23 +6,23 @@
       </div>
       <div class="modal-body">
         <ul class="nav nav-tabs" id="tabContent">
-          <% if count_likes(item) > Settings.zero_reaction %>
+          <% if count_likes(reactions) > Settings.zero_reaction %>
             <li class="active"><a href="#likes" data-toggle="tab">
-              <i class="fa fa-thumbs-o-up red"aria-hidden="true"></i> <%=count_likes item %></a></li>
+              <i class="fa fa-thumbs-o-up red"aria-hidden="true"></i> <%=count_likes reactions %></a></li>
           <% end %>
-          <% if count_loves(item) > Settings.zero_reaction %>
-            <% if count_likes(item) == Settings.zero_reaction %>
+          <% if count_loves(reactions) > Settings.zero_reaction %>
+            <% if count_likes(reactions) == Settings.zero_reaction %>
               <li class="active">
             <% else %>
               <li>
             <% end %>
-                <a href="#loves" data-toggle="tab"><i class="fa fa-heart-o"
-                aria-hidden="true"></i> <%=count_loves item %></a></li>
+              <a href="#loves" data-toggle="tab"><i class="fa fa-heart-o"
+              aria-hidden="true"></i> <%=count_loves reactions %></a></li>
           <% end %>
         </ul>
         <div class="tab-content reactions-tab">
           <div class="tab-pane active" id="likes">
-            <% item.reactions.like.each do |like|%>
+            <% reactions[Settings.reaction_type.like].each do |like|%>
               <div class="row list-user-reactions">
                 <div class="col-md-8 reactions-list-item">
                   <%= image_tag like.user_avatar.url %>
@@ -31,40 +31,36 @@
                 <div class="col-md-4 follow_unfollow_<%= like.user.id %>">
                   <% if user_signed_in? && current_user != like.user %>
                     <% if check_follow like.user.id %>
-                      <%= link_to t(".unfollow"), "javascript:void(0)",
-                      class: "btn btn-warning btn-xs",
-                      onclick:"handle_follow_user('" + like.user.id.to_s + "', '" + follow_path(like.user.id) + "')" %>
+                      <%= link_to t(".unfollow"), "javascript:void(0)", data:{user_id: like.user.id, url: follow_path(like.user.id)},
+                      class: "btn btn-warning btn-xs anonymous follow-unfollow" %>
                     <% else  %>
-                      <%= link_to t(".follow"), "javascript:void(0)",
-                      class: "btn btn-success btn-xs",
-                      onclick: "handle_follow_user('" + like.user.id.to_s + "', '" + follow_path(like.user.id) + "')" %>
+                      <%= link_to t(".follow"), "javascript:void(0)", data:{user_id: like.user.id, url: follow_path(like.user.id)},
+                      class: "btn btn-warning btn-xs anonymous follow-unfollow"%>
                     <% end %>
                   <% end  %>
                 </div>
               </div>
             <% end %>
           </div>
-          <% if count_likes(item) == Settings.zero_reaction %>
+          <% if count_likes(reactions) == Settings.zero_reaction %>
             <div class="tab-pane active" id="loves">
           <% else %>
             <div class="tab-pane" id="loves">
           <% end %>
-            <% item.reactions.heart.each do |like|%>
+            <% reactions[Settings.reaction_type.heart].each do |love|%>
               <div class="row list-user-reactions">
                 <div class="col-md-8 reactions-list-item">
-                  <%= image_tag like.user_avatar.url %>
-                  <span class="name-user-reactions"><%= like.user_name %></span>
+                  <%= image_tag love.user_avatar.url %>
+                  <span class="name-user-reactions"><%= love.user_name %></span>
                 </div>
-                <div class="col-md-4 follow_unfollow_<%= like.user.id %>">
-                  <% if user_signed_in? && current_user != like.user %>
-                    <% if check_follow like.user.id %>
-                      <%= link_to t(".unfollow"), "javascript:void(0)",
-                      class: "btn btn-warning btn-xs",
-                      onclick:"handle_follow_user('" + like.user.id.to_s + "', '" + follow_path(like.user.id) + "')" %>
+                <div class="col-md-4 follow_unfollow_<%= love.user.id %>">
+                  <% if user_signed_in? && current_user != love.user %>
+                    <% if check_follow love.user.id %>
+                      <%= link_to t(".unfollow"), "javascript:void(0)", data:{user_id: love.user.id, url: follow_path(love.user.id)},
+                      class: "btn btn-warning btn-xs anonymous follow-unfollow" %>
                     <% else  %>
-                      <%= link_to t(".follow"), "javascript:void(0)",
-                      class: "btn btn-success btn-xs",
-                      onclick: "handle_follow_user('" + like.user.id.to_s + "', '" + follow_path(like.user.id) + "')" %>
+                      <%= link_to t(".follow"), "javascript:void(0)", data:{user_id: love.user.id, url: follow_path(love.user.id)},
+                      class: "btn btn-warning btn-xs anonymous follow-unfollow"%>
                     <% end %>
                   <% end  %>
                 </div>

@@ -56,10 +56,12 @@
       <div class="comment-list" id="comment-list-answer-<%= answer.id %>">
         <%= render partial: "posts/comment", collection: answer.comments, as: :comment %>
       </div>
-      <div class="btn-new-comment">
-        <%= link_to t("posts.show.new_comment"), "javascript:", class: "add-new-comment",
-          is_login: user_signed_in? %>
-      </div>
+      <% if !check_user_anonymous %>
+        <div class="btn-new-comment">
+          <%= link_to t("posts.show.new_comment"), "javascript:", class: "add-new-comment",
+            is_login: user_signed_in? %>
+        </div>
+      <% end %>
       <% if user_signed_in? %>
         <div class="editable" contenteditable="true"
           placeholder="<%= t("comments.create.content") %>"></div>

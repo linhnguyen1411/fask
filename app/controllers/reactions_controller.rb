@@ -5,7 +5,9 @@ class ReactionsController < ApplicationController
   def index
     if @item.blank?
       @success = false
-     end
+    else
+      @reactions = @item.reactions.includes_user.group_by{|reaction| reaction.target_type}
+    end
     respond_to do |format|
       format.js
     end

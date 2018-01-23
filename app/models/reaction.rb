@@ -11,6 +11,8 @@ class Reaction < ApplicationRecord
   delegate :name, :position, :avatar, to: :user, prefix: true
 
   scope :get_reaction_not_dislike, -> type {where "target_type != ?",type}
+
+  scope :includes_user, -> {includes(:user)}
   private
 
   def create_activity

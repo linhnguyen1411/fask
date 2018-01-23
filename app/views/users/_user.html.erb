@@ -24,19 +24,16 @@
   <div class="follow_unfollow_<%= user.id %> list-function">
     <% if user_signed_in? %>
       <% if check_follow user.id %>
-        <%= link_to t(".unfollow"), "javascript:void(0)",
-        class: "btn btn-warning btn-xs",
-        onclick:"handle_follow_user('" + user.id.to_s + "', '" + follow_path(user.id) + "')" %>
+        <%= link_to t(".unfollow"), "javascript:void(0)", data:{user_id: user.id, url: follow_path(user.id)},
+          class: "btn btn-warning btn-xs anonymous follow-unfollow" %>
       <% else  %>
-        <%= link_to t(".follow"), "javascript:void(0)",
-        class: "btn btn-success btn-xs",
-        onclick: "handle_follow_user('" + user.id.to_s + "', '" + follow_path(user.id) + "')" %>
+        <%= link_to t(".follow"), "javascript:void(0)", data:{user_id: user.id, url: follow_path(user.id)},
+          class: "btn btn-success btn-xs anonymous follow-unfollow" %>
       <% end %>
     <% else %>
       <div class="btn-new-comment">
         <%= link_to t(".follow"), "javascript:void(0)",
-          class: "btn btn-success btn-xs add-new-comment",
-          is_login: user_signed_in? %>
+          class: "btn btn-success btn-xs add-new-comment", is_login: user_signed_in? %>
       </div>
     <% end  %>
   </div>

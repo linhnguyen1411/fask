@@ -14,6 +14,11 @@ $(document).ready(function(){
   });
 
   update_password();
+  $(document).on('click', '.follow-unfollow', function(){
+    var id = $(this).data('user-id');
+    var url = $(this).data('url');
+    handle_follow_user(id, url);
+  })
 });
 
 function handle_follow_user(id, route) {
@@ -24,17 +29,15 @@ function handle_follow_user(id, route) {
     success: function (data) {
       if(data.type) {
         var html = '';
-        var onClickFun = 'onclick=handle_follow_user("' + id + '","' + route + '")';
-
         if (data.relationships === 'follow') {
-          html = '<a class="btn btn-warning btn-xs btn_handle_follow"' +
-            'href="javascript:void(0)"' + onClickFun + '>' +
+          html = '<a class="follow-unfollow btn btn-warning btn-xs btn_handle_follow"' +
+            'href="javascript:void(0)" data-user-id="' + id + '" data-url="' + route + '">' +
             I18n.t('users.user.unfollow') +
             '</a>';
           $('.follow_unfollow_' + id).closest('.user-item').find('.ticker-follow-false').removeClass('ticker-follow-false').addClass('ticker-follow-true');
         } else {
-          html = '<a class="btn btn-success btn-xs btn_handle_follow"' +
-            'href="javascript:void(0)"' + onClickFun + '>' +
+          html = '<a class="follow-unfollow btn btn-success btn-xs btn_handle_follow"' +
+            'href="javascript:void(0)" data-user-id="' + id + '" data-url="' + route + '">' +
             I18n.t('users.user.follow') +
             '</a>';
           $('.follow_unfollow_' + id).closest('.user-item').find('.ticker-follow-true').removeClass('ticker-follow-true').addClass('ticker-follow-false');

@@ -28,7 +28,7 @@
               <div class="row vote-of-post text-center">
                 <% if current_user.present? %>
                   <div class="btn-action">
-                    <%= link_to "javascript:", class: "btn-vote",
+                    <%= link_to "javascript:", class: "btn-vote anonymous",
                       data: {type: Settings.reaction_type.up, model: Post.name,
                       id: @post.id} do %>
                       <i class="fa fa-angle-up" aria-hidden="true"></i>
@@ -36,7 +36,7 @@
                   </div>
                   <div class="point-vote"><%= @post_extension.count_vote %></div>
                   <div class="btn-action">
-                    <%= link_to "javascript:", class: "btn-vote",
+                    <%= link_to "javascript:", class: "btn-vote anonymous",
                       data: {type: Settings.reaction_type.down, model: Post.name,
                       id: @post.id} do %>
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
@@ -110,7 +110,8 @@
                       <%= content_post @post, @post_extension.check_a_version_for_post %>
                     </span>
                     </br>
-                    <% if @post.user_id != current_user.id && @post.topic_id == Settings.post_topic_qa %>
+                    <% if @post.user_id != current_user.id && @post.topic_id == Settings.post_topic_qa &&
+                      !check_user_anonymous %>
                       <%= link_to (t"version.improve_this_post"), "javascript:", class: "improve-post" %>
                       <div id="improve-form" style="display: none;">
                         <%= render "posts/improve_form", post: @post, option: {remote: false} %>
