@@ -1,5 +1,6 @@
 class UserSettingsController < ApplicationController
   before_action :load_user, only: [:edit, :update]
+  authorize_resource :user, parent: false
   before_action :correct_user, only: [:edit, :update]
 
   def edit; end

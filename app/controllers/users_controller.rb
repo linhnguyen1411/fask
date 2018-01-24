@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :load_user, only: [:show, :update]
   before_action :authenticate_user
+  authorize_resource
+  before_action :load_user, only: [:show, :update]
   before_action :see_notification, only: :show
 
   def index
@@ -11,6 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user_support = Supports::UserSupport.new @user
   end
 
   def update

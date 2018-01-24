@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user
+  authorize_resource
   before_action :check_user, only: :create
   before_action :load_post, except: [:new, :index, :create]
   before_action :plus_count_view, only: :show
@@ -8,10 +9,10 @@ class PostsController < ApplicationController
 
   def index
     if params[:query].present?
-      @posts = Post.search params[:query], operator: "or",
+      @posts = Post.accept.search params[:query], operator: "or",
         page: params[:page], per_page: Settings.paginate_default
     else
-      @posts = Post.page(params[:page]).per Settings.paginate_default
+      @posts = Post.accept.page(params[:page]).per Settings.paginate_default
     end
   end
 
@@ -108,7 +109,6 @@ class PostsController < ApplicationController
   end
 
   def check_user
-    @post = Post.new feedback_params
     case
     when params[:post][:topic_id] == Settings.topic.confesstion
       @user = User.first
@@ -129,6 +129,7 @@ class PostsController < ApplicationController
     if post.topic_name == Settings.feedback
       post.status = Settings.post.status.waiting
     end
+    authorize! :create, post
     if post.save
       check_post_saved post
     else
@@ -188,7 +189,7 @@ class PostsController < ApplicationController
 
   def check_user_owner_feedback
     if @post.topic_id == Settings.topic.feedback_number && !@post.accept?
-      return if @post.user == current_user && current_user.id != Settings.anonymous_number
+      return if @post.user_id == current_user.id && current_user.id != Settings.anonymous_number
       flash[:danger] = t ".not_found"
       redirect_to root_path
     end

@@ -1,6 +1,6 @@
 module PostsHelper
   def load_select_box_account
-    [[current_user.name, current_user.id], [I18n.t("anonymous"), Settings.anonymous_number]]
+    [[current_user.name, current_user.id], [I18n.t("anonymous"), Settings.anonymous_number]].uniq
   end
 
   def load_select_box_topic topic_list

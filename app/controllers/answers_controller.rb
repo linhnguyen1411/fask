@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user
+  authorize_resource
   before_action :check_post, only: :create
   before_action :load_answer, only: [:update, :edit, :destroy]
   before_action :check_onwer_answer, only: [:update, :destroy]

@@ -8,13 +8,13 @@ RSpec.describe "users/show.html.erb", type: :view do
   let!(:answer) {FactoryGirl.create :answer, user_id: user.id, post_id: post.id}
   let!(:comment) {FactoryGirl.create :comment, user_id: user.id,
     commentable_id: post.id, commentable_type: Post.name}
+  let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
+  before {sign_in user}
 
   it "show user page" do
     assign :user, user
 
     render
-    expect(subject).to render_template('users/_post')
-    expect(subject).to render_template('users/_comment')
-    expect(subject).to render_template('users/_answer')
+    expect(subject).to render_template('users/show')
   end
 end

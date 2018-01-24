@@ -1,5 +1,6 @@
 class Dashboard::PostsController < ApplicationController
   before_action :authenticate_user
+  authorize_resource
 
   def index
     @supports = Supports::FeedbackSupport.new(current_user, post_params.to_h)

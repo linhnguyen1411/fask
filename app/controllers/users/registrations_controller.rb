@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
-  before_action :check_anonymous
+  authorize_resource :user, parent: false
 
   def update
     if current_user.is_create_by_wsm
@@ -25,11 +25,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
     if !current_user.is_create_by_wsm
       params.require(:user).permit :name, :avatar
     end
-  end
-
-  def check_anonymous
-    return if current_user.id != Settings.anonymous_number
-    flash[:danger] = t "anonymous_edit_user"
-    redirect_to root_path
   end
 end

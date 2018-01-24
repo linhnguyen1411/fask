@@ -19,6 +19,9 @@ function create_clip() {
         }
         else if(data.not_login)
           window.location.replace('/users/sign_in');
+        else if(data.not_authorized){
+          notify_not_authorized();
+        }
         else
           sweetAlert(I18n.t('error'), I18n.t('clips.create_error'), 'error');
       },
@@ -44,6 +47,9 @@ function destroy_clip() {
           $(item).unbind();
           create_clip();
           $('#post-tile').html($('#post-tile').html().split('<span class="glyphicon glyphicon-pushpin icon-clip"></span>'));
+        }
+        else if(data.not_authorized){
+          notify_not_authorized();
         }
         else if(data.not_login)
           window.location.replace('/users/sign_in');

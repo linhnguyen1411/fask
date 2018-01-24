@@ -41,6 +41,7 @@ gem "roo"
 gem "axlsx_rails"
 gem "axlsx", "~> 2.0"
 gem "delayed_job_active_record"
+gem "cancancan", "~> 2.0"
 
 group :development, :test do
   gem "byebug"

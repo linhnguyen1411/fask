@@ -130,6 +130,9 @@ function reject_a_version() {
               $('.a-version-'+ id ).fadeOut();
             }
           }
+          else if(data.not_authorized){
+            notify_not_authorized();
+          }
           else if(data.not_login)
             window.location.replace('/users/sign_in');
           else

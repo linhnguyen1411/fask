@@ -8,7 +8,11 @@ class Supports::FeedbackSupport
     end
 
     def get_post_of_user
-      @user.posts.post_full_includes.newest.page(@page_post).per Settings.paginate_default
+      if @user.id == Settings.anonymous_number
+        @user.posts.accept
+      else
+        @user.posts
+      end.post_full_includes.newest.page(@page_post).per Settings.paginate_default
     end
 
     def get_clip_post_of_user

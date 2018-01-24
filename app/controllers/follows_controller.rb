@@ -1,6 +1,7 @@
 class FollowsController < ApplicationController
   include UsersHelper
   before_action :authenticate_user
+  authorize_resource :relationship, parent: false
 
   def update
     if params[:id].present?
