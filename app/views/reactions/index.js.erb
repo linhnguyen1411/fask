@@ -13,6 +13,6 @@
     window.location.replace('/users/sign_in');
   });
 <% else %>
-  $('.like-modal').html('<%= j render "posts/reaction", item: @item %>');
+  $('.like-modal').html('<%= j render "posts/reaction", item: @item, reactions: @reactions %>');
   $('#modal-show-reactions').modal();
 <% end %>
