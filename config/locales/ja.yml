@@ -606,3 +606,4 @@ ja:
   anonymous_edit_user: "You don't have permission visit this page"
   authorization_error: "You are not authorized to access this page. Do you want to switch user?"
   not_authorized: "You are not authorized to access this page"
+  switch_anonymous: "Switch anonymous"

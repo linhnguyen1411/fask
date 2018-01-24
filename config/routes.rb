@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post "/upload_image", to: "images#upload_image"
   get "/download_file/:name", to: "images#access_file", as: :upload_access_file, name: /.*/
   get "/change_languages/update"
+  get "switch_user", to: "switch_user#set_current_user"
 
   resources :posts
   resources :suggest_tags, only: :index
