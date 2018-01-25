@@ -93,7 +93,7 @@
                       <% end %>
                       <span class="float-right">
                         <%= raw load_button_functions_post(@post) %>
-                        <% if @post.topic_id != Settings.topic.feedback_number %>
+                        <% if @post.topic_id != Settings.topic.feedback_number && !check_user_anonymous %>
                           <%= link_to "javascript:void(0)", data:
                             { toggle: "collapse",target: "#share_btn"} do %>
                               <i class="fa fa-share-alt btn-share" aria-hidden="true"></i>
@@ -245,7 +245,7 @@
         <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">
           <%= t "cancel" %></button>
         <button type="button" class="btn btn-xs btn-primary
-          btn-accept-edit-comment" data-dismiss="modal">
+          btn-accept-edit-comment">
           <%= t "ok" %>
         </button>
       </div>
