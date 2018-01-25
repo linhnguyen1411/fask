@@ -43,7 +43,7 @@ $(document).ready(function(){
   });
   $(document).on('mouseover','.anonymous', function(){
     if($('.anonymous_number').data('id') == 1){
-      $(this).attr('disabled','disabled').click(function(){return false});
+      $(this).attr('disabled','disabled').css('cursor', 'not-allowed').click(function(){return false});
     }
   });
 });
