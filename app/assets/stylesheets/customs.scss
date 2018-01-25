@@ -217,7 +217,7 @@ p {
   margin-bottom: 0 !important;
 }
 .content-post{
-  max-height: 69px;
+  max-height: 73px;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #000000;
@@ -228,6 +228,7 @@ p {
 .listing-grid p {
   overflow: hidden;
   text-overflow: ellipsis;
+  margin-bottom: 17px !important;
 }
 .text-center.owner-avatar{
   width: 12%
