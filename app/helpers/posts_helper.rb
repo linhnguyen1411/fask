@@ -159,7 +159,7 @@ module PostsHelper
   end
 
   def load_btn_correct_answer answer, post
-    if current_user.present? && !answer.best_answer && current_user.id == post.user_id && answer.user != current_user
+    if !check_user_anonymous && !answer.best_answer && current_user.id == post.user_id && answer.user != current_user
       return link_to t(".correct_answer"), "javascript:",
         class: "btn btn-sm btn-default btn-hover-primary correct-answer anonymous", data: {id: answer.id}
     end
