@@ -15,29 +15,37 @@ $('.btn-accept-edit-comment').unbind();
 $('.btn-accept-edit-comment').click(function(){
   var content = $('#edit-comment-editable').html();
   var id = $('#edit-comment-editable').attr('data-id');
-  $.ajax({
-    url: '/comments/' + id,
-    type: 'PATCH',
-    dataType: 'json',
-    data: {
-      content: content
-    },
-    success: function (data) {
-      if (data.type) {
-        $('.comment-item-' + id).find('.content').hide();
-        $('.comment-item-' + id).find('.content').html(data.content);
-        $('.comment-item-' + id).find('.content').show('500');
-      }
-      else if(data.not_login)
-        window.location.replace('/users/sign_in');
-      else if(data.not_authorized){
-        notify_not_authorized();
-      }
-      else
-        sweetAlert(I18n.t('reactions.create.error'), '', 'error');
-    },
-    error: function () {}
-  });
+  if ($('#edit-comment-editable').text().length == 0) {
+    $('.editable').css('border','2px solid red');
+    setTimeout(function(){
+      $('.editable').css('border', '');
+    }, 500);
+  }else{
+    $.ajax({
+      url: '/comments/' + id,
+      type: 'PATCH',
+      dataType: 'json',
+      data: {
+        content: content
+      },
+      success: function (data) {
+        if (data.type) {
+          $('.comment-item-' + id).find('.content').hide();
+          $('.comment-item-' + id).find('.content').html(data.content);
+          $('.comment-item-' + id).find('.content').show('500');
+          $('#modal-edit-comment').modal('hide');
+        }
+        else if(data.not_login)
+          window.location.replace('/users/sign_in');
+        else if(data.not_authorized){
+          notify_not_authorized();
+        }
+        else
+          sweetAlert(I18n.t('reactions.create.error'), '', 'error');
+      },
+      error: function () {}
+    });
+  }
 });
 
 $('.btn-delete-comment').unbind();
