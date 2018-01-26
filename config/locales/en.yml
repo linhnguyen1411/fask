@@ -69,7 +69,7 @@ en:
       step_3: "Find Your Solution"
       search_panel:
         title: "HAVE A QUESTION?"
-        content: "If you have questions about teachnical stuffs, suggestions for company, or want to share your feelings and thoughts in confession, you can search here!"
+        content: "If you have questions about teachnical stuffs, suggestions for company, you can search here!"
         placeholder: "Type your search terms here"
         button: "Search"
       question_not_exist: "Question not exist."
@@ -607,3 +607,5 @@ en:
   authorization_error: "You are not authorized to access this page. Do you want to switch user?"
   not_authorized: "You are not authorized to access this page"
   switch_anonymous: "Anonymous"
+  topic_1: "Knowledge Q&A"
+  topic_2: "Idea Box"
