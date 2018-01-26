@@ -4,7 +4,7 @@ module PostsHelper
   end
 
   def load_select_box_topic topic_list
-    topic_list.collect{|t| [t.name, t.id]}
+    topic_list.collect{|topic| [I18n.t("topic_#{topic.id}"), topic.id]}
   end
 
   def load_select_box_work_space work_space_list

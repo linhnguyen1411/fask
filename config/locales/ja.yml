@@ -607,3 +607,5 @@ ja:
   authorization_error: "You are not authorized to access this page. Do you want to switch user?"
   not_authorized: "You are not authorized to access this page"
   switch_anonymous: "Anonymous"
+  topic_1: "Knowledge Q&A"
+  topic_2: "Idea Box"
