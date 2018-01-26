@@ -25,7 +25,7 @@ en:
       profile: "Profile"
       logout: "Logout"
       q_a: "Knowledge Q&A"
-      feedback: "Feedback"
+      feedback: "Idea Box"
       confession: "Confession"
       post_question: "Create question"
       announcement: "Notification"
@@ -127,14 +127,14 @@ en:
       title: "Time Line"
   posts:
     status:
-      feedback_tab: "Feedback"
-      feedback_manager: "Feedback Management"
+      feedback_tab: "Idea Box"
+      feedback_manager: "Idea Box Management"
       management: "Management"
       reject_verify: "You sure!"
       accept_success: "Accepted"
       reject_success: "Rejected"
-      feedback_info: "Thank for your feedback, it will be checked and respond to you in next thursday."
-      feedback_reject: "Sorry, Your feedback has been rejected!"
+      feedback_info: "Thank for your idea, it will be checked and respond to you in next thursday."
+      feedback_reject: "Sorry, Your idea has been rejected!"
       delete_success: "Delete successful"
       delete_error: "Delete fail"
     index:
@@ -146,7 +146,7 @@ en:
       view: "VIEWS"
     new:
       title_name: "New post"
-      title: "Post Your QA-Knowledge/Feedback"
+      title: "Post Your QA-Knowledge/Idea"
       toppic: "Choose topic"
       account: "Choose account"
       location: "Location"
@@ -588,7 +588,7 @@ en:
       error: "Create failure"
   feedback_update:
     category_success: "Category of post was updated"
-    info: "Would you like to change this feedback category?"
+    info: "Would you like to change this idea category?"
   mail_noti:
     hi: "Hi"
     has_been_commented: " has been commented on your post"

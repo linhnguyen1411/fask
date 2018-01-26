@@ -69,7 +69,7 @@ ja:
       step_3: "ソリューションを探す"
       search_panel:
         title: "質問がありますか"
-        content: "If you have any knowledge-question/company-feedback/funny-confesstion you can ask below or enter what you are looking for!"
+        content: "If you have any knowledge-question/idea/ you can ask below or enter what you are looking for!"
         placeholder: "Type your search terms here"
         button: "探す"
       question_not_exist: "質問は存在しません"
@@ -127,14 +127,14 @@ ja:
       title: "タイムライン"
   posts:
     status:
-      feedback_tab: "Feedback"
-      feedback_manager: "Feedback Management"
+      feedback_tab: "Idea Box"
+      feedback_manager: "Idea Box Management"
       management: "Management"
       reject_verify: "You sure!"
       accept_success: "Accepted"
       reject_success: "Rejected"
-      feedback_info: "Thank for your feedback, it will be checked and respond to you in next thursday."
-      feedback_reject: "Sorry, Your feedback has been rejected!"
+      feedback_info: "Thank for your idea, it will be checked and respond to you in next thursday."
+      feedback_reject: "Sorry, Your idea has been rejected!"
       delete_success: "Delete successful"
       delete_error: "Delete fail"
     index:
@@ -146,13 +146,13 @@ ja:
       comment: "コメント"
     new:
       title_name: "新しい投稿"
-      title: "Post Your QA-Knowledge/Feedback"
+      title: "Post Your QA-Knowledge/Idea"
       toppic: "トピックを選択"
       account: "Choose account"
       location: "ロケーション"
       category: "Category"
       qa_info: "You have technical questions, please log in and ask questions here. The team members are always enthusiastic support for you."
-      feedback_info: "You have suggestions for building a company or company policy questions that you would like answered. Please feedback here. You can post as an individual or hide your identity."
+      feedback_info: "You have suggestions for building a company or company policy questions that you would like answered. Please give us your idea here. You can post as an individual or hide your identity."
       confession_info: "You have the heart of love to disclose but not confident enough. Let f-ask do that for you. F-ask does not store any of your information at confesstion."
       form:
         title: "タイトル"
@@ -588,7 +588,7 @@ ja:
       error: "Create failure"
   feedback_update:
     category_success: "Category of post was updated"
-    info: "Would you like to change this feedback category?"
+    info: "Would you like to change this idea category?"
   mail_noti:
     hi: "Hi"
     has_been_commented: " has been commented on your post"
