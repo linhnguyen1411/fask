@@ -146,7 +146,7 @@ en:
       view: "VIEWS"
     new:
       title_name: "New post"
-      title: "Post Your QA-Knowledge/Feedback/Confession"
+      title: "Post Your QA-Knowledge/Feedback"
       toppic: "Choose topic"
       account: "Choose account"
       location: "Location"

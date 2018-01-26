@@ -146,7 +146,7 @@ ja:
       comment: "コメント"
     new:
       title_name: "新しい投稿"
-      title: "Post Your QA-Knowledge/Feedback/Confession"
+      title: "Post Your QA-Knowledge/Feedback"
       toppic: "トピックを選択"
       account: "Choose account"
       location: "ロケーション"
