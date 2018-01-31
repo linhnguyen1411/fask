@@ -114,7 +114,11 @@
                     <%= f.text_field :name, class: "form-control" %>
                   <% end %>
                 </div>
-                <%= f.submit t("profile.btn_update"), class: "btn btn-primary btn-lg form-button" %>
+                <% if current_user.is_create_by_wsm %>
+                  <%= f.submit t("profile.btn_update"), class: "btn btn-primary btn-lg form-button hidden" %>
+                <% else %>
+                  <%= f.submit t("profile.btn_update"), class: "btn btn-primary btn-lg form-button" %>
+                <% end %>
                 <%= link_to t("profile.btn_update_pass"), "#modal-update-password",
                   class: "btn btn-primary btn-lg form-button mg-bt-0", data: {toggle: "modal"} %>
             </div>
