@@ -57,7 +57,7 @@ vi:
       top_views: "Xem nhiều"
       top_votes: "Đánh giá cao"
       top_users: "Bảng xếp hạng người dùng"
-      category_list: "Danh sách thể loại"
+      category_list: "Category"
       popular_tags: "Top các tags"
       all_tags: "Tất cả tags"
       tags: "Danh sách các tags"
@@ -146,12 +146,12 @@ vi:
       view: "LƯỢT XEM"
     new:
       title_name: "Bài viết mới"
-      title: "Gửi câu hỏi kỹ thuật, góp ý cho công ty."
+      title: "Gửi Câu Hỏi"
       toppic: "Chọn chủ đề"
       account: "Chọn tài khoản"
       location: "Chi nhánh"
       category: "Thể loại"
-      qa_info: "Bạn có thắc mắc về kỹ thuật, vui lòng đăng nhập và đặt câu hỏi ở đây. Đội ngũ member luôn hộ trợ nhiệt tình cho bạn."
+      qa_info: "Vui lòng gửi những câu hỏi về kỹ thuật hay những ý kiến đóng góp đến công ty tại đây. Bạn có thể gửi câu hỏi bằng tên cá nhân hoặc tên ẩn danh."
       feedback_info: "Bạn có đề xuất để xây dựng công ty hay câu hỏi về chính sách công ty mà bạn muốn được trả lời. Xin vui lòng phản hồi ở đây. Bạn có thể gửi bài dưới danh tính cá nhân hoặc ẩn danh."
       confession_info: "Bạn có tâm tư tình cảm muốn thổ lộ nhưng không đủ tự tin. Hãy để f-ask làm điều đó thay bạn. F-ask không lưu bất cứ thông tin gì của bạn tại confesstion."
       form:
