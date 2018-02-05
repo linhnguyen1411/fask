@@ -25,7 +25,7 @@
             <% reactions[Settings.reaction_type.like].try(:each) do |like|%>
               <div class="row list-user-reactions">
                 <div class="col-md-8 reactions-list-item">
-                  <%= image_tag like.user_avatar.url %>
+                  <%= image_tag like.user_avatar %>
                   <span class="name-user-reactions"><%= like.user_name %></span>
                 </div>
                 <div class="col-md-4 follow_unfollow_<%= like.user.id %>">
@@ -50,7 +50,7 @@
             <% reactions[Settings.reaction_type.heart].try(:each) do |love|%>
               <div class="row list-user-reactions">
                 <div class="col-md-8 reactions-list-item">
-                  <%= image_tag love.user_avatar.url %>
+                  <%= image_tag love.user_avatar %>
                   <span class="name-user-reactions"><%= love.user_name %></span>
                 </div>
                 <div class="col-md-4 follow_unfollow_<%= love.user.id %>">
