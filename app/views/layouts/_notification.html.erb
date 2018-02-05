@@ -1,7 +1,7 @@
 <li class="<%= noti.not_seen? ? "status-no-seen" : "" %>">
   <%= link_to link_notification(noti), class: "notification-item" do %>
     <div class="col-md-2 text-center">
-      <%= image_tag noti.activity.owner.avatar, class: "user-avatar" %>
+      <%= image_tag noti.activity.owner.avatar.url, class: "user-avatar" %>
     </div>
     <div class="col-md-10">
       <div class="row pd-top-10">

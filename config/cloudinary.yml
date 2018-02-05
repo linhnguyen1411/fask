@@ -1,19 +1,19 @@
-# ---
-# development:
-#   cloud_name: ddslyeprp
-#   api_key: '991658429432648'
-#   api_secret: 7c9cDo8i_wG-kVe3yYt5RQxElZk
-#   enhance_image_tag: true
-#   static_image_support: false
-# production:
-#   cloud_name: ddslyeprp
-#   api_key: '991658429432648'
-#   api_secret: 7c9cDo8i_wG-kVe3yYt5RQxElZk
-#   enhance_image_tag: true
-#   static_image_support: true
-# test:
-#   cloud_name: ddslyeprp
-#   api_key: '991658429432648'
-#   api_secret: 7c9cDo8i_wG-kVe3yYt5RQxElZk
-#   enhance_image_tag: true
-#   static_image_support: false
+---
+development:
+  cloud_name: ddslyeprp
+  api_key: '991658429432648'
+  api_secret: 7c9cDo8i_wG-kVe3yYt5RQxElZk
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: ddslyeprp
+  api_key: '991658429432648'
+  api_secret: 7c9cDo8i_wG-kVe3yYt5RQxElZk
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: ddslyeprp
+  api_key: '991658429432648'
+  api_secret: 7c9cDo8i_wG-kVe3yYt5RQxElZk
+  enhance_image_tag: true
+  static_image_support: false
