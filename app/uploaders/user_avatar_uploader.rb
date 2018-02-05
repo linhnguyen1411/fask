@@ -5,12 +5,12 @@ class UserAvatarUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
-
+=begin
   if Rails.env.production?
     include Cloudinary::CarrierWave
     process tags: ["post_picture"]
   end
-
+=end
   process resize_to_limit: [400, 400]
 
   process convert: "png"
@@ -27,9 +27,9 @@ class UserAvatarUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   #storage :file
   # storage :fog
-  unless Rails.env.production?
+  #unless Rails.env.production?
     storage :file
-  end
+  #end
 
 
   # Override the directory where uploaded files will be stored.
