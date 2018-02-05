@@ -3,7 +3,7 @@
     <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
       <%= link_to "#", data: {toggle: :tooltip, placement: "bottom",
         original_title: "#{post.user_name}"} do %>
-        <%= image_tag post.user.avatar.url, class: "img-responsive center-block" %>
+        <%= image_tag post.user.avatar, class: "img-responsive center-block" %>
       <% end %>
     </div>
     <div class="col-md-7 col-sm-8  col-xs-12">
