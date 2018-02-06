@@ -176,4 +176,6 @@
     </div>
   </div>
 </div>
-<span class="anonymous_number" data-id = "<%= current_user.id %>"></span>
+<% if current_user.present? %>
+  <span class="anonymous_number" data-id = "<%= current_user.id %>"></span>
+<% end %>
