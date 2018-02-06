@@ -29,14 +29,9 @@
             <div class="margin-top-40">
               <div class="form-group">
                 <label><%= t ".toppic" %><span class="red-title"> *</span></label>
-                <% if check_user_anonymous %>
-                  <%= f.select :topic_id, options_for_select(load_select_box_topic(@support.topic_list),
-                    disabled: Settings.topic.q_a), {},
-                    {class: "questions-category form-control", id: "select-toppic"} %>
-                <% else %>
-                  <%= f.select :topic_id, load_select_box_topic(@support.topic_list), {},
-                    {class: "questions-category form-control", id: "select-toppic"} %>
-                <% end %>
+                <%= f.select :topic_id, options_for_select(load_select_box_topic(@support.topic_list),
+                  disabled: Settings.topic.q_a), {},
+                  {class: "questions-category form-control", id: "select-toppic"} %>
               </div>
               <% if !check_user_anonymous %>
                 <div class="form-group" id="anonymous">

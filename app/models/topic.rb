@@ -6,4 +6,5 @@ class Topic < ApplicationRecord
   has_many :users, through: :topices_users
 
   scope :load_topic_not_confession, -> { where.not id: Settings.topic.confesstion_number }
+  scope :load_feedback_topic, -> { where id: Settings.topic.feedback_number }
 end
