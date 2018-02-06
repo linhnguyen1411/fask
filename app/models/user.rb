@@ -80,6 +80,7 @@ class User < ApplicationRecord
         user.work_space_id = get_work_space_of_wsm_account_for_user(user,
           auth.info.workspaces, auth.info.workspace_default)
         SendPasswordMailer.send_password(user, password).deliver_now if user.new_record?
+        user.language = Settings.languages.en
         user.save
         user
       end

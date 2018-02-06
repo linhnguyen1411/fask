@@ -69,7 +69,7 @@ ja:
       step_3: "ソリューションを探す"
       search_panel:
         title: "質問がありますか"
-        content: "If you have any knowledge-question/idea/ you can ask below or enter what you are looking for!"
+        content: "If you have any idea you can ask below or enter what you are looking for!"
         placeholder: "Type your search terms here"
         button: "探す"
       question_not_exist: "質問は存在しません"
@@ -146,12 +146,12 @@ ja:
       comment: "コメント"
     new:
       title_name: "新しい投稿"
-      title: "Post Your QA-Knowledge/Idea"
+      title: "Post Your Questions"
       toppic: "トピックを選択"
       account: "Choose account"
       location: "ロケーション"
       category: "Category"
-      qa_info: "You have technical questions, please log in and ask questions here. The team members are always enthusiastic support for you."
+      qa_info: "Please submit technical questions or idea to the company here. You can submit questions using your personal or anonymous name."
       feedback_info: "You have suggestions for building a company or company policy questions that you would like answered. Please give us your idea here. You can post as an individual or hide your identity."
       confession_info: "You have the heart of love to disclose but not confident enough. Let f-ask do that for you. F-ask does not store any of your information at confesstion."
       form:
@@ -609,3 +609,6 @@ ja:
   switch_anonymous: "Anonymous"
   topic_1: "Knowledge Q&A"
   topic_2: "Idea Box"
+  admin:
+    sign_in: "Sign in"
+    title: "Admin"

@@ -1,0 +1,27 @@
+.admin-sign-in h1{
+  margin: 0 auto;
+  margin-top: 100px;
+  margin-bottom: 30px;
+  color: #000;
+}
+.form-login-admin{
+  background: #ffffff;
+  width: 360px;
+  padding: 30px;
+  height: 300px;
+  margin: 0 auto;
+}
+.form-login-admin .remember-password{
+  float: left;
+  padding-top: 20px;
+}
+.form-login-admin .button-submit{
+  float:right
+}
+.form-login-admin h2{
+  color: #000;
+}
+.alert.alert-alert{
+  background-color: #ffffaa;
+  color: #FF9933;
+}

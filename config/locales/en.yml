@@ -69,7 +69,7 @@ en:
       step_3: "Find Your Solution"
       search_panel:
         title: "HAVE A QUESTION?"
-        content: "If you have questions about teachnical stuffs, suggestions for company, you can search here!"
+        content: "If you have suggestions for company, you can search here!"
         placeholder: "Type your search terms here"
         button: "Search"
       question_not_exist: "Question not exist."
@@ -146,12 +146,12 @@ en:
       view: "VIEWS"
     new:
       title_name: "New post"
-      title: "Post Your QA-Knowledge/Idea"
+      title: "Post Your Questions"
       toppic: "Choose topic"
       account: "Choose account"
       location: "Location"
       category: "Category"
-      qa_info: "You have questions about technical things, please login and enter the questions here. All the members are always willing to support you."
+      qa_info: "Please submit technical questions or idea to the company here. You can submit questions using your personal or anonymous name."
       feedback_info: "You have suggestions to build a company or a question about the company policy you would like to be answered for. Please let us know here.You can post it under your personal or anonymous identity."
       confession_info: "You have feeling, but you are not confident enough to share it. Let f-ask help you to do that. F-ask does not save any of your information at confesstion."
       form:
@@ -609,3 +609,6 @@ en:
   switch_anonymous: "Anonymous"
   topic_1: "Knowledge Q&A"
   topic_2: "Idea Box"
+  admin:
+    sign_in: "Sign in"
+    title: "Admin"
