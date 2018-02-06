@@ -609,3 +609,6 @@ ja:
   switch_anonymous: "Anonymous"
   topic_1: "Knowledge Q&A"
   topic_2: "Idea Box"
+  admin:
+    sign_in: "Sign in"
+    title: "Admin"

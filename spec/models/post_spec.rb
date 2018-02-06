@@ -3,14 +3,16 @@ require "rails_helper"
 RSpec.describe Post, type: :model do
   let(:work_space) { FactoryGirl.create :work_space}
   let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
-  let(:topic){FactoryGirl.create :knowledge_topic}
+  let(:topic){FactoryGirl.create :feedback_topic}
+  let!(:category) {FactoryGirl.create :category}
 
   let!(:post_x) do
     FactoryGirl.create :post,
     user_id: user.id,
     topic_id: topic.id,
     count_view: 3,
-    created_at: DateTime.new(2016, 01, 01)
+    created_at: DateTime.new(2016, 01, 01),
+    work_space_id: work_space.id
   end
 
   let!(:post_y) do
@@ -18,7 +20,8 @@ RSpec.describe Post, type: :model do
     user_id: user.id,
     topic_id: topic.id,
     count_view: 2,
-    created_at: DateTime.new(2016, 02, 01)
+    created_at: DateTime.new(2016, 02, 01),
+    work_space_id: work_space.id
   end
 
   let!(:post_z) do
@@ -26,7 +29,20 @@ RSpec.describe Post, type: :model do
     user_id: user.id,
     topic_id: topic.id,
     count_view: 1,
-    created_at: DateTime.new(2016, 03, 01)
+    created_at: DateTime.new(2016, 03, 01),
+    category_id: category.id,
+    work_space_id: work_space.id
+  end
+
+  let(:post_waiting) do
+    FactoryGirl.create :post,
+    user_id: user.id,
+    topic_id: topic.id,
+    count_view: 1,
+    created_at: DateTime.new(2016, 04, 01),
+    category_id: category.id,
+    work_space_id: work_space.id,
+    status: "waiting"
   end
 
   let!(:answer) do
@@ -193,5 +209,29 @@ RSpec.describe Post, type: :model do
 
   context ".not_contain_post" do
     it{ expect(Post.not_contain_post(post_x.id)).to eq([post_y, post_z]) }
+  end
+
+  context ".list_posts_clip" do
+    it{ expect(Post.list_posts_clip([post_x.id, post_y.id])).to eq([post_x, post_y]) }
+  end
+
+  context ".post_of_work_space" do
+    it{ expect(Post.post_of_work_space(work_space.id)).to eq([post_x, post_y, post_z]) }
+  end
+
+  context ".post_of_category" do
+    it{ expect(Post.post_of_category(category.id)).to eq([post_z]) }
+  end
+
+  context ".feedback_post" do
+    it{ expect(Post.feedback_post).to eq([post_x, post_y, post_z]) }
+  end
+
+  context ".by_status" do
+    it{ expect(Post.by_status("accept")).to eq([post_x, post_y, post_z]) }
+  end
+
+  context "#update_activity" do
+    it{ expect {post_waiting.update_attributes(status: "accept")}.to change(Activity, :count).by 2 }
   end
 end

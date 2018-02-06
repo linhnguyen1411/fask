@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Dashboard::FeedbacksController, type: :controller do
-
   let(:work_space) { FactoryGirl.create :work_space}
   let(:user){FactoryGirl.create :user, work_space: work_space}
   let(:user_eo){FactoryGirl.create :user, work_space: work_space, position: "Event Officer"}
@@ -24,6 +23,7 @@ RSpec.describe Dashboard::FeedbacksController, type: :controller do
     FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_fb,
      status: 2, created_at: DateTime.new(2016,01,01)
   end
+  let(:category) {FactoryGirl.create :category}
 
   describe "GET index" do
 
@@ -94,6 +94,20 @@ RSpec.describe Dashboard::FeedbacksController, type: :controller do
       end
       it "assigns @success" do
         expect(assigns(:success)).to eq false
+      end
+    end
+
+    context "update category of post" do
+      before do
+        sign_in user_eo
+        post :update, params: {id: post_x, post: {category_id: category.id}}, xhr: true
+      end
+      it "assigns @success" do
+        expect(assigns(:success)).to eq true
+      end
+
+      it "assigns @type" do
+        expect(assigns(:type)).to eq Settings.feedback_update_type.category
       end
     end
   end
