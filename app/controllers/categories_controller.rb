@@ -7,6 +7,11 @@ class CategoriesController < ApplicationController
     @categories = Category.newest.page(params[:page]).per Settings.paginate_categories
   end
 
+  def show
+    @posts = Post.post_by_topic(Settings.topic.feedback).newest.post_of_category(@category)
+      .page(params[:page]).per Settings.paginate_default
+  end
+
   def edit;end
 
   def new
@@ -24,11 +29,6 @@ class CategoriesController < ApplicationController
 
   def update
     @success = @category.update_attributes category_params
-  end
-
-  def show
-    @posts = Post.post_by_topic(Settings.topic.feedback).post_of_category(@category)
-      .page(params[:page]).per Settings.paginate_default
   end
 
   def destroy

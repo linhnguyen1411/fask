@@ -1,0 +1,25 @@
+<div class="admin-sign-in">
+  <center><h1><%= t("admin.title") %></h1></center>
+  <div class="form-login-admin">
+    <center><h2><%= t("admin.sign_in") %></h2></center>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="group-field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: true %>
+      </div>
+      <div class="group-field">
+        <%= f.label :password %>
+        <%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: true %>
+      </div>
+      <div class="remember-password">
+        <label class="left">
+          <%= f.check_box :remember_me %>
+          <%= t ".remember_me" %>
+        </label>
+      </div>
+      <div class="button-submit">
+         <%= f.submit t("admin.sign_in"), class: "btn btn-primary btn-small navbar-btn" %>
+      </div>
+    <% end %>
+  </div>
+</div>
