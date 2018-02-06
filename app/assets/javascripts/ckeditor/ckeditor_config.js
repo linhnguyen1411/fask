@@ -1,4 +1,5 @@
 CKEDITOR.editorConfig = function (config) {
+  config.disallowedContent = 'script';
   config.contentsCss = '/assets/customs.css';
   config.codeSnippet_theme = 'pojoaque';
   config.allowedContent = true;
@@ -10,7 +11,7 @@ CKEDITOR.editorConfig = function (config) {
       'FontSize', 'JustifyLeft', 'JustifyCenter', 'JustifyRight',
       'JustifyBlock', '-', 'NumberedList', 'BulletedList', 'Outdent', 'Indent',
       'Undo', 'Redo', 'Find', 'Replace', 'SpellChecker', 'Scayt', 'Image',
-      'Table', 'Smiley', 'SpecialChar', 'Link', 'CodeSnippet', 'Source', 'TagUsers']
+      'Table', 'Smiley', 'SpecialChar', 'Link', 'CodeSnippet', 'TagUsers']
     }
   ];
   config.height = 350;
