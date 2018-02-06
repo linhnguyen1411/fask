@@ -69,7 +69,7 @@ ja:
       step_3: "ソリューションを探す"
       search_panel:
         title: "質問がありますか"
-        content: "If you have any knowledge-question/idea/ you can ask below or enter what you are looking for!"
+        content: "If you have any idea you can ask below or enter what you are looking for!"
         placeholder: "Type your search terms here"
         button: "探す"
       question_not_exist: "質問は存在しません"

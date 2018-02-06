@@ -10,7 +10,7 @@ class Ability
       can :manage, :all
     end
     cannot :read, Topic do |topic|
-      topic.id == Settings.topic.confesstion_number
+      topic.id != Settings.topic.feedback_number
     end
   end
 end
