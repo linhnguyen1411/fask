@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     if @admin.present?
       rails_admin_path
     else
-      session[:before_login_url] || root_path
+      session[:before_login_url] || topic_path(Settings.topic.feedback_number)
     end
   end
 
