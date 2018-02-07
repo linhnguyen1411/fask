@@ -31,5 +31,5 @@ Devise.setup do |config|
       authorize_url: "https://wsm.framgia.vn/authorize",
       token_url: "http://10.0.1.14/auth/access_token"
     }
-
+  config.sign_out_all_scopes = false
 end

@@ -1,4 +1,3 @@
-<div class="view-login">
   <span class="background"></span>
   <div class="web-logo">
     <%= image_tag "logo" %>
@@ -25,11 +24,6 @@
     </div>
     <span class="line"></span>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-      <div class="error_explanation custom-error">
-        <%- flash.each do |name, msg| -%>
-          <%= content_tag :div, msg, id: "flash_#{name}" %>
-        <%- end -%>
-      </div>
       <div class="group-field">
         <label class="field-tilte"><i class="fa fa-envelope-o" aria-hidden="true"></i></label>
         <%= f.email_field :email, autofocus: true, class: "field field-name",

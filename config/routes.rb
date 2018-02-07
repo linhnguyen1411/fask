@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   mount ActionCable.server => "/cable"
 
-  devise_for :admins
+  devise_for :admins,
+    controllers: {
+      sessions: "admins/sessions"
+    }
   mount RailsAdmin::Engine => "/admin", as: :rails_admin
   devise_for :users,
     controllers: {

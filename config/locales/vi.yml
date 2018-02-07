@@ -609,3 +609,6 @@ vi:
   switch_anonymous: "Ẩn danh"
   topic_1: "Hỏi đáp kỹ thuật"
   topic_2: "Ý kiến đóng góp"
+  admin:
+    sign_in: "Đăng nhập"
+    title: "Quản trị viên"
