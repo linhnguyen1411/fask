@@ -14,7 +14,8 @@ Rails.application.routes.draw do
       registrations: "users/registrations",
       sessions: "sessions/sessions"
     }
-  root "static_pages#index"
+  # root "static_pages#index"
+  root to: "topics#show", id: Settings.topic.feedback_number
   post "/upload_image", to: "images#upload_image"
   get "/download_file/:name", to: "images#access_file", as: :upload_access_file, name: /.*/
   get "/change_languages/update"
