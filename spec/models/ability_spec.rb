@@ -10,7 +10,7 @@ describe "Ability" do
     it{ should be_able_to(:read, Post.new) }
     it{ should be_able_to(:read, Reaction.new) }
     it{ should be_able_to(:read, User.new) }
-    it{ should be_able_to(:create, Post.new) }
+    it{ should be_able_to(:create, Post.new(topic_id: Settings.topic.feedback_number)) }
   end
   context "when isn't an account anonymous" do
     subject(:ability){ Ability.new(user) }
