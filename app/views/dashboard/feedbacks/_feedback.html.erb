@@ -1,0 +1,33 @@
+<% feedbacks.each do |fb| %>
+  <tr id="feedback-<%= fb.id %>">
+    <td scope="row"><%= fb.id %></td>
+    <td scope="row"><%= fb.user_name %></td>
+    <td scope="row" class="feedback-title"><span class="title"><%= fb.title %></span>
+      <a href="javascript:" class="btn-show" data-toggle="collapse"
+        data-target="#content-feedback-<%= fb.id %>">
+        <i class="fa fa-eye" aria-hidden="true" title="Show content of feedback"></i></a>
+      <div class="collapse" id="content-feedback-<%=fb.id%>">
+        <div class="card card-body">
+          <%= raw fb.content %>
+        </div>
+      </div>
+    </td>
+    <td scope="row">
+      <%= select_tag :category_id, options_for_select(@feedback_support.all_categories.map {|c|
+        [c.name, c.id]}, fb.category_id), class: "category-change", data: {post_id: fb.id} %>
+    </td>
+    <td scope="row"><%= fb.work_space_name %></td>
+    <td scope="row"><%= fb.created_at.to_date %></td>
+    <td scope="row">
+      <%= select_tag :status, options_for_select(Post.statuses.map {|k, v|
+        [k, v]}, Post.statuses[fb.status]),
+          class: "feedback-status feedback-#{fb.id} feedback-color-#{Post.statuses[fb.status]}",
+            data: {post_id: fb.id} %>
+    </td>
+    <td scope="row">
+      <%= link_to "javascript:", class: "btn-delete-feedback", data: {id: fb.id} do %>
+        <%= raw '<i class="fa fa-trash-o" aria-hidden="true"></i> ' + t("delete") %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>

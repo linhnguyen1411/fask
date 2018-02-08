@@ -1,0 +1,77 @@
+<section class="page-title profile-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-7 co-xs-12 text-left">
+        <h1><%= t "posts.status.management" %></h1>
+      </div>
+      <div class="col-md-6 col-sm-5 co-xs-12 text-right">
+        <div class="bread">
+          <ol class="breadcrumb">
+            <li><%= link_to t(".home"), root_path %></li>
+            <li class="active"><%= t "posts.status.management" %></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section-padding-40 white feedback">
+  <div class="container">
+    <div class="row padding-left-right-15">
+      <ul class="nav nav-tabs list-tab management" >
+        <li class="active">
+          <a data-toggle="tab" href="#feedback-management"><%= t "posts.status.feedback_manager" %></a>
+        </li>
+        <li><a data-toggle="tab" href="#category-management" id="category">
+          <%= t "category_management.title" %></a></li>
+      </ul>
+    </div>
+    <div class="row padding-left-right-15">
+      <div class="tab-content management-content">
+        <div id="feedback-management" class="tab-pane fade in active">
+          <div class="fm-fiter">
+            <h4>
+              <span class="feedback-filter">
+                <%= select_tag :work_space_id, options_for_select(@feedback_support.all_workspaces.map {|w|
+                  [w.name, w.id]}.unshift([t("all_location"), nil])),
+                    class: "workspace-filter select-filter" %>
+                <%= select_tag :category_id, options_for_select(@feedback_support.all_categories.map {|c|
+                  [c.name, c.id]}.unshift([t("all_category"), nil])),
+                    class: "category-filter select-filter" %>
+                <%= select_tag :status, options_for_select(@feedback_support.all_statuses.map {|k, v|
+                  [t("statuses.#{k}"), v]}.unshift([t("all_status"), nil])),
+                    class: "status-filter select-filter" %>
+              </span>
+              <span class="pull-right">
+                <%= link_to t("download"), "javascript:",
+                  class: "download-xlsx" %>
+              </span>
+            </h4>
+          </div>
+          <span class="feedback_table_content">
+            <%= render "feedback_table", feedbacks: @feedback_support.all_feedback_posts %>
+          </span>
+        </div>
+        <div id="category-management" class="tab-pane create-category fade">
+          <div id="category-header">
+            <%= link_to new_category_path , remote: true do %>
+              <i class="fa fa-plus-square icon-create-category"></i>
+              <span class="text-create-category"><%= t "category_management.create_category" %></span>
+            <% end %>
+          </div>
+          <div id="category-content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="modal fade" id="modal-edit-category">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><%= t "category_management.edit_category" %></h4>
+      </div>
+      <div class="modal-body category-body"></div>
+    </div>
+  </div>
+</div>

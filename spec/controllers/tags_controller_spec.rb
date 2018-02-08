@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe TagsController, type: :controller do
-  let(:work_space) {FactoryGirl.create :work_space}
-  let(:user) {FactoryGirl.create :user}
-  let(:topic) {FactoryGirl.create :topic}
+  let(:work_space) { FactoryGirl.create :work_space}
+  let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
+  let(:topic){FactoryGirl.create :knowledge_topic}
   let(:post) do
     FactoryGirl.create :post, work_space: work_space, user: user, topic: topic
   end
@@ -11,6 +11,7 @@ RSpec.describe TagsController, type: :controller do
 
   describe "GET #index" do
     before do
+      sign_in user
       get :index
     end
 

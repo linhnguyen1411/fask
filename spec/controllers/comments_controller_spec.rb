@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe CommentsController, type: :controller do
   let(:work_space) {FactoryGirl.create :work_space}
-  let(:user) {FactoryGirl.create :user}
-  let(:topic) {FactoryGirl.create :topic}
-
+  let(:user) {FactoryGirl.create :user, work_space_id: work_space.id}
+  let(:topic) {FactoryGirl.create :knowledge_topic}
+  let(:feedback_topic) {FactoryGirl.create :feedback_topic}
   describe "POST #create" do
     before do
       sign_in user
@@ -27,6 +27,40 @@ RSpec.describe CommentsController, type: :controller do
         expect {post :create, params: {comment: params}, xhr: true}
           .to change(Comment, :count).by 1
       end
+    end
+
+    context "conmment post in feedback topic" do
+      let(:params) do
+        {
+          content: "content comment post for feedback topic",
+          object_type: "post",
+          object_id: FactoryGirl.create(:post,
+            work_space: work_space,
+            user: user,
+            topic: feedback_topic
+          ).id
+        }
+      end
+      before {post :create, params: {comment: params}, format: :html}
+
+      it {expect(response).to redirect_to post_path(assigns :object)}
+    end
+
+    context "comment answer of post in feedback topic" do
+      let(:post_1) do
+        FactoryGirl.create :post, work_space: work_space, user: user, topic: feedback_topic
+      end
+      let!(:answer) {FactoryGirl.create :answer, user: user, post: post_1}
+      let(:params) do
+        {
+          content: "content comment answer of post in feedback topic",
+          object_type: "answer",
+          object_id: answer.id
+        }
+      end
+      before {post :create, params: {comment: params}, format: :html}
+
+      it {expect(response).to redirect_to post_path(assigns :object)}
     end
 
     context "comment answer" do

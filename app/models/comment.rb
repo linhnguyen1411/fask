@@ -10,7 +10,12 @@ class Comment < ApplicationRecord
   has_many :reactions, as: :reactiontable, dependent: :destroy
   has_many :activities, as: :trackable, dependent: :destroy
 
-  after_create :create_activity
+  after_save :create_activity
+
+  scope :comments_of_post_before_time, -> post, view_more_time do
+    (where "commentable_id = (?) and commentable_type= (?)and created_at <= (?)",
+      post.id, post.class, view_more_time).includes(:user, :reactions).order(created_at: :desc)
+  end
 
   private
 

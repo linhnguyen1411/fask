@@ -1,0 +1,386 @@
+<section class="section-padding-40 white">
+  <%= form_for current_user, url: user_setting_path, html: {class: "user-setting"} do |f| %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1 setting">
+          <div class="panel-group">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h5 class="panel-title">
+                  <i class="fa fa-bell"></i><%= t "setting_notification" %>
+                </h5>
+              </div>
+              <div class="panel-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th class="col-md-6"></th>
+                      <th class="col-md-2"><%= t "receive_notification" %></th>
+                      <th class="col-md-2"><%= t "receive_email" %></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong><%= t "receive_all_notification" %></strong></td>
+                      <td>
+                        <div class="onoffswitch">
+                          <input type="checkbox" id="turn-all-notification"
+                            class="onoffswitch-checkbox"
+                            <%= checked_all_notification_setting %>>
+                          <label class="onoffswitch-label" for="turn-all-notification">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="onoffswitch">
+                          <input type="checkbox" name="turn-all-email" id="turn-all-email"
+                            class="onoffswitch-checkbox"
+                            <%= checked_all_email_setting %>>
+                          <label class="onoffswitch-label" for="turn-all-email">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><%= t "left_new_comments_on_your_posts" %></td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :notification_settings do |notification| %>
+                            <%= notification.check_box :comment_post,
+                              id: "turn-comments-post-fask",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_notification_setting?(Settings.index_zero_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label" for="turn-comments-post-fask">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :email_settings do |email| %>
+                            <%= email.check_box :comment_post,
+                              id: "turn-comments-post-email",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_email_setting?(Settings.index_zero_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label" for="turn-comments-post-email">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+
+                    </tr>
+                    <tr>
+                      <td><%= t "left_new_comments_on_your_answers" %></td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :notification_settings do |notification| %>
+                            <%= notification.check_box :comment_answer,
+                              id: "turn-comment-answer-fask",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_notification_setting?(Settings.index_one_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label"
+                            for="turn-comment-answer-fask">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :email_settings do |email| %>
+                            <%= email.check_box :comment_answer,
+                              id: "turn-comment-answer-email",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_email_setting?(Settings.index_one_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label" for="turn-comment-answer-email">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><%= t "your_posts_are_replied" %></td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :notification_settings do |notification| %>
+                            <%= notification.check_box :reply_post,
+                              id: "turn-reply-post-fask",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_notification_setting?(Settings.index_two_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label"
+                            for="turn-reply-post-fask">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :email_settings do |email| %>
+                            <%= email.check_box :reply_post,
+                              id: "turn-reply-post-email",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_email_setting?(Settings.index_two_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label" for="turn-reply-post-email">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><%= t "upvote_downvote_your_posts" %></td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :notification_settings do |notification| %>
+                            <%= notification.check_box :up_down_vote_post,
+                              id: "turn-up-down-vote-post-fask",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_notification_setting?(Settings.index_three_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label"
+                            for="turn-up-down-vote-post-fask">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="onoffswitch opacity-3">
+                          <label class="onoffswitch-label">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><%= t "like_your_comments" %></td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :notification_settings do |notification| %>
+                            <%= notification.check_box :like_comment,
+                              id: "turn-like-comment-fask",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_notification_setting?(Settings.index_four_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label"
+                            for="turn-like-comment-fask">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :email_settings do |email| %>
+                            <%= email.check_box :like_comment,
+                              id: "turn-like-comment-email",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_email_setting?(Settings.index_three_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label" for="turn-like-comment-email">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><%= t "like_love_corect_your_answers" %></td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :notification_settings do |notification| %>
+                            <%= notification.check_box :llc_answer,
+                              id: "turn-llc-answer-fask",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_notification_setting?(Settings.index_five_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label"
+                            for="turn-llc-answer-fask">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :email_settings do |email| %>
+                            <%= email.check_box :llc_answer,
+                              id: "turn-llc-answer-email",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_email_setting?(Settings.index_four_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label" for="turn-llc-answer-email">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><%= t "clipped_your_posts" %></td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :notification_settings do |notification| %>
+                            <%= notification.check_box :clip_post,
+                              id: "turn-clip-post-fask",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_notification_setting?(Settings.index_six_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label"
+                            for="turn-clip-post-fask">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :email_settings do |email| %>
+                            <%= email.check_box :clip_post,
+                              id: "turn-clip-post-email",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_email_setting?(Settings.index_five_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label" for="turn-clip-post-email">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><%= t "someone_tagged_you_in_their_posts" %></td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :notification_settings do |notification| %>
+                            <%= notification.check_box :tag_post,
+                              id: "turn-tag-posts-fask",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_notification_setting?(Settings.index_seven_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label"
+                            for="turn-tag-posts-fask">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :email_settings do |email| %>
+                            <%= email.check_box :tag_post,
+                              id: "turn-tag-posts-email",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_email_setting?(Settings.index_six_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label" for="turn-tag-posts-email">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><%= t "someone_followed_you" %></td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :notification_settings do |notification| %>
+                            <%= notification.check_box :follow_user,
+                              id: "turn-follow-user-fask",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_notification_setting?(Settings.index_eight_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label"
+                            for="turn-follow-user-fask">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="onoffswitch opacity-3">
+                          <label class="onoffswitch-label">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><%= t "following_user_create_post" %></td>
+                      <td>
+                        <div class="onoffswitch">
+                          <%= f.fields_for :notification_settings do |notification| %>
+                            <%= notification.check_box :create_post,
+                              id: "turn-create-post-fask",
+                              class: "onoffswitch-checkbox",
+                              checked: checked_notification_setting?(Settings.index_nine_in_array) %>
+                          <% end %>
+                          <label class="onoffswitch-label"
+                            for="turn-create-post-fask">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <div class="onoffswitch opacity-3">
+                          <label class="onoffswitch-label">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="panel panel-default none-border">
+              <div class="panel-heading">
+                <h5 class="panel-title">
+                  <i class="fa fa-globe"></i> <%= t "choose_default_language" %>
+                </h5>
+              </div>
+              <div class="panel-body">
+                <table class="table table-language">
+                  <tbody>
+                    <tr>
+                      <th class="col-md-3 choose_language"><%= t "choose_language" %></th>
+                      <td class="col-md-3">
+                      <%= f.select :language, options_for_select([[t("language.vi"), "vi"],
+                        [t("language.en"), "en"], [t("language.ja"), "ja"]],
+                        (current_user.language || "en")), {}, class: "form-control" %>
+                      </td>
+                      <td class="col-md-6"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12 btn-update">
+          <center>
+            <%= f.submit t("edit_user.update"), class: "btn btn-primary" %>
+          </center>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</section>

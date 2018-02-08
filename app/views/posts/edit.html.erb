@@ -25,29 +25,50 @@
             <hr>
             <div class="margin-top-40">
               <div class="form-group">
-                <label><%= t ".toppic" %></label>
-                <%= f.select :topic_id, load_select_box_topic, {}, {disabled: true,
+                <label><%= t ".toppic" %><span class="red-title"> *</span></label>
+                <%= f.select :topic_id, load_select_box_topic(@support.topic_list), {}, {disabled: true,
                   class: "questions-category form-control", id: "select-toppic"} %>
               </div>
               <div class="form-group">
-                <label><%= t ".location" %></label>
-                <%= f.select :work_space_id, load_select_box_location, {}, {disabled: true,
+                <label><%= t ".location" %><span class="red-title"> *</span></label>
+                <%= f.select :work_space_id, load_select_box_location(@support.work_space_list), {}, {disabled: true,
                   class: "questions-category form-control disabled", id: "select-location"} %>
               </div>
               <div class="form-group">
-                <label><%= t ".form.title" %></label>
+                <label><%= t ".Category" %><span class="red-title"> *</span></label>
+                <%= f.select :category_id, load_select_box_category(@support.category_list),
+                  {}, {class: "questions-category form-control", id: "select-category"} %>
+              </div>
+              <div class="form-group">
+                <label><%= t ".form.title" %><span class="red-title"> *</span></label>
                 <%= f.text_field :title, maxlength: Settings.post.max_title,
                   minlength: Settings.post.min_title, required: true, class: "form-control" %>
               </div>
+              <div id="posts-tag">
+                <div class="form-group tagsinput-height">
+                  <label><%= t ".form.tags" %></label>
+                  <%= text_field_tag :tags, "", class: "form-control",
+                    data: {role: "tagsinput"} %>
+                </div>
+                <% if @popular_tags.present? %>
+                  <div class="form-group">
+                    <div class="list-top-tags in-create-post">
+                      <label><%= t ".form.popular_tags" %>&#58;</label>
+                      <%= render partial: "posts/tags", collection: @popular_tags, as: :tag %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
               <div class="form-group">
-                <label><%= t ".form.tags" %></label>
-                <%= text_field_tag :tags, value_tags(@tags), class: "form-control",
-                  data: {role: "tagsinput"} %>
+                <div class="list-top-tags in-create-post">
+                  <label><%= t ".form.popular_tags" %>&#58;</label>
+                  <%= render partial: "posts/tags", collection: @popular_tags, as: :tag %>
+                </div>
               </div>
               <div class="form-group">
                 <label><%= t ".form.content" %></label>
                 <%= f.text_area :content, minlength: Settings.post.min_title,
-                  required: true, class: "form-control froalaEditor" %>
+                  required: true, class: "form-control ckeditor"%>
               </div>
               <%= f.submit t(".btn_edit"), class: "btn btn-primary pull-right" %>
             </div>

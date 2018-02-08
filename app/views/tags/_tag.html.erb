@@ -3,7 +3,10 @@
     <%= image_tag tag.image.present? ? tag.image : "tag_default", class: "tag-image" %>
   </div>
   <div class="panel-right">
-    <div class="tag-name"><%= tag.name %></div>
+    <div class="tag-name">
+      <%= link_to tag.name.truncate(Settings.limit_string.tag_name, separator: /\s/),
+        tag, title: tag.name %>
+    </div>
     <div class="tag-follow">
       <i class="fa fa-user-plus" aria-hidden="true"></i>:
       <%= tag.used_count %> <%= t "tags.index.follower" %>

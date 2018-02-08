@@ -1,91 +1,71 @@
-<div id="current-toppic" data-id="<%= params[:id] %>"></div>
-<div class="main-content-area">
-  <!-- =-=-=-=-=-=-= Latest Questions  =-=-=-=-=-=-= -->
-  <section class="white question-tabs padding-bottom-80" id="latest-post">
-    <div class="container">
-      <div class="row">
-        <!-- Content Area Bar -->
-        <div class="col-md-12 col-sm-12 col-xs-12">
-          <div class="panel panel-primary">
-            <div class="panel-heading">
-              <!-- Tabs -->
-              <ul class="nav panel-tabs">
-                <li class="<%= add_class_active_to_show_page params[:type],
-                  Settings.topic.type_sort.recently, true %>">
-                  <a data-toggle="tab" href="#tab1">
-                    <i class="fa fa-clock-o" aria-hidden="true"></i>
-                    <span class="hidden-xs"><%= t ".recent_questions" %></span>
-                  </a>
-                </li>
-                <li class="<%= add_class_active_to_show_page params[:type],
-                  Settings.topic.type_sort.popular %>">
-                  <a data-toggle="tab" href="#tab2">
-                    <i class="fa fa-users" aria-hidden="true"></i>
-                    <span class="hidden-xs"><%= t ".popular_response" %></span>
-                  </a>
-                </li>
-                <li class="<%= add_class_active_to_show_page params[:type],
-                  Settings.topic.type_sort.recently_answer %>">
-                  <a data-toggle="tab" href="#tab3">
-                    <i class="fa fa-comments-o" aria-hidden="true"></i>
-                    <span class="hidden-xs"><%= t ".recently_answered" %></span>
-                  </a>
-                </li>
-                <li class="<%= add_class_active_to_show_page params[:type],
-                  Settings.topic.type_sort.no_answer %>">
-                  <a data-toggle="tab" href="#tab4">
-                    <i class="fa fa-spinner" aria-hidden="true"></i>
-                    <span class="hidden-xs"><%= t ".no_answer" %></span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="panel-body">
-            <div class="tab-content">
-              <!-- Recent Question -->
-              <div id="tab1" class="tab-pane <%= add_class_active_to_show_page params[:type],
-                Settings.topic.type_sort.recently, true %>">
-                <%= render "topics/post",
-                  posts: @support.recent_posts,
-                  type: Settings.topic.type_sort.recently
-                %>
-                <%= render "topics/view_all", type: Settings.topic.type_sort.recently %>
-              </div>
-
-              <!-- Popular Response -->
-              <div id="tab2" class="tab-pane <%= add_class_active_to_show_page params[:type],
-                Settings.topic.type_sort.popular %>">
-                <%= render "topics/post",
-                  posts: @support.popular_posts,
-                  type: Settings.topic.type_sort.popular
-                %>
-                <%= render "topics/view_all", type: Settings.topic.type_sort.popular %>
-              </div>
-
-              <!-- Recently Answer -->
-              <div id="tab3" class="tab-pane <%= add_class_active_to_show_page params[:type],
-                Settings.topic.type_sort.recently_answer %>">
-                <%= render "topics/post",
-                  posts: @support.recently_answer_of_post,
-                  type: Settings.topic.type_sort.recently_answer
-                %>
-                <%= render "topics/view_all", type: Settings.topic.type_sort.recently_answer %>
-              </div>
-
-              <!-- No Answer -->
-              <div id="tab4" class="tab-pane <%= add_class_active_to_show_page params[:type],
-                Settings.topic.type_sort.no_answer %>">
-                <%= render "topics/post",
-                  posts: @support.posts_no_answer,
-                  type: Settings.topic.type_sort.no_answer
-                %>
-                <%= render "topics/view_all", type: Settings.topic.type_sort.no_answer %>
-              </div>
+<section class="white question-tabs padding-bottom-80" id="current-toppic" data-id="<%= @topic.id %>">
+  <div class="container">
+    <div class="row filter">
+      <% if @topic.id == Settings.topic.feedback_number %>
+        <div class="form-group col-md-3 col-xs-12 choose-office">
+          <i class="fa fa-map-marker label-location" aria-hidden="true">
+            <span><%= t "choose_office" %>: </span>
+          </i>
+          <div class="location-dropdown custom-height select-location">
+            <button class="location-dropbtn form-control" data-id="<%= work_space_id(@support.work_space) %>">
+              <%= work_space_name(@support.work_space) %>
+            </button>
+            <div class="location-dropdown-content">
+              <% load_select_box_location(@support.work_space_list).each do |location| %>
+                <%= link_to location.first, "javascript:", data: {id: location.last}, class: "choose-work-space" %>
+              <% end %>
             </div>
           </div>
         </div>
+      <% end %>
+      <div class="form-group col-md-3 col-xs-12">
+        <i class="fa fa-sort label-location" aria-hidden="true">
+          <span><%= t "sort_by" %>: </span>
+        </i>
+        <div class="sort-by-dropdown custom-height select-sort-by">
+          <button class="sort-by-dropbtn form-control" data-id="<%= @support.filter_type[:sort_type] %>">
+            <%= t("sort_type_list.#{@support.filter_type[:sort_type]}") %>
+          </button>
+          <div class="sort-by-dropdown-content">
+            <% @support.sort_type_list.each do |sort_type| %>
+              <%= link_to t("sort_type_list.#{sort_type}"), "javascript:",
+                data: {id: sort_type}, class: "choose-sort-type" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-3 col-xs-12">
+        <div class="input-group date custom-width">
+          <i class="fa fa-calendar-o label-location" aria-hidden="true">
+            <span><%= t "from_day" %>:&nbsp; </span>
+          </i>
+          <%= text_field_tag :from_day, @support.filter_type[:from_day],
+            placeholder: "dd/mm/yyyy", class: "form-control", id: "from-day-picker" %>
+        </div>
+      </div>
+      <div class="form-group col-md-3 col-xs-12">
+        <div class="input-group date custom-width">
+          <i class="fa fa-calendar label-location" aria-hidden="true">
+            <span><%= t "to_day" %>:&nbsp; </span>
+          </i>
+          <%= text_field_tag :to_day, @support.filter_type[:to_day],
+            placeholder: "dd/mm/yyyy", class: "form-control", id: "to-day-picker" %>
+        </div>
       </div>
     </div>
-  </section>
-</div>
+    <hr>
+    <div class="row">
+      <div class="col-md-8 col-sm-12 col-xs-12">
+        <div class="content-posts">
+          <%= render partial: "topics/post", collection: @support.filter_posts %>
+        </div>
+        <div class="text-center clearfix paginate-posts">
+          <%= paginate @support.filter_posts, remote: true %>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-12 col-xs-12">
+        <%= render "topics/sidebar", support: @support, topic: @topic %>
+      </div>
+    </div>
+  </div>
+</section>

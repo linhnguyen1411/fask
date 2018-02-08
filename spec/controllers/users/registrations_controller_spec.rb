@@ -1,17 +1,18 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Users::RegistrationsController, type: :controller do
-  let(:user) {FactoryGirl.create :user}
+  let(:work_space) { FactoryGirl.create :work_space}
+  let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
   let(:valid_params) {{name: "Framgia"}}
   let(:invalid_params) {{name: nil}}
 
   before :each do
-     @request.env['devise.mapping'] = Devise.mappings[:user]
+     @request.env["devise.mapping"] = Devise.mappings[:user]
      sign_in user
    end
 
   describe "GET #edit" do
-    before {get :edit, params: {id: user.id}}
+    before {get :edit}
 
     context "when don't have activities" do
       it {expect(assigns(:activities)).to eq nil}
@@ -21,7 +22,7 @@ RSpec.describe Users::RegistrationsController, type: :controller do
   describe "PATCH #update" do
     context "with valid parrams" do
       before do
-        patch :update, params: {id: user.id, user: valid_params}
+        patch :update, params: {user: valid_params}
         user.reload
       end
 
@@ -30,7 +31,10 @@ RSpec.describe Users::RegistrationsController, type: :controller do
     end
 
     context "with invalid params" do
-      before {patch :update, params: {id: user.id, user: invalid_params}}
+      before do
+        patch :update, params: {user: invalid_params}
+        user.reload
+      end
 
       it {expect(user.name).to eq user.name}
       it {expect(flash[:danger]).to eq "Update profile error."}

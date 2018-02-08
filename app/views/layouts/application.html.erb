@@ -2,6 +2,7 @@
 <html>
   <head>
     <title><%= t "fask" %></title>
+    <%= favicon_link_tag "fa.ico" %>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
@@ -11,7 +12,7 @@
     <%= render "layouts/header" %>
     <div class="main-content-area">
       <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
+        <div class="alert alert-<%= key %> fade in message-alert"><%= value %></div>
       <% end %>
       <%= yield %>
     </div>

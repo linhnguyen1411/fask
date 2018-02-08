@@ -1,56 +1,75 @@
-<% if posts.present? %>
-  <% posts.each do |post| %>
-    <div class="listing-grid">
-      <div class="row">
-        <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
-          <a data-toggle="tooltip" data-placement="bottom"
-            data-original-title="<%= post.user.name %>" href="#">
-            <%= image_tag post.user_avatar, class: "img-responsive center-block" %>
-          </a>
-        </div>
-        <div class="col-md-7 col-sm-8  col-xs-12">
+<div class="listing-grid">
+  <div class="row">
+    <div class="col-md-2 col-sm-2 col-xs-2 hidden-xs">
+      <%= link_to "#", data: {toggle: :tooltip, placement: "bottom",
+        original_title: "#{post.user_name}"} do %>
+        <%= image_tag post.user.avatar.url, class: "img-responsive center-block" %>
+      <% end %>
+    </div>
+    <div class="col-md-10 col-sm-10 col-xs-10 topic-post-content">
+      <div class="col-md-9 col-sm-8  col-xs-12">
+        <% if check_feeback_topic post.topic_id %>
           <h3><%= link_to post.title, post_path(post.id) %></h3>
-          <div class="listing-meta">
+          <span class="work_space_name workspace_<%= post.work_space_id %>">
+            <%= link_to post.work_space_name, "javascript:", data: {id: post.work_space_id},
+              class: "link-to-local choose-work-space" %>
+          </span>
+        <% else %>
+          <h3><%= link_to post.title, post %></h3>
+        <% end %>
+        <div class="listing-meta">
+          <span>
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            <%= load_time_created_at post %>
+          </span>
+          <span>
+            <i class="fa fa fa-eye" aria-hidden="true"></i>
+            <%= post.count_view %> <%= t ".view" %>
+          </span>
+          <% if !check_feeback_topic post.topic_id %>
             <span>
-              <i class="fa fa-clock-o" aria-hidden="true"></i>
-              <%= time_ago_in_words post.created_at %>
+              <i class="fa fa-comment-o" aria-hidden="true"></i>
+              <%= post.count_comment %> <%= t "posts.index.comment" %>
             </span>
-            <span>
-              <i class="fa fa fa-eye" aria-hidden="true"></i>
-              <%= post.count_view %> <%= t ".view" %>
-            </span>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-2 col-xs-12">
-          <ul class="question-statistic">
-            <li class="active">
-              <a data-toggle="tooltip" data-placement="bottom"
-                data-original-title="<%= t ".answers" %>">
-                <span><%= post.answers.size %></span>
-              </a>
-            </li>
-            <li>
-              <a data-toggle="tooltip" data-placement="bottom"
-                data-original-title="<%= t ".votes" %>">
-                <span><%= count_vote post %></span>
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-10 col-sm-10 col-xs-12 truncate-post">
-          <%= raw post.content %>
-          <div class="pull-right tagcloud">
-            <% post.tags.each do |tag| %>
-              <%= link_to tag.name, "#" %>
-            <% end %>
-          </div>
+          <% end %>
         </div>
       </div>
+      <div class="col-md-3 col-sm-2 col-xs-12">
+        <ul class="question-statistic">
+          <li class="active">
+            <a data-toggle="tooltip" data-placement="bottom"
+              data-original-title="<%= t ".answers" %>">
+              <span class="count"><i class="fa fa-reply" aria-hidden="true"></i>
+                <%= post.count_answer %>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a data-toggle="tooltip" data-placement="bottom"
+              data-original-title="<%= t ".votes" %>">
+              <span class="count"><i class="fa fa-sort" aria-hidden="true"></i> <%= count_vote post %></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-12 col-sm-12 col-xs-12 truncate-post">
+        <div class="content-post">
+          <%= raw post.content %>
+        </div>
+        <% if check_feeback_topic post.topic_id %>
+          <div class="pull-right tagcloud category">
+            <% if post.category_name.present? %>
+              <span><%= post.category_name %></span>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="pull-right tagcloud">
+            <% post.tags.each do |tag| %>
+              <%= link_to tag.name, tag %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-  <% if params[:all] && params[:type] && params[:type] == type %>
-    <div class="text-center clearfix">
-      <%= paginate posts %>
-    </div>
-  <% end %>
-<% end %>
+  </div>
+</div>

@@ -1,3 +1,5 @@
+<% provide :button_text, t(".post_your_answer") %>
+<% provide :improve_text, t("version.improve_btn") %>
 <div id="current-toppic" data-id="<%= @post.topic_id %>"></div>
 <div class="main-content-area">
   <section class="page-title">
@@ -19,22 +21,24 @@
   </section>
   <section class="section-padding-80 white question-details">
     <div class="container">
-      <div class="row">
+      <div class="row" id=content-post>
         <div class="col-md-8 col-sm-12 col-xs-12">
           <div class="row">
             <div class="col-md-1">
               <div class="row vote-of-post text-center">
                 <% if current_user.present? %>
                   <div class="btn-action">
-                    <%= link_to "javascript:", class: "btn-vote",
-                      data: {type: Settings.reaction_type.up, model: Post.name, id: @post.id} do %>
+                    <%= link_to "javascript:", class: "btn-vote anonymous",
+                      data: {type: Settings.reaction_type.up, model: Post.name,
+                      id: @post.id} do %>
                       <i class="fa fa-angle-up" aria-hidden="true"></i>
                     <% end %>
                   </div>
-                  <div class="point-vote"><%= count_vote @post %></div>
+                  <div class="point-vote"><%= @post_extension.count_vote %></div>
                   <div class="btn-action">
-                    <%= link_to "javascript:", class: "btn-vote",
-                      data: {type: Settings.reaction_type.down, model: Post.name, id: @post.id} do %>
+                    <%= link_to "javascript:", class: "btn-vote anonymous",
+                      data: {type: Settings.reaction_type.down, model: Post.name,
+                      id: @post.id} do %>
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
                     <% end %>
                   </div>
@@ -44,7 +48,7 @@
                       <i class="fa fa-angle-up" aria-hidden="true"></i>
                     <% end %>
                   </div>
-                  <div class="point-vote"><%= count_vote @post %></div>
+                  <div class="point-vote"><%= @post_extension.count_vote %></div>
                   <div class="btn-action">
                     <%= link_to "javascript:", class: "btn-loggin-continue" do %>
                       <i class="fa fa-angle-down" aria-hidden="true"></i>
@@ -57,86 +61,128 @@
               <div class="listing-grid">
                 <div class="row" id="post-body">
                   <div class="col-md-12 col-sm-12 col-xs-12">
-                    <h3 id="post-tile"><%= @post.title %><%= load_icon_clip @post %></h3>
+                    <h3 id="post-tile">
+                      <%= @post.title %><%= load_icon_clip @post_extension.clip_list %>
+                      <% if check_feeback_topic(@post.topic_id) &&
+                        current_user.id == @post.user_id %>
+                        <span class="pull-right post-status"><%= @post.status %></span>
+                      <% end %>
+                    </h3>
+                    <%= check_status_of_post @post %>
                     <div class="listing-meta">
                       <span>
                         <i class="fa fa-clock-o" aria-hidden="true"></i>
-                        <%= time_ago_in_words @post.created_at %>
+                        <%= load_time_created_at @post %>
                       </span>
                       <span>
                         <i class="fa fa fa-eye" aria-hidden="true"></i>
                         <%= @post.count_view %> <%= t "posts.index.view" %>
                       </span>
+                      <% if !check_feeback_topic @post.topic_id %>
+                        <span>
+                          <i class="fa fa-comment-o" aria-hidden="true"></i>
+                          <%=  @post_extension.count_comment %> <%= t "posts.index.comment" %>
+                        </span>
+                      <% end %>
+                      <% if @post.user_id == current_user.id  && @post.topic_id == Settings.post_topic_qa %>
+                        <span>
+                          <i class="fa fa-pencil" aria-hidden="true"></i>
+                          <%= link_to "#{@post_extension.count_version}" + t("version.suggested_changes"),
+                            a_versions_path(post_id: @post.id) %>
+                        </span>
+                      <% end %>
                       <span class="float-right">
                         <%= raw load_button_functions_post(@post) %>
+                        <% if @post.topic_id != Settings.topic.feedback_number && !check_user_anonymous %>
+                          <%= link_to "javascript:void(0)", data:
+                            { toggle: "collapse",target: "#share_btn"} do %>
+                              <i class="fa fa-share-alt btn-share" aria-hidden="true"></i>
+                            <% end %>
+                        <% end %>
                       </span>
                     </div>
                   </div>
                   <div class="col-md-12 col-sm-12 col-xs-12">
-                    <%= raw @post.content %>
-                    <div class="tagcloud">
-                      <% @post.tags.each do |tag| %>
-                        <%= link_to tag.name, root_path + "?tag_id=#{tag.id}" %>
-                      <% end %>
+                    <div id="share_btn" class="collapse custom-share">
+                      <%= social_share_button_tag(@post.title) %>
                     </div>
+                    <span class="post-content">
+                      <%= content_post @post, @post_extension.check_a_version_for_post %>
+                    </span>
+                    </br>
+                    <% if @post.user_id != current_user.id && @post.topic_id == Settings.post_topic_qa &&
+                      !check_user_anonymous %>
+                      <%= link_to (t"version.improve_this_post"), "javascript:", class: "improve-post" %>
+                      <div id="improve-form" style="display: none;">
+                        <%= render "posts/improve_form", post: @post, option: {remote: false} %>
+                      </div>
+                    <% end %>
+                    <% if check_feeback_topic @post.topic_id %>
+                      <div class="pull-right tagcloud category">
+                        <% if @post.category_name.present? %>
+                          <span><%= @post.category_name %></span>
+                        <% end %>
+                      </div>
+                    <% else %>
+                      <div class="tagcloud pull-right">
+                        <% @post_extension.tag_list.each do |tag| %>
+                          <%= link_to tag.name, tag %>
+                        <% end %>
+                      </div>
+                    <% end %>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="clearfix"></div>
-          <div class="form-new-commment">
-            <div class="comment-list" id="comment-list-post-<%= @post.id %>">
-              <%= render partial: "comment", collection: @post.comments, as: :comment %>
-            </div>
-            <div class="btn-new-comment">
-              <%= link_to t(".new_comment"), "javascript:", class: "add-new-comment",
-                is_login: user_signed_in? %>
-            </div>
-            <% if user_signed_in? %>
-              <div class="comment-new">
-                <%= render "comments/create",
-                  comment: @post.comments.new,
-                  object_id: @post.id,
-                  object_type: Settings.comment.object_type.post,
-                  button_name: t(".btn_comment") %>
+          <% unless check_feeback_topic @post.topic_id %>
+            <div class="form-new-commment">
+              <div id="next-page" class="next-page">
+                <%= render "view_more", post: @post, next_page: @post_extension.next_page,
+                  view_more_time: @post_extension.view_more_time  %>
               </div>
-            <% end %>
-          </div>
+              <div class="comment-list" id="comment-list-post-<%= @post.id %>">
+                <%= render partial: "posts/comment",
+                  collection: @post_extension.comments_of_post, as: :comment %>
+              </div>
+              <% if !check_user_anonymous %>
+                <div class="row bottom-comments">
+                  <div class="btn-new-comment col-md-6 col-xs-12">
+                    <%= link_to t(".new_comment"), "javascript:", class: "add-new-comment",
+                      is_login: user_signed_in? %>
+                  </div>
+                </div>
+              <% end %>
+              <% if user_signed_in? && !check_user_anonymous %>
+                <div class="editable" contenteditable="true"
+                  placeholder="<%= t("comments.create.content") %>"></div>
+                <div class="comment-new">
+                  <%= render "comments/create",
+                    comment: @post.comments.build,
+                    object_id: @post.id,
+                    object_type: Settings.comment.object_type.post,
+                    button_name: t(".btn_comment") %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
           <div class="clearfix"></div>
           <div class="thread-reply">
             <h2><%= t ".thread_answers" %> </h2>
-            <% if @post.answers.present? %>
-              <%= render partial: "posts/answer", collection: @post.answers, as: :answer %>
+            <% if @post_extension.answers_of_post.present? %>
+              <%= render partial: "posts/answer", collection: @post_extension.answers_of_post,
+                locals: {post: @post} %>
             <% else %>
               <%= label_tag "", t(".post_not_answers"), class: "post-not-answers" %>
             <% end %>
             <div class="clearfix"></div>
           </div>
-          <%= form_for @answer do |f| %>
-            <%= f.hidden_field :post_id, value: @post.id %>
-            <div class="form-group">
-              <h2><%= t ".post_your_answer" %></h2>
-              <%= f.text_area :content, minlength: Settings.post.min_title,
-                required: true, class: "form-control froalaEditor" %>
+          <% if check_permited_user_feedback || !check_feeback_topic(@post.topic_id) && !check_user_anonymous %>
+            <div id="answer-form">
+              <%= render "posts/answer_form", answer: @answer, post: @post,
+                option: {remote: false} %>
             </div>
-            <div class="row form-login">
-              <% unless current_user.present? %>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label><%= t ".login.email" %></label>
-                    <%= email_field_tag "user_email", "", required: true, class: "form-control" %>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label><%= t ".login.password" %></label>
-                    <%= password_field_tag "user_password", "", required: true, class: "form-control" %>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-            <%= f.submit t(".post_your_answer"), class: "btn btn-primary btn-lg btn-block" %>
           <% end %>
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12 clearfix">
@@ -144,7 +190,8 @@
             <div class="widget">
               <div class="widget-image widget-image-sm"> <%= image_tag "light-background.jpg" %>
                 <div class="widget-image-content text-center">
-                  <%= image_tag get_avatar_user(@post.user), class: "img-thumbnail" %>
+                  <%= image_tag get_avatar_user(@post.user),
+                    class: "img-thumbnail" %>
                   <h2 class="widget-heading text-light">
                     <strong><%= @post.user_name %></strong>
                   </h2>
@@ -155,6 +202,21 @@
               </div>
             </div>
             <div class="widget">
+              <% if check_feeback_topic @post.topic_id %>
+                <div class="recent-comments">
+                  <h2><%= t ".related_question" %></h2>
+                  <hr class="widget-separator no-margin">
+                  <% if @post_extension.related_question.present? %>
+                    <%= render partial: "posts/extension_post",
+                      collection: @post_extension.related_question, as: :post,
+                      locals: { type: Settings.post.extension.hot_question } %>
+                  <% else %>
+                    <center><%= t ".have_not_related_question" %></center>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+            <div class="widget">
               <div class="recent-comments">
                 <h2><%= t ".hot_question" %></h2>
                 <hr class="widget-separator no-margin">
@@ -163,22 +225,12 @@
                   locals: { type: Settings.post.extension.hot_question } %>
               </div>
             </div>
-            <div class="widget">
-              <div class="recent-comments">
-                <h2><%= t ".recent_comments" %></h2>
-                <hr class="widget-separator no-margin">
-                <%= render partial: "posts/extension_post",
-                  collection: @post_extension.recent_comment_of_post, as: :post,
-                  locals: { type: Settings.post.extension.recent_comment } %>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 </div>
-
 <div class="modal fade" id="modal-edit-comment">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -186,18 +238,18 @@
         <h4 class="modal-title"><%= t ".edit_comment" %></h4>
       </div>
       <div class="modal-body">
-        <div>
-          <%= text_area_tag "comment-content", "", placeholder: t("comments.create.content"),
-            minlength: Settings.post.min_title, required: true, class: "form-control resize-none" %>
-        </div>
+        <div class="editable show-editable" id="edit-comment-editable" contenteditable="true"
+          placeholder="<%= t("comments.create.content") %>"></div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-xs btn-default" data-dismiss="modal"><%= t "cancel" %></button>
+        <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">
+          <%= t "cancel" %></button>
         <button type="button" class="btn btn-xs btn-primary
-          btn-accept-edit-comment" data-dismiss="modal">
+          btn-accept-edit-comment">
           <%= t "ok" %>
         </button>
       </div>
     </div>
   </div>
 </div>
+<div class="like-modal"></div>

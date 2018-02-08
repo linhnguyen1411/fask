@@ -2,11 +2,11 @@
   <div class="full-section search-section">
     <div class="search-area container">
       <h3 class="search-title"><%= t ".search_panel.title" %></h3>
-      <p class="search-tag-line"><%= t ".search_panel.content" %></p>
+      <center><p class="search-tag-line"><%= t ".search_panel.content" %></p></center>
       <%= form_tag "/posts", method: :get, class: "search-form clearfix",
         id: "search-form" do %>
         <%= text_field_tag "query", params[:query], class: "form-control
-          search-term", placeholder: t(".search_panel.placeholder") %>
+          search-term search-input", placeholder: t(".search_panel.placeholder") %>
         <%= submit_tag t(".search_panel.button"), class: "search-btn" %>
       <% end %>
     </div>
@@ -138,47 +138,20 @@
 
   <section class="custom-padding" id="clients">
     <div class="container">
-      <div class="row">
-        <div class="col-md-2 col-sm-4 col-xs-6 client-block">
+      <div class="row center-three-col">
+        <div class="col-md-3 col-sm-4 col-xs-6 client-block padding-img">
           <div class="client-item client-item-style-2">
-            <%= link_to "#", title: "Cliens Logo" do %>
-              <%= image_tag "client_5", alt: "Clients Logo" %>
-            <% end %>
+            <%= image_tag "q&a.png", alt: "Clients Logo" %>
           </div>
         </div>
-        <div class="col-md-2 col-xs-6 col-sm-4 client-block">
+        <div class="col-md-3 col-xs-6 col-sm-4 client-block padding-img">
           <div class="client-item client-item-style-2">
-            <%= link_to "#", title: "Cliens Logo" do %>
-              <%= image_tag "client_6", alt: "Clients Logo" %>
-            <% end %>
+            <%= image_tag "feed_back.png", alt: "Clients Logo" %>
           </div>
         </div>
-        <div class="col-md-2  col-xs-6 col-sm-4 client-block">
+        <div class="col-md-3  col-xs-6 col-sm-4 client-block padding-img">
           <div class="client-item client-item-style-2">
-            <%= link_to "#", title: "Cliens Logo" do %>
-              <%= image_tag "client_7", alt: "Clients Logo" %>
-            <% end %>
-          </div>
-        </div>
-        <div class="col-md-2 col-xs-6 col-sm-4 client-block">
-          <div class="client-item client-item-style-2">
-            <%= link_to "#", title: "Cliens Logo" do %>
-              <%= image_tag "client_8", alt: "Clients Logo" %>
-            <% end %>
-          </div>
-        </div>
-        <div class="col-md-2 col-xs-6 col-sm-4 client-block">
-          <div class="client-item client-item-style-2">
-            <%= link_to "#", title: "Cliens Logo" do %>
-              <%= image_tag "client_9", alt: "Clients Logo" %>
-            <% end %>
-          </div>
-        </div>
-        <div class="col-md-2 col-xs-6 col-sm-4 client-block">
-          <div class="client-item client-item-style-2">
-            <%= link_to "#", title: "Cliens Logo" do %>
-              <%= image_tag "client_10" %>
-            <% end %>
+            <%= image_tag "confessions-logo-graphic.jpg", alt: "Clients Logo" %>
           </div>
         </div>
       </div>
@@ -192,26 +165,28 @@
       </div>
       <div class="row">
         <div class="app-content">
-          <div class="col-md-2  col-sm-2"></div>
+          <div class="col-md-2 col-sm-2"></div>
           <div class="col-md-4 col-sm-4">
-            <%= link_to "#", class: "app-grid" do %>
-              <span class="app-icon"><%= image_tag "index-mobile-ios" %></span>
+            <%= link_to "javascript:", class: "not-link app-grid" do %>
+              <span class="app-icon vertical-center"><%= image_tag "index-mobile-ios.png" %></span>
               <div class="app-title">
                 <h5><%= t ".app.available" %></h5>
                 <h3><%= t ".app.ios" %></h3>
+                <h5><%= t ".app.comming_soon" %></h5>
               </div>
             <% end %>
           </div>
           <div class="col-md-4 col-sm-4">
-            <%= link_to "#", class: "app-grid" do %>
-              <span class="app-icon"><%= image_tag "index-mobile-android" %></span>
+            <%= link_to "javascript:", class: "not-link app-grid" do %>
+              <span class="app-icon vertical-center"><%= image_tag "index-mobile-android" %></span>
               <div class="app-title">
                 <h5><%= t ".app.available" %></h5>
                 <h3><%= t ".app.android" %></h3>
+                <h5><%= t ".app.comming_soon" %></h5>
               </div>
             <% end %>
           </div>
-          <div class="col-md-2  col-sm-2"></div>
+          <div class="col-md-2 col-sm-2"></div>
         </div>
       </div>
     </div>
@@ -220,11 +195,11 @@
     <div class="block no-padding">
       <div class="row">
         <div class="col-md-12">
-          <div class="social-bar">
+          <div class="social-bar not-link">
             <ul>
-              <li class="social2">
+              <li class="social2 wsm-account">
                 <%= link_to "javascript:" do %>
-                  <%= image_tag "icon-wsm", class: "wsm-icon" %>
+                  <%= image_tag "icon-wsm.png", class: "wsm-icon" %>
                   <span>
                     <%= t ".login.title" %>
                     <strong><%= t ".login.framgia" %></strong>
@@ -232,20 +207,22 @@
                 <% end %>
               </li>
               <li class="social1">
-                <%= link_to "#" do %>
+                <%= link_to "javascript:" do %>
                   <%= image_tag "index-facebook" %>
                   <span>
                     <%= t ".login.title" %>
                     <strong><%= t ".login.facebook" %></strong>
+                    <%= t ".app.comming_soon" %>
                   </span>
                 <% end %>
               </li>
               <li class="social3">
-                <%= link_to "#" do %>
+                <%= link_to "javascript:" do %>
                   <%= image_tag "index-google" %>
                   <span>
                     <%= t ".login.title" %>
                     <strong><%= t ".login.google" %></strong>
+                    <%= t ".app.comming_soon" %>
                   </span>
                 <% end %>
               </li>

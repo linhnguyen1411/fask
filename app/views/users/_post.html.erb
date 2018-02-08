@@ -1,4 +1,8 @@
-<div class="col-md-12">
-  <h3> <%= link_to post.title, post_path(post.id) %> </h3>
-  <%= raw truncate(post.content, length: Settings.limit_string.content) %>
-</div>
+<% if post.accept? %>
+  <div class="col-md-12">
+    <h3> <%= link_to post.title, post_path(post.id) %> </h3>
+    <div class="content-post">
+      <%= raw post.content %>
+    </div>
+  </div>
+<% end %>

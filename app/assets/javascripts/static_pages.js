@@ -29,8 +29,18 @@ function active_topic() {
     $('#link-topic-cf').addClass('topic-active');
   }
 }
+function hide_flash(){
+ $('.alert').animate({top: '50px'}, 300, function() {
+    window.setTimeout(function() {
+      $('.alert').animate({top: '-50px'}, 300, function() {
+        $('.alert').hide();
+      });
+    }, 4000);
+  });
+}
 
 $(document).ready(function(){
   vote_panel_move_with_queston();
   active_topic();
+  hide_flash();
 });

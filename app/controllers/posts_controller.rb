@@ -1,23 +1,43 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user
+  authorize_resource
   before_action :check_user, only: :create
   before_action :load_post, except: [:new, :index, :create]
   before_action :plus_count_view, only: :show
+  before_action :load_popular_tags, only: [:new, :edit]
+  before_action :see_notification, only: :show
 
   def index
-   if params[:query].present?
-     @posts = Post.search params[:query], page: params[:page]
-   else
-     @posts = Post.page(params[:page]).per Settings.paginate_default
-   end
+    if params[:query].present?
+      @posts = Post.accept.search params[:query], operator: "or",
+        page: params[:page], per_page: Settings.paginate_default
+    else
+      @posts = Post.accept.page(params[:page]).per Settings.paginate_default
+    end
   end
 
   def new
-    @post = Post.new
+    @support = Supports::PostSupport.new
+    @post = case params[:topic_id]
+    when Settings.topic.q_a
+      Post.new topic_id: Settings.topic.q_a_number
+    when Settings.topic.feedback
+      Post.new topic_id: Settings.topic.feedback_number, work_space_id: current_user.work_space_id
+    when Settings.topic.confesstion
+      Post.new topic_id: Settings.topic.confesstion_number
+    else
+      Post.new
+    end
   end
 
   def show
-    @post_extension = Supports::PostSupport.new Post, nil, nil, nil, nil
+    check_user_owner_feedback
+    @post_extension = Supports::PostSupport.new @post, show_post_params.to_h
     @answer = Answer.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
@@ -35,11 +55,12 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @tags = @post.tags
+    @support = Supports::PostSupport.new @post
   end
 
   def update
-    if @post.user == current_user
+    if check_owner_post || @post.topic_id == Settings.topic.feedback_number &&
+      User.position_allowed_answer_feedback.include?(current_user)
       @post.tags.destroy_all
       save_tags(@post) if params[:tags].present?
       if @post.update_attributes update_post_params
@@ -48,9 +69,12 @@ class PostsController < ApplicationController
         flash[:danger] = t ".error"
       end
     else
-      flash[:danger] = ".error"
+      flash[:danger] = t ".error"
     end
-    redirect_to post_path(@post.id)
+    respond_to do |format|
+      format.html { redirect_to post_path(@post.id) }
+      format.js
+    end
   end
 
   def destroy
@@ -59,9 +83,7 @@ class PostsController < ApplicationController
       success = true
     end
     respond_to do |fomat|
-      fomat.json do
-        render json: {type: success}
-      end
+      fomat.json { render json: {type: success} }
     end
   end
 
@@ -71,7 +93,7 @@ class PostsController < ApplicationController
   end
 
   def feedback_params
-    params.require(:post).permit :topic_id, :title, :content, :work_space_id
+    params.require(:post).permit :topic_id, :title, :content, :work_space_id, :category_id, :status
   end
 
   def confesstion_params
@@ -79,67 +101,69 @@ class PostsController < ApplicationController
   end
 
   def update_post_params
-    params.require(:post).permit :title, :content
+    params.require(:post).permit :title, :content, :category_id, :status
+  end
+
+  def show_post_params
+    params.permit :comment_page, :view_more_time
   end
 
   def check_user
-    @post = Post.new feedback_params
     case
-    when params[:post][:topic_id] == Settings.topic.q_a
-      if current_user.present?
-        @user = current_user
-      else
-        @user = User.find_by email: params[:user_email]
-        if @user.present? && @user.valid_password?(params[:user_password])
-          sign_in @user
-        else
-          flash[:danger] = t ".email_or_password_not_exist"
-          render :new
-        end
-      end
+    when params[:post][:topic_id] == Settings.topic.confesstion
+      @user = User.first
     when params[:post][:topic_id] == Settings.topic.feedback
       if params[:anonymous] == Settings.anonymous
         @user = User.first
       else
-        if current_user.present?
-          @user = current_user
-        else
-          @user = User.find_by email: params[:user_email]
-          if @user.present? && @user.valid_password?(params[:user_password])
-            sign_in @user
-          else
-            flash[:danger] = t ".email_or_password_not_exist"
-            render :new
-          end
-        end
+        @user = current_user
       end
     else
-      @user = User.first
+      @user = current_user
     end
   end
 
   def create_post post_params
     post = Post.new post_params
     post.user_id = @user.id
+    if post.topic_name == Settings.feedback
+      post.status = Settings.post.status.waiting
+    end
+    authorize! :create, post
     if post.save
-      save_tags(post) if params[:tags].present?
-      flash[:success] = t ".create_success"
-      redirect_to post_path(post.id)
+      check_post_saved post
     else
       flash[:danger] = t ".create_error"
       render :new
     end
   end
 
-  def save_tags post
-    params[:tags].split(",").each do |item|
-      tag = Tag.find_by name: item
-      if tag.present?
-        tag.update_attribute :used_count, tag.used_count + Settings.plus_one
-        save_post_tags post, tag
+  def check_post_saved post
+    save_tags(post) if params[:tags].present?
+    if post.topic_name == Settings.feedback
+      if post.user_id == Settings.anonymous_number
+        redirect_to root_path
       else
-        tag = Tag.create name: item
-        save_post_tags post, tag
+        redirect_to post_path(post.id)
+      end
+      flash[:success] = t "posts.status.feedback_info"
+    else
+      flash[:success] = t ".create_success"
+      redirect_to post_path(post.id)
+    end
+  end
+
+  def save_tags post
+    Tag.transaction do
+      params[:tags].split(",").each do |item|
+        tag = Tag.find_by name: item
+        if tag.present?
+          tag.update_attribute :used_count, tag.used_count + Settings.plus_one
+          save_post_tags post, tag
+        else
+          tag = Tag.create name: item
+          save_post_tags post, tag
+        end
       end
     end
   end
@@ -157,5 +181,21 @@ class PostsController < ApplicationController
 
   def plus_count_view
     @post.update_attributes count_view: @post.count_view + 1
+  end
+
+  def load_popular_tags
+    @popular_tags = Tag.top_tags.limit Settings.limit_suggest_tag
+  end
+
+  def check_user_owner_feedback
+    if @post.topic_id == Settings.topic.feedback_number && !@post.accept?
+      return if @post.user_id == current_user.id && current_user.id != Settings.anonymous_number
+      flash[:danger] = t ".not_found"
+      redirect_to root_path
+    end
+  end
+
+  def check_owner_post
+    return true if @post.user == current_user
   end
 end

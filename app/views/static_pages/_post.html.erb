@@ -1,39 +1,51 @@
 <div class="listing-grid">
   <div class="row">
     <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
-      <a data-toggle="tooltip" data-placement="bottom"
-        data-original-title="<%= post.user_name %>" href="#">
-        <%= image_tag post.user_avatar, class: "img-responsive center-block" %>
-      </a>
+      <%= link_to "#", data: {toggle: :tooltip, placement: "bottom",
+        original_title: "#{post.user_name}"} do %>
+        <%= image_tag post.user.avatar.url, class: "img-responsive center-block" %>
+      <% end %>
     </div>
     <div class="col-md-7 col-sm-8  col-xs-12">
       <h3><%= link_to post.title, post_path(post.id) %></h3>
       <div class="listing-meta">
         <span>
           <i class="fa fa-clock-o" aria-hidden="true"></i>
-          <%= time_ago_in_words post.created_at %>
+          <%= load_time_created_at post %>
         </span>
         <span>
           <i class="fa fa fa-eye" aria-hidden="true"></i>
           <%= post.count_view %> <%= t ".view" %>
         </span>
+        <% if !check_feeback_topic post.topic_id %>
+          <span>
+            <i class="fa fa-comment-o" aria-hidden="true"></i>
+            <%= post.count_comment %> <%= t "posts.index.comment" %>
+          </span>
+        <% end %>
       </div>
     </div>
     <div class="col-md-3 col-sm-2 col-xs-12">
       <ul class="question-statistic">
         <li class="active">
-          <span data-toggle="tooltip" title="Answers"><%= post.answers.size %></span>
+          <span data-toggle="tooltip" title="Answers" class="count">
+            <i class="fa fa-reply" aria-hidden="true"></i> <%= post.count_answer %>
+          </span>
         </li>
         <li>
-          <span data-toggle="tooltip" title="Votes"><%= count_vote post %></span>
+          <span data-toggle="tooltip" title="Votes" class="count">
+            <i class="fa fa-sort" aria-hidden="true"></i> <%= count_vote post %>
+          </span>
         </li>
       </ul>
     </div>
     <div class="col-md-10 col-sm-10 col-xs-12 truncate-post">
-      <%= raw post.content %>
+      <div class="content-post">
+        <%= raw post.content %>
+      </div>
       <div class="pull-right tagcloud">
         <% post.tags.each do |tag| %>
-          <%= link_to tag.name, "?tag_id=#{tag.id}" %>
+          <%= link_to tag.name, tag %>
         <% end %>
       </div>
     </div>

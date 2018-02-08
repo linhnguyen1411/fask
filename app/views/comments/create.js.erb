@@ -4,6 +4,7 @@ $('<%= j render partial: "posts/comment", collection: [@comment], as: :comment %
   .hide().appendTo(item).show('500');
 
 $(item).closest('.form-new-commment').find('.comment-new').hide();
+$(item).closest('.form-new-commment').find('.editable').empty().hide();
 $(item).closest('.form-new-commment').find('.add-new-comment').show();
 $(item).closest('.form-new-commment').find('.comment-new')
   .html('<%= j render "comments/create", comment: @object.comments.new,
@@ -11,75 +12,48 @@ $(item).closest('.form-new-commment').find('.comment-new')
   button_name: t("comments.create.btn_comment") %>');
 
 $('.btn-vote').unbind();
-$('.btn-vote').click(function(){
-  var type = $(this).data('type');
-  var model = $(this).data('model');
-  var id = $(this).data('id');
-  var lct = this;
-  if(typeof(type) === 'undefined' || typeof(model) === 'undefined' || typeof(id) === 'undefined')
-    sweetAlert(I18n.t('reactions.create.error'), '', 'error');
-  else {
-    $.ajax({
-      url: '/reactions',
-      type: 'POST',
-      dataType: 'json',
-      data: {
-        type: type,
-        model: model,
-        item_id: id
-      },
-      success: function (data) {
-        if(data.type === 'success') {
-          if(model === 'Post') {
-            $('.point-vote').html('').toggle(200);
-            $('.point-vote').html(data.data).toggle(200);
-          }
-          else {
-            var data = data.data;
-            $(lct).closest('div').find('.count-like').html('' + data[0] + '');
-            $(lct).closest('div').find('.count-dislike').html('' + data[1] + '');
-            $(lct).closest('div').find('.count-heart').html('' + data[2] + '');
-          }
-        }
-        else
-          sweetAlert(I18n.t('reactions.create.error'), '', 'error');
-      },
-      error: function () {
-        response([]);
-      }
-    });
-  }
-});
-
 
 $('.btn-edit-comment').unbind();
 $('.btn-edit-comment').click(function(){
-  $('#comment-content').attr('data-id', $(this).data('id'));
-  $('#comment-content').val($(this).closest('.item-body').find('.content').html());
+  $('#edit-comment-editable').attr('data-id', $(this).data('id'));
+  $('#edit-comment-editable').html($(this).closest('.item-body').find('.content').html());
 });
 
 $('.btn-accept-edit-comment').unbind();
 $('.btn-accept-edit-comment').click(function(){
-  var content = $('#comment-content').val();
-  var id = $('#comment-content').attr('data-id');
-  $.ajax({
-    url: '/comments/' + id,
-    type: 'PATCH',
-    dataType: 'json',
-    data: {
-      content: content
-    },
-    success: function (data) {
-      if (data.type) {
-        $('.comment-item-' + id).find('.content').hide();
-        $('.comment-item-' + id).find('.content').html(data.content);
-        $('.comment-item-' + id).find('.content').show('500');
-      }
-      else
-        sweetAlert(I18n.t('reactions.create.error'), '', 'error');
-    },
-    error: function () {}
-  });
+  var content = $('#edit-comment-editable').html();
+  var id = $('#edit-comment-editable').attr('data-id');
+  if ($('#edit-comment-editable').text().length == 0) {
+    $('.editable').css('border','2px solid red');
+    setTimeout(function(){
+      $('.editable').css('border', '');
+    }, 500);
+  }else{
+    $.ajax({
+      url: '/comments/' + id,
+      type: 'PATCH',
+      dataType: 'json',
+      data: {
+        content: content
+      },
+      success: function (data) {
+        if (data.type) {
+          $('.comment-item-' + id).find('.content').hide();
+          $('.comment-item-' + id).find('.content').html(data.content);
+          $('.comment-item-' + id).find('.content').show('500');
+          $('#modal-edit-comment').modal('hide');
+        }
+        else if(data.not_login)
+          window.location.replace('/users/sign_in');
+        else if(data.not_authorized){
+          notify_not_authorized();
+        }
+        else
+          sweetAlert(I18n.t('reactions.create.error'), '', 'error');
+      },
+      error: function () {}
+    });
+  }
 });
 
 $('.btn-delete-comment').unbind();
@@ -106,6 +80,11 @@ $('.btn-delete-comment').click(function(){
           sweetAlert(I18n.t('reactions.create.success'), '', 'success');
           $('.comment-item-' + id).hide('500')
           setTimeout(function(){$('.comment-item-' + id).remove();}, 700);
+        }
+        else if(data.not_login)
+          window.location.replace('/users/sign_in');
+        else if(data.not_authorized){
+          notify_not_authorized();
         }
         else
           sweetAlert(I18n.t('reactions.create.error'), '', 'error');

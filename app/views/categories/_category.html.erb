@@ -1,0 +1,7 @@
+<div class="category category-<%= category.id %>">
+  <%= link_to category_path(category.id), class: "tag-item", remote: true,
+    data: {id: "#{category.id}"} do %>
+    <span><%= category.count_post %></span>
+    <%= category.name %>
+  <% end %>
+</div>

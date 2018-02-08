@@ -1,5 +1,5 @@
 <div class="main-content-area">
-  <section class="page-title">
+  <section class="page-title profile-title">
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-sm-7 co-xs-12 text-left">
@@ -16,25 +16,84 @@
       </div>
     </div>
   </section>
+  <section id="user-profile" class="user-profile parallex">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-xs-12 col-sm-12">
+          <div class="profile-sec ">
+            <div class="profile-head">
+              <div class="col-md-6 col-xs-12 col-sm-6 no-padding">
+                <div class="profile-avatar">
+                  <span>
+                    <%= image_tag current_user.avatar.url, class: "img-responsive img-circle" %>
+                  </span>
+                  <div class="profile-name">
+                    <h3><%= t "users.user_profile" %></h3>
+                    <i><%= current_user.name %> - <%= current_user.position %></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 col-xs-12 col-sm-6 no-padding">
+                <ul class="profile-count">
+                  <li>
+                    <%= link_to relationships_path(relationship: "follower") do %>
+                      <%= count_follow current_user %>
+                    <% end %>
+                    <i><%= t "users.follower", count: count_follow(current_user) %></i>
+                  </li>
+                  <li>
+                    <%= link_to relationships_path(relationship: "following") do %>
+                      <%= count_following current_user %>
+                    <% end %>
+                    <i><%= t "users.following" %></i>
+                  </li>
+                  <li>
+                    <%= link_to dashboard_posts_path(active_tab: Settings.improvements) do %>
+                      <%= count_improvements current_user %>
+                    <% end %>
+                    <i><%= t "users.improvement", count: count_improvements(current_user) %></i>
+                  </li>
+                  <li>
+                    <%= link_to dashboard_posts_path(active_tab: Settings.clips_posts) do %>
+                      <%= count_clips current_user %>
+                    <% end %>
+                    <i><%= t "users.clips_post", count: count_clips(current_user) %></i>
+                  </li>
+                  <li>
+                    <%= link_to dashboard_posts_path(active_tab: Settings.posts) do %>
+                      <%= count_posts current_user %>
+                    <% end %>
+                    <i><%= t "users.posts", count: count_posts(current_user) %></i>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
     html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
-    <section class="section-padding-80 white" id="login">
+    <section class="section-padding-80" id="login">
       <div class="container">
         <div class="row">
           <div class="col-sm-6 col-md-4">
             <div class="box-panel">
                 <div class="form-group text-center">
                   <label><%= t "profile.update_image" %></label>
-                  <%= image_tag current_user.avatar, class: "img-upload" %>
+                  <%= image_tag current_user.avatar.url, class: "img-upload" %>
                 </div>
-                <span class="input-group-btn text-center">
-                  <span class="btn btn-primary btn-lg btn-file">
-                    <%= t "profile.btn_choose_avatar" %>
-                    <%= f.file_field :avatar, accept: Settings.pictures.accepted_files,
-                      class: "upload-user-avatar" %>
+                <% if !current_user.is_create_by_wsm %>
+                  <span class="input-group-btn text-center">
+                    <span class="btn btn-primary btn-lg btn-file">
+                      <%= t "profile.btn_choose_avatar" %>
+                      <%= f.file_field :avatar, accept: Settings.pictures.accepted_files,
+                        class: "upload-user-avatar" %>
+                    </span>
                   </span>
-                </span>
+                <% end %>
             </div>
           </div>
           <div class="col-md-8">
@@ -49,7 +108,11 @@
                 </div>
                 <div class="form-group">
                   <%= label_tag :name %>
-                  <%= f.text_field :name, class: "form-control" %>
+                  <% if current_user.is_create_by_wsm %>
+                    <%= f.text_field :name, class: "form-control", disabled: true %>
+                  <% else %>
+                    <%= f.text_field :name, class: "form-control" %>
+                  <% end %>
                 </div>
                 <%= f.submit t("profile.btn_update"), class: "btn btn-primary btn-lg form-button" %>
                 <%= link_to t("profile.btn_update_pass"), "#modal-update-password",
@@ -62,7 +125,6 @@
     </section>
   <% end %>
 </div>
-
 <div class="modal fade" id="modal-update-password">
   <div class="modal-dialog">
     <div class="modal-content">

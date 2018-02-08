@@ -1,0 +1,44 @@
+<div class="listing-grid a-version-<%= a_version.id %>">
+  <div class="row">
+    <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs pick-<%= a_version.id %>">
+      <%= link_to user_path a_version.user do %>
+        <%= image_tag a_version.user_avatar.url, title: a_version.user_name %>
+      <% end %>
+      <% if a_version.status == Settings.version.accept %>
+        <span class="tick tick-accept"><i class="fa fa-check" aria-hidden="true"></i></span>
+      <% end %>
+    </div>
+    <div class="col-md-10 col-sm-10  col-xs-12">
+      <div class="row">
+        <h3><%= a_version.user_name %></h3>
+        <div class="listing-meta">
+          <span><i class="fa fa-clock-o" aria-hidden="true"></i><%= a_version.created_at %>
+          </span>
+          <% if a_version.status == Settings.version.accept %>
+            <span class="a-version-status-<%= a_version.id %> version-accept"
+              value="<%= a_version.status %>"><%= t "version.status" %>:
+              <span class="accept-status version-status-accept " ><%= a_version.status %></span></span>
+          <% elsif a_version.status == Settings.version.waiting  %>
+            <span class="a-version-status-<%= a_version.id %>">
+              <%= t "version.status" %>:
+              <span class="version-status-waiting"><%= a_version.status %></span>
+            </span>
+          <% else %>
+            <span class="a-version-status-<%= a_version.id %>">
+              <%= t "version.status" %>:
+              <span class="version-status-improve"><%= a_version.status %></span>
+            </span>
+          <% end %>
+        </div>
+      </div>
+      <div class="row hide-improve">
+        </br></br>
+        <span class= "more"><%= raw a_version.content %></span>
+        <div class="pull-left show-more-link"></div>
+        <div class="pull-right tagcloud reject-accept">
+          <%= raw load_approve_reject_a_version_button(a_version) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

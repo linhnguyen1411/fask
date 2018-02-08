@@ -1,15 +1,19 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe StaticPagesController, type: :controller do
-  let(:work_space) {FactoryGirl.create :work_space}
-  let(:user) {FactoryGirl.create :user}
-  let(:topic) {FactoryGirl.create :topic}
+  let(:work_space) { FactoryGirl.create :work_space}
+  let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
+  let(:topic){FactoryGirl.create :knowledge_topic}
   let!(:post) do
     FactoryGirl.create :post, work_space: work_space, user: user, topic: topic
   end
   let!(:tag) {FactoryGirl.create :tag}
 
   describe "GET index" do
+    before do
+      sign_in user
+    end
+
     let!(:answer) {FactoryGirl.create :answer, user: user, post: post}
     let(:comment) do
       FactoryGirl.create :comment, user_id: user.id, commentable_id: post.id,

@@ -1,0 +1,87 @@
+var item = '#comment-list-<%= "#{@post.class.name.downcase}-#{@post.id}" %>'
+$('<%= j render partial: "posts/comment", collection: @post_extension.comments_of_post, as: :comment %>')
+  .hide().prependTo(item).show('500');
+$('#next-page').html(
+  '<%= j(render("view_more", post: @post, next_page: @post_extension.next_page, view_more_time: @post_extension.view_more_time)) %>'
+);
+
+$('.btn-edit-comment').unbind();
+$('.btn-edit-comment').click(function(){
+  $('#edit-comment-editable').attr('data-id', $(this).data('id'));
+  $('#edit-comment-editable').html($(this).closest('.item-body').find('.content').html());
+});
+
+$('.btn-accept-edit-comment').unbind();
+$('.btn-accept-edit-comment').click(function(){
+  var content = $('#edit-comment-editable').html();
+  var id = $('#edit-comment-editable').attr('data-id');
+  if ($('#edit-comment-editable').text().length == 0) {
+    $('.editable').css('border','2px solid red');
+    setTimeout(function(){
+      $('.editable').css('border', '');
+    }, 500);
+  }else{
+    $.ajax({
+      url: '/comments/' + id,
+      type: 'PATCH',
+      dataType: 'json',
+      data: {
+        content: content
+      },
+      success: function (data) {
+        if (data.type) {
+          $('.comment-item-' + id).find('.content').hide();
+          $('.comment-item-' + id).find('.content').html(data.content);
+          $('.comment-item-' + id).find('.content').show('500');
+          $('#modal-edit-comment').modal('hide');
+        }
+        else if(data.not_login)
+          window.location.replace('/users/sign_in');
+        else if(data.not_authorized){
+          notify_not_authorized();
+        }
+        else
+          sweetAlert(I18n.t('reactions.create.error'), '', 'error');
+      },
+      error: function () {}
+    });
+  }
+});
+
+$('.btn-delete-comment').unbind();
+$('.btn-delete-comment').click(function(){
+  var id = $(this).data('id');
+  swal({
+    title: I18n.t('warning'),
+    text: I18n.t('comments.destroy.are_you_sure'),
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#DD6B55',
+    confirmButtonText: I18n.t('ok'),
+    cancelButtonText: I18n.t('cancel'),
+    closeOnConfirm: false
+  },
+  function(){
+    $.ajax({
+      url: '/comments/' + id,
+      type: 'DELETE',
+      dataType: 'json',
+      data: {},
+      success: function (data) {
+        if (data.type) {
+          sweetAlert(I18n.t('reactions.create.success'), '', 'success');
+          $('.comment-item-' + id).hide('500')
+          setTimeout(function(){$('.comment-item-' + id).remove();}, 700);
+        }
+        else if(data.not_login)
+          window.location.replace('/users/sign_in');
+        else if(data.not_authorized){
+          notify_not_authorized();
+        }
+        else
+          sweetAlert(I18n.t('reactions.create.error'), '', 'error');
+      },
+      error: function () {}
+    });
+  });
+});

@@ -8,13 +8,13 @@
         <%= raw "#{title} " %>
         <% if post.present? %>
           <%= link_to post.title, post_path(post.id) %>
-          <%= link_to topic_path(post) do %>
+          <%= link_to post.topic do %>
             <span class="badge"><%= post.topic_name %></span>
           <% end %>
         <% end %>
         <div class="listing-meta">
           <i class="fa fa-clock-o" aria-hidden="true"></i>
-          <%= t ".activities.on" %> <%= time_ago_in_words activity.created_at %>
+          <%= time_ago_in_words activity.created_at %>
         </div>
       </span>
     </div>

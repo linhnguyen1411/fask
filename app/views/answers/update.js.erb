@@ -1,0 +1,13 @@
+<% provide :button_text, t('post_your_answer') %>
+$('#content-<%= @answer.id %>').html('<%= j(raw @answer.content) %>');
+$('#answer-form').html(
+  '<%= j(render("posts/answer_form", answer: @new_answer, post: @answer.post, option: {remote: false})) %>');
+$('html,body').animate({
+  scrollTop:  $('#answer-<%= @answer.id %>').offset().top - 50
+}, 700);
+var ck = $('.ckeditor');
+$.each(ck, function(i) {
+  if (ck[i].id == 'ckeditor-answer-form'){
+    CKEDITOR.replace(ck[i]);
+  }
+});

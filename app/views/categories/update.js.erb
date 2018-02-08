@@ -1,0 +1,21 @@
+<% if @success %>
+  $('#modal-edit-category').modal('hide');
+  $('#category-<%= @category.id %>').hide();
+  $('#category-<%= @category.id %>').find('.category-name').html('<%= @category.name %>');
+  $('#category-<%= @category.id %>').show();
+  swal({
+    position: 'top-end',
+    type: 'success',
+    title: I18n.t('flash.update.success'),
+    showConfirmButton: false,
+    timer: 500
+  })
+<% else %>
+  swal({
+    position: 'top-end',
+    type: 'warning',
+    title: I18n.t('flash.update.error'),
+    showConfirmButton: false,
+    timer: 1500
+  })
+<% end %>

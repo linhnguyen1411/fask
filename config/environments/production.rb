@@ -14,6 +14,8 @@ Rails.application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
+  config.active_job.queue_adapter = :delayed_job
+
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
   # For large-scale production use, consider using a caching reverse proxy like
@@ -22,11 +24,11 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
-  # config.assets.css_compressor = :sass
+  # config.assets.css_compressor = :Strict-Transport-Security
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = true
@@ -76,4 +78,16 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = {host: "ask.framgia.vn"}
+  config.action_mailer.smtp_settings = {
+    address: ENV["FASK_EMAIL_ADDRESS"],
+    port: 587,
+    domain: ENV["FASK_EMAIL_DOMAIN"],
+    user_name: ENV["FASK_EMAIL_USERNAME"],
+    password: ENV["FASK_EMAIL_PASSWORD"],
+    authentication: ENV["FASK_EMAIL_AUTHENTICAION"],
+    enable_starttls_auto: true
+  }
 end

@@ -1,8 +1,9 @@
 require "rails_helper"
 
 RSpec.describe Post, type: :model do
-  let(:user){FactoryGirl.create :user}
-  let(:topic){FactoryGirl.create :topic}
+  let(:work_space) { FactoryGirl.create :work_space}
+  let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
+  let(:topic){FactoryGirl.create :knowledge_topic}
 
   let!(:post_x) do
     FactoryGirl.create :post,
@@ -53,6 +54,7 @@ RSpec.describe Post, type: :model do
     it{expect belong_to :user}
     it{is_expected.to belong_to :work_space}
     it{expect belong_to :topic}
+    it{expect belong_to :category}
   end
 
   context "validates" do
@@ -115,13 +117,13 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  context ".get_post_by_topic" do
+  context ".post_by_topic" do
     it "fail" do
-      expect(Post.get_post_by_topic(0).count).to eq 0
+      expect(Post.post_by_topic(0)).to eq []
     end
 
     it "success" do
-      expect(Post.get_post_by_topic(topic.id).count).to be > 0
+      expect(Post.post_by_topic(topic.id)).to eq [post_x, post_y, post_z]
     end
   end
 
@@ -147,27 +149,49 @@ RSpec.describe Post, type: :model do
 
   context ".recently_answer" do
     it "fail" do
-      expect(Post.recently_answer).not_to eq([post_x, post_y, post_z])
+      expect(Post.post_by_topic(topic.id).recently_answer).not_to eq([post_x, post_y, post_z])
     end
 
     it "success" do
-      expect(Post.recently_answer).to eq([post_z, post_y, post_x])
+      expect(Post.post_by_topic(topic.id).recently_answer).to eq([post_z, post_y, post_x])
     end
   end
 
   context ".no_answer" do
     it "success" do
-      expect(Post.no_answer.count).to eq 0
+      expect(Post.post_by_topic(topic.id).no_answer).to eq []
     end
   end
 
   context ".recently_answer" do
     it "fail" do
-      expect(Post.recently_answer).not_to eq([post_x, post_y, post_z])
+      expect(Post.post_by_topic(topic.id).recently_answer).not_to eq([post_x, post_y, post_z])
     end
 
     it "success" do
-      expect(Post.recently_answer).to eq([post_z, post_y, post_x])
+      expect(Post.post_by_topic(topic.id).recently_answer).to eq([post_z, post_y, post_x])
     end
+  end
+
+  context ".post_in_time" do
+    it "fail" do
+      expect(Post.post_in_time("2016/02/01","2016/03/01")).not_to eq([post_x])
+    end
+
+    it "success" do
+      expect(Post.post_in_time("2016/02/01","2016/03/01")).to eq([post_y, post_z])
+    end
+
+    it "just from day" do
+      expect(Post.post_in_time("2016/02/01","")).to eq([post_y, post_z])
+    end
+
+    it "just end day" do
+      expect(Post.post_in_time("","2016/03/01")).to eq([post_x, post_y, post_z])
+    end
+  end
+
+  context ".not_contain_post" do
+    it{ expect(Post.not_contain_post(post_x.id)).to eq([post_y, post_z]) }
   end
 end

@@ -1,0 +1,55 @@
+<section class="page-title profile-title">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-sm-7 co-xs-12 text-left">
+        <h1><%= t "contact_point.title" %></h1>
+      </div>
+      <div class="col-md-6 col-sm-5 co-xs-12 text-right">
+        <div class="bread">
+          <ol class="breadcrumb">
+            <li><%= link_to t(".home"), root_path %></li>
+            <li class="active"><%= t "contact_point.title" %></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="white padding-bottom-80 feedback">
+  <div class="container">
+    <div class="row padding-left-right-15">
+      <table class="table feedback-table contact-point">
+        <thead class="feedback-header-table">
+          <tr>
+            <th scope="col" rowspan="2" class="ver-middle"><%= t "contact_point.position" %></th>
+            <th scope="col" rowspan="2" class="ver-middle"><%= t "contact_point.issue" %></th>
+            <th scope="col" colspan="3"><%= t "contact_point.contact" %></th>
+          </tr>
+          <tr>
+            <th scope="col"><%= t "contact_point.ha_noi" %></th>
+            <th scope="col"><%= t "contact_point.da_nang" %></th>
+            <th scope="col"><%= t "contact_point.hcm" %></th>
+          </tr>
+        </thead>
+        <tbody>
+           <%= render "contact_point", contact_points: @contact_points %>
+        </tbody>
+      </table>
+    </div>
+    <div class="row import-file padding-left-right-15">
+      <%= link_to contact_points_path(format: :xlsx) do %>
+        <i class="fa fa-download">&nbsp;</i><%= t "contact_point.export" %>
+      <% end %>
+      <% if current_user.position == Settings.event_officer %>
+        <%= form_tag contact_points_path, multipart: true do %>
+          <%= file_field_tag :file , class: "hidden inputfile",  accept: ".xlsx" %>
+          <label for="file" class="choose-file"><i class="fa fa-upload">&nbsp;</i>
+            <span><%= t "contact_point.choose_file" %></span>
+          </label>
+          <%= submit_tag t("contact_point.import"), class: "btn btn-import" %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>

@@ -13,13 +13,38 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require bootstrap-sprockets
+//= require ckeditor/init
+//= require ckeditor/plugins/widget/plugin
+//= require ckeditor/plugins/codesnippet/plugin
+//= require jquery.atwho
 //= require i18n
 //= require i18n.js
 //= require i18n/translations
+//= require notify_not_authorized
 //= require_tree .
+//= require bootstrap-sprockets
 //= require sweetalert/dist/sweetalert.min.js
-
+//= require social-share-button
+//= require viewer.min.js
+//= require jquery.mark.min.js
+//= require highlight-search
+//= require jquery.datetimepicker
 $(document).ready(function(){
-  $('a').tooltip();
+  $(document).on('mouseover','a[data-toggle="tooltip"]', function(){
+    $(this).tooltip({
+      content: function() {
+        return $(this).attr('title');
+      }
+    }).triggerHandler('mouseover');
+  });
+  Notification.requestPermission();
+  $('.zoom-img').each(function(){
+    $(this).viewer();
+  });
+  $(document).on('mouseover','.anonymous', function(){
+    if($('.anonymous_number').data('id') == 1){
+      $(this).attr('disabled','disabled').css('cursor', 'not-allowed').click(function(){return false});
+    }
+  });
 });
+CKEDITOR.config.customConfig = '/assets/ckeditor/ckeditor_config.js';

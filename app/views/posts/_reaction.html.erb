@@ -1,0 +1,82 @@
+<div class="modal fade" id="modal-show-reactions">
+  <div class="modal-dialog">
+    <div class="modal-content reactions-custom-modal">
+      <div class="modal-header">
+        <h4 class="modal-title"><%= t "reactions.all_reactions" %></h4>
+      </div>
+      <div class="modal-body">
+        <ul class="nav nav-tabs" id="tabContent">
+          <% if count_likes(reactions) > Settings.zero_reaction %>
+            <li class="active"><a href="#likes" data-toggle="tab">
+              <i class="fa fa-thumbs-o-up red"aria-hidden="true"></i> <%=count_likes reactions %></a></li>
+          <% end %>
+          <% if count_loves(reactions) > Settings.zero_reaction %>
+            <% if count_likes(reactions) == Settings.zero_reaction %>
+              <li class="active">
+            <% else %>
+              <li>
+            <% end %>
+              <a href="#loves" data-toggle="tab"><i class="fa fa-heart-o"
+              aria-hidden="true"></i> <%=count_loves reactions %></a></li>
+          <% end %>
+        </ul>
+        <div class="tab-content reactions-tab">
+          <div class="tab-pane active" id="likes">
+            <% reactions[Settings.reaction_type.like].try(:each) do |like|%>
+              <div class="row list-user-reactions">
+                <div class="col-md-8 reactions-list-item">
+                  <%= image_tag like.user_avatar.url %>
+                  <span class="name-user-reactions"><%= like.user_name %></span>
+                </div>
+                <div class="col-md-4 follow_unfollow_<%= like.user.id %>">
+                  <% if user_signed_in? && current_user != like.user %>
+                    <% if check_follow like.user.id %>
+                      <%= link_to t(".unfollow"), "javascript:void(0)", data:{user_id: like.user.id, url: follow_path(like.user.id)},
+                      class: "btn btn-warning btn-xs anonymous follow-unfollow" %>
+                    <% else  %>
+                      <%= link_to t(".follow"), "javascript:void(0)", data:{user_id: like.user.id, url: follow_path(like.user.id)},
+                      class: "btn btn-warning btn-xs anonymous follow-unfollow"%>
+                    <% end %>
+                  <% end  %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <% if count_likes(reactions) == Settings.zero_reaction %>
+            <div class="tab-pane active" id="loves">
+          <% else %>
+            <div class="tab-pane" id="loves">
+          <% end %>
+            <% reactions[Settings.reaction_type.heart].try(:each) do |love|%>
+              <div class="row list-user-reactions">
+                <div class="col-md-8 reactions-list-item">
+                  <%= image_tag love.user_avatar.url %>
+                  <span class="name-user-reactions"><%= love.user_name %></span>
+                </div>
+                <div class="col-md-4 follow_unfollow_<%= love.user.id %>">
+                  <% if user_signed_in? && current_user != love.user %>
+                    <% if check_follow love.user.id %>
+                      <%= link_to t(".unfollow"), "javascript:void(0)", data:{user_id: love.user.id, url: follow_path(love.user.id)},
+                      class: "btn btn-warning btn-xs anonymous follow-unfollow" %>
+                    <% else  %>
+                      <%= link_to t(".follow"), "javascript:void(0)", data:{user_id: love.user.id, url: follow_path(love.user.id)},
+                      class: "btn btn-warning btn-xs anonymous follow-unfollow"%>
+                    <% end %>
+                  <% end  %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-xs btn-default" data-dismiss="modal">
+          <%= t "cancel" %></button>
+        <button type="button" class="btn btn-xs btn-primary
+          btn-accept-edit-comment" data-dismiss="modal">
+          <%= t "ok" %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

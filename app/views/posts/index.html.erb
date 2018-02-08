@@ -1,6 +1,7 @@
+<div class="search-params" data-query="<%= params[:query] %>  "></div>
 <div class="main-content-area">
   <!-- =-=-=-=-=-=-= Latest Questions  =-=-=-=-=-=-= -->
-  <section class="white question-tabs padding-bottom-80" id="latest-post">
+  <section class="white question-tabs padding-bottom-30" id="latest-post">
     <div class="container">
       <div class="row">
         <!-- Content Area Bar -->
@@ -14,11 +15,12 @@
                       <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
                         <a data-toggle="tooltip" data-placement="bottom"
                           data-original-title="<%= post.user.name %>" href="#">
-                          <%= image_tag get_avatar_user(post.user), class: "img-responsive center-block" %>
+                          <%= image_tag get_avatar_user(post.user),
+                            class: "img-responsive center-block" %>
                         </a>
                       </div>
                       <div class="col-md-7 col-sm-8  col-xs-12">
-                        <h3><a  href="#"> <%= post.title %></a></h3>
+                        <h3><span class="search-highlight"><%= link_to post.title, post %><span></h3>
                         <div class="listing-meta">
                           <span>
                             <i class="fa fa-clock-o" aria-hidden="true"></i>
@@ -30,12 +32,13 @@
                           </span>
                         </div>
                       </div>
-
                       <div class="col-md-10 col-sm-10  col-xs-12">
-                        <%= raw truncate(post.content, length: Settings.content_max_length) %>
+                        <div class="content-post">
+                          <span class="search-highlight" ><%= raw post.content %></span>
+                        </div>
                         <div class="pull-right tagcloud">
                           <% post.tags.each do |tag| %>
-                            <a href="#"><%= tag.name %></a>
+                            <%= link_to tag.name, tag %>
                           <% end %>
                         </div>
                       </div>
@@ -45,9 +48,9 @@
                 <% else %>
                   <center><h1><%= t ".not_found" %></h1></center>
               <% end %>
-            </div>
-            <div class="text-center clearfix">
-              <%= paginate @posts %>
+              <div class="text-center clearfix">
+                <%= paginate @posts %>
+              </div>
             </div>
           </div>
         </div>

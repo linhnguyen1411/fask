@@ -1,8 +1,10 @@
 class FollowsController < ApplicationController
   include UsersHelper
+  before_action :authenticate_user
+  authorize_resource :relationship, parent: false
 
   def update
-    if user_signed_in? && params[:id].present?
+    if params[:id].present?
       if check_follow params[:id]
         @data = Settings.relationships.unfollow
         User.unfollow(current_user, params[:id])
@@ -10,9 +12,9 @@ class FollowsController < ApplicationController
         @data = Settings.relationships.follow
         User.follow(current_user, params[:id])
       end
-      result = {type: Settings.success, relationships: @data}
+      result = {type: true, relationships: @data}
     else
-      result = {type: Settings.error}
+      result = {type: false}
     end
     respond_to do |format|
       format.json do

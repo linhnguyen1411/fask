@@ -1,0 +1,12 @@
+<% if @success %>
+  $('#feedback-<%= @post.id %>').remove()
+  swal(I18n.t('posts.status.delete_success'),'','success');
+<% else %>
+    swal({
+      position: 'top-end',
+      type: 'warning',
+      title: I18n.t('posts.status.delete_error'),
+      showConfirmButton: false,
+      timer: 1500
+    })
+<% end %>

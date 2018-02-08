@@ -1,0 +1,9 @@
+<%= form_for(answer, option) do |f| %>
+  <%= f.hidden_field :post_id, value: post.id %>
+  <div class="form-group">
+    <h2><%= t ".post_your_answer" %></h2>
+    <%= f.text_area :content, minlength: Settings.post.min_title,
+      required: true, class: "form-control ckeditor", id: "ckeditor-answer-form" %>
+  </div>
+  <%= f.submit yield(:button_text), class: "btn btn-primary btn-lg btn-block" %>
+<% end %>

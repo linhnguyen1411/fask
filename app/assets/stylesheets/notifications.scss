@@ -35,6 +35,7 @@
       border: solid 1px #be161e;
       border-radius: 50px;
       width: 50px;
+      height: 42px;
       object-fit: cover;
       margin-top: 10px;
       margin-bottom: 10px;
@@ -45,7 +46,7 @@
     .time {
       float: right;
       font-style: italic;
-      padding-right: 10px;
+      padding-right: 20px;
       font-size: 12px;
       color: gray;
       text-transform: initial;
@@ -68,6 +69,11 @@
       color: rgb(190, 22, 30) !important;
       float: right;
     }
+  }
+  .list-notifications{
+    height: 295px;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 }
 .all-notification {

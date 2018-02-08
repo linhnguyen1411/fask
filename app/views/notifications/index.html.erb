@@ -22,6 +22,9 @@
         <div class="all-notification">
           <%= render partial: "notification", collection: @notifications, as: :notification %>
         </div>
+        <div class="paginate-notify text-center clearfix">
+          <%= paginate @notifications %>
+        </div>
       </div>
     </div>
   </section>

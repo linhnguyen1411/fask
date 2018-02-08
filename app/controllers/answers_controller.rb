@@ -1,28 +1,56 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user
+  authorize_resource
   before_action :check_post, only: :create
-  before_action :check_user, only: :create
-  before_action :load_answer, only: :edit
+  before_action :load_answer, only: [:update, :edit, :destroy]
+  before_action :check_onwer_answer, only: [:update, :destroy]
 
   def create
-    answer = current_user.answers.new answer_params
-    if answer.save
-      flash[:success] = t ".create_success"
-    else
-      flash[:danger] = t ".create_danger"
+    if User.position_allowed_answer_feedback.include?(current_user) || @post.topic_name != Settings.feedback
+      answer = current_user.answers.build answer_params
+      if answer.save
+        flash[:success] = t ".create_success"
+      else
+        flash[:danger] = t ".create_danger"
+      end
     end
     redirect_to post_path(@post.id)
   end
 
   def edit
     success = false
-    if @answer.post.user == current_user
-      if @answer.best_answer == false && @answer.update_attributes(best_answer: true)
-        success = true
+    if params[:edit_content].nil?
+      if @answer.post.user == current_user && @answer.user != current_user
+        if @answer.best_answer == false && @answer.update_attributes(best_answer: true)
+          success = true
+        end
       end
     end
     respond_to do |format|
+      format.js
       format.json do
-        render json: {sesulf: success}
+        render json: {type: success}
+      end
+    end
+  end
+
+  def update
+    if @answer.update_attributes answer_params
+      @new_answer = Answer.new
+      respond_to do |format|
+        format.js
+      end
+    end
+  end
+
+  def destroy
+    success = false
+    if @answer.destroy
+      success = true
+    end
+    respond_to do |format|
+      format.json do
+        render json: {type: success}
       end
     end
   end
@@ -33,26 +61,19 @@ class AnswersController < ApplicationController
     params.require(:answer).permit :content, :post_id, :parent_id
   end
 
-  def check_user
-    @answer = Answer.new answer_params
-    unless current_user.present?
-      @user = User.find_by email: params[:user_email]
-      if @user.present? && @user.valid_password?(params[:user_password])
-        sign_in @user
-      else
-        @post_extension = Supports::PostSupport.new Post, nil, nil, nil, nil
-        flash[:danger] = t ".email_or_password_not_exist"
-        render "posts/show"
-      end
-    end
-  end
-
   def check_post
     @post = Post.find_by id: params[:answer][:post_id]
     unless @post.present?
       flash[:danger] = t ".post_not_exist"
       redirect_to root_path
     end
+  end
+
+  def check_onwer_answer
+    return if @answer.user == current_user || ( @answer.post.topic_name == Settings.feedback &&
+      User.position_allowed_answer_feedback.include?(current_user))
+    flash[:danger] = t ".wrong_user"
+    redirect_to root_path
   end
 
   def load_answer

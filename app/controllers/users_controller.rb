@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user
+  authorize_resource
   before_action :load_user, only: [:show, :update]
+  before_action :see_notification, only: :show
 
   def index
-    if user_signed_in?
-      @users = User.page(params[:page])
-        .get_users_not_contain_id([current_user.id, Settings.id_user_hiddent])
-        .per Settings.paginate_users
-    else
-      @users = User.page(params[:page]).get_users_not_contain_id(Settings.id_user_hiddent)
-        .per Settings.paginate_users
-    end
+    @title = t "profile.index.title"
+    @users = User.page(params[:page])
+      .get_users_not_contain_id([current_user.id, Settings.id_user_hiddent])
+      .per Settings.paginate_users
   end
 
   def show
+    @user_support = Supports::UserSupport.new @user
   end
 
   def update
@@ -35,6 +35,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def load_user
     @user = User.find_by id: params[:id]
     return if @user

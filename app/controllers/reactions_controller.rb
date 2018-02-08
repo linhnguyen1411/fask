@@ -1,15 +1,31 @@
 class ReactionsController < ApplicationController
-  before_action :load_item, only: :create
+  before_action :authenticate_user
+  authorize_resource
+  before_action :load_item, only: [:create, :index]
+
+  def index
+    if @item.blank?
+      @success = false
+    else
+      @reactions = @item.reactions.includes_user.group_by{|reaction| reaction.target_type}
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
 
   def create
     @reaction = Reaction.find_or_initialize_by reactiontable_type: @item.class.name,
       reactiontable_id: @item.id, user_id: current_user.id
     resufl = {}
-    @reaction.target_type = params[:type]
-    if @reaction.save
-      resufl = {type: Settings.success, data: load_resufl(@item)}
+    if Reaction.target_types.include? params[:type]
+      @reaction.target_type = params[:type]
+      @target_type = true
+    end
+    if @reaction.save && @target_type
+      resufl = {type: true, data: load_resufl(@item), reaction_type: params[:type]}
     else
-      resufl = {type: Settings.error}
+      resufl = {type: false}
     end
     respond_to do |format|
       format.json do
@@ -32,7 +48,7 @@ class ReactionsController < ApplicationController
     unless @item.present?
       respond_to do |format|
         format.json do
-          render json: {type: Settings.error}
+          render json: {type: false}
         end
       end
     end

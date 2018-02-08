@@ -1,4 +1,15 @@
+company:
+  max_name: 250
+  min_name: 1
+category:
+  max_name: 250
+  min_name: 3
 post:
+  model_name: "Post"
+  status:
+    waiting: 0
+    accept: 1
+    reject: 2
   max_title: 250
   min_title: 6
   min_content: 6
@@ -10,6 +21,15 @@ comment:
     post: "post"
     answer: "answer"
 topic:
+  da_dang_location: 1
+  ha_noi_location: 2
+  hcmc_location: 3
+  tk_location: 4
+  handico_location: 5
+  location: "location"
+  q_a_number: 1
+  feedback_number: 2
+  confesstion_number: 3
   q_a: "1"
   feedback: "2"
   confesstion: "3"
@@ -19,17 +39,22 @@ topic:
     recently_answer: "recently_answer"
     no_answer: "no_answer"
 anonymous: "1"
+anonymous_number: 1
 max_search_tags: 5
 plus_one: 1
 paginate_offset: 1
 paginate_default: 5
-paginate_tags: 20
-paginate_users: 6
+paginate_tags: 12
+paginate_users: 8
 paginate_posts: 10
 id_user_hiddent: 1
+hr_administrator: "Hr administrator"
+recruiter: "Recruiter"
+event_officer: "Event Officer"
 content_max_length: 500
 limit_top: 3
 limit_tag: 10
+limit_suggest_tag: 5
 limit_notification: 5
 pictures:
   accepted_files: "image/jpeg, image/gif, image/png"
@@ -49,6 +74,8 @@ relationships:
 limit_string:
   content: 200
   name: 50
+  user_name: 25
+  tag_name: 25
 activity:
   key:
     follow: "create"
@@ -57,3 +84,71 @@ languages:
   vi: "vi"
   en: "en"
   ja: "ja"
+index_zero_in_array: 0
+index_one_in_array: 1
+index_two_in_array: 2
+index_three_in_array: 3
+index_four_in_array: 4
+index_five_in_array: 5
+index_six_in_array: 6
+index_seven_in_array: 7
+index_eight_in_array: 8
+index_nine_in_array: 9
+serialize_true: "1"
+serialize_false: "0"
+from_mail: "fask.info@gmail.com"
+scan_begin_index: 13
+show_view_more: 3
+paginate_comment: 3
+not_view_more: 0
+second_page: 2
+one_page: 1
+version_reject: 2
+post_topic_qa: 1
+a_version_reject: "reject"
+version:
+  reject: "reject"
+  accept: "accept"
+  improve: "improve"
+  waiting: "waiting"
+following: "following"
+update: "update"
+edit: "edit"
+posts: "posts"
+improvements: "improvements"
+clips_posts: "clips_posts"
+zero_reaction: 0
+one_reaction: 1
+two_reaction: 2
+reactions:
+  comment: "Comment"
+  answer: "Answer"
+notification_setting:
+  tag_post: "tag_post"
+  create_post: "create_post"
+  llc_answer: "llc_answer"
+  like_comment: "like_comment"
+  up_down_vote_post: "up_down_vote_post"
+  clip_post: "clip_post"
+  reply_post: "reply_post"
+  comment_post: "comment_post"
+  comment_post_number: "1"
+  comment_answer: "comment_answer"
+one_day: 1
+feedback: "Feedback"
+feedback_manager: ["Event Officer"]
+sort_type_list: ["newest", "popular", "recently_answer", "no_answer"]
+columns_of_contact_points: ["position", "issue", "curators", "work_space"]
+row_header: 2
+begin_col_work_space: 2
+decrease_one_index: 1
+begin_row_content: 3
+col_position: 0
+col_issue: 1
+col_curators: 2
+work_space_list: ["Hanoi Office", "DaNang Office", "HCMC Office"]
+paginate_categories: 10
+feedback_update_type:
+  status: "status"
+  category: "category"
+time_send_mail: 5

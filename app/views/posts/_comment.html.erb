@@ -1,4 +1,4 @@
-<div class="media-block ribbon-content comment-item comment-item-<%= comment.id %>">
+<div class="media-block ribbon-content comment-item comment-item-<%= comment.id %>" id="comment-<%= comment.id %>">
   <div class="media-left">
     <%= link_to (image_tag get_avatar_user(comment.user), class: "img-sm item-avatar"), "#",
       data: {toggle: "tooltip", placement: "bottom",
@@ -7,19 +7,24 @@
   <div class="media-body item-body">
     <div class="mar-btm">
       <h4 class="item-name">
-        <%= link_to comment.user_name,
+        <%= link_to comment.user_name, comment.user,
           class: "btn-link text-semibold media-heading box-inline" %>
       </h4>
       <p class="text-muted text-sm item-time">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <%= time_ago_in_words comment.created_at %> |
-        <%= raw load_button_edit_delete_comment(comment)  %>
+        <%= load_time_created_at comment %>
+        <%= raw load_button_edit_delete_comment(comment) %>
       </p>
     </div>
-    <p class="content"><%= raw comment.content %></p>
-    <div class="pad-ver pull-right">
-      <%= load_btn_reactions comment, t("posts.answer.like_answer"), Settings.reaction_type.like %>
-      <%= load_btn_reactions comment, t("posts.answer.spam"), Settings.reaction_type.dislike %>
+    <div class="content"><%= simple_format comment.content %></div>
+    <div class="reactions-form">
+      <div class="pad-ver pull-right">
+        <%= load_btn_reactions comment, t("posts.answer.like_answer"), Settings.reaction_type.like %>
+        <%= load_btn_reactions comment, t("posts.answer.spam"), Settings.reaction_type.dislike %>
+      </div>
+      <div class="pad-ver pull-right">
+        <%= load_link_reaction comment %>
+      </div>
     </div>
   </div>
 </div>

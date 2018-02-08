@@ -1,9 +1,9 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActivitiesController, type: :controller do
   let(:work_space) {FactoryGirl.create :work_space}
-  let(:user) {FactoryGirl.create :user}
-  let(:topic) {FactoryGirl.create :topic}
+  let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
+  let(:topic) {FactoryGirl.create :knowledge_topic}
 
   describe "GET index" do
     before do

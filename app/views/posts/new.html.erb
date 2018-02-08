@@ -1,5 +1,5 @@
 <%= hidden_field_tag :check_user_login, current_user.present? %>
-<%= form_for @post do |f| %>
+<%= form_for @post, html: {class: "form-new-post"} do |f| %>
   <section class="page-title">
     <div class="container">
       <div class="row">
@@ -28,54 +28,57 @@
             <hr>
             <div class="margin-top-40">
               <div class="form-group">
-                <label><%= t ".toppic" %></label>
-                <%= f.select :topic_id, load_select_box_topic, {},
-                  {class: "questions-category form-control", id: "select-toppic"} %>
+                <label><%= t ".toppic" %><span class="red-title"> *</span></label>
+                <% if check_user_anonymous %>
+                  <%= f.select :topic_id, options_for_select(load_select_box_topic(@support.topic_list),
+                    disabled: Settings.topic.q_a), {},
+                    {class: "questions-category form-control", id: "select-toppic"} %>
+                <% else %>
+                  <%= f.select :topic_id, load_select_box_topic(@support.topic_list), {},
+                    {class: "questions-category form-control", id: "select-toppic"} %>
+                <% end %>
               </div>
+              <% if !check_user_anonymous %>
+                <div class="form-group" id="anonymous">
+                  <label><%= t ".account" %><span class="red-title"> *</span></label>
+                  <%= select_tag :anonymous, options_for_select(load_select_box_account, Settings.anonymous_number),
+                    class: "questions-category form-control" %>
+                </div>
+              <% end %>
               <div class="form-group">
-                <label><%= t ".location" %></label>
-                <%= f.select :work_space_id, load_select_box_location, {},
+                <label><%= t ".location" %><span class="red-title"> *</span></label>
+                <%= f.select :work_space_id, load_select_box_work_space(@support.work_space_list), {},
                   {class: "questions-category form-control", id: "select-location"} %>
               </div>
               <div class="form-group">
-                <label><%= t ".form.title" %></label>
+                <label><%= t ".Category" %><span class="red-title"> *</span></label>
+                <%= f.select :category_id, load_select_box_category(@support.category_list),
+                  {}, {class: "questions-category form-control", id: "select-category"} %>
+              </div>
+              <div class="form-group">
+                <label><%= t ".form.title" %><span class="red-title"> *</span></label>
                 <%= f.text_field :title, maxlength: Settings.post.max_title,
                   minlength: Settings.post.min_title, required: true, class: "form-control" %>
               </div>
-              <div class="form-group">
-                <label><%= t ".form.tags" %></label>
-                <%= text_field_tag :tags, "", class: "form-control",
-                  data: {role: "tagsinput"} %>
-              </div>
-              <div class="form-group">
-                <label><%= t ".form.content" %></label>
-                <%= f.text_area :content, minlength: Settings.post.min_title,
-                  required: true, class: "form-control froalaEditor" %>
-              </div>
-              <div class="panel-info-user">
-                <label>
-                  <i class="fa fa-user-secret" aria-hidden="true"></i>
-                  <%= t ".form.with_anonymous" %>
-                  <%= check_box_tag :anonymous %>
-                </label>
-                <div class="row form-login">
-                  <label class="col-md-12">
-                    <i class="fa fa-user" aria-hidden="true"></i>
-                    <%= t ".form.with_member" %>
-                  </label>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label><%= t ".login.email" %></label>
-                      <%= email_field_tag "user_email", "", required: true, class: "form-control" %>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label><%= t ".login.password" %></label>
-                      <%= password_field_tag "user_password", "", required: true, class: "form-control" %>
-                    </div>
-                  </div>
+              <div id="posts-tag">
+                <div class="form-group tagsinput-height">
+                  <label><%= t ".form.tags" %></label>
+                  <%= text_field_tag :tags, "", class: "form-control",
+                    data: {role: "tagsinput"} %>
                 </div>
+                <% if @popular_tags.present? %>
+                  <div class="form-group">
+                    <div class="list-top-tags in-create-post">
+                      <label><%= t ".form.popular_tags" %>&#58;</label>
+                      <%= render partial: "posts/tags", collection: @popular_tags, as: :tag %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <div class="form-group">
+                <label><%= t ".form.content" %><span class="red-title"> *</span></label>
+                <%= f.text_area :content, minlength: Settings.post.min_title,
+                  required: true, class: "form-control ckeditor"%>
               </div>
               <%= f.submit t(".form.btn_post"), id: "create-post",
                 class: "btn btn-primary pull-right" %>

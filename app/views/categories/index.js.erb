@@ -1,0 +1,11 @@
+<% if @categories %>
+  $('#category-content').html('<%= j(render "category_table", categories: @categories ) %>')
+<% else %>
+  swal({
+    position: 'top-end',
+    type: 'warning',
+    title: I18n.t('category_management.not_allowed'),
+    showConfirmButton: false,
+    timer: 1500
+  })
+<% end %>

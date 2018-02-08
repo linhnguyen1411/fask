@@ -1,62 +1,87 @@
 <div class="top-bar">
   <div class="container">
     <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-6 col-xs-4">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <ul class="top-nav nav-left">
           <li><%= link_to t(".home"), root_path %></li>
-          <li class="hidden-xs"><%= link_to t(".help"), "#" %></li>
-          <li class="hidden-xs"><%= link_to t(".mobile_app"), "#" %></a>
+          <li class="hidden-xs"><%= link_to t(".more_tools"), "http://wsm.framgia.vn/all-tools",
+            target: "_blank" %></li>
+          <li class="hidden-xs last"><%= link_to t(".mobile_app"), "#" %>
           </li>
         </ul>
       </div>
-      <div class="col-lg-8 col-md-8 col-sm-6 col-xs-8">
+      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <ul class="top-nav nav-right">
           <%= hidden_field_tag "user-loged-in", user_signed_in? ? current_user.id : false %>
           <% if user_signed_in? %>
-            <li class="dropdown notification">
-              <%= link_to "#", class: "dropdown-toggle",
-                data: {hover: "dropdown", tooggle: "dropdown", animations: "fadeInUp"} do %>
-                <span class="fa fa-bell notification-icon" aria-hidden="true"></span>
-                <span class="notification-count"><span class="number"><%= cout_noti %></span></span>
-              <% end %>
-              <ul class="dropdown-menu">
-                <div class="list-notifications">
-                  <%= render partial: "layouts/notification", collection: @list_notifications, as: :noti %>
-                </div>
-                <div class="notification-function">
-                  <%= link_to "javascript:", class: "notification-function-seen-all" do %>
-                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                    <%= t "notifications.seen_all" %>
-                  <% end %>
-                  <%= link_to notifications_path, class: "notification-function-view-all" do %>
-                    <i class="fa fa-list" aria-hidden="true"></i>
-                    <%= t "notifications.view_all" %>
-                  <% end %>
-                </div>
-              </ul>
-            </li>
+            <% if !check_user_anonymous %>
+              <li class="dropdown notification">
+                <%= link_to "#", class: "dropdown-toggle",
+                  data: {hover: "dropdown", tooggle: "dropdown", animations: "fadeInUp"} do %>
+                  <span class="fa fa-bell notification-icon" aria-hidden="true"></span>
+                  <span class="notification-count"><span class="number"><%= cout_noti %></span></span>
+                <% end %>
+                <ul class="dropdown-menu">
+                  <div class="list-notifications">
+                    <%= render partial: "layouts/notification", collection: @list_notifications, as: :noti %>
+                  </div>
+                  <div class="notification-function">
+                    <%= link_to "javascript:", class: "notification-function-seen-all" do %>
+                      <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                      <%= t "notifications.seen_all" %>
+                    <% end %>
+                    <%= link_to notifications_path, class: "notification-function-view-all" do %>
+                      <i class="fa fa-list" aria-hidden="true"></i>
+                      <%= t "notifications.view_all" %>
+                    <% end %>
+                  </div>
+                </ul>
+              </li>
+            <% end %>
             <li class="dropdown">
-              <%= link_to "#", class: "dropdown-toggle",
+              <%= link_to "javascript:", class: "dropdown-toggle",
                 data: {hover: "dropdown", tooggle: "dropdown", animations: "fadeInUp"} do %>
-                <%= image_tag current_user.avatar, class: "img-circle resize" %>
+                <%= image_tag current_user.avatar.url, class: "img-circle resize" %>
                 <span class="hidden-xs small-padding">
                   <span><%= current_user.name %></span>
                   <i class="fa fa-caret-down"></i>
                 </span>
               <% end %>
               <ul class="dropdown-menu">
-                <li>
-                  <%= link_to activities_path do %>
-                    <i class="fa fa-calendar" aria-hidden="true"></i>
-                    <%= t ".timeline" %>
+                <% if !check_user_anonymous %>
+                  <li>
+                    <%= link_to switch_user_path(scope_identifier: "user_#{Settings.anonymous_number}") do %>
+                      <i class="fa fa-user-secret" aria-hidden="true"></i>
+                      <%= t "switch_anonymous" %>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to activities_path do %>
+                      <i class="fa fa-calendar" aria-hidden="true"></i>
+                      <%= t ".timeline" %>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to edit_user_registration_path do %>
+                      <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                      <%= t ".profile" %>
+                    <% end %>
+                  </li>
+                  <% if check_permited_user_feedback %>
+                    <li>
+                      <%= link_to dashboard_feedbacks_path  do %>
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        <%= t "posts.status.management" %>
+                      <% end %>
+                    </li>
                   <% end %>
-                </li>
-                <li>
-                  <%= link_to edit_user_registration_path do %>
-                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    <%= t ".profile" %>
-                  <% end %>
-                </li>
+                  <li>
+                    <%= link_to edit_user_setting_path(current_user) do %>
+                      <i class="fa fa-cog" aria-hidden="true"></i>
+                      <%= t "setting" %>
+                    <% end %>
+                  </li>
+                <% end %>
                 <li>
                   <%= link_to destroy_user_session_path, method: :delete do %>
                     <i class="fa fa-sign-out" aria-hidden="true"></i>
@@ -88,19 +113,19 @@
             <ul class="dropdown-menu ">
               <li>
                 <%= link_to "javascript:", class: "choose-language", id: Settings.languages.vi do %>
-                  <%= image_tag "vi", class: "img-circle resize image-language"  %>
+                  <%= image_tag "vi.png", class: "img-circle resize image-language"  %>
                   <%= t "language.vi" %>
                 <% end %>
               </li>
               <li>
                 <%= link_to "javascript:", class: "choose-language", id: Settings.languages.en do %>
-                  <%= image_tag "en", class: "img-circle resize image-language"  %>
+                  <%= image_tag "en.png", class: "img-circle resize image-language"  %>
                   <%= t "language.en" %>
                 <% end %>
               </li>
               <li>
                 <%= link_to "javascript:", class: "choose-language", id: Settings.languages.ja do %>
-                  <%= image_tag "ja", class: "img-circle resize image-language"  %>
+                  <%= image_tag "ja.png", class: "img-circle resize image-language"  %>
                   <%= t "language.ja" %>
                 <% end %>
               </li>
@@ -113,27 +138,44 @@
 </div>
 <div class="navbar navbar-default">
   <div class="container">
-    <div class="navbar-header">
+    <div class="navbar-header col-md-5">
       <button data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
       <%= link_to root_path, class: "navbar-brand" do %>
-        <%= image_tag "logo", class: "img-responsive image-logo" %>
+        <%= image_tag "logo.png", class: "img-responsive image-logo" %>
+      <% end %>
+      <% unless @home_page %>
+        <%= form_tag "/posts", method: :get, class: "navbar-form pull-left" do %>
+          <div class="icon-addon addon-lg search-header">
+            <%= text_field_tag "query", params[:query], class: "form-control search-header",
+              placeholder: t(".search_panel.placeholder") %>
+            <label rel="tooltip" class="glyphicon glyphicon-search"></label>
+            <%= submit_tag "", class: "btn-submit-search" %>
+          </div>
+        <% end %>
       <% end %>
     </div>
-    <div class="navbar-collapse collapse">
+    <div class="navbar-collapse collapse col-md-7 pull-right">
       <ul class="nav navbar-nav navbar-right">
-        <li class="hidden-sm"><%= link_to t(".q_a"), topic_path(Settings.topic.q_a), id: "link-topic-qa" %></li>
-        <li><%= link_to t(".feedback"), topic_path(Settings.topic.feedback), id: "link-topic-fb" %></li>
-        <li><%= link_to t(".confession"), topic_path(Settings.topic.confesstion), id: "link-topic-cf" %></li>
+          <li class="hidden-sm"><%= link_to t(".q_a"), topic_path(Settings.topic.q_a),
+            id: "link-topic-qa" %></li>
+          <li><%= link_to t(".feedback"), topic_path(Settings.topic.feedback),
+            id: "link-topic-fb" %></li>
+          <!-- <li><%= link_to t(".confession"), topic_path(Settings.topic.confesstion),
+            id: "link-topic-cf" %></li> -->
         <li>
           <div class="btn-nav">
-            <%= link_to t(".post_question"), new_post_path, class: "btn btn-primary btn-small navbar-btn" %>
+            <%= link_to t(".post_question"), new_post_path(topic_id: @topic),
+              class: "btn btn-primary btn-small navbar-btn" %>
           </div>
         </li>
       </ul>
     </div>
   </div>
 </div>
+<% if current_user.present? %>
+  <span class="anonymous_number" data-id = "<%= current_user.id %>"></span>
+<% end %>

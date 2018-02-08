@@ -1,6 +1,8 @@
 <div class="col-md-12">
   <h4>
-    <%= truncate(answer.content, length: Settings.limit_string.content) %>
+    <div class="content-post">
+      <%= raw answer.content %>
+    </div>
     <%= t ".on" %>
     <%= link_to answer.post.title, post_path(answer.post.id) %>
   </h4>

@@ -6,6 +6,15 @@ module ApplicationHelper
 
   def show_activities activity
     case activity.trackable_type
+    when AVersion.name
+      if activity.trackable.status != Settings.version.waiting
+        title = t("version.you_have") + activity.trackable.status + t("version.request")
+      else
+        title = t("version.change_request")
+      end
+      icon = '<i class="fa fa-pencil" aria-hidden="true"></i>'
+      post = activity.trackable.a_versionable
+      content = activity.trackable.content
     when Post.name
       title = t("activities.you") + t("activities.posted")
       icon = '<i class="fa fa-pencil" aria-hidden="true"></i>'
@@ -38,6 +47,11 @@ module ApplicationHelper
       title = @title
       icon = @icon
       post = nil
+      content = nil
+    when Clip.name
+      title = t("activities.you") + t("activities.cliped") + t("activities.post")
+      icon = '<i class="glyphicon glyphicon-pushpin" aria-hidden="true"></i>'
+      post = activity.trackable.post if activity.trackable.present?
       content = nil
     end
     render "activity", post: post, activity: activity,
@@ -94,5 +108,75 @@ module ApplicationHelper
 
   def selected_language
      session[:locale]
+  end
+
+  def checked_all_notification_setting
+    (checked_notification_setting?(Settings.index_zero_in_array) &&
+      checked_notification_setting?(Settings.index_one_in_array) &&
+      checked_notification_setting?(Settings.index_two_in_array) &&
+      checked_notification_setting?(Settings.index_three_in_array) &&
+      checked_notification_setting?(Settings.index_four_in_array) &&
+      checked_notification_setting?(Settings.index_five_in_array) &&
+      checked_notification_setting?(Settings.index_six_in_array) &&
+      checked_notification_setting?(Settings.index_seven_in_array) &&
+      checked_notification_setting?(Settings.index_eight_in_array) &&
+      checked_notification_setting?(Settings.index_nine_in_array)) ? "checked" : ""
+  end
+
+  def checked_all_email_setting
+    (checked_email_setting?(Settings.index_zero_in_array) &&
+      checked_email_setting?(Settings.index_one_in_array) &&
+      checked_email_setting?(Settings.index_two_in_array) &&
+      checked_email_setting?(Settings.index_three_in_array) &&
+      checked_email_setting?(Settings.index_four_in_array) &&
+      checked_email_setting?(Settings.index_five_in_array) &&
+      checked_email_setting?(Settings.index_six_in_array)) ? "checked" : ""
+  end
+
+  def checked_notification_setting? index
+    if current_user.notification_settings.present?
+      case current_user.notification_settings.values[index]
+      when Settings.serialize_false
+        return false
+      when Settings.serialize_true
+        return true
+      end
+    else
+      return true
+    end
+  end
+
+  def checked_email_setting? index
+    if current_user.email_settings.present?
+      case current_user.email_settings.values[index]
+      when Settings.serialize_false
+        return false
+      when Settings.serialize_true
+        return true
+      end
+    else
+      return false
+    end
+  end
+
+  def link_notification noti
+    case  noti.activity.trackable_type
+    when Relationship.name
+      user_path noti.load_message.last, noti_id: noti.id
+    when AVersion.name
+      "/a_versions?post_id=#{noti.load_message.last}&noti_id=#{noti.id}"
+    when Comment.name, Answer.name
+      post_path noti.load_message.last, noti_id: noti.id, anchor: "#{noti.activity.trackable_type.downcase}-#{noti.activity.trackable_id}"
+    else
+      if noti.activity.trackable.try(:topic_id) == Settings.topic.feedback_number && noti.activity.trackable.waiting?
+        dashboard_feedbacks_path noti_id: noti.id
+      else
+        post_path noti.load_message.last, noti_id: noti.id
+      end
+    end
+  end
+
+  def check_user_anonymous
+    current_user.try(:id) == Settings.anonymous_number
   end
 end

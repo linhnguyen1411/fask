@@ -1,54 +1,80 @@
-<div class="media-block card-box ribbon-content">
-  <div class="best-answer">
-    <% if answer.best_answer %>
-      <div class="ribbon base">
-        <span><%= t ".correct_answer" %></span>
-      </div>
-    <% end %>
-  </div>
+<div class="media-block card-box ribbon-content answer-<%= answer.id %>"
+  id="answer-<%= answer.id %>">
   <div class="media-left">
     <a data-toggle="tooltip" data-placement="bottom"
        data-original-title="<%= answer.user_name %>" href="#">
       <%= image_tag get_avatar_user(answer.user), class: "img-sm" %>
     </a>
   </div>
-  <div class="media-body">
+  <div class="media-body item-answer">
     <div class="mar-btm">
-      <h4>
-        <a href="#" class="btn-link text-semibold media-heading box-inline">
-          <%= answer.user_name %>
-        </a>
+      <h4 class="item-name">
+        <%= link_to answer.user_name, answer.user,
+          class: "btn-link text-semibold media-heading box-inline" %>
       </h4>
-      <p class="text-muted text-sm">
+      <p class="text-muted text-sm item-time">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <%= time_ago_in_words answer.created_at %>
+        <%= load_time_created_at answer %>
+        <%= raw load_button_edit_delete_answer(answer, post.topic_id) %>
+        <% if post.topic_id != Settings.topic.feedback_number && !check_user_anonymous %>
+          |<%= link_to "javascript:void(0)", data:
+            { toggle: "collapse",target: "#share-cmt-#{answer.id}"} do %>
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            <% end %>
+        <% end %>
       </p>
+      <div class="best-answer">
+        <% if answer.best_answer %>
+          <div class="ribbon base">
+            <span><%= t ".correct_answer" %></span>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <p><%= raw answer.content %></p>
-    <div class="pad-ver pull-right">
-      <%= load_btn_reactions answer, t(".like_answer"), Settings.reaction_type.like %>
-      <%= load_btn_reactions answer, t(".spam"), Settings.reaction_type.dislike %>
-      <%= load_btn_reactions answer, t(".love"), Settings.reaction_type.heart %>
-      <%= load_btn_correct_answer answer, @post %>
+    <div class="content border-table">
+      <div id="share-cmt-<%= answer.id %>" class="collapse custom-share-cmt">
+        <% share = "Answer:"+ post.title %>
+        <%= social_share_button_tag(share) %>
+      </div>
+    </div>
+    <div class="content border-table" id="content-<%= answer.id %>">
+      <%= raw answer.content %>
+    </div>
+    <div class="reactions-form">
+      <div class="pad-ver pull-right">
+        <%= load_btn_reactions answer, t(".like_answer"), Settings.reaction_type.like %>
+        <%= load_btn_reactions answer, t(".spam"), Settings.reaction_type.dislike %>
+        <%= load_btn_reactions answer, t(".love"), Settings.reaction_type.heart %>
+        <%= load_btn_correct_answer answer, post %>
+      </div>
+      <div class="pad-ver pull-right">
+        <%= load_link_reaction answer %>
+      </div>
     </div>
   </div>
   <div class="one-line"></div>
-  <div class="form-new-commment">
-    <div class="comment-list" id="comment-list-answer-<%= answer.id %>">
-      <%= render partial: "comment", collection: answer.comments, as: :comment %>
-    </div>
-    <div class="btn-new-comment">
-      <%= link_to t("posts.show.new_comment"), "javascript:", class: "add-new-comment",
-        is_login: user_signed_in? %>
-    </div>
-    <% if user_signed_in? %>
-      <div class="comment-new">
-        <%= render "comments/create",
-          comment: answer.comments.new,
-          object_id: answer.id,
-          object_type: Settings.comment.object_type.answer,
-          button_name: t("posts.show.btn_comment") %>
+  <% unless check_feeback_topic post.topic_id %>
+    <div class="form-new-commment">
+      <div class="comment-list" id="comment-list-answer-<%= answer.id %>">
+        <%= render partial: "posts/comment", collection: answer.comments, as: :comment %>
       </div>
-    <% end %>
-  </div>
+      <% if !check_user_anonymous %>
+        <div class="btn-new-comment">
+          <%= link_to t("posts.show.new_comment"), "javascript:", class: "add-new-comment",
+            is_login: user_signed_in? %>
+        </div>
+      <% end %>
+      <% if user_signed_in? %>
+        <div class="editable" contenteditable="true"
+          placeholder="<%= t("comments.create.content") %>"></div>
+        <div class="comment-new">
+          <%= render "comments/create",
+            comment: answer.comments.build,
+            object_id: answer.id,
+            object_type: Settings.comment.object_type.answer,
+            button_name: t("posts.show.btn_comment") %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>

@@ -1,15 +1,15 @@
-  <div class="main-content-area">
+<div class="main-content-area">
   <section class="page-title">
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-sm-7 co-xs-12 text-left">
-          <h1><%= t ".breadcrumb" %></h1>
+          <h1><%= @title %></h1>
         </div>
         <div class="col-md-6 col-sm-5 co-xs-12 text-right">
           <div class="bread">
             <ol class="breadcrumb">
               <li><%= link_to t(".home"), root_path %></li>
-              <li class="active"><%= t ".breadcrumb" %></li>
+              <li class="active"><%= @title %></li>
             </ol>
           </div>
         </div>
@@ -20,7 +20,7 @@
     <div class="container">
       <div class="listing-grid">
         <div class="row list-user">
-          <%= render partial: "user", collection: @users, as: :user %>
+          <%= render partial: "users/user", collection: @users, as: :user %>
         </div>
       </div>
       <div class="text-center clearfix">

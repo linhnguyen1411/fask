@@ -2,21 +2,17 @@
 require "rails_helper"
 
 RSpec.describe "static_pages/index.html.erb", type: :view do
-  let(:work_space) {FactoryGirl.create :work_space}
-  let(:user) {FactoryGirl.create :user}
-  let(:topic) {FactoryGirl.create :topic}
-  let(:post_1) do
-    FactoryGirl.create :post, work_space: work_space, user: user, topic: topic
-  end
-  let(:post_2) do
-    FactoryGirl.create :post, work_space: work_space, user: user, topic: topic
+  let(:work_space) { FactoryGirl.create :work_space}
+  let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
+  let(:topic){FactoryGirl.create :knowledge_topic}
+  let(:posts) do
+    FactoryGirl.create_list :post, 2, work_space: work_space, user: user, topic: topic
   end
   let(:comment) {FactoryGirl.create :comment, user_id: user.id,
-    commentable_id: post_1.id, commentable_type: "Post"}
-  let!(:posts) {[post_1, post_2]}
+    commentable_id: posts.first.id, commentable_type: "Post"}
 
   it "index static pages" do
-    assign(:posts, Kaminari.paginate_array(posts).page(1))
+    assign(:posts, Post.page(1).post_full_includes.newest.accept.per(10))
     assign :topUsers, [user]
     assign :recentComments, [comment]
 

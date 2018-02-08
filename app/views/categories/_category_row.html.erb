@@ -1,0 +1,18 @@
+<% categories.each do |category| %>
+  <tr id="category-<%= category.id %>" class="category-row">
+    <td scope="row"><%= category.id %></td>
+    <td scope="row" class="category-name"><%= category.name %></td>
+    <td scope="row">
+      <%= link_to edit_category_path(category), class: "btn-edit-category", remote: true do %>
+        <i class="fa fa-pencil-square-o"></i>
+        <%= t("category-management.edit") %>
+      <% end %>
+    </td>
+    <td scope="row">
+      <%= link_to "javascript:", class: "btn-delete-category",
+        data: {id: category.id, page: categories.current_page} do %>
+        <%= raw '<i class="fa fa-trash-o" aria-hidden="true"></i> ' + t("delete") %>
+      <% end %>
+    </td>
+  </tr>
+<% end %>
