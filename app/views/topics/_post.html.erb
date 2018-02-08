@@ -37,12 +37,11 @@
       <div class="col-md-3 col-sm-2 col-xs-12">
         <ul class="question-statistic">
           <li class="active">
-            <a data-toggle="tooltip" data-placement="bottom"
-              data-original-title="<%= t ".answers" %>">
+            <%= link_to post_path(post), data: {toggle: "tooltip", original_title: "#{t ".answers"}"} do %>
               <span class="count"><i class="fa fa-reply" aria-hidden="true"></i>
                 <%= post.count_answer %>
               </span>
-            </a>
+            <% end %>
           </li>
           <li>
             <a data-toggle="tooltip" data-placement="bottom"
