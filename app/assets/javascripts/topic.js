@@ -136,6 +136,7 @@ function filter_by_sort_type(){
 function filter_by_work_space(){
   $(document).on('click','.choose-work-space',function(){
     $('#from-day-picker').val('');
+    $('#to-day-picker').val('');
     var work_space_id = $(this).attr('data-id');
     var sort_type = $('.sort-by-dropbtn').attr('data-id');
     var category_id = $('.category a.active').attr('data-id');
