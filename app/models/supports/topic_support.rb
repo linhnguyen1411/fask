@@ -47,6 +47,6 @@ class Supports::TopicSupport
   private
 
   def get_sort_type sort_type
-    sort_type_list.include?(sort_type) ? sort_type : Settings.topic.type_sort.recently
+    sort_type_list.include?(sort_type) ? sort_type : Settings.topic.type_sort.recently_answer
   end
 end

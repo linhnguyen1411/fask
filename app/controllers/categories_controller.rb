@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @posts = Post.post_by_topic(Settings.topic.feedback).newest.post_of_category(@category)
+    @posts = Post.post_by_topic(Settings.topic.feedback).recently_answer.post_of_category(@category)
       .page(params[:page]).per Settings.paginate_default
   end
 
