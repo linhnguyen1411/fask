@@ -69,7 +69,7 @@ en:
       step_3: "Find Your Solution"
       search_panel:
         title: "HAVE A QUESTION?"
-        content: "If you have suggestions for company, you can search here!"
+        content: "If you have questions about teachnical stuffs, suggestions for company, you can search here!"
         placeholder: "Type your search terms here"
         button: "Search"
       question_not_exist: "Question not exist."

@@ -69,7 +69,7 @@ vi:
       step_3: "Tìm kiếm câu trả lời"
       search_panel:
         title: "BẠN CÓ CÂU HỎI?"
-        content: "Nếu bạn có góp ý về công ty bạn có thể tìm kiếm tại đây!"
+        content: "Nếu bạn có câu hỏi về kỷ thuật, góp ý về công ty bạn có thể tìm kiếm tại đây!"
         placeholder: "Nhập từ khóa để tìm kiếm"
         button: "Tìm kiếm"
       question_not_exist: "Không có câu hỏi nào."
