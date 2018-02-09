@@ -9,9 +9,9 @@ class Supports::FeedbackSupport
 
     def get_post_of_user
       if @user.id == Settings.anonymous_number
-        @user.posts.load_feedback_post.accept
+        @user.posts.accept
       else
-        @user.posts.load_feedback_post
+        @user.posts
       end.post_full_includes.newest.page(@page_post).per Settings.paginate_default
     end
 

@@ -70,8 +70,7 @@ class Supports::PostSupport
   end
 
   def topic_list
-    # Topic.load_topic_not_confession
-    Topic.load_feedback_topic
+    Topic.load_topic_not_confession
   end
 
   def related_question

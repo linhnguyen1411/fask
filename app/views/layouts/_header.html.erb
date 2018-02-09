@@ -97,12 +97,12 @@
                 <%= t ".login" %>
               <% end %>
             </li>
-            <!-- <li>
+            <li>
               <%= link_to new_user_registration_path do %>
                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                 <%= t ".signup" %>
               <% end %>
-            </li> -->
+            </li>
           <% end %>
           <li class="dropdown">
             <%= link_to "#", class: "dropdown-toggle",
@@ -160,8 +160,8 @@
     </div>
     <div class="navbar-collapse collapse col-md-7 pull-right">
       <ul class="nav navbar-nav navbar-right">
-          <!-- <li class="hidden-sm"><%= link_to t(".q_a"), topic_path(Settings.topic.q_a),
-            id: "link-topic-qa" %></li> -->
+          <li class="hidden-sm"><%= link_to t(".q_a"), topic_path(Settings.topic.q_a),
+            id: "link-topic-qa" %></li>
           <li><%= link_to t(".feedback"), topic_path(Settings.topic.feedback),
             id: "link-topic-fb" %></li>
           <!-- <li><%= link_to t(".confession"), topic_path(Settings.topic.confesstion),
