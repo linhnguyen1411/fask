@@ -619,3 +619,5 @@ ja:
   management:
     site_management: "Site Management"
     topic_management: "Topic Management"
+  show_fast_answer: "See the answer"
+  no_answer: "No any answer"
