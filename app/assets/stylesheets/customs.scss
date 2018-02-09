@@ -1155,3 +1155,11 @@ mark{
 .feedback-table .min-width{
   width: 100px;
 }
+.show-fast-answer{
+  margin: 200px auto;
+  z-index: unset;
+  display: block;
+}
+.modal.modal-answer{
+  z-index: 9999;
+}
