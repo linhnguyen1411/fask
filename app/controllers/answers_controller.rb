@@ -1,9 +1,13 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user
   authorize_resource
-  before_action :check_post, only: :create
+  before_action :check_post, only: [:create, :index]
   before_action :load_answer, only: [:update, :edit, :destroy]
   before_action :check_onwer_answer, only: [:update, :destroy]
+
+  def index
+    @answer = @post.answers.first if @post.topic_id == Settings.topic.feedback_number
+  end
 
   def create
     if User.position_allowed_answer_feedback.include?(current_user) || @post.topic_name != Settings.feedback
@@ -62,7 +66,8 @@ class AnswersController < ApplicationController
   end
 
   def check_post
-    @post = Post.find_by id: params[:answer][:post_id]
+    post_id = params[:post_id] || params[:answer][:post_id]
+    @post = Post.find_by id: post_id
     unless @post.present?
       flash[:danger] = t ".post_not_exist"
       redirect_to root_path
