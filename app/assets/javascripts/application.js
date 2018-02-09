@@ -37,6 +37,9 @@ $(document).ready(function(){
       }
     }).triggerHandler('mouseover');
   });
+  $(document).on('click','ul.pagination li a', function(){
+    $('html, body').animate({ scrollTop: 0 }, 'slow');
+  });
   Notification.requestPermission();
   $('.zoom-img').each(function(){
     $(this).viewer();
