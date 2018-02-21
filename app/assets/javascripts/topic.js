@@ -168,3 +168,53 @@ function filter_by_category(){
     history.pushState(null, document.title, url);
   })
 }
+
+$(document).ready(function(){
+  var onoffswitch_qa = $('#on_off_topic_1');
+  var onoffswitch_feedback = $('#on_off_topic_2');
+  var onoffswitch_confession = $('#on_off_topic_3');
+  var stauts = false;
+  onoffswitch_qa.on('change', function(){
+    if ($(this).is(':checked')) {
+      status = true;
+    }
+    else {
+      status = false;
+    }
+    $.ajax({
+      url: '/topics/1',
+      type: 'PATCH',
+      dataType: 'script',
+      data: {status: status}
+    });
+  });
+  onoffswitch_feedback.on('change', function(){
+    if ($(this).is(':checked')) {
+      status = true;
+    }
+    else {
+      status = false;
+    }
+    $.ajax({
+      url: '/topics/2',
+      type: 'PATCH',
+      dataType: 'script',
+      data: {status: status}
+    });
+  });
+  onoffswitch_confession.on('change', function(){
+    if ($(this).is(':checked')) {
+      status = true;
+    }
+    else {
+      status = false;
+    }
+    $.ajax({
+      url: '/topics/3',
+      type: 'PATCH',
+      dataType: 'script',
+      data: {status: status}
+    });
+  });
+
+});

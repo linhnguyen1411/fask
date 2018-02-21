@@ -609,6 +609,10 @@ en:
   switch_anonymous: "Anonymous"
   topic_1: "Knowledge Q&A"
   topic_2: "Idea Box"
+  topic_3: "Confession"
   admin:
     sign_in: "Sign in"
     title: "Admin"
+  turn_on_topic: "Turn on topic"
+  turn_off_topic: "Turn off topic"
+  on_off_topic_failed: "Change failed"

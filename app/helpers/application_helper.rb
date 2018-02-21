@@ -179,4 +179,12 @@ module ApplicationHelper
   def check_user_anonymous
     current_user.try(:id) == Settings.anonymous_number
   end
+
+  def check_only_feedback_on
+    return true if @topics.load_topic_on.size == Settings.number_one && @topics.load_topic_on.first.name == Settings.feedback
+  end
+
+  def check_q_a_topic_off
+    return true if @topics.load_topic_on.find{ |t| t.id == 1}.present?
+  end
 end
