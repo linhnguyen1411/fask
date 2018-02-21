@@ -12,6 +12,6 @@ class Supports::UserSupport
   end
 
   def posts_of_user
-    @user.posts.accept
+    @user.posts.post_of_topic_on.accept
   end
 end

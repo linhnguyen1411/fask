@@ -609,6 +609,13 @@ vi:
   switch_anonymous: "Ẩn danh"
   topic_1: "Hỏi đáp kỹ thuật"
   topic_2: "Ý kiến đóng góp"
+  topic_3: "Sự thú nhận"
   admin:
     sign_in: "Đăng nhập"
     title: "Quản trị viên"
+  turn_on_topic: "Đã bật chủ đề "
+  turn_off_topic: "Đã tắt chủ đề "
+  on_off_topic_failed: "Thay đổi không thành công"
+  management:
+    site_management: "Trang quản trị"
+    topic_management: "Quản trị chủ đề"

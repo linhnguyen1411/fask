@@ -9,8 +9,11 @@ class Ability
     else
       can :manage, :all
     end
-    cannot :read, Topic do |topic|
-      topic.id == Settings.topic.confesstion_number
+    cannot :manage, Topic do |topic|
+      topic.status == false
+    end
+    if user.position == Settings.admin_position
+      can :manage, :all
     end
   end
 end
