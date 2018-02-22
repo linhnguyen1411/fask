@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "posts/show.html.erb", type: :view do
   let(:work_space) { FactoryGirl.create :work_space}
   let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
-  let(:topic){FactoryGirl.create :knowledge_topic}
+  let(:topic){FactoryGirl.create :knowledge_topic, status: 1}
   let(:post) {FactoryGirl.create :post, user_id: user.id, topic_id: topic.id}
   let!(:answer) {FactoryGirl.create :answer, user_id: user.id, post_id: post.id}
   let!(:comment) {FactoryGirl.create :comment, user_id: user.id,
@@ -21,6 +21,5 @@ RSpec.describe "posts/show.html.erb", type: :view do
     expect(subject).to render_template("posts/_comment")
     expect(subject).to render_template("comments/_create")
     expect(subject).to render_template("posts/_answer")
-    expect(subject).to render_template("posts/_extension_post")
   end
 end

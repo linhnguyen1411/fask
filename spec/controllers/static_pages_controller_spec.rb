@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe StaticPagesController, type: :controller do
   let(:work_space) { FactoryGirl.create :work_space}
   let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
-  let(:topic){FactoryGirl.create :knowledge_topic}
+  let(:topic){FactoryGirl.create :knowledge_topic, status: 1}
   let!(:post) do
     FactoryGirl.create :post, work_space: work_space, user: user, topic: topic
   end
@@ -56,3 +56,4 @@ RSpec.describe StaticPagesController, type: :controller do
     end
   end
 end
+
