@@ -35,7 +35,7 @@ class User < ApplicationRecord
   scope :position_allowed_answer_feedback, -> do
     where position: [Settings.event_officer]
   end
-
+  scope :position_admin, -> { where position: [Settings.fask_manager]}
   mount_uploader :avatar, UserAvatarUploader
 
   scope :top_users, -> do

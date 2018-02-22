@@ -14,6 +14,18 @@ class TopicsController < ApplicationController
     end
   end
 
+  def update
+    @status = params[:status]
+    @topic.update_attributes status: params[:status]
+    if @topic.save
+      @success = true
+    else
+      @success = false
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
   private
 
   def load_topic

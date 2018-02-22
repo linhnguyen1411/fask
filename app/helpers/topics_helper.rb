@@ -29,4 +29,12 @@ module TopicsHelper
   def change_format_date date
     date.to_date.strftime("%d/%m/%Y") if date.present?
   end
+
+  def check_topic_on_off topic
+    if topic.status
+      "checked"
+    else
+      ""
+    end
+  end
 end

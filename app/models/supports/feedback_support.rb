@@ -11,7 +11,7 @@ class Supports::FeedbackSupport
       if @user.id == Settings.anonymous_number
         @user.posts.accept
       else
-        @user.posts
+        @user.posts.post_of_topic_on
       end.post_full_includes.newest.page(@page_post).per Settings.paginate_default
     end
 

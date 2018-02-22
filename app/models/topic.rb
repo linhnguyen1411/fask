@@ -7,4 +7,5 @@ class Topic < ApplicationRecord
 
   scope :load_topic_not_confession, -> { where.not id: Settings.topic.confesstion_number }
   scope :load_feedback_topic, -> { where id: Settings.topic.feedback_number }
+  scope :load_topic_on, -> { where status: 1 }
 end
