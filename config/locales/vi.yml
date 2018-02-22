@@ -619,3 +619,5 @@ vi:
   management:
     site_management: "Trang quản trị"
     topic_management: "Quản trị chủ đề"
+  show_fast_answer: "Chi tiết câu trả lời"
+  no_answer: "Không có câu trả lời"

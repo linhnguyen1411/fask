@@ -1078,3 +1078,11 @@ mark{
   background: #fff;
   color: #000;
 }
+.show-fast-answer{
+  margin: 200px auto;
+  z-index: unset;
+  display: block;
+}
+.modal.modal-answer{
+  z-index: 9999;
+}

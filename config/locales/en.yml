@@ -616,3 +616,5 @@ en:
   turn_on_topic: "Turn on topic"
   turn_off_topic: "Turn off topic"
   on_off_topic_failed: "Change failed"
+  show_fast_answer: "See the answer"
+  no_answer: "No any answer"
