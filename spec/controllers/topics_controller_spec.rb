@@ -4,7 +4,7 @@ RSpec.describe TopicsController, type: :controller do
   describe "GET #show" do
     let(:work_space) { FactoryGirl.create :work_space}
     let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
-    let(:topic){FactoryGirl.create :knowledge_topic}
+    let(:topic){FactoryGirl.create :knowledge_topic, status: 1}
     before do
       sign_in user
       get :show, params: {id: topic}

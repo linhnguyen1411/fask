@@ -3,9 +3,9 @@ require "rails_helper"
 RSpec.describe PostsController, type: :controller do
   let(:work_space) { FactoryGirl.create :work_space}
   let(:user){FactoryGirl.create :user, work_space: work_space}
-  let(:topic_qa){FactoryGirl.create :knowledge_topic}
-  let(:topic_fb){FactoryGirl.create :feedback_topic}
-  let(:topic_cf){FactoryGirl.create :confesstion_topic}
+  let(:topic_qa){FactoryGirl.create :knowledge_topic, status: 1}
+  let(:topic_fb){FactoryGirl.create :feedback_topic, status: 1}
+  let(:topic_cf){FactoryGirl.create :confesstion_topic, status: 1}
   let!(:tag){FactoryGirl.create :tag}
   let(:the_post) do
     FactoryGirl.create :post, work_space: work_space, user: user, topic: topic_qa
@@ -69,17 +69,8 @@ RSpec.describe PostsController, type: :controller do
       get :edit, params: {id: the_post}
     end
 
-    it "renders the :edit template" do
-      expect(response).to render_template :edit
-    end
-
-    it "assigns @tags" do
-      tag_of_post = FactoryGirl.create :posts_tag, tag_id: tag.id, post_id: the_post.id
-      expect(assigns(:support).tag_list).to eq [tag_of_post.tag]
-    end
-
-    it "assigns @post" do
-      expect(assigns(:post)).to eq the_post
+    it "assigns @support" do
+      expect(assigns(:support).clip_list).to eq []
     end
   end
 
