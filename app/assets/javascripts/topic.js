@@ -139,8 +139,6 @@ function filter_by_work_space(){
   $(document).on('click','.choose-work-space',function(){
     var to_day = $('#to-day-picker').val();
     var from_day = $('#from-day-picker').val();
-    $('#from-day-picker').val('');
-    $('#to-day-picker').val('');
     var work_space_id = $(this).attr('data-id');
     var sort_type = $('.sort-by-dropbtn').attr('data-id');
     var category_id = $('.category a.active').attr('data-id');
@@ -164,8 +162,8 @@ function filter_by_category(){
   $(document).on('click','.category a',function(){
     $('.category a').removeClass('active')
     $(this).addClass('active');
-    $('#to-day-picker').val('');
-    $('#from-day-picker').val('');
+    var to_day = $('#to-day-picker').val();
+    var from_day = $('#from-day-picker').val();
     var url = '/topics/2/';
     var category_id = $(this).attr('data-id');
     if (category_id != null){
