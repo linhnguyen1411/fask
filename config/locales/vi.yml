@@ -621,3 +621,8 @@ vi:
     topic_management: "Quản trị chủ đề"
   show_fast_answer: "Chi tiết câu trả lời"
   no_answer: "Không có câu trả lời"
+  filter_weekly:
+    previous: "Xem tuần trước"
+    next: "Xem tuần sau"
+    feedback_from: "Các phản hồi từ"
+    to: "đến"

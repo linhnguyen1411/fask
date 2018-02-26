@@ -44,6 +44,9 @@ class Supports::TopicSupport
     Topic.find_by(id: @id).posts.accept.size
   end
 
+  def check_next_thursday
+    return false if (DateTime.parse(filter_type[:to_day]) + 7) > Date.today
+  end
   private
 
   def get_sort_type sort_type

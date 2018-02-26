@@ -621,3 +621,8 @@ ja:
     topic_management: "Topic Management"
   show_fast_answer: "See the answer"
   no_answer: "No any answer"
+  filter_weekly:
+    previous: "View Previous Week"
+    next: "View Next Week"
+    feedback_from: "Feedback from"
+    to: "to"
