@@ -49,5 +49,10 @@ $(document).ready(function(){
       $(this).attr('disabled','disabled').css('cursor', 'not-allowed').click(function(){return false});
     }
   });
+  $(document).on('mouseover','.next-week', function(){
+    if($('.next-week').hasClass('disabled') == true){
+      $(this).click(function(){return false});
+    }
+  });
 });
 CKEDITOR.config.customConfig = '/assets/ckeditor/ckeditor_config.js';
