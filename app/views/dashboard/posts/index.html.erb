@@ -5,12 +5,14 @@
       <ul class="nav nav-tabs list-tab" >
         <li class="<%= "active" if @supports.get_active_tab == Settings.posts %>"><a data-toggle="tab" href="#allposts">
           <%= t "posts.index.all_posts" %></a></li>
-       <!--  <li class="<%= "active" if @supports.get_active_tab == Settings.clips_posts %>"><a data-toggle="tab" href="#clips">
-          <%= t "posts.index.all_clips" %></a></li>
-        <li class="<%= "active" if @supports.get_active_tab == Settings.improvements %>">
-          <a data-toggle="tab" href="#improvements">
-          <%= t "posts.index.improvements" %></a></li>
-      </ul> -->
+        <% if check_q_a_topic_off %>
+          <li class="<%= "active" if @supports.get_active_tab == Settings.clips_posts %>"><a data-toggle="tab" href="#clips">
+            <%= t "posts.index.all_clips" %></a></li>
+          <li class="<%= "active" if @supports.get_active_tab == Settings.improvements %>">
+            <a data-toggle="tab" href="#improvements">
+            <%= t "posts.index.improvements" %></a></li>
+        <% end %>
+      </ul>
     </div>
     <div class="tab-content">
       <div id="allposts" class="tab-pane fade <%= "in active" if @supports.get_active_tab == Settings.posts %>">
@@ -85,139 +87,141 @@
           <%= paginate @supports.get_post_of_user, param_name: :page_post, params: {active_tab: Settings.posts} %>
         </div>
       </div>
-      <!-- <div id="clips" class="tab-pane fade <%= "in active" if @supports.get_active_tab == Settings.clips_posts %>">
-        <% @supports.get_clip_post_of_user.each do |post| %>
-          <div class="container">
-            <div class="listing-grid">
-              <div class="row">
-                <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
-                  <%= link_to "#", data: {toggle: :tooltip, placement: "bottom",
-                    original_title: "#{post.user_name}"} do %>
-                    <%= image_tag post.user_avatar.url, class: "img-responsive center-block" %>
-                  <% end %>
-                </div>
-                <div class="col-md-7 col-sm-8  col-xs-12">
-                  <h3><%= link_to post.title, post_path(post.id) %></h3>
-                  <div class="listing-meta">
-                    <span>
-                      <i class="fa fa-clock-o" aria-hidden="true"></i>
-                      <%= load_time_created_at post %>
-                    </span>
-                    <span>
-                      <i class="fa fa fa-eye" aria-hidden="true"></i>
-                      <%= post.count_view %> <%= t ".view" %>
-                    </span>
-                    <% if !check_feeback_topic post.topic_id %>
+      <% if check_q_a_topic_off %>
+        <div id="clips" class="tab-pane fade <%= "in active" if @supports.get_active_tab == Settings.clips_posts %>">
+          <% @supports.get_clip_post_of_user.each do |post| %>
+            <div class="container">
+              <div class="listing-grid">
+                <div class="row">
+                  <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
+                    <%= link_to "#", data: {toggle: :tooltip, placement: "bottom",
+                      original_title: "#{post.user_name}"} do %>
+                      <%= image_tag post.user_avatar.url, class: "img-responsive center-block" %>
+                    <% end %>
+                  </div>
+                  <div class="col-md-7 col-sm-8  col-xs-12">
+                    <h3><%= link_to post.title, post_path(post.id) %></h3>
+                    <div class="listing-meta">
                       <span>
-                        <i class="fa fa-comment-o" aria-hidden="true"></i>
-                        <%= post.count_comment %> <%= t "posts.index.comment" %>
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <%= load_time_created_at post %>
                       </span>
-                    <% end %>
-                  </div>
-                </div>
-                <div class="col-md-3 col-sm-2 col-xs-12">
-                  <ul class="question-statistic">
-                    <li class="active">
-                      <a data-toggle="tooltip" data-placement="bottom"
-                        data-original-title="Answers">
-                        <span class="count">
-                          <i class="fa fa-reply" aria-hidden="true"></i> <%= post.count_answer %></span>
-                      </a>
-                    </li>
-                    <li>
-                      <a data-toggle="tooltip" data-placement="bottom"
-                        data-original-title="Votes">
-                        <span class="count">
-                          <i class="fa fa-sort" aria-hidden="true"></i> <%= count_vote post %></span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="col-md-10 col-sm-10 col-xs-12 truncate-post">
-                  <div class="content-post">
-                    <%= raw post.content %>
-                  </div>
-                  <div class="pull-right tagcloud">
-                    <% post.tags.each do |tag| %>
-                      <%= link_to tag.name, tag %>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-        <div class="text-center clearfix">
-          <%= paginate @supports.get_clip_post_of_user, param_name: :page_clips_post, params: {active_tab: Settings.clips_posts} %>
-        </div>
-      </div>
-      <div id="improvements" class="tab-pane fade <%= "in active" if @supports.get_active_tab == Settings.improvements %>">
-        <% @supports.get_improvement_post.each do |improvement| %>
-          <div class="container improvement-<%= improvement.id %>">
-            <div class="listing-grid">
-              <div class="row">
-                <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
-                  <a data-toggle="tooltip" data-placement="bottom"
-                    data-original-title="<%= improvement.user_name %>" href="#">
-                    <%= image_tag improvement.user_avatar.url, class: "img-responsive center-block" %>
-                  </a>
-                </div>
-                <div class="col-md-7 col-sm-8  col-xs-12">
-                  <h3><%= link_to improvement.a_versionable.title, post_path(improvement.a_versionable.id) %></h3>
-                  <div class="listing-meta">
-                    <span>
-                      <i class="fa fa-clock-o" aria-hidden="true"></i>
-                      <%= load_time_created_at improvement.a_versionable %>
-                    </span>
-                    <span>
-                      <%= t "version.status" %>:
-                      <% if improvement.status == Settings.version.accept %>
-                        <span class="version-status-accept" ><%= improvement.status %></span>
-                      <% elsif improvement.status == Settings.version.waiting  %>
-                        <span class="version-status-waiting"><%= improvement.status %></span>
-                      <% elsif improvement.status == Settings.version.improve %>
-                        <span class="version-status-improve"><%= improvement.status %></span>
-                      <% else %>
-                        <span class="version-status-reject"><%= improvement.status %></span>
+                      <span>
+                        <i class="fa fa fa-eye" aria-hidden="true"></i>
+                        <%= post.count_view %> <%= t ".view" %>
+                      </span>
+                      <% if !check_feeback_topic post.topic_id %>
+                        <span>
+                          <i class="fa fa-comment-o" aria-hidden="true"></i>
+                          <%= post.count_comment %> <%= t "posts.index.comment" %>
+                        </span>
                       <% end %>
-                    </span>
+                    </div>
                   </div>
-                </div>
-                <% if improvement.status != Settings.version.accept %>
                   <div class="col-md-3 col-sm-2 col-xs-12">
                     <ul class="question-statistic">
                       <li class="active">
-                        <%= link_to improvement, method: :delete, remote: true do %>
-                          <span><i class="fa fa-trash" aria-hidden="true"></i></span>
-                        <% end %>
+                        <a data-toggle="tooltip" data-placement="bottom"
+                          data-original-title="Answers">
+                          <span class="count">
+                            <i class="fa fa-reply" aria-hidden="true"></i> <%= post.count_answer %></span>
+                        </a>
                       </li>
-                      <% if improvement.status != Settings.a_version_reject %>
-                        <li>
-                          <span class="edit-improvement" id="<%= improvement.id %>">
-                          <i class="fa fa-pencil" aria-hidden="true"></i></span>
-                        </li>
-                      <% end %>
+                      <li>
+                        <a data-toggle="tooltip" data-placement="bottom"
+                          data-original-title="Votes">
+                          <span class="count">
+                            <i class="fa fa-sort" aria-hidden="true"></i> <%= count_vote post %></span>
+                        </a>
+                      </li>
                     </ul>
                   </div>
-                <% end %>
-                <div class="col-md-10 col-sm-10 col-xs-12 truncate-post">
-                  <div class="content-improvement-<%= improvement.id %> content-post">
-                    <%= raw improvement.content %>
+                  <div class="col-md-10 col-sm-10 col-xs-12 truncate-post">
+                    <div class="content-post">
+                      <%= raw post.content %>
+                    </div>
+                    <div class="pull-right tagcloud">
+                      <% post.tags.each do |tag| %>
+                        <%= link_to tag.name, tag %>
+                      <% end %>
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="col-md-10 col-sm-10 col-xs-12 pull-right">
-                <div id="edit-form-<%= improvement.id %>" style="display: none;">
-                  <%= render "edit_improve", improvement: improvement %>
                 </div>
               </div>
             </div>
+          <% end %>
+          <div class="text-center clearfix">
+            <%= paginate @supports.get_clip_post_of_user, param_name: :page_clips_post, params: {active_tab: Settings.clips_posts} %>
           </div>
-        <% end %>
-        <div class="text-center clearfix">
-          <%= paginate @supports.get_improvement_post, param_name: :page_improvement, params: {active_tab: Settings.improvements} %>
         </div>
-      </div> -->
+        <div id="improvements" class="tab-pane fade <%= "in active" if @supports.get_active_tab == Settings.improvements %>">
+          <% @supports.get_improvement_post.each do |improvement| %>
+            <div class="container improvement-<%= improvement.id %>">
+              <div class="listing-grid">
+                <div class="row">
+                  <div class="col-md-2 col-sm-2 col-xs-12 hidden-xs">
+                    <a data-toggle="tooltip" data-placement="bottom"
+                      data-original-title="<%= improvement.user_name %>" href="#">
+                      <%= image_tag improvement.user_avatar.url, class: "img-responsive center-block" %>
+                    </a>
+                  </div>
+                  <div class="col-md-7 col-sm-8  col-xs-12">
+                    <h3><%= link_to improvement.a_versionable.title, post_path(improvement.a_versionable.id) %></h3>
+                    <div class="listing-meta">
+                      <span>
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                        <%= load_time_created_at improvement.a_versionable %>
+                      </span>
+                      <span>
+                        <%= t "version.status" %>:
+                        <% if improvement.status == Settings.version.accept %>
+                          <span class="version-status-accept" ><%= improvement.status %></span>
+                        <% elsif improvement.status == Settings.version.waiting  %>
+                          <span class="version-status-waiting"><%= improvement.status %></span>
+                        <% elsif improvement.status == Settings.version.improve %>
+                          <span class="version-status-improve"><%= improvement.status %></span>
+                        <% else %>
+                          <span class="version-status-reject"><%= improvement.status %></span>
+                        <% end %>
+                      </span>
+                    </div>
+                  </div>
+                  <% if improvement.status != Settings.version.accept %>
+                    <div class="col-md-3 col-sm-2 col-xs-12">
+                      <ul class="question-statistic">
+                        <li class="active">
+                          <%= link_to improvement, method: :delete, remote: true do %>
+                            <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+                          <% end %>
+                        </li>
+                        <% if improvement.status != Settings.a_version_reject %>
+                          <li>
+                            <span class="edit-improvement" id="<%= improvement.id %>">
+                            <i class="fa fa-pencil" aria-hidden="true"></i></span>
+                          </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="col-md-10 col-sm-10 col-xs-12 truncate-post">
+                    <div class="content-improvement-<%= improvement.id %> content-post">
+                      <%= raw improvement.content %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-10 col-sm-10 col-xs-12 pull-right">
+                  <div id="edit-form-<%= improvement.id %>" style="display: none;">
+                    <%= render "edit_improve", improvement: improvement %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <div class="text-center clearfix">
+            <%= paginate @supports.get_improvement_post, param_name: :page_improvement, params: {active_tab: Settings.improvements} %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </section>
 <% end %>

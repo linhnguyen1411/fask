@@ -1,0 +1,47 @@
+<section class="section-padding-40 white">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 setting">
+        <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h5 class="panel-title">
+                <i class="fa fa-cogs"></i><%= t "management.site_management" %>
+              </h5>
+            </div>
+            <div class="panel-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th class="col-md-6"><%= t "management.topic_management" %></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @topics.each do |topic| %>
+                    <tr>
+                      <td><strong><%= topic.name %></strong></td>
+                      <td>
+                        <div class="onoffswitch">
+                          <input type="checkbox" id="on_off_topic_<%= topic.id %>"
+                            class="onoffswitch-checkbox"
+                            <%= check_topic_on_off topic %>>
+                          <label class="onoffswitch-label" for="on_off_topic_<%= topic.id %>">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                          </label>
+                        </div>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        <div class="col-md-12 btn-update">
+        <center>
+        </center>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

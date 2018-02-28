@@ -137,6 +137,8 @@ notification_setting:
 one_day: 1
 feedback: "Feedback"
 feedback_manager: ["Event Officer"]
+fask_manager: ["Admin"]
+admin_position: "Admin"
 sort_type_list: ["newest", "popular", "recently_answer", "no_answer"]
 columns_of_contact_points: ["position", "issue", "curators", "work_space"]
 row_header: 2
@@ -152,3 +154,6 @@ feedback_update_type:
   status: "status"
   category: "category"
 time_send_mail: 5
+number_one: 1
+topic_status_on: 1
+topic_status_off: 0

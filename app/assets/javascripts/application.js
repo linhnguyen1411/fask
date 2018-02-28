@@ -37,6 +37,9 @@ $(document).ready(function(){
       }
     }).triggerHandler('mouseover');
   });
+  $(document).on('click','ul.pagination li a', function(){
+    $('html, body').animate({ scrollTop: 0 }, 'slow');
+  });
   Notification.requestPermission();
   $('.zoom-img').each(function(){
     $(this).viewer();
@@ -44,6 +47,11 @@ $(document).ready(function(){
   $(document).on('mouseover','.anonymous', function(){
     if($('.anonymous_number').data('id') == 1){
       $(this).attr('disabled','disabled').css('cursor', 'not-allowed').click(function(){return false});
+    }
+  });
+  $(document).on('mouseover','.next-week', function(){
+    if($('.next-week').hasClass('disabled') == true){
+      $(this).click(function(){return false});
     }
   });
 });

@@ -1081,3 +1081,35 @@ mark{
 .feedback-table .min-width{
   width: 100px;
 }
+.show-fast-answer{
+  margin: 200px auto;
+  z-index: unset;
+  display: block;
+}
+.modal.modal-answer{
+  z-index: 9999;
+}
+.filter_by_week{
+  padding-bottom: 30px;
+}
+.filter_by_week a{
+  color: #000;
+}
+.filter_by_week a.active{
+  color: #be161e;
+}
+.tab-content-feedback{
+  margin-top: 10px !important;
+}
+.feedback-view{
+  font-size: 25px;
+  margin-bottom: 30px;
+  margin-right: 10px;
+}
+.filter_post_by_week{
+  margin-left: 5px;
+}
+.previous-week a,.next-week a {
+  background-color: #75DBFFFF !important;
+  color: black !important;
+}

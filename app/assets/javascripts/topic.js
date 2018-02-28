@@ -114,8 +114,8 @@ $(document).ready(function(){
 function filter_by_sort_type(){
   $(document).on('click','.choose-sort-type',function(){
     var topic =  $('#current-toppic').attr('data-id');
-    $('#to-day-picker').val('');
-    $('#from-day-picker').val('');
+    var to_day = $('#to-day-picker').val();
+    var from_day = $('#from-day-picker').val();
     var sort_type = $(this).attr('data-id');
     var work_space_id = $('.location-dropbtn').attr('data-id');
     var category_id = $('.category a.active').attr('data-id');
@@ -124,6 +124,8 @@ function filter_by_sort_type(){
       method: 'GET',
       data: {
         work_space_id: work_space_id,
+        from_day: from_day,
+        to_day: to_day,
         sort_type: sort_type,
         category_id: category_id
       }
@@ -135,8 +137,8 @@ function filter_by_sort_type(){
 
 function filter_by_work_space(){
   $(document).on('click','.choose-work-space',function(){
-    $('#from-day-picker').val('');
-    $('#to-day-picker').val('');
+    var to_day = $('#to-day-picker').val();
+    var from_day = $('#from-day-picker').val();
     var work_space_id = $(this).attr('data-id');
     var sort_type = $('.sort-by-dropbtn').attr('data-id');
     var category_id = $('.category a.active').attr('data-id');
@@ -146,6 +148,8 @@ function filter_by_work_space(){
       data: {
         work_space_id: work_space_id,
         sort_type: sort_type,
+        from_day: from_day,
+        to_day: to_day,
         category_id: category_id
       }
     });
@@ -158,13 +162,109 @@ function filter_by_category(){
   $(document).on('click','.category a',function(){
     $('.category a').removeClass('active')
     $(this).addClass('active');
-    $('#to-day-picker').val('');
-    $('#from-day-picker').val('');
+    var to_day = $('#to-day-picker').val();
+    var from_day = $('#from-day-picker').val();
     var url = '/topics/2/';
     var category_id = $(this).attr('data-id');
     if (category_id != null){
-      url = url + '?category_id=' + category_id;
+      url = url + '?category_id=' + category_id ;
     }
     history.pushState(null, document.title, url);
   })
 }
+
+$(document).ready(function(){
+  $(document).on('click','.previous-week', function(){
+    var topic =  $('#current-toppic').attr('data-id');
+    var to_day = $('#to-day-picker').val();
+    var from_day = $('#from-day-picker').val();
+    var sort_type = $('.sort-by-dropbtn').attr('data-id');
+    var work_space_id = $('.location-dropbtn').attr('data-id');
+    var category_id = $('.category a.active').attr('data-id');
+    var previous_week = true;
+    $.ajax({
+      url: '/topics/2',
+      method: 'GET',
+      dataType: 'script',
+      data: {
+        previous_week: previous_week,
+        from_day: from_day,
+        to_day: to_day,
+        work_space_id: work_space_id,
+        sort_type: sort_type,
+        category_id: category_id
+      }
+    });
+  });
+  $(document).on('click','.next-week', function(){
+    var topic =  $('#current-toppic').attr('data-id');
+    var to_day = $('#to-day-picker').val();
+    var from_day = $('#from-day-picker').val();
+    var sort_type = $('.sort-by-dropbtn').attr('data-id');
+    var work_space_id = $('.location-dropbtn').attr('data-id');
+    var category_id = $('.category a.active').attr('data-id');
+    var next_week = true;
+    $.ajax({
+      url: '/topics/2',
+      method: 'GET',
+      dataType: 'script',
+      data: {
+        next_week: next_week,
+        from_day: from_day,
+        to_day: to_day,
+        work_space_id: work_space_id,
+        sort_type: sort_type,
+        category_id: category_id
+      }
+    });
+  })
+});
+
+$(document).ready(function(){
+  var onoffswitch_qa = $('#on_off_topic_1');
+  var onoffswitch_feedback = $('#on_off_topic_2');
+  var onoffswitch_confession = $('#on_off_topic_3');
+  var stauts = false;
+  onoffswitch_qa.on('change', function(){
+    if ($(this).is(':checked')) {
+      status = true;
+    }
+    else {
+      status = false;
+    }
+    $.ajax({
+      url: '/topics/1',
+      type: 'PATCH',
+      dataType: 'script',
+      data: {status: status}
+    });
+  });
+  onoffswitch_feedback.on('change', function(){
+    if ($(this).is(':checked')) {
+      status = true;
+    }
+    else {
+      status = false;
+    }
+    $.ajax({
+      url: '/topics/2',
+      type: 'PATCH',
+      dataType: 'script',
+      data: {status: status}
+    });
+  });
+  onoffswitch_confession.on('change', function(){
+    if ($(this).is(':checked')) {
+      status = true;
+    }
+    else {
+      status = false;
+    }
+    $.ajax({
+      url: '/topics/3',
+      type: 'PATCH',
+      dataType: 'script',
+      data: {status: status}
+    });
+  });
+});
