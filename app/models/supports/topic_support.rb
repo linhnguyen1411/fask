@@ -40,12 +40,16 @@ class Supports::TopicSupport
     Settings.sort_type_list
   end
 
+  def check_filter_by_category
+    return true if @category_id.present?    
+  end
+
   def total_post
     Topic.find_by(id: @id).posts.accept.size
   end
 
   def check_next_thursday
-    return false if (DateTime.parse(filter_type[:to_day]) + 7) > Date.today
+    return false if filter_type[:to_day].present? && (DateTime.parse(filter_type[:to_day]) + 7) > Date.today
   end
   private
 
