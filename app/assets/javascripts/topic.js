@@ -162,8 +162,8 @@ function filter_by_category(){
   $(document).on('click','.category a',function(){
     $('.category a').removeClass('active')
     $(this).addClass('active');
-    var to_day = $('#to-day-picker').val();
-    var from_day = $('#from-day-picker').val();
+    $('#to-day-picker').val('');
+    $('#from-day-picker').val('');
     var url = '/topics/2/';
     var category_id = $(this).attr('data-id');
     if (category_id != null){
