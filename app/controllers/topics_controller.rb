@@ -7,7 +7,7 @@ class TopicsController < ApplicationController
   def show
     if params[:id] == Settings.topic.feedback
       case
-      when params[:from_day].blank? && params[:to_day].blank?
+      when params[:from_day].blank? && params[:to_day].blank? && params[:category_id].blank?
         check_filter_by_week
       when params[:previous_week] && params[:page].blank?
         load_date_ranger_previous

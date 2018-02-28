@@ -6,6 +6,7 @@
   $('.location-dropbtn').attr('data-id', '');
   $('.sort-by-dropbtn').html('<%= j (t("sort_type_list.#{Settings.topic.type_sort.recently_answer}")) %>');
   $('.sort-by-dropbtn').attr('data-id', '<%= Settings.topic.type_sort.recently_answer %>');
+  $('.filter_by_week').html('');
 <% else %>
   swal({
     position: 'top-end',
