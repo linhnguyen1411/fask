@@ -30,4 +30,8 @@ module UsersHelper
   def check_permited_user_feedback
     Settings.feedback_manager.include?(current_user.position)
   end
+
+  def check_permited_user_admin
+    Settings.fask_manager.include?(current_user.position)
+  end
 end

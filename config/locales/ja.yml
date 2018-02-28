@@ -69,7 +69,7 @@ ja:
       step_3: "ソリューションを探す"
       search_panel:
         title: "質問がありますか"
-        content: "If you have any idea you can ask below or enter what you are looking for!"
+        content: "If you have any knowledge-question/idea/ you can ask below or enter what you are looking for!"
         placeholder: "Type your search terms here"
         button: "探す"
       question_not_exist: "質問は存在しません"
@@ -609,6 +609,20 @@ ja:
   switch_anonymous: "Anonymous"
   topic_1: "Knowledge Q&A"
   topic_2: "Idea Box"
+  topic_3: "Confession"
   admin:
     sign_in: "Sign in"
     title: "Admin"
+  turn_on_topic: "Turn on topic"
+  turn_off_topic: "Turn off topic"
+  on_off_topic_failed: "Change failed"
+  management:
+    site_management: "Site Management"
+    topic_management: "Topic Management"
+  show_fast_answer: "See the answer"
+  no_answer: "No any answer"
+  filter_weekly:
+    previous: "View Previous Week"
+    next: "View Next Week"
+    feedback_from: "Feedback from"
+    to: "to"

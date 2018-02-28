@@ -216,15 +216,17 @@
                 </div>
               <% end %>
             </div>
-            <!-- <div class="widget">
-              <div class="recent-comments">
-                <h2><%= t ".hot_question" %></h2>
-                <hr class="widget-separator no-margin">
-                <%= render partial: "posts/extension_post",
-                  collection: @post_extension.hot_post, as: :post,
-                  locals: { type: Settings.post.extension.hot_question } %>
+            <% if !check_only_feedback_on %>
+              <div class="widget">
+                <div class="recent-comments">
+                  <h2><%= t ".hot_question" %></h2>
+                  <hr class="widget-separator no-margin">
+                  <%= render partial: "posts/extension_post",
+                    collection: @post_extension.hot_post, as: :post,
+                    locals: { type: Settings.post.extension.hot_question } %>
+                </div>
               </div>
-            </div> -->
+            <% end %>
           </div>
         </div>
       </div>

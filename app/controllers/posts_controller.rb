@@ -9,10 +9,10 @@ class PostsController < ApplicationController
 
   def index
     if params[:query].present?
-      @posts = Post.load_feedback_post.accept.search params[:query], operator: "or",
+      @posts = Post.accept.search params[:query], operator: "or",
         page: params[:page], per_page: Settings.paginate_default
     else
-      @posts = Post.load_feedback_post.accept.page(params[:page]).per Settings.paginate_default
+      @posts = Post.accept.page(params[:page]).per Settings.paginate_default
     end
   end
 
@@ -41,7 +41,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    params[:post][:topic_id] = Settings.topic.feedback
     case
     when params[:post][:topic_id] == Settings.topic.q_a
       create_post qa_params
@@ -60,7 +59,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    params[:post][:topic_id] =  Settings.topic.feedback
     if check_owner_post || @post.topic_id == Settings.topic.feedback_number &&
       User.position_allowed_answer_feedback.include?(current_user)
       @post.tags.destroy_all
@@ -175,8 +173,8 @@ class PostsController < ApplicationController
   end
 
   def load_post
-    @post = Post.find_by id: params[:id], topic_id: Settings.topic.feedback_number
-    return if @post
+    @post = Post.find_by id: params[:id]
+    return if @post.present? && @post.topic.status == true
     flash[:danger] = t ".not_found"
     redirect_to root_path
   end

@@ -82,6 +82,9 @@ class Post < ApplicationRecord
     where(id: post_ids).merge(post_full_includes)
   end
 
+  scope :post_of_topic_on, -> do
+    joins(:topic).where "topics.status = ?", true
+  end
   scope :load_feedback_post, -> { where topic_id: Settings.topic.feedback_number }
   scope :post_full_includes, -> do
     joins("LEFT JOIN comments ON comments.commentable_id = posts.id

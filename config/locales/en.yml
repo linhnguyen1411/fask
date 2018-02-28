@@ -69,7 +69,7 @@ en:
       step_3: "Find Your Solution"
       search_panel:
         title: "HAVE A QUESTION?"
-        content: "If you have suggestions for company, you can search here!"
+        content: "If you have questions about teachnical stuffs, suggestions for company, you can search here!"
         placeholder: "Type your search terms here"
         button: "Search"
       question_not_exist: "Question not exist."
@@ -609,6 +609,17 @@ en:
   switch_anonymous: "Anonymous"
   topic_1: "Knowledge Q&A"
   topic_2: "Idea Box"
+  topic_3: "Confession"
   admin:
     sign_in: "Sign in"
     title: "Admin"
+  turn_on_topic: "Turn on topic"
+  turn_off_topic: "Turn off topic"
+  on_off_topic_failed: "Change failed"
+  show_fast_answer: "See the answer"
+  no_answer: "No any answer"
+  filter_weekly:
+    previous: "View Previous Week"
+    next: "View Next Week"
+    feedback_from: "Feedback from"
+    to: "to"

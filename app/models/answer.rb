@@ -15,6 +15,10 @@ class Answer < ApplicationRecord
   before_save :standardize_content
 
   scope :answers_of_post, -> post_id { where(post_id: post_id).includes(:user, :comments, :reactions)}
+  scope :includes_post_and_topic_on, -> do
+    eager_load(post: :topic).where "topics.status = true"
+  end
+
   private
 
   def create_activity

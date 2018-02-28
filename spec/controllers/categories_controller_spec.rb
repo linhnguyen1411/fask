@@ -5,7 +5,7 @@ RSpec.describe CategoriesController, type: :controller do
   let(:work_space) { FactoryGirl.create :work_space}
   let(:user){FactoryGirl.create :user, work_space: work_space}
   let(:user_eo){FactoryGirl.create :user, work_space: work_space, position: "Event Officer"}
-  let(:topic){FactoryGirl.create :feedback_topic}
+  let(:topic){FactoryGirl.create :feedback_topic, status: 1}
   let!(:categories) {FactoryGirl.create_list :category, 5}
   let(:posts) do
     FactoryGirl.create_list :post, 5, work_space: work_space, user: user, topic: topic, category_id: categories.first.id

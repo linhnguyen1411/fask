@@ -37,10 +37,18 @@
       <div class="col-md-3 col-sm-2 col-xs-12">
         <ul class="question-statistic">
           <li class="active">
-            <%= link_to post_path(post), data: {toggle: "tooltip", original_title: "#{t ".answers"}"} do %>
-              <span class="count"><i class="fa fa-reply" aria-hidden="true"></i>
-                <%= post.count_answer %>
-              </span>
+            <% if check_feeback_topic post.topic_id %>
+              <%= link_to "javascript:", data: {toggle: "tooltip", original_title: "#{t ".answers"}"} do %>
+                <span class="count count-answer" data-id=<%= post.id %>><i class="fa fa-reply" aria-hidden="true"></i>
+                  <%= post.count_answer %>
+                </span>
+              <% end %>
+            <% else %>
+              <%= link_to post_path(post), data: {toggle: "tooltip", original_title: "#{t ".answers"}"} do %>
+                <span class="count"><i class="fa fa-reply" aria-hidden="true"></i>
+                  <%= post.count_answer %>
+                </span>
+              <% end %>
             <% end %>
           </li>
           <li>

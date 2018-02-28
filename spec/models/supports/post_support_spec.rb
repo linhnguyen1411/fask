@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe Supports::PostSupport, type: :model do
   let(:work_space) { FactoryGirl.create :work_space}
   let(:user) { FactoryGirl.create :user, work_space_id: work_space.id }
-  let(:topic){FactoryGirl.create :knowledge_topic}
+  let(:topic){FactoryGirl.create :knowledge_topic, status: 1}
   let(:post) do
     FactoryGirl.create :post, work_space: work_space, user: user, topic: topic, category_id: categories.first.id
   end

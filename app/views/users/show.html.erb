@@ -27,28 +27,32 @@
                 <%= t ".question" %>
               </a>
             </li>
-            <!-- <li>
-              <a data-toggle="tab" class="custom_text_link" href="#answer">
-                <%= t ".answer" %>
-              </a>
-            </li>
-            <li>
-              <a data-toggle="tab" class="custom_text_link" href="#comment">
-                <%= t ".comment" %>
-              </a>
-            </li> -->
+            <% if !check_only_feedback_on %>
+              <li>
+                <a data-toggle="tab" class="custom_text_link" href="#answer">
+                  <%= t ".answer" %>
+                </a>
+              </li>
+              <li>
+                <a data-toggle="tab" class="custom_text_link" href="#comment">
+                  <%= t ".comment" %>
+                </a>
+              </li>
+            <% end %>
           </ul>
 
           <div class="tab-content">
             <div id="question" class="tab-pane fade in active">
               <%= render partial: "post", collection: @user_support.posts_of_user, as: :post %>
             </div>
-            <!-- <div id="answer" class="tab-pane fade">
-              <%= render partial: "answer", collection: @user_support.answers_of_user, as: :answer %>
-            </div>
-            <div id="comment" class="tab-pane fade">
-              <%= render partial: "comment", collection: @user_support.comments_of_user, as: :comment %>
-            </div> -->
+            <% if !check_only_feedback_on %>
+              <div id="answer" class="tab-pane fade">
+                <%= render partial: "answer", collection: @user_support.answers_of_user, as: :answer %>
+              </div>
+              <div id="comment" class="tab-pane fade">
+                <%= render partial: "comment", collection: @user_support.comments_of_user, as: :comment %>
+              </div>
+            <% end %>
           </div>
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12 clearfix">
