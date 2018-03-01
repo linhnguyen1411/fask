@@ -41,7 +41,7 @@ class Supports::TopicSupport
   end
 
   def check_filter_by_category
-    return true if @category_id.present?    
+    return true if @category_id.present?
   end
 
   def total_post
@@ -54,6 +54,6 @@ class Supports::TopicSupport
   private
 
   def get_sort_type sort_type
-    sort_type_list.include?(sort_type) ? sort_type : Settings.topic.type_sort.recently
+    sort_type_list.include?(sort_type) ? sort_type : Settings.topic.type_sort.recently_answer
   end
 end

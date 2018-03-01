@@ -23,7 +23,7 @@ class ReactionsController < ApplicationController
       @target_type = true
     end
     if @reaction.save && @target_type
-      resufl = {type: true, data: load_resufl(@item), reaction_type: params[:type]}
+      resufl = {type: true, data: load_resufl(@item), reaction_type: params[:type], id: @item.id}
     else
       resufl = {type: false}
     end
