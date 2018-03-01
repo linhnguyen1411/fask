@@ -461,6 +461,20 @@ function validate_comment(){
   });
 }
 
+function show_feedback_answer() {
+  $(document).on('click','.answer-for-feedback', function () {
+    var post_id = $(this).data('id');
+    var target = '.post-'+post_id+'.content-post';
+    if($(target).hasClass('limit-content-post')){
+      $(target).removeClass('limit-content-post');
+    }
+    else
+    {
+      $(target).addClass('limit-content-post');
+    }
+  })
+}
+
 $(document).ready(function(){
   delete_post();
   delete_comment();

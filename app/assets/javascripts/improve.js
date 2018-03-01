@@ -44,6 +44,7 @@ function read_more(){
   var lesstext = I18n.t('version.show_less');
   $('.more').each(function() {
     $(this).find('p').contents().unwrap();
+
     var content = $(this).html();
     if(content.length > showChar) {
       var c = content.substr(0, showChar);
