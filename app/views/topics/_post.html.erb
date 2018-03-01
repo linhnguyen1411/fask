@@ -60,7 +60,7 @@
         </ul>
       </div>
       <div class="col-md-12 col-sm-12 col-xs-12 truncate-post">
-        <div class="content-post">
+        <div class="content-post post-<%= post.id %> limit-content-post">
           <%= raw post.content %>
         </div>
         <% if check_feeback_topic post.topic_id %>
@@ -74,6 +74,21 @@
             <% post.tags.each do |tag| %>
               <%= link_to tag.name, tag %>
             <% end %>
+          </div>
+        <% end %>
+        <% if post.count_answer > Settings.number_zero && @topic.id == Settings.topic.feedback_number %>
+          <div class="row">
+            <p>
+              <a class="answer-for-feedback" data-toggle="collapse" href="#answers-feedback-<%=post.id%>" 
+                aria-expanded="false" aria-controls="collapseExample" data-id="<%= post.id%>">
+                <%= t "view_answer" %>
+              </a>
+            </p>
+            <div class="collapse" id="answers-feedback-<%=post.id%>">
+              <div class="card card-body answer-content">
+                <%= raw post.answers.first.content %>
+              </div>
+            </div>
           </div>
         <% end %>
       </div>
