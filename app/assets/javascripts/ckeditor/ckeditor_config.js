@@ -1,5 +1,9 @@
 CKEDITOR.editorConfig = function (config) {
-  config.disallowedContent = 'script';
+  config.enterMode = 2;
+  config.enterMode = CKEDITOR.ENTER_BR;
+  config.shiftEnterMode = CKEDITOR.ENTER_P;
+  config.autoParagraph = false;
+  config.disallowedContent = 'script; p';
   config.contentsCss = '/assets/customs.css';
   config.codeSnippet_theme = 'pojoaque';
   config.allowedContent = true;

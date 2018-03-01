@@ -5,23 +5,25 @@
         original_title: "#{post.user_name}"} do %>
         <%= image_tag post.user.avatar.url, class: "img-responsive center-block" %>
       <% end %>
-      <div class="row vote-of-post text-center vote-post-of-feedback">
-        <div class="btn-action">
-          <%= link_to "javascript:", class: "btn-vote anonymous",
-            data: {type: Settings.reaction_type.up, model: Post.name,
-            id: post.id} do %>
-            <i class="fa fa-angle-up" aria-hidden="true"></i>
-          <% end %>
+      <% if check_feeback_topic post.topic_id %>
+        <div class="row vote-of-post text-center vote-post-of-feedback">
+          <div class="btn-action">
+            <%= link_to "javascript:", class: "btn-vote anonymous",
+              data: {type: Settings.reaction_type.up, model: Post.name,
+              id: post.id} do %>
+              <i class="fa fa-angle-up" aria-hidden="true"></i>
+            <% end %>
+          </div>
+          <div class="point-vote-<%= post.id %>"><%= count_vote_feedback post %></div>
+          <div class="btn-action">
+            <%= link_to "javascript:", class: "btn-vote anonymous",
+              data: {type: Settings.reaction_type.down, model: Post.name,
+              id: post.id} do %>
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+            <% end %>
+          </div>
         </div>
-        <div class="point-vote-<%= post.id %>"><%= count_vote_feedback post %></div>
-        <div class="btn-action">
-          <%= link_to "javascript:", class: "btn-vote anonymous",
-            data: {type: Settings.reaction_type.down, model: Post.name,
-            id: post.id} do %>
-            <i class="fa fa-angle-down" aria-hidden="true"></i>
-          <% end %>
-        </div>
-      </div>
+      <% end %>
     </div>
     <div class="col-md-10 col-sm-10 col-xs-10 topic-post-content">
       <div class="col-md-9 col-sm-8  col-xs-12">
@@ -85,8 +87,8 @@
             <% end %>
           </div>
         <% end %>
-        <% if post.count_answer > Settings.number_zero && @topic.id == Settings.topic.feedback_number %>
-          <div class="row">
+        <div class="row">
+          <% if post.count_answer > Settings.number_zero && @topic.id == Settings.topic.feedback_number %>
             <p>
               <a class="answer-for-feedback" data-toggle="collapse" href="#answers-feedback-<%=post.id%>"
                 aria-expanded="false" aria-controls="collapseExample" data-id="<%= post.id%>">
@@ -94,10 +96,10 @@
               </a>
             </p>
             <div class="collapse answer-for-feedback-item" id="answers-feedback-<%=post.id%>">
-              <%= render partial: "posts/answer", locals: {post: post, answer: post.answers.first} %>
+              <%= render partial: "posts/answer", locals: {post: post, answer: post.answers.first, topic_view: true} %>
             </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
