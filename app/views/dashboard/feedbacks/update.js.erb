@@ -3,13 +3,17 @@
     swal(I18n.t('posts.status.accept_success'),'','info');
     $('.feedback-<%= @post.id %>').removeClass('feedback-color-0 feedback-color-2')
       .addClass('feedback-color-1');
+    $('#feedback-<%= @post.id %> .feedback-title').html('<%= link_to @post do %>\
+      <span class="title"><%= @post.title %></span> <% end %>');
   <% elsif @post.status == Settings.a_version_reject %>
     swal(I18n.t('posts.status.reject_success'),'','info');
     $('.feedback-<%= @post.id %>').removeClass('feedback-color-0 feedback-color-1')
       .addClass('feedback-color-2');
+    $('#feedback-<%= @post.id %> .feedback-title').html('<span class="title"><%= @post.title %></span>')
   <% else %>
     $('.feedback-<%= @post.id %>').removeClass('feedback-color-1 feedback-color-2')
       .addClass('feedback-color-0');
+    $('#feedback-<%= @post.id %> .feedback-title').html('<span class="title"><%= @post.title %></span>')
   <% end %>
 <% elsif @success && @type == Settings.feedback_update_type.category %>
   swal(I18n.t('feedback_update.category_success'),'','info');

@@ -15,7 +15,9 @@
       <p class="text-muted text-sm item-time">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
         <%= load_time_created_at answer %>
-        <%= raw load_button_edit_delete_answer(answer, post.topic_id) %>
+        <% if !topic_view %>
+          <%= raw load_button_edit_delete_answer(answer, post.topic_id) %>
+        <% end %>
         <% if post.topic_id != Settings.topic.feedback_number && !check_user_anonymous %>
           |<%= link_to "javascript:void(0)", data:
             { toggle: "collapse",target: "#share-cmt-#{answer.id}"} do %>
