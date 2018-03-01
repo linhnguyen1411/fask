@@ -5,6 +5,23 @@
         original_title: "#{post.user_name}"} do %>
         <%= image_tag post.user.avatar.url, class: "img-responsive center-block" %>
       <% end %>
+      <div class="row vote-of-post text-center vote-post-of-feedback">
+        <div class="btn-action">
+          <%= link_to "javascript:", class: "btn-vote anonymous",
+            data: {type: Settings.reaction_type.up, model: Post.name,
+            id: post.id} do %>
+            <i class="fa fa-angle-up" aria-hidden="true"></i>
+          <% end %>
+        </div>
+        <div class="point-vote-<%= post.id %>"><%= count_vote_feedback post %></div>
+        <div class="btn-action">
+          <%= link_to "javascript:", class: "btn-vote anonymous",
+            data: {type: Settings.reaction_type.down, model: Post.name,
+            id: post.id} do %>
+            <i class="fa fa-angle-down" aria-hidden="true"></i>
+          <% end %>
+        </div>
+      </div>
     </div>
     <div class="col-md-10 col-sm-10 col-xs-10 topic-post-content">
       <div class="col-md-9 col-sm-8  col-xs-12">
@@ -37,18 +54,10 @@
       <div class="col-md-3 col-sm-2 col-xs-12">
         <ul class="question-statistic">
           <li class="active">
-            <% if check_feeback_topic post.topic_id %>
-              <%= link_to "javascript:", data: {toggle: "tooltip", original_title: "#{t ".answers"}"} do %>
-                <span class="count count-answer" data-id=<%= post.id %>><i class="fa fa-reply" aria-hidden="true"></i>
-                  <%= post.count_answer %>
-                </span>
-              <% end %>
-            <% else %>
-              <%= link_to post_path(post), data: {toggle: "tooltip", original_title: "#{t ".answers"}"} do %>
-                <span class="count"><i class="fa fa-reply" aria-hidden="true"></i>
-                  <%= post.count_answer %>
-                </span>
-              <% end %>
+            <%= link_to "javascript:", data: {toggle: "tooltip", original_title: "#{t ".answers"}"} do %>
+              <span class="count"><i class="fa fa-reply" aria-hidden="true"></i>
+                <%= post.count_answer %>
+              </span>
             <% end %>
           </li>
           <li>
@@ -60,8 +69,8 @@
         </ul>
       </div>
       <div class="col-md-12 col-sm-12 col-xs-12 truncate-post">
-        <div class="content-post post-<%= post.id %> limit-content-post">
-          <%= raw post.content %>
+        <div class="content-post post-<%= post.id %>">
+          <span class="more"><%= raw post.content %></span>
         </div>
         <% if check_feeback_topic post.topic_id %>
           <div class="pull-right tagcloud category">
@@ -79,15 +88,13 @@
         <% if post.count_answer > Settings.number_zero && @topic.id == Settings.topic.feedback_number %>
           <div class="row">
             <p>
-              <a class="answer-for-feedback" data-toggle="collapse" href="#answers-feedback-<%=post.id%>" 
+              <a class="answer-for-feedback" data-toggle="collapse" href="#answers-feedback-<%=post.id%>"
                 aria-expanded="false" aria-controls="collapseExample" data-id="<%= post.id%>">
                 <%= t "view_answer" %>
               </a>
             </p>
-            <div class="collapse" id="answers-feedback-<%=post.id%>">
-              <div class="card card-body answer-content">
-                <%= raw post.answers.first.content %>
-              </div>
+            <div class="collapse answer-for-feedback-item" id="answers-feedback-<%=post.id%>">
+              <%= render partial: "posts/answer", locals: {post: post, answer: post.answers.first} %>
             </div>
           </div>
         <% end %>

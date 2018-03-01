@@ -32,6 +32,10 @@ module PostsHelper
     count_likes(item) + count_loves(item)
   end
 
+  def count_vote_feedback post
+    post.reactions.upvote.size - post.reactions.downvote.size
+  end
+
   def length_custom array
     array.present? ? array.length : 0
   end

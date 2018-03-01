@@ -41,7 +41,7 @@ class Supports::TopicSupport
   end
 
   def check_filter_by_category
-    return true if @category_id.present?    
+    return true if @category_id.present?
   end
 
   def total_post

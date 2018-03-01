@@ -541,7 +541,15 @@ p {
   display: none;
 }
 .morelink {
-  display: block;
+  color: #365899;
+  padding: 10px;
+  &:hover {
+    color: #365899;
+    text-decoration: underline;
+  }
+  &:focus {
+    color: #365899;
+  }
 }
 .nothing-message {
   color: #0020f8;
@@ -577,7 +585,6 @@ p {
 }
 .more{
   color: #000000;
-  position: relative;
   top: -50px;
 }
 .notifyjs-corner {
@@ -827,7 +834,6 @@ mark{
   display: block;
 }
 .show-more{
-  height: 250px !important;
   display: inline-block;
   overflow: hidden;
   width: 100%;
@@ -1133,7 +1139,13 @@ mark{
     color: #365899;
   }
 }
-.answer-content{
-  color: black;
-  padding-left: 30px;
+.answer-for-feedback-item{
+  margin-left: 10px;
+  width: 96%;
+  padding-top: 5px;
+}
+.vote-post-of-feedback{
+  width: 50%;
+  margin-left: 20%;
+  box-shadow: none;
 }
