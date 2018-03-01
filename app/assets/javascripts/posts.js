@@ -460,8 +460,20 @@ function validate_comment(){
     }
   });
 }
-
-$(document).ready(function(){
+function show_feedback_answer() {
+  $(document).on('click','.answer-for-feedback', function () {
+    var post_id = $(this).data('id');
+    var target = '.post-'+post_id+'.content-post';
+    if($(target).hasClass('limit-content-post')){
+      $(target).removeClass('limit-content-post');
+    }
+    else
+    {
+      $(target).addClass('limit-content-post'); 
+    }
+  })
+}
+$(document).ready(function(){ 
   delete_post();
   delete_comment();
   delete_answer();
@@ -476,6 +488,7 @@ $(document).ready(function(){
   update_status_feedback();
   filter_feedback_manager();
   validate_comment();
+  show_feedback_answer();
 
   $('#select-toppic').change(function(){
     load_choose_toppic();
