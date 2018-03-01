@@ -217,13 +217,16 @@ p {
   margin-bottom: 0 !important;
 }
 .content-post{
-  max-height: 73px;
   overflow: hidden;
   text-overflow: ellipsis;
   color: #000000;
-  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   display: -webkit-box;
+  margin-bottom: 5px;
+}
+.limit-content-post{
+  max-height: 73px;
+  -webkit-line-clamp: 3;
 }
 .listing-grid p {
   overflow: hidden;
@@ -1107,9 +1110,27 @@ mark{
   margin-left: 5px;
 }
 .previous-week a,.next-week a {
-  background-color: #75DBFFFF !important;
-  color: black !important;
+  background-color: cornflowerblue !important;
+  color: white !important;
 }
 .move-week-button{
   margin: 0px;
+}
+.row .answer-for-feedback{
+  margin-top: 5px;
+}
+.answer-for-feedback{
+  color: #365899;
+  padding: 10px;
+  &:hover {
+    color: #365899;
+    text-decoration: underline;
+  }
+  &:focus {
+    color: #365899;
+  }
+}
+.answer-content{
+  color: black;
+  padding-left: 30px;
 }
