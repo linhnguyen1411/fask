@@ -206,8 +206,8 @@ vi:
       btn_edit: "Cập nhật ngay"
     answer:
       correct_answer: "Câu trả lời đúng"
-      like_answer: "Thích câu trả lời này"
-      spam: "Spam"
+      like: "Thích"
+      dislike: "Không thích"
       love: "Yêu thích"
     extension_post:
       on: "trên"

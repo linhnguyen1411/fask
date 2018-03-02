@@ -125,8 +125,8 @@ function reaction_vote_post() {
           var reactions = data.reaction_type;
           if(data.type) {
             if(model === 'Post') {
-              $('.point-vote').html('').toggle(200);
-              $('.point-vote').html(data.data).toggle(200);
+              $('.point-vote-'+ data.id).html('').toggle(200);
+              $('.point-vote-'+ data.id).html(data.data).toggle(200);
             }
             else {
               var data = data.data;
@@ -469,11 +469,11 @@ function show_feedback_answer() {
     }
     else
     {
-      $(target).addClass('limit-content-post'); 
+      $(target).addClass('limit-content-post');
     }
   })
 }
-$(document).ready(function(){ 
+$(document).ready(function(){
   delete_post();
   delete_comment();
   delete_answer();

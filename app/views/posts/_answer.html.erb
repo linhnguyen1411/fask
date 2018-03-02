@@ -42,8 +42,8 @@
     </div>
     <div class="reactions-form">
       <div class="pad-ver pull-right">
-        <%= load_btn_reactions answer, t(".like_answer"), Settings.reaction_type.like %>
-        <%= load_btn_reactions answer, t(".spam"), Settings.reaction_type.dislike %>
+        <%= load_btn_reactions answer, t(".like"), Settings.reaction_type.like %>
+        <%= load_btn_reactions answer, t(".dislike"), Settings.reaction_type.dislike %>
         <%= load_btn_reactions answer, t(".love"), Settings.reaction_type.heart %>
         <%= load_btn_correct_answer answer, post %>
       </div>

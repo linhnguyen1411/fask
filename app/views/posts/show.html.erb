@@ -25,7 +25,7 @@
         <div class="col-md-8 col-sm-12 col-xs-12">
           <div class="row">
             <div class="col-md-1">
-              <div class="row vote-of-post text-center">
+              <div class="row vote-of-post text-center vote-post-of-feedback  ">
                 <% if current_user.present? %>
                   <div class="btn-action">
                     <%= link_to "javascript:", class: "btn-vote anonymous",
@@ -34,7 +34,7 @@
                       <i class="fa fa-angle-up" aria-hidden="true"></i>
                     <% end %>
                   </div>
-                  <div class="point-vote"><%= @post_extension.count_vote %></div>
+                  <div class="point-vote-<%= @post.id %>"><%= @post_extension.count_vote %></div>
                   <div class="btn-action">
                     <%= link_to "javascript:", class: "btn-vote anonymous",
                       data: {type: Settings.reaction_type.down, model: Post.name,

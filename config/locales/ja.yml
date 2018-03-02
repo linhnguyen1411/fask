@@ -206,8 +206,8 @@ ja:
       btn_edit: "今すぐアップデート"
     answer:
       correct_answer: "正解"
-      like_answer: "似たような回答"
-      spam: "スパム"
+      like: "似たような回答"
+      dislike: "Dislike"
       love: "愛"
     extension_post:
       on: "に"
