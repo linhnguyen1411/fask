@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :check_event_officer_user, except: :show
   before_action :load_category, except: [:index, :create, :new]
+  before_action :load_topic
 
   def index
     @categories = Category.newest.page(params[:page]).per Settings.paginate_categories
@@ -56,5 +57,12 @@ class CategoriesController < ApplicationController
 
   def category_params
     params.require(:category).permit :name
+  end
+
+  def load_topic
+    @topic = Topic.find_by id: Settings.topic.feedback_number
+    return if @topic
+    flash[:danger] = t "not_found_topic"
+    redirect_to root_path
   end
 end
