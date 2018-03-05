@@ -172,7 +172,7 @@
             <h2><%= t ".thread_answers" %> </h2>
             <% if @post_extension.answers_of_post.present? %>
               <%= render partial: "posts/answer", collection: @post_extension.answers_of_post,
-                locals: {post: @post} %>
+                locals: {post: @post, topic_view: false} %>
             <% else %>
               <%= label_tag "", t(".post_not_answers"), class: "post-not-answers" %>
             <% end %>

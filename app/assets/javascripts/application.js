@@ -56,3 +56,5 @@ $(document).ready(function(){
   });
 });
 CKEDITOR.config.customConfig = '/assets/ckeditor/ckeditor_config.js';
+CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
+CKEDITOR.config.autoParagraph = false;
