@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   before_action :load_notification
   before_action :set_locale
+  before_action :load_topics
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
@@ -62,5 +63,9 @@ class ApplicationController < ActionController::Base
   def set_locale
     I18n.locale = session[:locale] || I18n.default_locale
     session[:locale] = I18n.locale
+  end
+
+  def load_topics
+    @topics = Topic.all
   end
 end

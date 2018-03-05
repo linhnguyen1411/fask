@@ -1,0 +1,10 @@
+<% if @success %>
+  <% if @status == 'true' %>
+    swal(I18n.t('turn_on_topic')+' <%= raw @topic.name %>','','success');
+  <% else %>
+    swal(I18n.t('turn_off_topic')+' <%= raw @topic.name %>','','success');
+  <% end %>
+<% else %>
+  swal(I18n.t('on_off_topic_failed'),'','danger');
+<% end %>
+$('.header').html('<%= j render "layouts/header", topics: @topics%>');

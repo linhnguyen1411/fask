@@ -56,11 +56,18 @@
     <hr>
     <div class="row">
       <div class="col-md-8 col-sm-12 col-xs-12">
-        <div class="content-posts">
-          <%= render partial: "topics/post", collection: @support.filter_posts %>
-        </div>
-        <div class="text-center clearfix paginate-posts">
-          <%= paginate @support.filter_posts, remote: true %>
+        <% if @topic.id == Settings.topic.feedback_number %>
+          <div class="filter_by_week">
+            <%= render "topics/weekly_filter", support: @support %>
+          </div>
+        <% end %>
+        <div class="tab-pane fade in active">
+          <div class="content-posts">
+            <%= render partial: "topics/post", collection: @support.filter_posts %>
+          </div>
+          <div class="text-center clearfix paginate-posts">
+            <%= paginate @support.filter_posts, remote: true %>
+          </div>
         </div>
       </div>
       <div class="col-md-4 col-sm-12 col-xs-12">
@@ -69,3 +76,19 @@
     </div>
   </div>
 </section>
+<div class="modal fade modal-answer" id="modal-show-fast-answer">
+  <div class="modal-dialog show-fast-answer">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><%= t "show_fast_answer" %></h4>
+      </div>
+      <div class="modal-body"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-xs btn-primary" data-dismiss="modal">
+          <%= t "ok" %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="like-modal"></div>

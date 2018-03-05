@@ -15,7 +15,9 @@
       <p class="text-muted text-sm item-time">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
         <%= load_time_created_at answer %>
-        <%= raw load_button_edit_delete_answer(answer, post.topic_id) %>
+        <% if !topic_view %>
+          <%= raw load_button_edit_delete_answer(answer, post.topic_id) %>
+        <% end %>
         <% if post.topic_id != Settings.topic.feedback_number && !check_user_anonymous %>
           |<%= link_to "javascript:void(0)", data:
             { toggle: "collapse",target: "#share-cmt-#{answer.id}"} do %>
@@ -42,8 +44,8 @@
     </div>
     <div class="reactions-form">
       <div class="pad-ver pull-right">
-        <%= load_btn_reactions answer, t(".like_answer"), Settings.reaction_type.like %>
-        <%= load_btn_reactions answer, t(".spam"), Settings.reaction_type.dislike %>
+        <%= load_btn_reactions answer, t(".like"), Settings.reaction_type.like %>
+        <%= load_btn_reactions answer, t(".dislike"), Settings.reaction_type.dislike %>
         <%= load_btn_reactions answer, t(".love"), Settings.reaction_type.heart %>
         <%= load_btn_correct_answer answer, post %>
       </div>

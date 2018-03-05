@@ -25,7 +25,7 @@
         <div class="col-md-8 col-sm-12 col-xs-12">
           <div class="row">
             <div class="col-md-1">
-              <div class="row vote-of-post text-center">
+              <div class="row vote-of-post text-center vote-post-of-feedback  ">
                 <% if current_user.present? %>
                   <div class="btn-action">
                     <%= link_to "javascript:", class: "btn-vote anonymous",
@@ -34,7 +34,7 @@
                       <i class="fa fa-angle-up" aria-hidden="true"></i>
                     <% end %>
                   </div>
-                  <div class="point-vote"><%= @post_extension.count_vote %></div>
+                  <div class="point-vote-<%= @post.id %>"><%= @post_extension.count_vote %></div>
                   <div class="btn-action">
                     <%= link_to "javascript:", class: "btn-vote anonymous",
                       data: {type: Settings.reaction_type.down, model: Post.name,
@@ -172,7 +172,7 @@
             <h2><%= t ".thread_answers" %> </h2>
             <% if @post_extension.answers_of_post.present? %>
               <%= render partial: "posts/answer", collection: @post_extension.answers_of_post,
-                locals: {post: @post} %>
+                locals: {post: @post, topic_view: false} %>
             <% else %>
               <%= label_tag "", t(".post_not_answers"), class: "post-not-answers" %>
             <% end %>
@@ -216,15 +216,17 @@
                 </div>
               <% end %>
             </div>
-            <!-- <div class="widget">
-              <div class="recent-comments">
-                <h2><%= t ".hot_question" %></h2>
-                <hr class="widget-separator no-margin">
-                <%= render partial: "posts/extension_post",
-                  collection: @post_extension.hot_post, as: :post,
-                  locals: { type: Settings.post.extension.hot_question } %>
+            <% if !check_only_feedback_on %>
+              <div class="widget">
+                <div class="recent-comments">
+                  <h2><%= t ".hot_question" %></h2>
+                  <hr class="widget-separator no-margin">
+                  <%= render partial: "posts/extension_post",
+                    collection: @post_extension.hot_post, as: :post,
+                    locals: { type: Settings.post.extension.hot_question } %>
+                </div>
               </div>
-            </div> -->
+            <% end %>
           </div>
         </div>
       </div>

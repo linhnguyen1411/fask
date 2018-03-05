@@ -9,7 +9,9 @@
   </head>
   <body>
     <div class="preloader"><span class="preloader-gif"></span></div>
-    <%= render "layouts/header" %>
+    <span class="header">
+      <%= render "layouts/header" , topics: @topics %>
+    </span>
     <div class="main-content-area">
       <% flash.each do |key, value| %>
         <div class="alert alert-<%= key %> fade in message-alert"><%= value %></div>

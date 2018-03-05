@@ -37,6 +37,9 @@ $(document).ready(function(){
       }
     }).triggerHandler('mouseover');
   });
+  $(document).on('click','ul.pagination li a', function(){
+    $('html, body').animate({ scrollTop: 0 }, 'slow');
+  });
   Notification.requestPermission();
   $('.zoom-img').each(function(){
     $(this).viewer();
@@ -46,5 +49,12 @@ $(document).ready(function(){
       $(this).attr('disabled','disabled').css('cursor', 'not-allowed').click(function(){return false});
     }
   });
+  $(document).on('mouseover','.next-week', function(){
+    if($('.next-week').hasClass('disabled') == true){
+      $(this).click(function(){return false});
+    }
+  });
 });
 CKEDITOR.config.customConfig = '/assets/ckeditor/ckeditor_config.js';
+CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
+CKEDITOR.config.autoParagraph = false;

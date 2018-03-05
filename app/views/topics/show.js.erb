@@ -1,3 +1,6 @@
+<% if @support.check_filter_by_category %>
+  $('.filter_by_week').html('');
+<% end %>
 $('#to-day-picker').val('<%= change_format_date @support.filter_type[:to_day] %>');
 $('#from-day-picker').val('<%= change_format_date @support.filter_type[:from_day] %>');
 $('.location-dropbtn').html('<%= work_space_name(@support.work_space) %>');
@@ -6,4 +9,35 @@ $('.sort-by-dropbtn').html('<%= j (t("sort_type_list.#{@support.filter_type[:sor
 $('.sort-by-dropbtn').attr('data-id', '<%= @support.filter_type[:sort_type] %>');
 $('.content-posts').html('<%= j(render partial: "topics/post",\
   collection: @support.filter_posts) %>');
-$('.paginate-posts').html('<%= j (paginate @support.filter_posts, remote: true)  %>');
+$('.paginate-posts').html('<%= j (paginate @support.filter_posts, remote: true) %>');
+<% if @topic.id == Settings.topic.feedback_number && !@support.check_filter_by_category %>
+  $('.filter_by_week').html('<%= j (render "topics/weekly_filter", support: @support) %>');
+<% end %>
+$(document).ready(function(){
+  var showChar = 200;
+  var ellipsestext = ' ...';
+  var moretext = I18n.t('version.show_more');
+  var lesstext = I18n.t('version.show_less');
+  $('.more').each(function() {
+    $(this).find('p').contents().unwrap();
+    var content = $(this).html();
+    if(content.length > showChar) {
+      var c = content.substr(0, showChar);
+      var h = content.substr(showChar, content.length - showChar);
+      var html = c + '<span class="moreellipses">' + ellipsestext+ '</span><span class="morecontent"><span>' + h + '</span><a href="" class="morelink">' + moretext + '</a></span>';
+      $(this).html(html);
+    }
+  });
+  $(".morelink").click(function(){
+    if($(this).hasClass('less')) {
+      $(this).removeClass('less');
+      $(this).html(moretext);
+    } else {
+      $(this).addClass('less');
+      $(this).html(lesstext);
+    }
+    $(this).parent().prev().toggle();
+    $(this).prev().toggle();
+    return false;
+  });
+});

@@ -3,15 +3,13 @@
     <td scope="row"><%= fb.id %></td>
     <td scope="row"><%= fb.user_name %></td>
     <td scope="row" class="feedback-title">
-      <strong class="title-post">
-        <% if fb.accept? %>
-          <%= link_to fb do %>
-            <span class="title"><%= fb.title %></span>
-          <% end %>
-        <% else %>
+      <% if fb.accept? %>
+        <%= link_to fb do %>
           <span class="title"><%= fb.title %></span>
         <% end %>
-      </strong>
+      <% else %>
+        <span class="title"><%= fb.title %></span>
+      <% end %>
       <a href="javascript:" class="btn-show" data-toggle="collapse"
         data-target="#content-feedback-<%= fb.id %>">
         <i class="fa fa-eye" aria-hidden="true" title="Show content of feedback"></i></a>

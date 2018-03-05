@@ -9,7 +9,7 @@ class Supports::PostSupport
   end
 
   def hot_post
-    Post.popular.limit Settings.paginate_default
+    Post.post_of_topic_on.popular.limit Settings.paginate_default
   end
 
   def answers_of_post
@@ -70,8 +70,7 @@ class Supports::PostSupport
   end
 
   def topic_list
-    # Topic.load_topic_not_confession
-    Topic.load_feedback_topic
+    Topic.load_topic_on
   end
 
   def related_question

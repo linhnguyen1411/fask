@@ -69,7 +69,7 @@ vi:
       step_3: "Tìm kiếm câu trả lời"
       search_panel:
         title: "BẠN CÓ CÂU HỎI?"
-        content: "Nếu bạn có góp ý về công ty bạn có thể tìm kiếm tại đây!"
+        content: "Nếu bạn có câu hỏi về kỷ thuật, góp ý về công ty bạn có thể tìm kiếm tại đây!"
         placeholder: "Nhập từ khóa để tìm kiếm"
         button: "Tìm kiếm"
       question_not_exist: "Không có câu hỏi nào."
@@ -206,8 +206,8 @@ vi:
       btn_edit: "Cập nhật ngay"
     answer:
       correct_answer: "Câu trả lời đúng"
-      like_answer: "Thích câu trả lời này"
-      spam: "Spam"
+      like: "Thích"
+      dislike: "Không thích"
       love: "Yêu thích"
     extension_post:
       on: "trên"
@@ -609,6 +609,21 @@ vi:
   switch_anonymous: "Ẩn danh"
   topic_1: "Hỏi đáp kỹ thuật"
   topic_2: "Ý kiến đóng góp"
+  topic_3: "Sự thú nhận"
   admin:
     sign_in: "Đăng nhập"
     title: "Quản trị viên"
+  turn_on_topic: "Đã bật chủ đề "
+  turn_off_topic: "Đã tắt chủ đề "
+  on_off_topic_failed: "Thay đổi không thành công"
+  management:
+    site_management: "Trang quản trị"
+    topic_management: "Quản trị chủ đề"
+  show_fast_answer: "Chi tiết câu trả lời"
+  no_answer: "Không có câu trả lời"
+  filter_weekly:
+    previous: "Xem tuần trước"
+    next: "Xem tuần sau"
+    feedback_from: "Các phản hồi từ"
+    to: "đến"
+  view_answer: "Xem câu trả lời"

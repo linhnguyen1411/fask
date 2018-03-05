@@ -75,6 +75,14 @@
                       <% end %>
                     </li>
                   <% end %>
+                  <% if check_permited_user_admin %>
+                    <li>
+                      <%= link_to dashboard_managements_path  do %>
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        <%= t "management.site_management" %>
+                      <% end %>
+                    </li>
+                  <% end %>
                   <li>
                     <%= link_to edit_user_setting_path(current_user) do %>
                       <i class="fa fa-cog" aria-hidden="true"></i>
@@ -97,12 +105,12 @@
                 <%= t ".login" %>
               <% end %>
             </li>
-            <!-- <li>
+            <li>
               <%= link_to new_user_registration_path do %>
                 <i class="fa fa-user-plus" aria-hidden="true"></i>
                 <%= t ".signup" %>
               <% end %>
-            </li> -->
+            </li>
           <% end %>
           <li class="dropdown">
             <%= link_to "#", class: "dropdown-toggle",
@@ -160,12 +168,10 @@
     </div>
     <div class="navbar-collapse collapse col-md-7 pull-right">
       <ul class="nav navbar-nav navbar-right">
-          <!-- <li class="hidden-sm"><%= link_to t(".q_a"), topic_path(Settings.topic.q_a),
-            id: "link-topic-qa" %></li> -->
-          <li><%= link_to t(".feedback"), topic_path(Settings.topic.feedback),
-            id: "link-topic-fb" %></li>
-          <!-- <li><%= link_to t(".confession"), topic_path(Settings.topic.confesstion),
-            id: "link-topic-cf" %></li> -->
+        <% topics.load_topic_on.each do |topic| %>
+          <li class="hidden-sm"><%= link_to topic.name, topic_path(topic),
+          id: "link-topic-#{topic.id}" %></li>
+        <% end %>
         <li>
           <div class="btn-nav">
             <%= link_to t(".post_question"), new_post_path(topic_id: @topic),
