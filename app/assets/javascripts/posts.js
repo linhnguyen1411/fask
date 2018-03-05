@@ -476,7 +476,6 @@ $(document).ready(function(){
   update_status_feedback();
   filter_feedback_manager();
   validate_comment();
-  show_feedback_answer();
 
   $('#select-toppic').change(function(){
     load_choose_toppic();
