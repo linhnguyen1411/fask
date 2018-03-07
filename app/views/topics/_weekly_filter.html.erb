@@ -1,6 +1,11 @@
 <ul class="pager move-week-button">
-  <li class="previous-week"><a href="javascript:" class="pull-left"><%= t "filter_weekly.previous" %></a></li>
-  <li class="filter-rank"><%= t "filter_weekly.feedback_from" %> <%= change_format_date support.filter_type[:from_day] %>
+  <li class="previous-week"><a href="javascript:" class="pull-left">
+    <i class="glyphicon glyphicon-chevron-left"></i></a></li>
+  <li class="filter-rank"><%= t "filter_weekly.feedback_from" %>
+    <%= change_format_date support.filter_type[:from_day] %>
     <%= t "filter_weekly.to" %> <%= change_format_date support.filter_type[:to_day] %></li>
-  <li class="next-week <%= 'disabled' if @support.check_next_thursday == false %>"><a href="javascript:" class="pull-right"><%= t "filter_weekly.next" %></a></li>
+  <% if support.check_next_thursday == false %>
+    <li class="next-week"><a href="javascript:" class="pull-right">
+      <i class="glyphicon glyphicon-chevron-right"></i></a></li>
+  <% end %>
 </ul>
