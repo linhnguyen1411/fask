@@ -1,6 +1,3 @@
-<% if @support.check_filter_by_category %>
-  $('.filter_by_week').html('');
-<% end %>
 $('#to-day-picker').val('<%= change_format_date @support.filter_type[:to_day] %>');
 $('#from-day-picker').val('<%= change_format_date @support.filter_type[:from_day] %>');
 $('.location-dropbtn').html('<%= work_space_name(@support.work_space) %>');

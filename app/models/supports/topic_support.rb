@@ -49,7 +49,7 @@ class Supports::TopicSupport
   end
 
   def check_next_thursday
-    return false if filter_type[:to_day].present? && (DateTime.parse(filter_type[:to_day]) + 7) > Date.today
+    filter_type[:to_day].present? && (DateTime.parse(filter_type[:to_day]) + 7) > Date.today
   end
   private
 
