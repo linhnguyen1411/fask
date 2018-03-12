@@ -176,8 +176,9 @@ function filter_by_category(){
 $(document).ready(function(){
   $(document).on('click','.previous-week', function(){
     var topic =  $('#current-toppic').attr('data-id');
-    var to_day = $('#to-day-picker').val();
-    var from_day = $('#from-day-picker').val();
+    var to_day = $('#from-day-picker').val();
+    var from_day = new Date(to_day);
+    from_day.setDate(from_day.getDate() - 7);
     var sort_type = $('.sort-by-dropbtn').attr('data-id');
     var work_space_id = $('.location-dropbtn').attr('data-id');
     var category_id = $('.category a.active').attr('data-id');
@@ -187,7 +188,6 @@ $(document).ready(function(){
       method: 'GET',
       dataType: 'script',
       data: {
-        previous_week: previous_week,
         from_day: from_day,
         to_day: to_day,
         work_space_id: work_space_id,
@@ -198,8 +198,9 @@ $(document).ready(function(){
   });
   $(document).on('click','.next-week', function(){
     var topic =  $('#current-toppic').attr('data-id');
-    var to_day = $('#to-day-picker').val();
-    var from_day = $('#from-day-picker').val();
+    var from_day = $('#to-day-picker').val();
+    var to_day = new Date(from_day);
+    to_day.setDate(to_day.getDate() + 7);
     var sort_type = $('.sort-by-dropbtn').attr('data-id');
     var work_space_id = $('.location-dropbtn').attr('data-id');
     var category_id = $('.category a.active').attr('data-id');
@@ -209,7 +210,6 @@ $(document).ready(function(){
       method: 'GET',
       dataType: 'script',
       data: {
-        next_week: next_week,
         from_day: from_day,
         to_day: to_day,
         work_space_id: work_space_id,

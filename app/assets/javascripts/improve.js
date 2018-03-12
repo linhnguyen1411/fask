@@ -38,18 +38,17 @@ $(document).ready(function(){
   approve_a_version();
 });
 function read_more(){
-  var showChar = 200;
+  var showChar = 300;
   var ellipsestext = ' ...';
   var moretext = I18n.t('version.show_more');
   var lesstext = I18n.t('version.show_less');
   $('.more').each(function() {
     $(this).find('p').contents().unwrap();
-
     var content = $(this).html();
     if(content.length > showChar) {
       var c = content.substr(0, showChar);
       var h = content.substr(showChar, content.length - showChar);
-      var html = c + '<span class="moreellipses">' + ellipsestext+ '</span><span class="morecontent"><span>' + h + '</span><a href="" class="morelink">' + moretext + '</a></span>';
+      var html = c + '<span class="moreellipses">' + ellipsestext+ '</span><span class="morecontent"><span class="hide-content">' + h + '</span><a href="" class="morelink">' + moretext + '</a></span>';
       $(this).html(html);
     }
   });
@@ -62,7 +61,7 @@ function read_more(){
       $(this).html(lesstext);
     }
     $(this).parent().prev().toggle();
-    $(this).prev().toggle();
+    $(this).prev('.hide-content').toggle();
     return false;
   });
 };

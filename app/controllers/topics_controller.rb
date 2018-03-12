@@ -6,13 +6,8 @@ class TopicsController < ApplicationController
 
   def show
     if params[:id] == Settings.topic.feedback
-      case
-      when params[:from_day].blank? && params[:to_day].blank? && params[:category_id].blank?
+      if params[:from_day].blank? && params[:to_day].blank? && params[:category_id].blank?
         check_filter_by_week
-      when params[:previous_week] && params[:page].blank?
-        load_date_ranger_previous
-      when params[:next_week]
-        load_date_ranger_next
       end
     end
     params[:to_day] = convert_date params[:to_day]
@@ -79,11 +74,6 @@ class TopicsController < ApplicationController
 
   def check_filter_by_week
     get_nearest_thursday
-    params[:from_day] = params[:to_day] - 7
-  end
-
-  def load_date_ranger_previous
-    params[:to_day] = DateTime.parse params[:from_day]
     params[:from_day] = params[:to_day] - 7
   end
 
